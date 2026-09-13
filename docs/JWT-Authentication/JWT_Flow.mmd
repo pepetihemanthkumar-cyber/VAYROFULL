@@ -1,0 +1,79 @@
+sequenceDiagram
+    autonumber
+    actor User as DriveEase User (Customer / Admin)
+    participant Client as React Frontend
+    participant Gateway as API Gateway Router
+    participant Auth as Auth Microservice
+    participant DB as Auth Database (PostgreSQL)
+    participant Microservice as Target Microservice (Vehicle / Booking / Payment)
+
+    %% Registration Flow
+    rect rgb(240, 245, 255)
+        note over User, DB: REGISTRATION FLOW
+        User->>Client: Input Name, Email, Password, Role
+        Client->>Gateway: POST /api/v1/auth/register
+        Gateway->>Auth: Forward Registration Request
+        Auth->>Auth: Validate Email & Password Strength
+        Auth->>Auth: Hash Password (Argon2id / bcrypt + Salt)
+        Auth->>DB: Save User Account & Password Hash
+        DB-->>Auth: Account Saved
+        Auth-->>Gateway: 201 Created (User Registered)
+        Gateway-->>Client: 201 Created (Success Notification)
+    end
+
+    %% Login Flow
+    rect rgb(245, 240, 255)
+        note over User, DB: LOGIN & TOKEN ISSUANCE FLOW
+        User->>Client: Enter Email & Password
+        Client->>Gateway: POST /api/v1/auth/login
+        Gateway->>Auth: Forward Credentials
+        Auth->>DB: Query User Hash by Email
+        DB-->>Auth: Return Hashed Password & User Role
+        Auth->>Auth: Compare Hashed Password (Valid)
+        Auth->>Auth: Generate Short-Lived Access Token (JWT - 15 min)
+        Auth->>Auth: Generate Long-Lived Refresh Token (7 Days)
+        Auth->>DB: Store Hashed Refresh Token (Rotation Track)
+        Auth-->>Gateway: 200 OK (Access Token + Refresh Token)
+        Gateway-->>Client: Return Authentication Response Tokens
+        Client->>Client: Store Access Token (Memory/Cookie)
+    end
+
+    %% Protected API Request Flow
+    rect rgb(240, 255, 245)
+        note over Client, Microservice: PROTECTED API REQUEST & JWT VALIDATION FLOW
+        Client->>Gateway: GET /api/v1/bookings/my-bookings<br/>Header: Authorization: Bearer <Access-JWT>
+        Gateway->>Gateway: Intercept Request & Extract Bearer Token
+        Gateway->>Gateway: Verify Signature (RS256 Public Key)
+        Gateway->>Gateway: Check Expiration & Claims (sub, role, iss)
+        alt Token Missing or Expired
+            Gateway-->>Client: 401 Unauthorized (Token Invalid / Expired)
+        else Token Signature & Expiration Valid
+            Gateway->>Gateway: Inspect Required Endpoint Role (e.g. CUSTOMER)
+            alt Role Unauthorized
+                Gateway-->>Client: 403 Forbidden (Insufficient Privileges)
+            else Role Authorized
+                Gateway->>Microservice: Forward Request with Claims Header (X-User-Id, X-User-Role)
+                Microservice->>Microservice: Execute Business Logic
+                Microservice-->>Gateway: Return Business Response Data
+                Gateway-->>Client: 200 OK (Data Payload)
+            end
+        end
+    end
+
+    %% Refresh Token Flow
+    rect rgb(255, 250, 240)
+        note over Client, DB: REFRESH TOKEN ROTATION FLOW
+        Client->>Client: Access Token Expired (401 Error Detected)
+        Client->>Gateway: POST /api/v1/auth/refresh<br/>Payload: Refresh Token
+        Gateway->>Auth: Forward Refresh Request
+        Auth->>DB: Verify & Rotate Refresh Token
+        alt Refresh Token Revoked / Reused / Expired
+            Auth-->>Gateway: 401 Unauthorized
+            Gateway-->>Client: Force Full Relogin
+        else Refresh Token Valid
+            Auth->>Auth: Generate NEW Access Token + NEW Refresh Token
+            Auth->>DB: Update Active Refresh Token Hash
+            Auth-->>Gateway: 200 OK (New Access & Refresh Tokens)
+            Gateway-->>Client: Return Refreshed Token Pair
+        end
+    end

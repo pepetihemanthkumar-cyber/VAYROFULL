@@ -1,0 +1,68 @@
+- [x] `royal-enfield-classic-350`: Royal Enfield Classic 350 -> `src/assets/vehicles/bikes/royal-enfield/classic-350/classic-350.webp`
+- [x] `royal-enfield-bullet-350`: Royal Enfield Bullet 350 -> `src/assets/vehicles/bikes/royal-enfield/bullet-350/bullet-350.webp`
+- [x] `royal-enfield-hunter-350`: Royal Enfield Hunter 350 -> `src/assets/vehicles/bikes/royal-enfield/hunter-350/hunter-350.webp`
+- [x] `royal-enfield-meteor-350`: Royal Enfield Meteor 350 -> `src/assets/vehicles/bikes/royal-enfield/meteor-350/meteor-350.webp`
+- [x] `royal-enfield-himalayan-450`: Royal Enfield Himalayan 450 -> `src/assets/vehicles/bikes/royal-enfield/himalayan-450/himalayan-450.webp`
+- [x] `royal-enfield-continental-gt-650`: Royal Enfield Continental GT 650 -> `src/assets/vehicles/bikes/royal-enfield/continental-gt-650/continental-gt-650.webp`
+- [x] `royal-enfield-interceptor-650`: Royal Enfield Interceptor 650 -> `src/assets/vehicles/bikes/royal-enfield/interceptor-650/interceptor-650.webp`
+- [x] `royal-enfield-super-meteor-650`: Royal Enfield Super Meteor 650 -> `src/assets/vehicles/bikes/royal-enfield/super-meteor-650/super-meteor-650.webp`
+- [x] `yamaha-yzf-r15`: Yamaha YZF-R15 -> `src/assets/vehicles/bikes/yamaha/yzf-r15/yzf-r15.webp`
+- [x] `yamaha-mt-15`: Yamaha MT-15 -> `src/assets/vehicles/bikes/yamaha/mt-15/mt-15.webp`
+- [x] `yamaha-fz-s-fi`: Yamaha FZ-S FI -> `src/assets/vehicles/bikes/yamaha/fz-s-fi/fz-s-fi.webp`
+- [x] `yamaha-aerox-155`: Yamaha Aerox 155 -> `src/assets/vehicles/bikes/yamaha/aerox-155/aerox-155.webp`
+- [x] `yamaha-yzf-r3`: Yamaha YZF-R3 -> `src/assets/vehicles/bikes/yamaha/yzf-r3/yzf-r3.webp`
+- [x] `ktm-duke-200`: KTM Duke 200 -> `src/assets/vehicles/bikes/ktm/duke-200/duke-200.webp`
+- [x] `ktm-duke-390`: KTM Duke 390 -> `src/assets/vehicles/bikes/ktm/duke-390/duke-390.webp`
+- [x] `ktm-rc-200`: KTM RC 200 -> `src/assets/vehicles/bikes/ktm/rc-200/rc-200.webp`
+- [x] `ktm-rc-390`: KTM RC 390 -> `src/assets/vehicles/bikes/ktm/rc-390/rc-390.webp`
+- [x] `ktm-390-adventure`: KTM 390 Adventure -> `src/assets/vehicles/bikes/ktm/390-adventure/390-adventure.webp`
+- [x] `honda-activa-6g`: Honda Activa 6G -> `src/assets/vehicles/bikes/honda/activa-6g/activa-6g.webp`
+- [x] `honda-dio-125`: Honda Dio 125 -> `src/assets/vehicles/bikes/honda/dio-125/dio-125.webp`
+- [x] `honda-shine-125`: Honda Shine 125 -> `src/assets/vehicles/bikes/honda/shine-125/shine-125.webp`
+- [x] `honda-unicorn`: Honda Unicorn -> `src/assets/vehicles/bikes/honda/unicorn/unicorn.webp`
+- [x] `honda-cb350-hness`: Honda CB350 Hness -> `src/assets/vehicles/bikes/honda/cb350-hness/cb350-hness.webp`
+- [x] `honda-cb300r`: Honda CB300R -> `src/assets/vehicles/bikes/honda/cb300r/cb300r.webp`
+- [x] `honda-nx500`: Honda NX500 -> `src/assets/vehicles/bikes/honda/nx500/nx500.webp`
+- [x] `bajaj-pulsar-ns200`: Bajaj Pulsar NS200 -> `src/assets/vehicles/bikes/bajaj/pulsar-ns200/pulsar-ns200.webp`
+- [x] `bajaj-pulsar-rs200`: Bajaj Pulsar RS200 -> `src/assets/vehicles/bikes/bajaj/pulsar-rs200/pulsar-rs200.webp`
+- [x] `bajaj-dominar-400`: Bajaj Dominar 400 -> `src/assets/vehicles/bikes/bajaj/dominar-400/dominar-400.webp`
+- [x] `bajaj-pulsar-n160`: Bajaj Pulsar N160 -> `src/assets/vehicles/bikes/bajaj/pulsar-n160/pulsar-n160.webp`
+- [x] `bajaj-chetak`: Bajaj Chetak -> `src/assets/vehicles/bikes/bajaj/chetak/chetak.webp`
+- [x] `bajaj-platina-110`: Bajaj Platina 110 -> `src/assets/vehicles/bikes/bajaj/platina-110/platina-110.webp`
+- [x] `tvs-apache-rtr-160-4v`: TVS Apache RTR 160 4V -> `src/assets/vehicles/bikes/tvs/apache-rtr-160-4v/apache-rtr-160-4v.webp`
+- [x] `tvs-apache-rtr-200-4v`: TVS Apache RTR 200 4V -> `src/assets/vehicles/bikes/tvs/apache-rtr-200-4v/apache-rtr-200-4v.webp`
+- [x] `tvs-apache-rr-310`: TVS Apache RR 310 -> `src/assets/vehicles/bikes/tvs/apache-rr-310/apache-rr-310.webp`
+- [x] `tvs-jupiter-125`: TVS Jupiter 125 -> `src/assets/vehicles/bikes/tvs/jupiter-125/jupiter-125.webp`
+- [x] `tvs-ntorq-125`: TVS Ntorq 125 -> `src/assets/vehicles/bikes/tvs/ntorq-125/ntorq-125.webp`
+- [x] `tvs-ronin`: TVS Ronin -> `src/assets/vehicles/bikes/tvs/ronin/ronin.webp`
+- [x] `tvs-iqube`: TVS iQube -> `src/assets/vehicles/bikes/tvs/iqube/iqube.webp`
+- [x] `hero-splendor-plus`: Hero Splendor Plus -> `src/assets/vehicles/bikes/hero/splendor-plus/splendor-plus.webp`
+- [x] `hero-glamour`: Hero Glamour -> `src/assets/vehicles/bikes/hero/glamour/glamour.webp`
+- [x] `hero-xtreme-125r`: Hero Xtreme 125R -> `src/assets/vehicles/bikes/hero/xtreme-125r/xtreme-125r.webp`
+- [x] `hero-xpulse-200-4v`: Hero Xpulse 200 4V -> `src/assets/vehicles/bikes/hero/xpulse-200-4v/xpulse-200-4v.webp`
+- [x] `suzuki-access-125`: Suzuki Access 125 -> `src/assets/vehicles/bikes/suzuki/access-125/access-125.webp`
+- [x] `suzuki-burgman-street`: Suzuki Burgman Street -> `src/assets/vehicles/bikes/suzuki/burgman-street/burgman-street.webp`
+- [x] `suzuki-gixxer-sf`: Suzuki Gixxer SF -> `src/assets/vehicles/bikes/suzuki/gixxer-sf/gixxer-sf.webp`
+- [x] `suzuki-gixxer-250`: Suzuki Gixxer 250 -> `src/assets/vehicles/bikes/suzuki/gixxer-250/gixxer-250.webp`
+- [x] `suzuki-v-strom-sx`: Suzuki V-Strom SX -> `src/assets/vehicles/bikes/suzuki/v-strom-sx/v-strom-sx.webp`
+- [x] `suzuki-hayabusa`: Suzuki Hayabusa -> `src/assets/vehicles/bikes/suzuki/hayabusa/hayabusa.webp`
+- [x] `kawasaki-ninja-300`: Kawasaki Ninja 300 -> `src/assets/vehicles/bikes/kawasaki/ninja-300/ninja-300.webp`
+- [x] `kawasaki-ninja-500`: Kawasaki Ninja 500 -> `src/assets/vehicles/bikes/kawasaki/ninja-500/ninja-500.webp`
+- [x] `kawasaki-z900`: Kawasaki Z900 -> `src/assets/vehicles/bikes/kawasaki/z900/z900.webp`
+- [x] `kawasaki-eliminator`: Kawasaki Eliminator -> `src/assets/vehicles/bikes/kawasaki/eliminator/eliminator.webp`
+- [x] `bmw-motorrad-g-310-r`: BMW Motorrad G 310 R -> `src/assets/vehicles/bikes/bmw-motorrad/g-310-r/g-310-r.webp`
+- [x] `bmw-motorrad-g-310-gs`: BMW Motorrad G 310 GS -> `src/assets/vehicles/bikes/bmw-motorrad/g-310-gs/g-310-gs.webp`
+- [x] `bmw-motorrad-g-310-rr`: BMW Motorrad G 310 RR -> `src/assets/vehicles/bikes/bmw-motorrad/g-310-rr/g-310-rr.webp`
+- [x] `bmw-motorrad-r-1250-gs`: BMW Motorrad R 1250 GS -> `src/assets/vehicles/bikes/bmw-motorrad/r-1250-gs/r-1250-gs.webp`
+- [x] `triumph-speed-400`: Triumph Speed 400 -> `src/assets/vehicles/bikes/triumph/speed-400/speed-400.webp`
+- [x] `triumph-scrambler-400-x`: Triumph Scrambler 400 X -> `src/assets/vehicles/bikes/triumph/scrambler-400-x/scrambler-400-x.webp`
+- [x] `triumph-bonneville-t120`: Triumph Bonneville T120 -> `src/assets/vehicles/bikes/triumph/bonneville-t120/bonneville-t120.webp`
+- [x] `harley-davidson-fat-boy`: Harley-Davidson Fat Boy -> `src/assets/vehicles/bikes/harley-davidson/fat-boy/fat-boy.webp`
+- [x] `aprilia-rs-457`: Aprilia RS 457 -> `src/assets/vehicles/bikes/aprilia/rs-457/rs-457.webp`
+- [x] `aprilia-sr-160`: Aprilia SR 160 -> `src/assets/vehicles/bikes/aprilia/sr-160/sr-160.webp`
+- [x] `ola-electric-s1-pro`: Ola Electric S1 Pro -> `src/assets/vehicles/bikes/ola-electric/s1-pro/s1-pro.webp`
+- [x] `ola-electric-s1-air`: Ola Electric S1 Air -> `src/assets/vehicles/bikes/ola-electric/s1-air/s1-air.webp`
+- [x] `ola-electric-s1-x`: Ola Electric S1 X -> `src/assets/vehicles/bikes/ola-electric/s1-x/s1-x.webp`
+- [x] `ather-450x`: Ather 450X -> `src/assets/vehicles/bikes/ather/450x/450x.webp`
+- [x] `ather-rizta`: Ather Rizta -> `src/assets/vehicles/bikes/ather/rizta/rizta.webp`
+- [x] `vida-v1-pro`: Vida V1 Pro -> `src/assets/vehicles/bikes/vida/v1-pro/v1-pro.webp`

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DriveEase — API Gateway Configuration & Architecture Specification</title>
+  <style>
+    /* Clean Academic Theme & Global Styles */
+    :root {
+      --bg-primary: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #334155;
+      --accent-blue: #38bdf8;
+      --accent-indigo: #818cf8;
+      --accent-green: #4ade80;
+      --accent-amber: #fbbf24;
+      --accent-rose: #fb7185;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --border-focus: #38bdf8;
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Sticky Navigation */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent-blue);
+    }
+
+    .badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-amber {
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent-amber);
+      border-color: rgba(251, 191, 36, 0.3);
+    }
+
+    .badge-green {
+      background: rgba(74, 222, 128, 0.15);
+      color: var(--accent-green);
+      border-color: rgba(74, 222, 128, 0.3);
+    }
+
+    .badge-rose {
+      background: rgba(251, 113, 133, 0.15);
+      color: var(--accent-rose);
+      border-color: rgba(251, 113, 133, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-blue);
+    }
+
+    /* Container Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* Header Banner */
+    .header-banner {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 36px;
+      margin-bottom: 32px;
+    }
+
+    .header-banner h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .header-banner .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* Alert Box */
+    .alert-box {
+      background: rgba(251, 191, 36, 0.1);
+      border-left: 4px solid var(--accent-amber);
+      padding: 16px 20px;
+      border-radius: 6px;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #fef08a;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 48px;
+      scroll-margin-top: 80px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+
+    /* Cards Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent-blue);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Flow Container */
+    .flow-container {
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      overflow-x: auto;
+    }
+
+    .flow-step-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .flow-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-align: center;
+      min-width: 140px;
+      flex: 1;
+    }
+
+    .flow-node.active {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .flow-node.auth {
+      border-color: var(--accent-indigo);
+      color: var(--accent-indigo);
+    }
+
+    .flow-node.success {
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    .flow-arrow {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* Code Blocks */
+    pre {
+      background: #020617;
+      border: 1px solid var(--border-color);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      color: var(--accent-blue);
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background: rgba(30, 41, 59, 0.5);
+      color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    tr:hover td {
+      background: rgba(51, 65, 85, 0.3);
+    }
+
+    /* Q&A Accordion Style */
+    .qa-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      padding: 16px 20px;
+    }
+
+    .qa-q {
+      font-weight: 700;
+      color: var(--accent-amber);
+      margin-bottom: 6px;
+    }
+
+    .qa-a {
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .header-banner h1 {
+        font-size: 1.6rem;
+      }
+      .flow-step-row {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="nav-brand">
+      <span>🛡️ DriveEase API Gateway</span>
+      <span class="badge">COMPONENT 4 — API GATEWAY CONFIGURATION</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#what-is-gateway">What is Gateway?</a></li>
+      <li><a href="#why-gateway">Why Needed?</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#routing">Routing</a></li>
+      <li><a href="#jwt-integration">JWT Check</a></li>
+      <li><a href="#rate-limiting">Rate Limit</a></li>
+      <li><a href="#failure">Failures</a></li>
+      <li><a href="#viva">Viva Guide</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <!-- Header Banner -->
+    <header class="header-banner">
+      <h1>DriveEase — API Gateway</h1>
+      <p class="subtitle">Centralized Routing, Security, Rate Limiting, and Service Discovery Architecture</p>
+      
+      <div class="alert-box">
+        <strong>⚠️ Academic Architecture Disclaimer:</strong><br>
+        This page presents the planned API Gateway configuration and security architecture for the DriveEase microservice backend. The current DriveEase React application operates as a standalone frontend with local browser storage. The production API Gateway will be deployed during the backend microservices integration phase.
+      </div>
+    </header>
+
+    <!-- SECTION 1: WHAT IS AN API GATEWAY? -->
+    <section id="what-is-gateway" class="section">
+      <h2 class="section-title">1. What is an API Gateway?</h2>
+      <p class="section-desc">An API Gateway is a reverse-proxy server acting as the single, centralized entry point for all client traffic entering backend microservices.</p>
+
+      <div class="flow-container">
+        <div class="flow-step-row">
+          <div class="flow-node active">DriveEase React App</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node auth">API Gateway Router</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node success">Auth / Vehicle / Booking Microservices</div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-top: 10px;">
+          Single Client Endpoint (`api.driveease.com`) ➔ Encapsulates Internal Microservices Private Network
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: WHY NEEDED? -->
+    <section id="why-gateway" class="section">
+      <h2 class="section-title">2. Direct Access vs. API Gateway Architecture</h2>
+      <p class="section-desc">Comparing direct client-to-service access against a centralized Gateway pattern.</p>
+
+      <div class="grid-2">
+        <div class="card" style="border-color: var(--accent-rose);">
+          <div class="card-title" style="color: var(--accent-rose);">WITHOUT GATEWAY (Direct Access)</div>
+          <ul style="margin-left: 20px; font-size: 0.9rem; color: var(--text-muted);">
+            <li>✗ Client manages 7+ individual service IP/URL endpoints.</li>
+            <li>✗ CORS headers must be configured on all 7 services.</li>
+            <li>✗ JWT signature verification code duplicated across services.</li>
+            <li>✗ Internal microservice ports exposed to public internet.</li>
+            <li>✗ Inconsistent error codes and client coupling.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-color: var(--accent-green);">
+          <div class="card-title" style="color: var(--accent-green);">WITH GATEWAY (Centralized)</div>
+          <ul style="margin-left: 20px; font-size: 0.9rem; color: var(--text-muted);">
+            <li>✓ Single client URL (`https://api.driveease.com`).</li>
+            <li>✓ CORS headers managed centrally in one location.</li>
+            <li>✓ JWT verified once statelessly at Gateway edge.</li>
+            <li>✓ Microservices isolated on private VPC network.</li>
+            <li>✓ Centralized rate limiting, logging, & correlation IDs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: ARCHITECTURE -->
+    <section id="architecture" class="section">
+      <h2 class="section-title">3. Complete API Gateway Architecture</h2>
+      <p class="section-desc">Centralized filters, rate limiters, service discovery lookups, and microservice routing.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">1. JWT Security Filter</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Statelessly verifies RS256 token signatures and role claims (`CUSTOMER` vs `ADMIN`) before forwarding requests.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">2. Redis Rate Limiter</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Token bucket algorithm caps request volume per IP to prevent brute-force attacks (`429 Too Many Requests`).</p>
+        </div>
+        <div class="card">
+          <div class="card-title">3. Eureka Service Lookup</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Queries discovery registry dynamically to find healthy IP instances (`BOOKING-SERVICE` -> `10.0.1.48:8084`).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: ROUTING TABLE -->
+    <section id="routing" class="section">
+      <h2 class="section-title">4. Gateway Route Table</h2>
+      <p class="section-desc">Client endpoint mapping to backend microservices and target security policies.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Client Endpoint Pattern</th>
+            <th>Target Microservice ID</th>
+            <th>Default Port</th>
+            <th>Security Policy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>`/api/v1/auth/**`</td>
+            <td>`AUTH-SERVICE`</td>
+            <td>`:8081`</td>
+            <td><span class="badge badge-green">PUBLIC</span></td>
+          </tr>
+          <tr>
+            <td>`/api/v1/users/**`</td>
+            <td>`USER-SERVICE`</td>
+            <td>`:8082`</td>
+            <td><span class="badge">PROTECTED</span></td>
+          </tr>
+          <tr>
+            <td>`/api/v1/vehicles/**` (GET)</td>
+            <td>`VEHICLE-SERVICE`</td>
+            <td>`:8083`</td>
+            <td><span class="badge badge-green">PUBLIC</span></td>
+          </tr>
+          <tr>
+            <td>`/api/v1/vehicles/**` (POST/PUT/DEL)</td>
+            <td>`VEHICLE-SERVICE`</td>
+            <td>`:8083`</td>
+            <td><span class="badge badge-rose">ADMIN ONLY</span></td>
+          </tr>
+          <tr>
+            <td>`/api/v1/bookings/**`</td>
+            <td>`BOOKING-SERVICE`</td>
+            <td>`:8084`</td>
+            <td><span class="badge">PROTECTED</span></td>
+          </tr>
+          <tr>
+            <td>`/api/v1/payments/**`</td>
+            <td>`PAYMENT-SERVICE`</td>
+            <td>`:8085`</td>
+            <td><span class="badge">PROTECTED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SECTION 7: JWT INTEGRATION -->
+    <section id="jwt-integration" class="section">
+      <h2 class="section-title">5. Gateway JWT Validation Filter</h2>
+      <p class="section-desc">How the API Gateway intercepts and verifies JWT bearer tokens.</p>
+
+      <pre>
+Header: Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
+                      │
+                      ▼
+            API Gateway JWT Filter
+                      │
+      ┌───────────────┴───────────────┐
+      ▼                               ▼
+Verify RS256 Signature        Check Expiry & Claims
+      │                               │
+      ├─ INVALID / EXPIRED ──────────► Return 401 Unauthorized
+      │
+      └─ VALID ──────────────────────► Inject Headers (X-User-Id, X-User-Role)
+                                              │
+                                              ▼
+                                    Forward to Microservice</pre>
+    </section>
+
+    <!-- SECTION 12: RATE LIMITING -->
+    <section id="rate-limiting" class="section">
+      <h2 class="section-title">6. Redis Rate Limiting Thresholds</h2>
+      <p class="section-desc">Token bucket rate limit rules applied per IP and User ID.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Catalog Browsing</div>
+          <h3 style="color: var(--accent-blue); margin: 8px 0;">60 Req / Min</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Prevents excessive catalog scraping while ensuring smooth user browsing.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Login / Auth</div>
+          <h3 style="color: var(--accent-rose); margin: 8px 0;">5 Req / Min</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Prevents automated brute-force password guessing attacks.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Booking Creation</div>
+          <h3 style="color: var(--accent-amber); margin: 8px 0;">10 Req / Min</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Prevents automated reservation bot spamming on available inventory.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 25: FAILURE SCENARIOS -->
+    <section id="failure" class="section">
+      <h2 class="section-title">7. Gateway Degradation & Failure Handling</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Failure Scenario</th>
+            <th>Gateway Detection</th>
+            <th>Gateway Action & Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Vehicle Service Down</strong></td>
+            <td>Eureka status `DOWN` or connection refused.</td>
+            <td>Returns <strong style="color: var(--accent-rose);">503 Service Unavailable</strong> with clean JSON error.</td>
+          </tr>
+          <tr>
+            <td><strong>Booking Service Slow</strong></td>
+            <td>Response time exceeds 2000ms threshold.</td>
+            <td>Cancels request and returns <strong style="color: var(--accent-amber);">504 Gateway Timeout</strong>.</td>
+          </tr>
+          <tr>
+            <td><strong>Invalid JWT Token</strong></td>
+            <td>Signature or expiration check fails.</td>
+            <td>Returns <strong style="color: var(--accent-rose);">401 Unauthorized</strong> before touching microservices.</td>
+          </tr>
+          <tr>
+            <td><strong>Rate Limit Exceeded</strong></td>
+            <td>Redis token count reaches 0.</td>
+            <td>Returns <strong style="color: var(--accent-rose);">429 Too Many Requests</strong> with `Retry-After: 60`.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SECTION 27: VIVA GUIDE -->
+    <section id="viva" class="section">
+      <h2 class="section-title">8. Viva & Evaluation Quick Guide</h2>
+      <p class="section-desc">Key questions a faculty evaluator may ask about API Gateway in DriveEase.</p>
+
+      <div class="qa-box">
+        <div class="qa-q">Q1: Explain API Gateway in 60 seconds.</div>
+        <div class="qa-a">"An API Gateway is the single entry point between the DriveEase React frontend and backend microservices. It receives all client requests, enforces centralized security—such as verifying JWT token signatures using public key cryptography—applies rate limiting and CORS policies, performs dynamic service discovery lookups via Eureka, and routes requests to the appropriate healthy microservice instance. By encapsulating internal microservice endpoints inside a private network, the API Gateway protects downstream services, simplifies client integration, and enables independent scaling."</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-q">Q2: How does the Gateway handle authentication statelessly?</div>
+        <div class="qa-a">It intercepts incoming Bearer tokens and verifies the RS256 cryptographic signature using the Auth Service's public key without querying the database on every HTTP request.</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-q">Q3: What happens when an unauthenticated customer tries to call an Admin route?</div>
+        <div class="qa-a">The Gateway inspects the token claims, detects that the user role (`CUSTOMER`) does not match the required `ADMIN` role policy, and halts execution immediately by returning HTTP 403 Forbidden.</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-q">Q4: Why should internal microservices not be directly accessible to clients?</div>
+        <div class="qa-a">Direct exposure bypasses Gateway security filters, increases attack surface, exposes internal IP infrastructure, and complicates client routing logic.</div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

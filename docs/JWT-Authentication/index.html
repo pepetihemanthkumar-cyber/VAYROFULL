@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DriveEase — JWT Authentication & Security Architecture</title>
+  <style>
+    /* Clean Academic Theme & Global Styles */
+    :root {
+      --bg-primary: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #334155;
+      --accent-blue: #38bdf8;
+      --accent-indigo: #818cf8;
+      --accent-green: #4ade80;
+      --accent-amber: #fbbf24;
+      --accent-rose: #fb7185;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --border-focus: #38bdf8;
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Sticky Navigation */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent-blue);
+    }
+
+    .badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-amber {
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent-amber);
+      border-color: rgba(251, 191, 36, 0.3);
+    }
+
+    .badge-green {
+      background: rgba(74, 222, 128, 0.15);
+      color: var(--accent-green);
+      border-color: rgba(74, 222, 128, 0.3);
+    }
+
+    .badge-rose {
+      background: rgba(251, 113, 133, 0.15);
+      color: var(--accent-rose);
+      border-color: rgba(251, 113, 133, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-blue);
+    }
+
+    /* Container Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* Header Banner */
+    .header-banner {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 36px;
+      margin-bottom: 32px;
+    }
+
+    .header-banner h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .header-banner .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* Alert Box */
+    .alert-box {
+      background: rgba(251, 191, 36, 0.1);
+      border-left: 4px solid var(--accent-amber);
+      padding: 16px 20px;
+      border-radius: 6px;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #fef08a;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 48px;
+      scroll-margin-top: 80px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+
+    /* Cards Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent-blue);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Diagrams & Flow Visualizers */
+    .flow-container {
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      overflow-x: auto;
+    }
+
+    .flow-step-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .flow-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-align: center;
+      min-width: 140px;
+      flex: 1;
+    }
+
+    .flow-node.active {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .flow-node.auth {
+      border-color: var(--accent-indigo);
+      color: var(--accent-indigo);
+    }
+
+    .flow-node.success {
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    .flow-arrow {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    /* Code Blocks */
+    pre {
+      background: #020617;
+      border: 1px solid var(--border-color);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      color: var(--accent-blue);
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background: rgba(30, 41, 59, 0.5);
+      color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    tr:hover td {
+      background: rgba(51, 65, 85, 0.3);
+    }
+
+    /* Q&A Accordion Style */
+    .qa-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      padding: 16px 20px;
+    }
+
+    .qa-q {
+      font-weight: 700;
+      color: var(--accent-amber);
+      margin-bottom: 6px;
+    }
+
+    .qa-a {
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .header-banner h1 {
+        font-size: 1.6rem;
+      }
+      .flow-step-row {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="nav-brand">
+      <span>⚡ DriveEase</span>
+      <span class="badge">COMPONENT 3 — JWT AUTHENTICATION</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#what-is-jwt">What is JWT?</a></li>
+      <li><a href="#auth-vs-auth">Auth vs Auth</a></li>
+      <li><a href="#jwt-flow">JWT Flow</a></li>
+      <li><a href="#tokens">Tokens</a></li>
+      <li><a href="#rbac">RBAC Matrix</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#microservices">Microservices</a></li>
+      <li><a href="#status-codes">Status Codes</a></li>
+      <li><a href="#viva">Viva Q&A</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <!-- Header Banner -->
+    <header class="header-banner">
+      <h1>DriveEase — JWT Authentication</h1>
+      <p class="subtitle">Secure Authentication and Authorization Architecture Specification</p>
+      
+      <div class="alert-box">
+        <strong>⚠️ Academic Architecture Disclaimer:</strong><br>
+        This page presents the planned JWT authentication and authorization architecture for the DriveEase microservice backend system. The current DriveEase React frontend uses client-side simulated authentication. The production backend JWT implementation will be completed during the backend deployment phase.
+      </div>
+    </header>
+
+    <!-- SECTION 1: WHAT IS JWT? -->
+    <section id="what-is-jwt" class="section">
+      <h2 class="section-title">1. What is JWT (JSON Web Token)?</h2>
+      <p class="section-desc">A JSON Web Token is an open standard (RFC 7519) for transmitting secure identity claims between client and server as a signed JSON object.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Header <span class="badge">Part 1</span></div>
+          <p>Specifies the signing algorithm (e.g. RS256) and token type (JWT).</p>
+          <pre>{"alg": "RS256", "typ": "JWT"}</pre>
+        </div>
+        <div class="card">
+          <div class="card-title">Payload <span class="badge badge-amber">Part 2</span></div>
+          <p>Contains authenticated user claims (Subject ID, Role, Expiration).</p>
+          <pre>{"sub": "usr_8912", "role": "CUSTOMER"}</pre>
+        </div>
+        <div class="card">
+          <div class="card-title">Signature <span class="badge badge-green">Part 3</span></div>
+          <p>Cryptographic hash proving token authenticity and integrity.</p>
+          <pre>RS256(Header + Payload, PrivateKey)</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: AUTHENTICATION VS AUTHORIZATION -->
+    <section id="auth-vs-auth" class="section">
+      <h2 class="section-title">2. Authentication vs. Authorization</h2>
+      <p class="section-desc">Enforcing clear boundary separation between identity verification and permission checking.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title" style="color: var(--accent-indigo);">
+            AUTHENTICATION
+            <span class="badge badge-green">STEP 1</span>
+          </div>
+          <h3 style="margin-bottom: 10px; font-size: 1.4rem;">"Who are you?"</h3>
+          <p>The process of verifying user identity credentials against the database hash during login.</p>
+          <ul style="margin-top: 12px; margin-left: 20px; color: var(--text-muted);">
+            <li>Inputs: Email + Plaintext Password</li>
+            <li>Processing: Argon2id salted hash comparison</li>
+            <li>Output: Issuance of signed JWT Access & Refresh tokens</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title" style="color: var(--accent-rose);">
+            AUTHORIZATION
+            <span class="badge badge-amber">STEP 2</span>
+          </div>
+          <h3 style="margin-bottom: 10px; font-size: 1.4rem;">"What are you allowed to do?"</h3>
+          <p>The process of evaluating validated token role claims against requested API endpoints.</p>
+          <ul style="margin-top: 12px; margin-left: 20px; color: var(--text-muted);">
+            <li>Inputs: Bearer JWT Access Token</li>
+            <li>Processing: Claims role validation (`CUSTOMER` vs `ADMIN`)</li>
+            <li>Output: `200 OK` (Proceed) or `403 Forbidden` (Blocked)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: COMPLETE JWT ARCHITECTURE FLOW -->
+    <section id="jwt-flow" class="section">
+      <h2 class="section-title">3. Complete DriveEase JWT Architecture Flow</h2>
+      <p class="section-desc">End-to-end request path from client login to protected microservice execution.</p>
+
+      <div class="flow-container">
+        <div class="flow-step-row">
+          <div class="flow-node active">React Client</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node">API Gateway Router</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node auth">Auth Service</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node success">Auth DB</div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-top: 10px;">
+          1. Login Request ➔ 2. Forward Credentials ➔ 3. Verify Argon2id Hash ➔ 4. Issue JWT Tokens (Access + Refresh)
+        </p>
+        <hr style="border-color: var(--border-color); margin: 20px 0;">
+        <div class="flow-step-row">
+          <div class="flow-node active">React Client</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node auth">API Gateway (JWT Check)</div>
+          <div class="flow-arrow">➔</div>
+          <div class="flow-node success">Booking / Vehicle Service</div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-top: 10px;">
+          5. Protected Request with `Authorization: Bearer <JWT>` ➔ 6. Gateway Validates Signature & Role ➔ 7. Executes API
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 6 & 7: TOKENS -->
+    <section id="tokens" class="section">
+      <h2 class="section-title">4. Access Token vs. Refresh Token</h2>
+      <p class="section-desc">Dual-token architecture balancing high security with seamless user experience.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            Access Token (Short-Lived)
+            <span class="badge badge-green">15 MIN LIFETIME</span>
+          </div>
+          <p>Attached to every HTTP API request header. Carries user ID and role claims for stateless validation.</p>
+          <pre>
+{
+  "sub": "usr_891247",
+  "role": "CUSTOMER",
+  "name": "Jane Doe",
+  "iss": "driveease-auth-service",
+  "aud": "driveease-api-gateway",
+  "iat": 1789056000,
+  "exp": 1789056900,
+  "jti": "jwt_b7a9c4d2"
+}</pre>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            Refresh Token (Long-Lived)
+            <span class="badge badge-amber">7 DAY ROTATION</span>
+          </div>
+          <p>Opaque token stored in HttpOnly SameSite cookies. Used to obtain new access tokens without re-logging in.</p>
+          <ul style="margin-top: 16px; margin-left: 20px; color: var(--text-muted); font-size: 0.9rem;">
+            <li><strong>Rotation:</strong> Replaced with a new token on every refresh call.</li>
+            <li><strong>Reuse Detection:</strong> If a refresh token is stolen and reused, all sessions are immediately revoked.</li>
+            <li><strong>Revocation:</strong> Can be explicitly invalidated upon user logout.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: RBAC MATRIX -->
+    <section id="rbac" class="section">
+      <h2 class="section-title">5. Customer vs. Admin Role Matrix</h2>
+      <p class="section-desc">Backend role-based permission enforcement matrix.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Permission Domain / Action</th>
+            <th>CUSTOMER Role</th>
+            <th>ADMIN Role</th>
+            <th>Backend Enforcement Point</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Browse & Filter Vehicles</td>
+            <td><span class="badge badge-green">ALLOWED</span></td>
+            <td><span class="badge badge-green">ALLOWED</span></td>
+            <td>Public Endpoint (`/api/v1/vehicles`)</td>
+          </tr>
+          <tr>
+            <td>Create Vehicle Reservation</td>
+            <td><span class="badge badge-green">ALLOWED</span></td>
+            <td><span class="badge badge-green">ALLOWED</span></td>
+            <td>Gateway Role Guard (`CUSTOMER`)</td>
+          </tr>
+          <tr>
+            <td>View & Cancel Own Bookings</td>
+            <td><span class="badge badge-green">ALLOWED</span></td>
+            <td><span class="badge badge-green">ALLOWED</span></td>
+            <td>User ID Ownership Validation</td>
+          </tr>
+          <tr>
+            <td>Add / Edit / Delete Fleet Vehicles</td>
+            <td><span class="badge badge-rose">DENIED (403)</span></td>
+            <td><span class="badge badge-green">ALLOWED</span></td>
+            <td>Gateway Role Guard (`ADMIN`)</td>
+          </tr>
+          <tr>
+            <td>Manage & Suspend User Accounts</td>
+            <td><span class="badge badge-rose">DENIED (403)</span></td>
+            <td><span class="badge badge-green">ALLOWED</span></td>
+            <td>Gateway Role Guard (`ADMIN`)</td>
+          </tr>
+          <tr>
+            <td>View Executive Revenue Analytics</td>
+            <td><span class="badge badge-rose">DENIED (403)</span></td>
+            <td><span class="badge badge-green">ALLOWED</span></td>
+            <td>Gateway Role Guard (`ADMIN`)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SECTION 12 & 13: SECURITY -->
+    <section id="security" class="section">
+      <h2 class="section-title">6. Security Threats & Mitigations</h2>
+      <p class="section-desc">Proactive defenses against common authentication vulnerabilities.</p>
+
+      <div class="grid-4">
+        <div class="card">
+          <div class="card-title" style="font-size: 0.95rem;">1. Token Theft</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Short 15-min token life + HTTPS TLS 1.3 enforcement.</p>
+        </div>
+        <div class="card">
+          <div class="card-title" style="font-size: 0.95rem;">2. Refresh Theft</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Refresh token rotation + reuse detection revocation.</p>
+        </div>
+        <div class="card">
+          <div class="card-title" style="font-size: 0.95rem;">3. Brute Force</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Gateway rate limiting (5 login attempts/min per IP).</p>
+        </div>
+        <div class="card">
+          <div class="card-title" style="font-size: 0.95rem;">4. XSS & CSRF</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">HttpOnly, SameSite=Strict cookies + input sanitization.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 15: MICROSERVICES -->
+    <section id="microservices" class="section">
+      <h2 class="section-title">7. Auth Service Boundary</h2>
+      <p class="section-desc">Strict separation of Auth Service responsibilities within the microservices topology.</p>
+
+      <div class="grid-2">
+        <div class="card" style="border-color: var(--accent-green);">
+          <div class="card-title" style="color: var(--accent-green);">Auth Service OWNS:</div>
+          <ul style="margin-left: 20px; font-size: 0.9rem; color: var(--text-muted);">
+            <li>✓ Credential registration & email validation</li>
+            <li>✓ Password hashing using Argon2id</li>
+            <li>✓ Credential verification & login</li>
+            <li>✓ JWT Access Token issuance & signing</li>
+            <li>✓ Refresh Token rotation & revocation tracking</li>
+          </ul>
+        </div>
+        <div class="card" style="border-color: var(--accent-rose);">
+          <div class="card-title" style="color: var(--accent-rose);">Auth Service DOES NOT OWN:</div>
+          <ul style="margin-left: 20px; font-size: 0.9rem; color: var(--text-muted);">
+            <li>✗ Vehicle specs, categories, or rates (Vehicle Svc)</li>
+            <li>✗ Booking reservations or dates (Booking Svc)</li>
+            <li>✗ Payment charges or invoices (Payment Svc)</li>
+            <li>✗ Driving license KYC files (User Svc)</li>
+            <li>✗ Email/SMS notification templates (Notification Svc)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 18: HTTP STATUS CODES -->
+    <section id="status-codes" class="section">
+      <h2 class="section-title">8. HTTP Status Codes Reference</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Status Code</th>
+            <th>Name</th>
+            <th>System Trigger in DriveEase</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color: var(--accent-green);">200 OK</strong></td>
+            <td>Success</td>
+            <td>Login successful, token refreshed, or booking retrieved.</td>
+          </tr>
+          <tr>
+            <td><strong style="color: var(--accent-green);">201 Created</strong></td>
+            <td>Resource Created</td>
+            <td>New customer account registered successfully.</td>
+          </tr>
+          <tr>
+            <td><strong style="color: var(--accent-amber);">400 Bad Request</strong></td>
+            <td>Invalid Input</td>
+            <td>Invalid email format or password under minimum length.</td>
+          </tr>
+          <tr>
+            <td><strong style="color: var(--accent-rose);">401 Unauthorized</strong></td>
+            <td>Unauthenticated</td>
+            <td>Missing token, invalid signature, or expired access token.</td>
+          </tr>
+          <tr>
+            <td><strong style="color: var(--accent-rose);">403 Forbidden</strong></td>
+            <td>Unauthorized Role</td>
+            <td>Authenticated customer attempting to call Admin endpoint.</td>
+          </tr>
+          <tr>
+            <td><strong style="color: var(--accent-rose);">409 Conflict</strong></td>
+            <td>Duplicate Entity</td>
+            <td>Registration attempted with an email already in system.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SECTION 22: VIVA PREPARATION -->
+    <section id="viva" class="section">
+      <h2 class="section-title">9. Viva & Evaluation Quick Guide</h2>
+      <p class="section-desc">Key questions a faculty evaluator may ask about JWT in DriveEase.</p>
+
+      <div class="qa-box">
+        <div class="qa-q">Q1: Explain JWT in 60 seconds.</div>
+        <div class="qa-a">"JWT is a compact, digitally signed JSON token used to securely represent authenticated identity between client and server. Upon login, Auth Service verifies the password hash and issues a short-lived Access Token (15 min) and a long-lived Refresh Token (7 days). The client sends this token with API requests. The API Gateway validates token signatures using public keys statelessly without querying the database, checking both identity and roles (CUSTOMER vs ADMIN)."</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-q">Q2: Why use JWT instead of traditional server session cookies?</div>
+        <div class="qa-a">JWT is stateless. Server microservices do not need to share a central session database to verify user identity, enabling seamless horizontal microservice scaling.</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-q">Q3: Why should passwords never be placed in a JWT payload?</div>
+        <div class="qa-a">JWT payloads are Base64URL encoded—not encrypted. Anyone who intercepts the token can read the claims payload. Passwords belong hashed in the database.</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-q">Q4: What is the difference between 401 Unauthorized and 403 Forbidden?</div>
+        <div class="qa-a">401 means authentication failed or token is missing/expired ("Who are you?"). 403 means identity is verified, but permissions are insufficient for the action ("What can you do?").</div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

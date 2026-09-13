@@ -1,0 +1,2490 @@
+{
+  "cars": [
+    {
+      "id": "maruti-suzuki-swift",
+      "brand": "Maruti Suzuki",
+      "model": "Swift",
+      "category": "HATCHBACK",
+      "class": "Hatchback",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/swift/swift-front.webp",
+        "../assets/vehicles/maruti-suzuki/swift/swift-rear.webp",
+        "../assets/vehicles/maruti-suzuki/swift/swift-side.webp"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-baleno",
+      "brand": "Maruti Suzuki",
+      "model": "Baleno",
+      "category": "HATCHBACK",
+      "class": "Premium Hatchback",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/baleno/baleno-front.webp",
+        "../assets/vehicles/maruti-suzuki/baleno/baleno-rear.webp",
+        "../assets/vehicles/maruti-suzuki/baleno/baleno-side.webp"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-dzire",
+      "brand": "Maruti Suzuki",
+      "model": "Dzire",
+      "category": "SEDAN",
+      "class": "Sedan",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/dzire/dzire-front.webp",
+        "../assets/vehicles/maruti-suzuki/dzire/dzire-rear.webp",
+        "../assets/vehicles/maruti-suzuki/dzire/dzire-side.webp"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-fronx",
+      "brand": "Maruti Suzuki",
+      "model": "Fronx",
+      "category": "SUV",
+      "class": "Compact SUV",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/fronx/fronx-front.webp",
+        "../assets/vehicles/maruti-suzuki/fronx/fronx-rear.webp",
+        "../assets/vehicles/maruti-suzuki/fronx/fronx-side.webp"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-brezza",
+      "brand": "Maruti Suzuki",
+      "model": "Brezza",
+      "category": "SUV",
+      "class": "Compact SUV",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/brezza/brezza-front.webp",
+        "../assets/vehicles/maruti-suzuki/brezza/brezza-rear.webp",
+        "../assets/vehicles/maruti-suzuki/brezza/brezza-side.webp"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-grand-vitara",
+      "brand": "Maruti Suzuki",
+      "model": "Grand Vitara",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/grand-vitara/grand-vitara-front.webp",
+        "../assets/vehicles/maruti-suzuki/grand-vitara/grand-vitara-rear.webp",
+        "../assets/vehicles/maruti-suzuki/grand-vitara/grand-vitara-side.webp"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-ertiga",
+      "brand": "Maruti Suzuki",
+      "model": "Ertiga",
+      "category": "MUV",
+      "class": "MPV",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/ertiga/ertiga-front.webp",
+        "../assets/vehicles/maruti-suzuki/ertiga/ertiga-rear.webp",
+        "../assets/vehicles/maruti-suzuki/ertiga/ertiga-side.webp"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-xl6",
+      "brand": "Maruti Suzuki",
+      "model": "XL6",
+      "category": "MUV",
+      "class": "Premium Van",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/xl6/xl6-front.webp",
+        "../assets/vehicles/maruti-suzuki/xl6/xl6-rear.webp",
+        "../assets/vehicles/maruti-suzuki/xl6/xl6-side.webp"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-jimny",
+      "brand": "Maruti Suzuki",
+      "model": "Jimny",
+      "category": "SUV",
+      "class": "Off-Road",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/jimny/jimny-front.webp",
+        "../assets/vehicles/maruti-suzuki/jimny/jimny-rear.webp",
+        "../assets/vehicles/maruti-suzuki/jimny/jimny-side.webp"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-invicto",
+      "brand": "Maruti Suzuki",
+      "model": "Invicto",
+      "category": "MUV",
+      "class": "Premium Van",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/invicto/invicto-front.webp",
+        "../assets/vehicles/maruti-suzuki/invicto/invicto-rear.webp",
+        "../assets/vehicles/maruti-suzuki/invicto/invicto-side.webp"
+      ]
+    },
+    {
+      "id": "tata-tiago",
+      "brand": "Tata",
+      "model": "Tiago",
+      "category": "HATCHBACK",
+      "class": "Hatchback",
+      "gallery": [
+        "../assets/vehicles/tata/tiago/tiago-front.webp",
+        "../assets/vehicles/tata/tiago/tiago-rear.webp",
+        "../assets/vehicles/tata/tiago/tiago-side.webp"
+      ]
+    },
+    {
+      "id": "tata-altroz",
+      "brand": "Tata",
+      "model": "Altroz",
+      "category": "HATCHBACK",
+      "class": "Premium Hatchback",
+      "gallery": [
+        "../assets/vehicles/tata/altroz/altroz-front.webp",
+        "../assets/vehicles/tata/altroz/altroz-rear.webp",
+        "../assets/vehicles/tata/altroz/altroz-side.webp"
+      ]
+    },
+    {
+      "id": "tata-tigor",
+      "brand": "Tata",
+      "model": "Tigor",
+      "category": "SEDAN",
+      "class": "Sedan",
+      "gallery": [
+        "../assets/vehicles/tata/tigor/tigor-front.webp",
+        "../assets/vehicles/tata/tigor/tigor-rear.webp",
+        "../assets/vehicles/tata/tigor/tigor-side.webp"
+      ]
+    },
+    {
+      "id": "tata-punch",
+      "brand": "Tata",
+      "model": "Punch",
+      "category": "SUV",
+      "class": "Compact SUV",
+      "gallery": [
+        "../assets/vehicles/tata/punch/punch-front.webp",
+        "../assets/vehicles/tata/punch/punch-rear.webp",
+        "../assets/vehicles/tata/punch/punch-side.webp"
+      ]
+    },
+    {
+      "id": "tata-nexon",
+      "brand": "Tata",
+      "model": "Nexon",
+      "category": "SUV",
+      "class": "Compact SUV",
+      "gallery": [
+        "../assets/vehicles/tata/nexon/nexon-front.webp",
+        "../assets/vehicles/tata/nexon/nexon-rear.webp",
+        "../assets/vehicles/tata/nexon/nexon-side.webp"
+      ]
+    },
+    {
+      "id": "tata-harrier",
+      "brand": "Tata",
+      "model": "Harrier",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/tata/harrier/harrier-front.webp",
+        "../assets/vehicles/tata/harrier/harrier-rear.webp",
+        "../assets/vehicles/tata/harrier/harrier-side.webp"
+      ]
+    },
+    {
+      "id": "tata-safari",
+      "brand": "Tata",
+      "model": "Safari",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/tata/safari/safari-front.webp",
+        "../assets/vehicles/tata/safari/safari-rear.webp",
+        "../assets/vehicles/tata/safari/safari-side.webp"
+      ]
+    },
+    {
+      "id": "tata-curvv",
+      "brand": "Tata",
+      "model": "Curvv",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/tata/curvv/curvv-front.webp",
+        "../assets/vehicles/tata/curvv/curvv-rear.webp",
+        "../assets/vehicles/tata/curvv/curvv-side.webp"
+      ]
+    },
+    {
+      "id": "tata-nexon-ev",
+      "brand": "Tata",
+      "model": "Nexon EV",
+      "category": "SUV",
+      "class": "Electric",
+      "gallery": [
+        "../assets/vehicles/tata/nexon-ev/nexon-ev-front.webp",
+        "../assets/vehicles/tata/nexon-ev/nexon-ev-rear.webp",
+        "../assets/vehicles/tata/nexon-ev/nexon-ev-side.webp"
+      ]
+    },
+    {
+      "id": "tata-punch-ev",
+      "brand": "Tata",
+      "model": "Punch EV",
+      "category": "SUV",
+      "class": "Electric",
+      "gallery": [
+        "../assets/vehicles/tata/punch-ev/punch-ev-front.webp",
+        "../assets/vehicles/tata/punch-ev/punch-ev-rear.webp",
+        "../assets/vehicles/tata/punch-ev/punch-ev-side.webp"
+      ]
+    },
+    {
+      "id": "mahindra-xuv-3xo",
+      "brand": "Mahindra",
+      "model": "XUV 3XO",
+      "category": "SUV",
+      "class": "Compact SUV",
+      "gallery": [
+        "../assets/vehicles/mahindra/xuv-3xo/xuv-3xo-front.webp",
+        "../assets/vehicles/mahindra/xuv-3xo/xuv-3xo-rear.webp",
+        "../assets/vehicles/mahindra/xuv-3xo/xuv-3xo-side.webp"
+      ]
+    },
+    {
+      "id": "mahindra-xuv700",
+      "brand": "Mahindra",
+      "model": "XUV700",
+      "category": "MUV",
+      "class": "MPV",
+      "gallery": [
+        "../assets/vehicles/mahindra/xuv700/xuv700-front.webp",
+        "../assets/vehicles/mahindra/xuv700/xuv700-rear.webp",
+        "../assets/vehicles/mahindra/xuv700/xuv700-side.webp"
+      ]
+    },
+    {
+      "id": "mahindra-scorpio",
+      "brand": "Mahindra",
+      "model": "Scorpio",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/mahindra/scorpio/scorpio-front.webp",
+        "../assets/vehicles/mahindra/scorpio/scorpio-rear.webp",
+        "../assets/vehicles/mahindra/scorpio/scorpio-side.webp"
+      ]
+    },
+    {
+      "id": "mahindra-scorpio-n",
+      "brand": "Mahindra",
+      "model": "Scorpio-N",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/mahindra/scorpio-n/scorpio-n-front.webp",
+        "../assets/vehicles/mahindra/scorpio-n/scorpio-n-rear.webp",
+        "../assets/vehicles/mahindra/scorpio-n/scorpio-n-side.webp"
+      ]
+    },
+    {
+      "id": "mahindra-thar",
+      "brand": "Mahindra",
+      "model": "Thar",
+      "category": "SUV",
+      "class": "Off-Road",
+      "gallery": [
+        "../assets/vehicles/mahindra/thar/thar-front.webp",
+        "../assets/vehicles/mahindra/thar/thar-rear.webp",
+        "../assets/vehicles/mahindra/thar/thar-side.webp"
+      ]
+    },
+    {
+      "id": "mahindra-bolero",
+      "brand": "Mahindra",
+      "model": "Bolero",
+      "category": "MUV",
+      "class": "MPV",
+      "gallery": [
+        "../assets/vehicles/mahindra/bolero/bolero-front.webp",
+        "../assets/vehicles/mahindra/bolero/bolero-rear.webp",
+        "../assets/vehicles/mahindra/bolero/bolero-side.webp"
+      ]
+    },
+    {
+      "id": "mahindra-bolero-neo",
+      "brand": "Mahindra",
+      "model": "Bolero Neo",
+      "category": "SUV",
+      "class": "Off-Road",
+      "gallery": [
+        "../assets/vehicles/mahindra/bolero-neo/bolero-neo-front.webp",
+        "../assets/vehicles/mahindra/bolero-neo/bolero-neo-rear.webp",
+        "../assets/vehicles/mahindra/bolero-neo/bolero-neo-side.webp"
+      ]
+    },
+    {
+      "id": "mahindra-marazzo",
+      "brand": "Mahindra",
+      "model": "Marazzo",
+      "category": "MUV",
+      "class": "MPV",
+      "gallery": [
+        "../assets/vehicles/mahindra/marazzo/marazzo-front.webp",
+        "../assets/vehicles/mahindra/marazzo/marazzo-rear.webp",
+        "../assets/vehicles/mahindra/marazzo/marazzo-side.webp"
+      ]
+    },
+    {
+      "id": "hyundai-grand-i10-nios",
+      "brand": "Hyundai",
+      "model": "Grand i10 Nios",
+      "category": "HATCHBACK",
+      "class": "Hatchback",
+      "gallery": [
+        "../assets/vehicles/hyundai/grand-i10-nios/grand-i10-nios-front.webp",
+        "../assets/vehicles/hyundai/grand-i10-nios/grand-i10-nios-rear.webp",
+        "../assets/vehicles/hyundai/grand-i10-nios/grand-i10-nios-side.webp"
+      ]
+    },
+    {
+      "id": "hyundai-i20",
+      "brand": "Hyundai",
+      "model": "i20",
+      "category": "HATCHBACK",
+      "class": "Premium Hatchback",
+      "gallery": [
+        "../assets/vehicles/hyundai/i20/i20-front.webp",
+        "../assets/vehicles/hyundai/i20/i20-rear.webp",
+        "../assets/vehicles/hyundai/i20/i20-side.webp"
+      ]
+    },
+    {
+      "id": "hyundai-aura",
+      "brand": "Hyundai",
+      "model": "Aura",
+      "category": "SEDAN",
+      "class": "Sedan",
+      "gallery": [
+        "../assets/vehicles/hyundai/aura/aura-front.webp",
+        "../assets/vehicles/hyundai/aura/aura-rear.webp",
+        "../assets/vehicles/hyundai/aura/aura-side.webp"
+      ]
+    },
+    {
+      "id": "hyundai-verna",
+      "brand": "Hyundai",
+      "model": "Verna",
+      "category": "SEDAN",
+      "class": "Executive Sedan",
+      "gallery": [
+        "../assets/vehicles/hyundai/verna/verna-front.webp",
+        "../assets/vehicles/hyundai/verna/verna-rear.webp",
+        "../assets/vehicles/hyundai/verna/verna-side.webp"
+      ]
+    },
+    {
+      "id": "hyundai-exter",
+      "brand": "Hyundai",
+      "model": "Exter",
+      "category": "SUV",
+      "class": "Compact SUV",
+      "gallery": [
+        "../assets/vehicles/hyundai/exter/exter-front.webp",
+        "../assets/vehicles/hyundai/exter/exter-rear.webp",
+        "../assets/vehicles/hyundai/exter/exter-side.webp"
+      ]
+    },
+    {
+      "id": "hyundai-venue",
+      "brand": "Hyundai",
+      "model": "Venue",
+      "category": "SUV",
+      "class": "Compact SUV",
+      "gallery": [
+        "../assets/vehicles/hyundai/venue/venue-front.webp",
+        "../assets/vehicles/hyundai/venue/venue-rear.webp",
+        "../assets/vehicles/hyundai/venue/venue-side.webp"
+      ]
+    },
+    {
+      "id": "hyundai-creta",
+      "brand": "Hyundai",
+      "model": "Creta",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/hyundai/creta/creta-front.webp",
+        "../assets/vehicles/hyundai/creta/creta-rear.webp",
+        "../assets/vehicles/hyundai/creta/creta-side.webp"
+      ]
+    },
+    {
+      "id": "hyundai-alcazar",
+      "brand": "Hyundai",
+      "model": "Alcazar",
+      "category": "MUV",
+      "class": "MPV",
+      "gallery": [
+        "../assets/vehicles/hyundai/alcazar/alcazar-front.webp",
+        "../assets/vehicles/hyundai/alcazar/alcazar-rear.webp",
+        "../assets/vehicles/hyundai/alcazar/alcazar-side.webp"
+      ]
+    },
+    {
+      "id": "hyundai-tucson",
+      "brand": "Hyundai",
+      "model": "Tucson",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/hyundai/tucson/tucson-front.webp",
+        "../assets/vehicles/hyundai/tucson/tucson-rear.webp",
+        "../assets/vehicles/hyundai/tucson/tucson-side.webp"
+      ]
+    },
+    {
+      "id": "hyundai-ioniq-5",
+      "brand": "Hyundai",
+      "model": "Ioniq 5",
+      "category": "LUXURY",
+      "class": "Premium Electric",
+      "gallery": [
+        "../assets/vehicles/hyundai/ioniq-5/ioniq-5-front.webp",
+        "../assets/vehicles/hyundai/ioniq-5/ioniq-5-rear.webp",
+        "../assets/vehicles/hyundai/ioniq-5/ioniq-5-side.webp"
+      ]
+    },
+    {
+      "id": "kia-sonet",
+      "brand": "Kia",
+      "model": "Sonet",
+      "category": "SUV",
+      "class": "Compact SUV",
+      "gallery": [
+        "../assets/vehicles/kia/sonet/sonet-front.webp",
+        "../assets/vehicles/kia/sonet/sonet-rear.webp",
+        "../assets/vehicles/kia/sonet/sonet-side.webp"
+      ]
+    },
+    {
+      "id": "kia-seltos",
+      "brand": "Kia",
+      "model": "Seltos",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/kia/seltos/seltos-front.webp",
+        "../assets/vehicles/kia/seltos/seltos-rear.webp",
+        "../assets/vehicles/kia/seltos/seltos-side.webp"
+      ]
+    },
+    {
+      "id": "kia-carens",
+      "brand": "Kia",
+      "model": "Carens",
+      "category": "MUV",
+      "class": "MPV",
+      "gallery": [
+        "../assets/vehicles/kia/carens/carens-front.webp",
+        "../assets/vehicles/kia/carens/carens-rear.webp",
+        "../assets/vehicles/kia/carens/carens-side.webp"
+      ]
+    },
+    {
+      "id": "kia-carnival",
+      "brand": "Kia",
+      "model": "Carnival",
+      "category": "VAN",
+      "class": "Premium Van",
+      "gallery": [
+        "../assets/vehicles/kia/carnival/carnival-front.webp",
+        "../assets/vehicles/kia/carnival/carnival-rear.webp",
+        "../assets/vehicles/kia/carnival/carnival-side.webp"
+      ]
+    },
+    {
+      "id": "kia-ev6",
+      "brand": "Kia",
+      "model": "EV6",
+      "category": "LUXURY",
+      "class": "Premium Electric",
+      "gallery": [
+        "../assets/vehicles/kia/ev6/ev6-front.webp",
+        "../assets/vehicles/kia/ev6/ev6-rear.webp",
+        "../assets/vehicles/kia/ev6/ev6-side.webp"
+      ]
+    },
+    {
+      "id": "toyota-glanza",
+      "brand": "Toyota",
+      "model": "Glanza",
+      "category": "HATCHBACK",
+      "class": "Premium Hatchback",
+      "gallery": [
+        "../assets/vehicles/toyota/glanza/glanza-front.webp",
+        "../assets/vehicles/toyota/glanza/glanza-rear.webp",
+        "../assets/vehicles/toyota/glanza/glanza-side.webp"
+      ]
+    },
+    {
+      "id": "toyota-urban-cruiser-taisor",
+      "brand": "Toyota",
+      "model": "Urban Cruiser Taisor",
+      "category": "SUV",
+      "class": "Compact SUV",
+      "gallery": [
+        "../assets/vehicles/toyota/urban-cruiser-taisor/urban-cruiser-taisor-front.webp",
+        "../assets/vehicles/toyota/urban-cruiser-taisor/urban-cruiser-taisor-rear.webp",
+        "../assets/vehicles/toyota/urban-cruiser-taisor/urban-cruiser-taisor-side.webp"
+      ]
+    },
+    {
+      "id": "toyota-urban-cruiser-hyryder",
+      "brand": "Toyota",
+      "model": "Urban Cruiser Hyryder",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/toyota/urban-cruiser-hyryder/urban-cruiser-hyryder-front.webp",
+        "../assets/vehicles/toyota/urban-cruiser-hyryder/urban-cruiser-hyryder-rear.webp",
+        "../assets/vehicles/toyota/urban-cruiser-hyryder/urban-cruiser-hyryder-side.webp"
+      ]
+    },
+    {
+      "id": "toyota-rumion",
+      "brand": "Toyota",
+      "model": "Rumion",
+      "category": "MUV",
+      "class": "MPV",
+      "gallery": [
+        "../assets/vehicles/toyota/rumion/rumion-front.webp",
+        "../assets/vehicles/toyota/rumion/rumion-rear.webp",
+        "../assets/vehicles/toyota/rumion/rumion-side.webp"
+      ]
+    },
+    {
+      "id": "toyota-innova-crysta",
+      "brand": "Toyota",
+      "model": "Innova Crysta",
+      "category": "MUV",
+      "class": "MPV",
+      "gallery": [
+        "../assets/vehicles/toyota/innova-crysta/innova-crysta-front.webp",
+        "../assets/vehicles/toyota/innova-crysta/innova-crysta-rear.webp",
+        "../assets/vehicles/toyota/innova-crysta/innova-crysta-side.webp"
+      ]
+    },
+    {
+      "id": "toyota-innova-hycross",
+      "brand": "Toyota",
+      "model": "Innova HyCross",
+      "category": "MUV",
+      "class": "Premium Van",
+      "gallery": [
+        "../assets/vehicles/toyota/innova-hycross/innova-hycross-front.webp",
+        "../assets/vehicles/toyota/innova-hycross/innova-hycross-rear.webp",
+        "../assets/vehicles/toyota/innova-hycross/innova-hycross-side.webp"
+      ]
+    },
+    {
+      "id": "toyota-fortuner",
+      "brand": "Toyota",
+      "model": "Fortuner",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/toyota/fortuner/fortuner-front.webp",
+        "../assets/vehicles/toyota/fortuner/fortuner-rear.webp",
+        "../assets/vehicles/toyota/fortuner/fortuner-side.webp"
+      ]
+    },
+    {
+      "id": "toyota-legender",
+      "brand": "Toyota",
+      "model": "Legender",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/toyota/legender/legender-front.webp",
+        "../assets/vehicles/toyota/legender/legender-rear.webp",
+        "../assets/vehicles/toyota/legender/legender-side.webp"
+      ]
+    },
+    {
+      "id": "toyota-hilux",
+      "brand": "Toyota",
+      "model": "Hilux",
+      "category": "SUV",
+      "class": "Pickup",
+      "gallery": [
+        "../assets/vehicles/toyota/hilux/hilux-front.webp",
+        "../assets/vehicles/toyota/hilux/hilux-rear.webp",
+        "../assets/vehicles/toyota/hilux/hilux-side.webp"
+      ]
+    },
+    {
+      "id": "toyota-camry",
+      "brand": "Toyota",
+      "model": "Camry",
+      "category": "SEDAN",
+      "class": "Executive Sedan",
+      "gallery": [
+        "../assets/vehicles/toyota/camry/camry-front.webp",
+        "../assets/vehicles/toyota/camry/camry-rear.webp",
+        "../assets/vehicles/toyota/camry/camry-side.webp"
+      ]
+    },
+    {
+      "id": "toyota-land-cruiser",
+      "brand": "Toyota",
+      "model": "Land Cruiser",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/toyota/land-cruiser/land-cruiser-front.webp",
+        "../assets/vehicles/toyota/land-cruiser/land-cruiser-rear.webp",
+        "../assets/vehicles/toyota/land-cruiser/land-cruiser-side.webp"
+      ]
+    },
+    {
+      "id": "toyota-vellfire",
+      "brand": "Toyota",
+      "model": "Vellfire",
+      "category": "VAN",
+      "class": "Luxury Van",
+      "gallery": [
+        "../assets/vehicles/toyota/vellfire/vellfire-front.webp",
+        "../assets/vehicles/toyota/vellfire/vellfire-rear.webp",
+        "../assets/vehicles/toyota/vellfire/vellfire-side.webp"
+      ]
+    },
+    {
+      "id": "honda-amaze",
+      "brand": "Honda",
+      "model": "Amaze",
+      "category": "SEDAN",
+      "class": "Sedan",
+      "gallery": [
+        "../assets/vehicles/honda/amaze/amaze-front.webp",
+        "../assets/vehicles/honda/amaze/amaze-rear.webp",
+        "../assets/vehicles/honda/amaze/amaze-side.webp"
+      ]
+    },
+    {
+      "id": "honda-city",
+      "brand": "Honda",
+      "model": "City",
+      "category": "SEDAN",
+      "class": "Executive Sedan",
+      "gallery": [
+        "../assets/vehicles/honda/city/city-front.webp",
+        "../assets/vehicles/honda/city/city-rear.webp",
+        "../assets/vehicles/honda/city/city-side.webp"
+      ]
+    },
+    {
+      "id": "honda-elevate",
+      "brand": "Honda",
+      "model": "Elevate",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/honda/elevate/elevate-front.webp",
+        "../assets/vehicles/honda/elevate/elevate-rear.webp",
+        "../assets/vehicles/honda/elevate/elevate-side.webp"
+      ]
+    },
+    {
+      "id": "honda-city-e-hev",
+      "brand": "Honda",
+      "model": "City e:HEV",
+      "category": "SEDAN",
+      "class": "Executive Sedan",
+      "gallery": [
+        "../assets/vehicles/honda/city-e-hev/city-e-hev-front.webp",
+        "../assets/vehicles/honda/city-e-hev/city-e-hev-rear.webp",
+        "../assets/vehicles/honda/city-e-hev/city-e-hev-side.webp"
+      ]
+    },
+    {
+      "id": "renault-kwid",
+      "brand": "Renault",
+      "model": "Kwid",
+      "category": "HATCHBACK",
+      "class": "Hatchback",
+      "gallery": [
+        "../assets/vehicles/renault/kwid/kwid-front.webp",
+        "../assets/vehicles/renault/kwid/kwid-rear.webp",
+        "../assets/vehicles/renault/kwid/kwid-side.webp"
+      ]
+    },
+    {
+      "id": "renault-triber",
+      "brand": "Renault",
+      "model": "Triber",
+      "category": "MUV",
+      "class": "MPV",
+      "gallery": [
+        "../assets/vehicles/renault/triber/triber-front.webp",
+        "../assets/vehicles/renault/triber/triber-rear.webp",
+        "../assets/vehicles/renault/triber/triber-side.webp"
+      ]
+    },
+    {
+      "id": "renault-kiger",
+      "brand": "Renault",
+      "model": "Kiger",
+      "category": "SUV",
+      "class": "Compact SUV",
+      "gallery": [
+        "../assets/vehicles/renault/kiger/kiger-front.webp",
+        "../assets/vehicles/renault/kiger/kiger-rear.webp",
+        "../assets/vehicles/renault/kiger/kiger-side.webp"
+      ]
+    },
+    {
+      "id": "renault-duster",
+      "brand": "Renault",
+      "model": "Duster",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/renault/duster/duster-front.webp",
+        "../assets/vehicles/renault/duster/duster-rear.webp",
+        "../assets/vehicles/renault/duster/duster-side.webp"
+      ]
+    },
+    {
+      "id": "nissan-magnite",
+      "brand": "Nissan",
+      "model": "Magnite",
+      "category": "SUV",
+      "class": "Compact SUV",
+      "gallery": [
+        "../assets/vehicles/nissan/magnite/magnite-front.webp",
+        "../assets/vehicles/nissan/magnite/magnite-rear.webp",
+        "../assets/vehicles/nissan/magnite/magnite-side.webp"
+      ]
+    },
+    {
+      "id": "nissan-x-trail",
+      "brand": "Nissan",
+      "model": "X-Trail",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/nissan/x-trail/x-trail-front.webp",
+        "../assets/vehicles/nissan/x-trail/x-trail-rear.webp",
+        "../assets/vehicles/nissan/x-trail/x-trail-side.webp"
+      ]
+    },
+    {
+      "id": "volkswagen-virtus",
+      "brand": "Volkswagen",
+      "model": "Virtus",
+      "category": "SEDAN",
+      "class": "Executive Sedan",
+      "gallery": [
+        "../assets/vehicles/volkswagen/virtus/virtus-front.webp",
+        "../assets/vehicles/volkswagen/virtus/virtus-rear.webp",
+        "../assets/vehicles/volkswagen/virtus/virtus-side.webp"
+      ]
+    },
+    {
+      "id": "volkswagen-taigun",
+      "brand": "Volkswagen",
+      "model": "Taigun",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/volkswagen/taigun/taigun-front.webp",
+        "../assets/vehicles/volkswagen/taigun/taigun-rear.webp",
+        "../assets/vehicles/volkswagen/taigun/taigun-side.webp"
+      ]
+    },
+    {
+      "id": "volkswagen-tiguan",
+      "brand": "Volkswagen",
+      "model": "Tiguan",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/volkswagen/tiguan/tiguan-front.webp",
+        "../assets/vehicles/volkswagen/tiguan/tiguan-rear.webp",
+        "../assets/vehicles/volkswagen/tiguan/tiguan-side.webp"
+      ]
+    },
+    {
+      "id": "skoda-slavia",
+      "brand": "Skoda",
+      "model": "Slavia",
+      "category": "SEDAN",
+      "class": "Executive Sedan",
+      "gallery": [
+        "../assets/vehicles/skoda/slavia/slavia-front.webp",
+        "../assets/vehicles/skoda/slavia/slavia-rear.webp",
+        "../assets/vehicles/skoda/slavia/slavia-side.webp"
+      ]
+    },
+    {
+      "id": "skoda-kushaq",
+      "brand": "Skoda",
+      "model": "Kushaq",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/skoda/kushaq/kushaq-front.webp",
+        "../assets/vehicles/skoda/kushaq/kushaq-rear.webp",
+        "../assets/vehicles/skoda/kushaq/kushaq-side.webp"
+      ]
+    },
+    {
+      "id": "skoda-kodiaq",
+      "brand": "Skoda",
+      "model": "Kodiaq",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/skoda/kodiaq/kodiaq-front.webp",
+        "../assets/vehicles/skoda/kodiaq/kodiaq-rear.webp",
+        "../assets/vehicles/skoda/kodiaq/kodiaq-side.webp"
+      ]
+    },
+    {
+      "id": "skoda-superb",
+      "brand": "Skoda",
+      "model": "Superb",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/skoda/superb/superb-front.webp",
+        "../assets/vehicles/skoda/superb/superb-rear.webp",
+        "../assets/vehicles/skoda/superb/superb-side.webp"
+      ]
+    },
+    {
+      "id": "mg-comet-ev",
+      "brand": "MG",
+      "model": "Comet EV",
+      "category": "HATCHBACK",
+      "class": "Electric",
+      "gallery": [
+        "../assets/vehicles/mg/comet-ev/comet-ev-front.webp",
+        "../assets/vehicles/mg/comet-ev/comet-ev-rear.webp",
+        "../assets/vehicles/mg/comet-ev/comet-ev-side.webp"
+      ]
+    },
+    {
+      "id": "mg-astor",
+      "brand": "MG",
+      "model": "Astor",
+      "category": "SUV",
+      "class": "Compact SUV",
+      "gallery": [
+        "../assets/vehicles/mg/astor/astor-front.webp",
+        "../assets/vehicles/mg/astor/astor-rear.webp",
+        "../assets/vehicles/mg/astor/astor-side.webp"
+      ]
+    },
+    {
+      "id": "mg-hector",
+      "brand": "MG",
+      "model": "Hector",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/mg/hector/hector-front.webp",
+        "../assets/vehicles/mg/hector/hector-rear.webp",
+        "../assets/vehicles/mg/hector/hector-side.webp"
+      ]
+    },
+    {
+      "id": "mg-hector-plus",
+      "brand": "MG",
+      "model": "Hector Plus",
+      "category": "MUV",
+      "class": "MPV",
+      "gallery": [
+        "../assets/vehicles/mg/hector-plus/hector-plus-front.webp",
+        "../assets/vehicles/mg/hector-plus/hector-plus-rear.webp",
+        "../assets/vehicles/mg/hector-plus/hector-plus-side.webp"
+      ]
+    },
+    {
+      "id": "mg-zs-ev",
+      "brand": "MG",
+      "model": "ZS EV",
+      "category": "SUV",
+      "class": "Premium Electric",
+      "gallery": [
+        "../assets/vehicles/mg/zs-ev/zs-ev-front.webp",
+        "../assets/vehicles/mg/zs-ev/zs-ev-rear.webp",
+        "../assets/vehicles/mg/zs-ev/zs-ev-side.webp"
+      ]
+    },
+    {
+      "id": "mg-gloster",
+      "brand": "MG",
+      "model": "Gloster",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/mg/gloster/gloster-front.webp",
+        "../assets/vehicles/mg/gloster/gloster-rear.webp",
+        "../assets/vehicles/mg/gloster/gloster-side.webp"
+      ]
+    },
+    {
+      "id": "mg-windsor-ev",
+      "brand": "MG",
+      "model": "Windsor EV",
+      "category": "SUV",
+      "class": "Premium Electric",
+      "gallery": [
+        "../assets/vehicles/mg/windsor-ev/windsor-ev-front.webp",
+        "../assets/vehicles/mg/windsor-ev/windsor-ev-rear.webp",
+        "../assets/vehicles/mg/windsor-ev/windsor-ev-side.webp"
+      ]
+    },
+    {
+      "id": "jeep-compass",
+      "brand": "Jeep",
+      "model": "Compass",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/jeep/compass/compass-front.webp",
+        "../assets/vehicles/jeep/compass/compass-rear.webp",
+        "../assets/vehicles/jeep/compass/compass-side.webp"
+      ]
+    },
+    {
+      "id": "jeep-meridian",
+      "brand": "Jeep",
+      "model": "Meridian",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/jeep/meridian/meridian-front.webp",
+        "../assets/vehicles/jeep/meridian/meridian-rear.webp",
+        "../assets/vehicles/jeep/meridian/meridian-side.webp"
+      ]
+    },
+    {
+      "id": "jeep-wrangler",
+      "brand": "Jeep",
+      "model": "Wrangler",
+      "category": "SUV",
+      "class": "Off-Road",
+      "gallery": [
+        "../assets/vehicles/jeep/wrangler/wrangler-front.webp",
+        "../assets/vehicles/jeep/wrangler/wrangler-rear.webp",
+        "../assets/vehicles/jeep/wrangler/wrangler-side.webp"
+      ]
+    },
+    {
+      "id": "jeep-grand-cherokee",
+      "brand": "Jeep",
+      "model": "Grand Cherokee",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/jeep/grand-cherokee/grand-cherokee-front.webp",
+        "../assets/vehicles/jeep/grand-cherokee/grand-cherokee-rear.webp",
+        "../assets/vehicles/jeep/grand-cherokee/grand-cherokee-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-2-series",
+      "brand": "BMW",
+      "model": "2 Series",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/bmw/2-series/2-series-front.webp",
+        "../assets/vehicles/bmw/2-series/2-series-rear.webp",
+        "../assets/vehicles/bmw/2-series/2-series-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-3-series",
+      "brand": "BMW",
+      "model": "3 Series",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/bmw/3-series/3-series-front.webp",
+        "../assets/vehicles/bmw/3-series/3-series-rear.webp",
+        "../assets/vehicles/bmw/3-series/3-series-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-5-series",
+      "brand": "BMW",
+      "model": "5 Series",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/bmw/5-series/5-series-front.webp",
+        "../assets/vehicles/bmw/5-series/5-series-rear.webp",
+        "../assets/vehicles/bmw/5-series/5-series-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-x1",
+      "brand": "BMW",
+      "model": "X1",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/bmw/x1/x1-front.webp",
+        "../assets/vehicles/bmw/x1/x1-rear.webp",
+        "../assets/vehicles/bmw/x1/x1-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-x3",
+      "brand": "BMW",
+      "model": "X3",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/bmw/x3/x3-front.webp",
+        "../assets/vehicles/bmw/x3/x3-rear.webp",
+        "../assets/vehicles/bmw/x3/x3-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-x5",
+      "brand": "BMW",
+      "model": "X5",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/bmw/x5/x5-front.webp",
+        "../assets/vehicles/bmw/x5/x5-rear.webp",
+        "../assets/vehicles/bmw/x5/x5-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-x7",
+      "brand": "BMW",
+      "model": "X7",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/bmw/x7/x7-front.webp",
+        "../assets/vehicles/bmw/x7/x7-rear.webp",
+        "../assets/vehicles/bmw/x7/x7-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-i4",
+      "brand": "BMW",
+      "model": "i4",
+      "category": "LUXURY",
+      "class": "Luxury Electric",
+      "gallery": [
+        "../assets/vehicles/bmw/i4/i4-front.webp",
+        "../assets/vehicles/bmw/i4/i4-rear.webp",
+        "../assets/vehicles/bmw/i4/i4-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-i5",
+      "brand": "BMW",
+      "model": "i5",
+      "category": "LUXURY",
+      "class": "Luxury Electric",
+      "gallery": [
+        "../assets/vehicles/bmw/i5/i5-front.webp",
+        "../assets/vehicles/bmw/i5/i5-rear.webp",
+        "../assets/vehicles/bmw/i5/i5-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-i7",
+      "brand": "BMW",
+      "model": "i7",
+      "category": "LUXURY",
+      "class": "Luxury Electric",
+      "gallery": [
+        "../assets/vehicles/bmw/i7/i7-front.webp",
+        "../assets/vehicles/bmw/i7/i7-rear.webp",
+        "../assets/vehicles/bmw/i7/i7-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-ix",
+      "brand": "BMW",
+      "model": "iX",
+      "category": "SUV",
+      "class": "Luxury Electric",
+      "gallery": [
+        "../assets/vehicles/bmw/ix/ix-front.webp",
+        "../assets/vehicles/bmw/ix/ix-rear.webp",
+        "../assets/vehicles/bmw/ix/ix-side.webp"
+      ]
+    },
+    {
+      "id": "mercedes-benz-a-class",
+      "brand": "Mercedes-Benz",
+      "model": "A-Class",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/a-class/a-class-front.webp",
+        "../assets/vehicles/mercedes-benz/a-class/a-class-rear.webp",
+        "../assets/vehicles/mercedes-benz/a-class/a-class-side.webp"
+      ]
+    },
+    {
+      "id": "mercedes-benz-c-class",
+      "brand": "Mercedes-Benz",
+      "model": "C-Class",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/c-class/c-class-front.webp",
+        "../assets/vehicles/mercedes-benz/c-class/c-class-rear.webp",
+        "../assets/vehicles/mercedes-benz/c-class/c-class-side.webp"
+      ]
+    },
+    {
+      "id": "mercedes-benz-e-class",
+      "brand": "Mercedes-Benz",
+      "model": "E-Class",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/e-class/e-class-front.webp",
+        "../assets/vehicles/mercedes-benz/e-class/e-class-rear.webp",
+        "../assets/vehicles/mercedes-benz/e-class/e-class-side.webp"
+      ]
+    },
+    {
+      "id": "mercedes-benz-s-class",
+      "brand": "Mercedes-Benz",
+      "model": "S-Class",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/s-class/s-class-front.webp",
+        "../assets/vehicles/mercedes-benz/s-class/s-class-rear.webp",
+        "../assets/vehicles/mercedes-benz/s-class/s-class-side.webp"
+      ]
+    },
+    {
+      "id": "mercedes-benz-gla",
+      "brand": "Mercedes-Benz",
+      "model": "GLA",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/gla/gla-front.webp",
+        "../assets/vehicles/mercedes-benz/gla/gla-rear.webp",
+        "../assets/vehicles/mercedes-benz/gla/gla-side.webp"
+      ]
+    },
+    {
+      "id": "mercedes-benz-glc",
+      "brand": "Mercedes-Benz",
+      "model": "GLC",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/glc/glc-front.webp",
+        "../assets/vehicles/mercedes-benz/glc/glc-rear.webp",
+        "../assets/vehicles/mercedes-benz/glc/glc-side.webp"
+      ]
+    },
+    {
+      "id": "mercedes-benz-gle",
+      "brand": "Mercedes-Benz",
+      "model": "GLE",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/gle/gle-front.webp",
+        "../assets/vehicles/mercedes-benz/gle/gle-rear.webp",
+        "../assets/vehicles/mercedes-benz/gle/gle-side.webp"
+      ]
+    },
+    {
+      "id": "mercedes-benz-gls",
+      "brand": "Mercedes-Benz",
+      "model": "GLS",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/gls/gls-front.webp",
+        "../assets/vehicles/mercedes-benz/gls/gls-rear.webp",
+        "../assets/vehicles/mercedes-benz/gls/gls-side.webp"
+      ]
+    },
+    {
+      "id": "mercedes-benz-eqe",
+      "brand": "Mercedes-Benz",
+      "model": "EQE",
+      "category": "LUXURY",
+      "class": "Luxury Electric",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/eqe/eqe-front.webp",
+        "../assets/vehicles/mercedes-benz/eqe/eqe-rear.webp",
+        "../assets/vehicles/mercedes-benz/eqe/eqe-side.webp"
+      ]
+    },
+    {
+      "id": "mercedes-benz-eqs",
+      "brand": "Mercedes-Benz",
+      "model": "EQS",
+      "category": "LUXURY",
+      "class": "Luxury Electric",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/eqs/eqs-front.webp",
+        "../assets/vehicles/mercedes-benz/eqs/eqs-rear.webp",
+        "../assets/vehicles/mercedes-benz/eqs/eqs-side.webp"
+      ]
+    },
+    {
+      "id": "audi-a4",
+      "brand": "Audi",
+      "model": "A4",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/audi/a4/a4-front.webp",
+        "../assets/vehicles/audi/a4/a4-rear.webp",
+        "../assets/vehicles/audi/a4/a4-side.webp"
+      ]
+    },
+    {
+      "id": "audi-a6",
+      "brand": "Audi",
+      "model": "A6",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/audi/a6/a6-front.webp",
+        "../assets/vehicles/audi/a6/a6-rear.webp",
+        "../assets/vehicles/audi/a6/a6-side.webp"
+      ]
+    },
+    {
+      "id": "audi-a8",
+      "brand": "Audi",
+      "model": "A8",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/audi/a8/a8-front.webp",
+        "../assets/vehicles/audi/a8/a8-rear.webp",
+        "../assets/vehicles/audi/a8/a8-side.webp"
+      ]
+    },
+    {
+      "id": "audi-q3",
+      "brand": "Audi",
+      "model": "Q3",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/audi/q3/q3-front.webp",
+        "../assets/vehicles/audi/q3/q3-rear.webp",
+        "../assets/vehicles/audi/q3/q3-side.webp"
+      ]
+    },
+    {
+      "id": "audi-q5",
+      "brand": "Audi",
+      "model": "Q5",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/audi/q5/q5-front.webp",
+        "../assets/vehicles/audi/q5/q5-rear.webp",
+        "../assets/vehicles/audi/q5/q5-side.webp"
+      ]
+    },
+    {
+      "id": "audi-q7",
+      "brand": "Audi",
+      "model": "Q7",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/audi/q7/q7-front.webp",
+        "../assets/vehicles/audi/q7/q7-rear.webp",
+        "../assets/vehicles/audi/q7/q7-side.webp"
+      ]
+    },
+    {
+      "id": "audi-q8",
+      "brand": "Audi",
+      "model": "Q8",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/audi/q8/q8-front.webp",
+        "../assets/vehicles/audi/q8/q8-rear.webp",
+        "../assets/vehicles/audi/q8/q8-side.webp"
+      ]
+    },
+    {
+      "id": "audi-e-tron",
+      "brand": "Audi",
+      "model": "e-tron",
+      "category": "SUV",
+      "class": "Luxury Electric",
+      "gallery": [
+        "../assets/vehicles/audi/e-tron/e-tron-front.webp",
+        "../assets/vehicles/audi/e-tron/e-tron-rear.webp",
+        "../assets/vehicles/audi/e-tron/e-tron-side.webp"
+      ]
+    },
+    {
+      "id": "audi-q8-e-tron",
+      "brand": "Audi",
+      "model": "Q8 e-tron",
+      "category": "SUV",
+      "class": "Luxury Electric",
+      "gallery": [
+        "../assets/vehicles/audi/q8-e-tron/q8-e-tron-front.webp",
+        "../assets/vehicles/audi/q8-e-tron/q8-e-tron-rear.webp",
+        "../assets/vehicles/audi/q8-e-tron/q8-e-tron-side.webp"
+      ]
+    },
+    {
+      "id": "volvo-s90",
+      "brand": "Volvo",
+      "model": "S90",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/volvo/s90/s90-front.webp",
+        "../assets/vehicles/volvo/s90/s90-rear.webp",
+        "../assets/vehicles/volvo/s90/s90-side.webp"
+      ]
+    },
+    {
+      "id": "volvo-xc40",
+      "brand": "Volvo",
+      "model": "XC40",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/volvo/xc40/xc40-front.webp",
+        "../assets/vehicles/volvo/xc40/xc40-rear.webp",
+        "../assets/vehicles/volvo/xc40/xc40-side.webp"
+      ]
+    },
+    {
+      "id": "volvo-xc60",
+      "brand": "Volvo",
+      "model": "XC60",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/volvo/xc60/xc60-front.webp",
+        "../assets/vehicles/volvo/xc60/xc60-rear.webp",
+        "../assets/vehicles/volvo/xc60/xc60-side.webp"
+      ]
+    },
+    {
+      "id": "volvo-xc90",
+      "brand": "Volvo",
+      "model": "XC90",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/volvo/xc90/xc90-front.webp",
+        "../assets/vehicles/volvo/xc90/xc90-rear.webp",
+        "../assets/vehicles/volvo/xc90/xc90-side.webp"
+      ]
+    },
+    {
+      "id": "volvo-ex30",
+      "brand": "Volvo",
+      "model": "EX30",
+      "category": "SUV",
+      "class": "Luxury Electric",
+      "gallery": [
+        "../assets/vehicles/volvo/ex30/ex30-front.webp",
+        "../assets/vehicles/volvo/ex30/ex30-rear.webp",
+        "../assets/vehicles/volvo/ex30/ex30-side.webp"
+      ]
+    },
+    {
+      "id": "volvo-ex40",
+      "brand": "Volvo",
+      "model": "EX40",
+      "category": "SUV",
+      "class": "Luxury Electric",
+      "gallery": [
+        "../assets/vehicles/volvo/ex40/ex40-front.webp",
+        "../assets/vehicles/volvo/ex40/ex40-rear.webp",
+        "../assets/vehicles/volvo/ex40/ex40-side.webp"
+      ]
+    },
+    {
+      "id": "volvo-ex90",
+      "brand": "Volvo",
+      "model": "EX90",
+      "category": "SUV",
+      "class": "Luxury Electric",
+      "gallery": [
+        "../assets/vehicles/volvo/ex90/ex90-front.webp",
+        "../assets/vehicles/volvo/ex90/ex90-rear.webp",
+        "../assets/vehicles/volvo/ex90/ex90-side.webp"
+      ]
+    },
+    {
+      "id": "lexus-es",
+      "brand": "Lexus",
+      "model": "ES",
+      "category": "LUXURY",
+      "class": "Luxury Sedan",
+      "gallery": [
+        "../assets/vehicles/lexus/es/es-front.webp",
+        "../assets/vehicles/lexus/es/es-rear.webp",
+        "../assets/vehicles/lexus/es/es-side.webp"
+      ]
+    },
+    {
+      "id": "lexus-nx",
+      "brand": "Lexus",
+      "model": "NX",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/lexus/nx/nx-front.webp",
+        "../assets/vehicles/lexus/nx/nx-rear.webp",
+        "../assets/vehicles/lexus/nx/nx-side.webp"
+      ]
+    },
+    {
+      "id": "lexus-rx",
+      "brand": "Lexus",
+      "model": "RX",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/lexus/rx/rx-front.webp",
+        "../assets/vehicles/lexus/rx/rx-rear.webp",
+        "../assets/vehicles/lexus/rx/rx-side.webp"
+      ]
+    },
+    {
+      "id": "lexus-lx",
+      "brand": "Lexus",
+      "model": "LX",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/lexus/lx/lx-front.webp",
+        "../assets/vehicles/lexus/lx/lx-rear.webp",
+        "../assets/vehicles/lexus/lx/lx-side.webp"
+      ]
+    },
+    {
+      "id": "lexus-lm",
+      "brand": "Lexus",
+      "model": "LM",
+      "category": "VAN",
+      "class": "Luxury Van",
+      "gallery": [
+        "../assets/vehicles/lexus/lm/lm-front.webp",
+        "../assets/vehicles/lexus/lm/lm-rear.webp",
+        "../assets/vehicles/lexus/lm/lm-side.webp"
+      ]
+    },
+    {
+      "id": "land-rover-defender",
+      "brand": "Land Rover",
+      "model": "Defender",
+      "category": "SUV",
+      "class": "Off-Road",
+      "gallery": [
+        "../assets/vehicles/land-rover/defender/defender-front.webp",
+        "../assets/vehicles/land-rover/defender/defender-rear.webp",
+        "../assets/vehicles/land-rover/defender/defender-side.webp"
+      ]
+    },
+    {
+      "id": "land-rover-discovery",
+      "brand": "Land Rover",
+      "model": "Discovery",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/land-rover/discovery/discovery-front.webp",
+        "../assets/vehicles/land-rover/discovery/discovery-rear.webp",
+        "../assets/vehicles/land-rover/discovery/discovery-side.webp"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-evoque",
+      "brand": "Land Rover",
+      "model": "Range Rover Evoque",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/land-rover/range-rover-evoque/range-rover-evoque-front.webp",
+        "../assets/vehicles/land-rover/range-rover-evoque/range-rover-evoque-rear.webp",
+        "../assets/vehicles/land-rover/range-rover-evoque/range-rover-evoque-side.webp"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-sport",
+      "brand": "Land Rover",
+      "model": "Range Rover Sport",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/land-rover/range-rover-sport/range-rover-sport-front.webp",
+        "../assets/vehicles/land-rover/range-rover-sport/range-rover-sport-rear.webp",
+        "../assets/vehicles/land-rover/range-rover-sport/range-rover-sport-side.webp"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover",
+      "brand": "Land Rover",
+      "model": "Range Rover",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/land-rover/range-rover/range-rover-front.webp",
+        "../assets/vehicles/land-rover/range-rover/range-rover-rear.webp",
+        "../assets/vehicles/land-rover/range-rover/range-rover-side.webp"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-velar",
+      "brand": "Land Rover",
+      "model": "Range Rover Velar",
+      "category": "SUV",
+      "class": "Luxury SUV",
+      "gallery": [
+        "../assets/vehicles/land-rover/range-rover-velar/range-rover-velar-front.webp",
+        "../assets/vehicles/land-rover/range-rover-velar/range-rover-velar-rear.webp",
+        "../assets/vehicles/land-rover/range-rover-velar/range-rover-velar-side.webp"
+      ]
+    },
+    {
+      "id": "mini-cooper",
+      "brand": "MINI",
+      "model": "Cooper",
+      "category": "HATCHBACK",
+      "class": "Premium Hatchback",
+      "gallery": [
+        "../assets/vehicles/mini/cooper/cooper-front.webp",
+        "../assets/vehicles/mini/cooper/cooper-rear.webp",
+        "../assets/vehicles/mini/cooper/cooper-side.webp"
+      ]
+    },
+    {
+      "id": "mini-cooper-s",
+      "brand": "MINI",
+      "model": "Cooper S",
+      "category": "HATCHBACK",
+      "class": "Premium Hatchback",
+      "gallery": [
+        "../assets/vehicles/mini/cooper-s/cooper-s-front.webp",
+        "../assets/vehicles/mini/cooper-s/cooper-s-rear.webp",
+        "../assets/vehicles/mini/cooper-s/cooper-s-side.webp"
+      ]
+    },
+    {
+      "id": "mini-countryman",
+      "brand": "MINI",
+      "model": "Countryman",
+      "category": "SUV",
+      "class": "Premium SUV",
+      "gallery": [
+        "../assets/vehicles/mini/countryman/countryman-front.webp",
+        "../assets/vehicles/mini/countryman/countryman-rear.webp",
+        "../assets/vehicles/mini/countryman/countryman-side.webp"
+      ]
+    },
+    {
+      "id": "mini-convertible",
+      "brand": "MINI",
+      "model": "Convertible",
+      "category": "LUXURY",
+      "class": "Convertible",
+      "gallery": [
+        "../assets/vehicles/mini/convertible/convertible-front.webp",
+        "../assets/vehicles/mini/convertible/convertible-rear.webp",
+        "../assets/vehicles/mini/convertible/convertible-side.webp"
+      ]
+    }
+  ],
+  "bikes": [
+    {
+      "id": "royal-enfield-classic-350",
+      "brand": "Royal Enfield",
+      "model": "Classic 350",
+      "category": "CRUISER",
+      "class": "Modern Classic Cruiser",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/classic-350/classic-350-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/classic-350/classic-350-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/classic-350/classic-350-side.webp"
+      ]
+    },
+    {
+      "id": "royal-enfield-bullet-350",
+      "brand": "Royal Enfield",
+      "model": "Bullet 350",
+      "category": "CRUISER",
+      "class": "Classic Cruiser",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/bullet-350/bullet-350-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/bullet-350/bullet-350-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/bullet-350/bullet-350-side.webp"
+      ]
+    },
+    {
+      "id": "royal-enfield-hunter-350",
+      "brand": "Royal Enfield",
+      "model": "Hunter 350",
+      "category": "STREET",
+      "class": "Urban Roadster",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/hunter-350/hunter-350-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/hunter-350/hunter-350-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/hunter-350/hunter-350-side.webp"
+      ]
+    },
+    {
+      "id": "royal-enfield-meteor-350",
+      "brand": "Royal Enfield",
+      "model": "Meteor 350",
+      "category": "CRUISER",
+      "class": "Highway Cruiser",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/meteor-350/meteor-350-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/meteor-350/meteor-350-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/meteor-350/meteor-350-side.webp"
+      ]
+    },
+    {
+      "id": "royal-enfield-himalayan-450",
+      "brand": "Royal Enfield",
+      "model": "Himalayan 450",
+      "category": "ADVENTURE",
+      "class": "Adventure Tourer",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/himalayan-450/himalayan-450-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/himalayan-450/himalayan-450-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/himalayan-450/himalayan-450-side.webp"
+      ]
+    },
+    {
+      "id": "royal-enfield-continental-gt-650",
+      "brand": "Royal Enfield",
+      "model": "Continental GT 650",
+      "category": "SPORT",
+      "class": "Cafe Racer",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/continental-gt-650/continental-gt-650-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/continental-gt-650/continental-gt-650-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/continental-gt-650/continental-gt-650-side.webp"
+      ]
+    },
+    {
+      "id": "royal-enfield-interceptor-650",
+      "brand": "Royal Enfield",
+      "model": "Interceptor 650",
+      "category": "TOURING",
+      "class": "Modern Classic",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/interceptor-650/interceptor-650-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/interceptor-650/interceptor-650-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/interceptor-650/interceptor-650-side.webp"
+      ]
+    },
+    {
+      "id": "royal-enfield-super-meteor-650",
+      "brand": "Royal Enfield",
+      "model": "Super Meteor 650",
+      "category": "CRUISER",
+      "class": "Highway Cruiser",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/super-meteor-650/super-meteor-650-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/super-meteor-650/super-meteor-650-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/super-meteor-650/super-meteor-650-side.webp"
+      ]
+    },
+    {
+      "id": "yamaha-yzf-r15",
+      "brand": "Yamaha",
+      "model": "YZF-R15",
+      "category": "SPORT",
+      "class": "Track Supersport",
+      "gallery": [
+        "../assets/vehicles/bikes/yamaha/yzf-r15/yzf-r15-front.webp",
+        "../assets/vehicles/bikes/yamaha/yzf-r15/yzf-r15-rear.webp",
+        "../assets/vehicles/bikes/yamaha/yzf-r15/yzf-r15-side.webp"
+      ]
+    },
+    {
+      "id": "yamaha-mt-15",
+      "brand": "Yamaha",
+      "model": "MT-15",
+      "category": "STREET",
+      "class": "Streetfighter",
+      "gallery": [
+        "../assets/vehicles/bikes/yamaha/mt-15/mt-15-front.webp",
+        "../assets/vehicles/bikes/yamaha/mt-15/mt-15-rear.webp",
+        "../assets/vehicles/bikes/yamaha/mt-15/mt-15-side.webp"
+      ]
+    },
+    {
+      "id": "yamaha-fz-s-fi",
+      "brand": "Yamaha",
+      "model": "FZ-S FI",
+      "category": "COMMUTER",
+      "class": "Sport Commuter",
+      "gallery": [
+        "../assets/vehicles/bikes/yamaha/fz-s-fi/fz-s-fi-front.webp",
+        "../assets/vehicles/bikes/yamaha/fz-s-fi/fz-s-fi-rear.webp",
+        "../assets/vehicles/bikes/yamaha/fz-s-fi/fz-s-fi-side.webp"
+      ]
+    },
+    {
+      "id": "yamaha-aerox-155",
+      "brand": "Yamaha",
+      "model": "Aerox 155",
+      "category": "SCOOTER",
+      "class": "Maxi Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/yamaha/aerox-155/aerox-155-front.webp",
+        "../assets/vehicles/bikes/yamaha/aerox-155/aerox-155-rear.webp",
+        "../assets/vehicles/bikes/yamaha/aerox-155/aerox-155-side.webp"
+      ]
+    },
+    {
+      "id": "yamaha-rayzr-125",
+      "brand": "Yamaha",
+      "model": "RayZR 125",
+      "category": "SCOOTER",
+      "class": "Urban Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/yamaha/rayzr-125/rayzr-125-front.webp",
+        "../assets/vehicles/bikes/yamaha/rayzr-125/rayzr-125-rear.webp",
+        "../assets/vehicles/bikes/yamaha/rayzr-125/rayzr-125-side.webp"
+      ]
+    },
+    {
+      "id": "yamaha-yzf-r3",
+      "brand": "Yamaha",
+      "model": "YZF-R3",
+      "category": "SPORT",
+      "class": "Supersport",
+      "gallery": [
+        "../assets/vehicles/bikes/yamaha/yzf-r3/yzf-r3-front.webp",
+        "../assets/vehicles/bikes/yamaha/yzf-r3/yzf-r3-rear.webp",
+        "../assets/vehicles/bikes/yamaha/yzf-r3/yzf-r3-side.webp"
+      ]
+    },
+    {
+      "id": "ktm-duke-200",
+      "brand": "KTM",
+      "model": "Duke 200",
+      "category": "STREET",
+      "class": "Streetfighter",
+      "gallery": [
+        "../assets/vehicles/bikes/ktm/duke-200/duke-200-front.webp",
+        "../assets/vehicles/bikes/ktm/duke-200/duke-200-rear.webp",
+        "../assets/vehicles/bikes/ktm/duke-200/duke-200-side.webp"
+      ]
+    },
+    {
+      "id": "ktm-duke-390",
+      "brand": "KTM",
+      "model": "Duke 390",
+      "category": "STREET",
+      "class": "Performance Naked",
+      "gallery": [
+        "../assets/vehicles/bikes/ktm/duke-390/duke-390-front.webp",
+        "../assets/vehicles/bikes/ktm/duke-390/duke-390-rear.webp",
+        "../assets/vehicles/bikes/ktm/duke-390/duke-390-side.webp"
+      ]
+    },
+    {
+      "id": "ktm-rc-200",
+      "brand": "KTM",
+      "model": "RC 200",
+      "category": "SPORT",
+      "class": "Track Supersport",
+      "gallery": [
+        "../assets/vehicles/bikes/ktm/rc-200/rc-200-front.webp",
+        "../assets/vehicles/bikes/ktm/rc-200/rc-200-rear.webp",
+        "../assets/vehicles/bikes/ktm/rc-200/rc-200-side.webp"
+      ]
+    },
+    {
+      "id": "ktm-rc-390",
+      "brand": "KTM",
+      "model": "RC 390",
+      "category": "SPORT",
+      "class": "Track Supersport",
+      "gallery": [
+        "../assets/vehicles/bikes/ktm/rc-390/rc-390-front.webp",
+        "../assets/vehicles/bikes/ktm/rc-390/rc-390-rear.webp",
+        "../assets/vehicles/bikes/ktm/rc-390/rc-390-side.webp"
+      ]
+    },
+    {
+      "id": "ktm-390-adventure",
+      "brand": "KTM",
+      "model": "390 Adventure",
+      "category": "ADVENTURE",
+      "class": "Adventure Tourer",
+      "gallery": [
+        "../assets/vehicles/bikes/ktm/390-adventure/390-adventure-front.webp",
+        "../assets/vehicles/bikes/ktm/390-adventure/390-adventure-rear.webp",
+        "../assets/vehicles/bikes/ktm/390-adventure/390-adventure-side.webp"
+      ]
+    },
+    {
+      "id": "honda-activa-6g",
+      "brand": "Honda",
+      "model": "Activa 6G",
+      "category": "SCOOTER",
+      "class": "Family Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/activa-6g/activa-6g-front.webp",
+        "../assets/vehicles/bikes/honda/activa-6g/activa-6g-rear.webp",
+        "../assets/vehicles/bikes/honda/activa-6g/activa-6g-side.webp"
+      ]
+    },
+    {
+      "id": "honda-dio-125",
+      "brand": "Honda",
+      "model": "Dio 125",
+      "category": "SCOOTER",
+      "class": "Sporty Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/dio-125/dio-125-front.webp",
+        "../assets/vehicles/bikes/honda/dio-125/dio-125-rear.webp",
+        "../assets/vehicles/bikes/honda/dio-125/dio-125-side.webp"
+      ]
+    },
+    {
+      "id": "honda-shine-125",
+      "brand": "Honda",
+      "model": "Shine 125",
+      "category": "COMMUTER",
+      "class": "Executive Commuter",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/shine-125/shine-125-front.webp",
+        "../assets/vehicles/bikes/honda/shine-125/shine-125-rear.webp",
+        "../assets/vehicles/bikes/honda/shine-125/shine-125-side.webp"
+      ]
+    },
+    {
+      "id": "honda-unicorn",
+      "brand": "Honda",
+      "model": "Unicorn",
+      "category": "COMMUTER",
+      "class": "Commuter",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/unicorn/unicorn-front.webp",
+        "../assets/vehicles/bikes/honda/unicorn/unicorn-rear.webp",
+        "../assets/vehicles/bikes/honda/unicorn/unicorn-side.webp"
+      ]
+    },
+    {
+      "id": "honda-cb350-hness",
+      "brand": "Honda",
+      "model": "CB350 Hness",
+      "category": "CRUISER",
+      "class": "Modern Classic",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/cb350-hness/cb350-hness-front.webp",
+        "../assets/vehicles/bikes/honda/cb350-hness/cb350-hness-rear.webp",
+        "../assets/vehicles/bikes/honda/cb350-hness/cb350-hness-side.webp"
+      ]
+    },
+    {
+      "id": "honda-cb300r",
+      "brand": "Honda",
+      "model": "CB300R",
+      "category": "STREET",
+      "class": "Urban Roadster",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/cb300r/cb300r-front.webp",
+        "../assets/vehicles/bikes/honda/cb300r/cb300r-rear.webp",
+        "../assets/vehicles/bikes/honda/cb300r/cb300r-side.webp"
+      ]
+    },
+    {
+      "id": "honda-nx500",
+      "brand": "Honda",
+      "model": "NX500",
+      "category": "ADVENTURE",
+      "class": "Adventure Tourer",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/nx500/nx500-front.webp",
+        "../assets/vehicles/bikes/honda/nx500/nx500-rear.webp",
+        "../assets/vehicles/bikes/honda/nx500/nx500-side.webp"
+      ]
+    },
+    {
+      "id": "bajaj-pulsar-ns200",
+      "brand": "Bajaj",
+      "model": "Pulsar NS200",
+      "category": "STREET",
+      "class": "Naked Sport",
+      "gallery": [
+        "../assets/vehicles/bikes/bajaj/pulsar-ns200/pulsar-ns200-front.webp",
+        "../assets/vehicles/bikes/bajaj/pulsar-ns200/pulsar-ns200-rear.webp",
+        "../assets/vehicles/bikes/bajaj/pulsar-ns200/pulsar-ns200-side.webp"
+      ]
+    },
+    {
+      "id": "bajaj-pulsar-rs200",
+      "brand": "Bajaj",
+      "model": "Pulsar RS200",
+      "category": "SPORT",
+      "class": "Faired Sport",
+      "gallery": [
+        "../assets/vehicles/bikes/bajaj/pulsar-rs200/pulsar-rs200-front.webp",
+        "../assets/vehicles/bikes/bajaj/pulsar-rs200/pulsar-rs200-rear.webp",
+        "../assets/vehicles/bikes/bajaj/pulsar-rs200/pulsar-rs200-side.webp"
+      ]
+    },
+    {
+      "id": "bajaj-dominar-400",
+      "brand": "Bajaj",
+      "model": "Dominar 400",
+      "category": "TOURING",
+      "class": "Power Cruiser",
+      "gallery": [
+        "../assets/vehicles/bikes/bajaj/dominar-400/dominar-400-front.webp",
+        "../assets/vehicles/bikes/bajaj/dominar-400/dominar-400-rear.webp",
+        "../assets/vehicles/bikes/bajaj/dominar-400/dominar-400-side.webp"
+      ]
+    },
+    {
+      "id": "bajaj-pulsar-n160",
+      "brand": "Bajaj",
+      "model": "Pulsar N160",
+      "category": "STREET",
+      "class": "Streetfighter",
+      "gallery": [
+        "../assets/vehicles/bikes/bajaj/pulsar-n160/pulsar-n160-front.webp",
+        "../assets/vehicles/bikes/bajaj/pulsar-n160/pulsar-n160-rear.webp",
+        "../assets/vehicles/bikes/bajaj/pulsar-n160/pulsar-n160-side.webp"
+      ]
+    },
+    {
+      "id": "bajaj-chetak",
+      "brand": "Bajaj",
+      "model": "Chetak",
+      "category": "ELECTRIC",
+      "class": "Electric Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/bajaj/chetak/chetak-front.webp",
+        "../assets/vehicles/bikes/bajaj/chetak/chetak-rear.webp",
+        "../assets/vehicles/bikes/bajaj/chetak/chetak-side.webp"
+      ]
+    },
+    {
+      "id": "bajaj-platina-110",
+      "brand": "Bajaj",
+      "model": "Platina 110",
+      "category": "COMMUTER",
+      "class": "Utility Commuter",
+      "gallery": [
+        "../assets/vehicles/bikes/bajaj/platina-110/platina-110-front.webp",
+        "../assets/vehicles/bikes/bajaj/platina-110/platina-110-rear.webp",
+        "../assets/vehicles/bikes/bajaj/platina-110/platina-110-side.webp"
+      ]
+    },
+    {
+      "id": "tvs-apache-rtr-160-4v",
+      "brand": "TVS",
+      "model": "Apache RTR 160 4V",
+      "category": "STREET",
+      "class": "Streetfighter",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/apache-rtr-160-4v/apache-rtr-160-4v-front.webp",
+        "../assets/vehicles/bikes/tvs/apache-rtr-160-4v/apache-rtr-160-4v-rear.webp",
+        "../assets/vehicles/bikes/tvs/apache-rtr-160-4v/apache-rtr-160-4v-side.webp"
+      ]
+    },
+    {
+      "id": "tvs-apache-rtr-200-4v",
+      "brand": "TVS",
+      "model": "Apache RTR 200 4V",
+      "category": "STREET",
+      "class": "Performance Naked",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/apache-rtr-200-4v/apache-rtr-200-4v-front.webp",
+        "../assets/vehicles/bikes/tvs/apache-rtr-200-4v/apache-rtr-200-4v-rear.webp",
+        "../assets/vehicles/bikes/tvs/apache-rtr-200-4v/apache-rtr-200-4v-side.webp"
+      ]
+    },
+    {
+      "id": "tvs-apache-rr-310",
+      "brand": "TVS",
+      "model": "Apache RR 310",
+      "category": "SPORT",
+      "class": "Track Supersport",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/apache-rr-310/apache-rr-310-front.webp",
+        "../assets/vehicles/bikes/tvs/apache-rr-310/apache-rr-310-rear.webp",
+        "../assets/vehicles/bikes/tvs/apache-rr-310/apache-rr-310-side.webp"
+      ]
+    },
+    {
+      "id": "tvs-jupiter-125",
+      "brand": "TVS",
+      "model": "Jupiter 125",
+      "category": "SCOOTER",
+      "class": "Executive Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/jupiter-125/jupiter-125-front.webp",
+        "../assets/vehicles/bikes/tvs/jupiter-125/jupiter-125-rear.webp",
+        "../assets/vehicles/bikes/tvs/jupiter-125/jupiter-125-side.webp"
+      ]
+    },
+    {
+      "id": "tvs-ntorq-125",
+      "brand": "TVS",
+      "model": "Ntorq 125",
+      "category": "SCOOTER",
+      "class": "Sporty Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/ntorq-125/ntorq-125-front.webp",
+        "../assets/vehicles/bikes/tvs/ntorq-125/ntorq-125-rear.webp",
+        "../assets/vehicles/bikes/tvs/ntorq-125/ntorq-125-side.webp"
+      ]
+    },
+    {
+      "id": "tvs-ronin",
+      "brand": "TVS",
+      "model": "Ronin",
+      "category": "CRUISER",
+      "class": "Urban Scrambler",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/ronin/ronin-front.webp",
+        "../assets/vehicles/bikes/tvs/ronin/ronin-rear.webp",
+        "../assets/vehicles/bikes/tvs/ronin/ronin-side.webp"
+      ]
+    },
+    {
+      "id": "tvs-iqube",
+      "brand": "TVS",
+      "model": "iQube",
+      "category": "ELECTRIC",
+      "class": "Electric Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/iqube/iqube-front.webp",
+        "../assets/vehicles/bikes/tvs/iqube/iqube-rear.webp",
+        "../assets/vehicles/bikes/tvs/iqube/iqube-side.webp"
+      ]
+    },
+    {
+      "id": "hero-splendor-plus",
+      "brand": "Hero",
+      "model": "Splendor Plus",
+      "category": "COMMUTER",
+      "class": "Commuter",
+      "gallery": [
+        "../assets/vehicles/bikes/hero/splendor-plus/splendor-plus-front.webp",
+        "../assets/vehicles/bikes/hero/splendor-plus/splendor-plus-rear.webp",
+        "../assets/vehicles/bikes/hero/splendor-plus/splendor-plus-side.webp"
+      ]
+    },
+    {
+      "id": "hero-hf-deluxe",
+      "brand": "Hero",
+      "model": "HF Deluxe",
+      "category": "COMMUTER",
+      "class": "Utility Commuter",
+      "gallery": [
+        "../assets/vehicles/bikes/hero/hf-deluxe/hf-deluxe-front.webp",
+        "../assets/vehicles/bikes/hero/hf-deluxe/hf-deluxe-rear.webp",
+        "../assets/vehicles/bikes/hero/hf-deluxe/hf-deluxe-side.webp"
+      ]
+    },
+    {
+      "id": "hero-glamour",
+      "brand": "Hero",
+      "model": "Glamour",
+      "category": "COMMUTER",
+      "class": "Executive Commuter",
+      "gallery": [
+        "../assets/vehicles/bikes/hero/glamour/glamour-front.webp",
+        "../assets/vehicles/bikes/hero/glamour/glamour-rear.webp",
+        "../assets/vehicles/bikes/hero/glamour/glamour-side.webp"
+      ]
+    },
+    {
+      "id": "hero-xtreme-125r",
+      "brand": "Hero",
+      "model": "Xtreme 125R",
+      "category": "COMMUTER",
+      "class": "Sport Commuter",
+      "gallery": [
+        "../assets/vehicles/bikes/hero/xtreme-125r/xtreme-125r-front.webp",
+        "../assets/vehicles/bikes/hero/xtreme-125r/xtreme-125r-rear.webp",
+        "../assets/vehicles/bikes/hero/xtreme-125r/xtreme-125r-side.webp"
+      ]
+    },
+    {
+      "id": "hero-xpulse-200-4v",
+      "brand": "Hero",
+      "model": "Xpulse 200 4V",
+      "category": "ADVENTURE",
+      "class": "Dual-Sport Off-Roader",
+      "gallery": [
+        "../assets/vehicles/bikes/hero/xpulse-200-4v/xpulse-200-4v-front.webp",
+        "../assets/vehicles/bikes/hero/xpulse-200-4v/xpulse-200-4v-rear.webp",
+        "../assets/vehicles/bikes/hero/xpulse-200-4v/xpulse-200-4v-side.webp"
+      ]
+    },
+    {
+      "id": "hero-mavrick-440",
+      "brand": "Hero",
+      "model": "Mavrick 440",
+      "category": "CRUISER",
+      "class": "Urban Roadster",
+      "gallery": [
+        "../assets/vehicles/bikes/hero/mavrick-440/mavrick-440-front.webp",
+        "../assets/vehicles/bikes/hero/mavrick-440/mavrick-440-rear.webp",
+        "../assets/vehicles/bikes/hero/mavrick-440/mavrick-440-side.webp"
+      ]
+    },
+    {
+      "id": "suzuki-access-125",
+      "brand": "Suzuki",
+      "model": "Access 125",
+      "category": "SCOOTER",
+      "class": "Family Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/suzuki/access-125/access-125-front.webp",
+        "../assets/vehicles/bikes/suzuki/access-125/access-125-rear.webp",
+        "../assets/vehicles/bikes/suzuki/access-125/access-125-side.webp"
+      ]
+    },
+    {
+      "id": "suzuki-burgman-street",
+      "brand": "Suzuki",
+      "model": "Burgman Street",
+      "category": "SCOOTER",
+      "class": "Maxi Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/suzuki/burgman-street/burgman-street-front.webp",
+        "../assets/vehicles/bikes/suzuki/burgman-street/burgman-street-rear.webp",
+        "../assets/vehicles/bikes/suzuki/burgman-street/burgman-street-side.webp"
+      ]
+    },
+    {
+      "id": "suzuki-gixxer-sf",
+      "brand": "Suzuki",
+      "model": "Gixxer SF",
+      "category": "SPORT",
+      "class": "Sport Tourer",
+      "gallery": [
+        "../assets/vehicles/bikes/suzuki/gixxer-sf/gixxer-sf-front.webp",
+        "../assets/vehicles/bikes/suzuki/gixxer-sf/gixxer-sf-rear.webp",
+        "../assets/vehicles/bikes/suzuki/gixxer-sf/gixxer-sf-side.webp"
+      ]
+    },
+    {
+      "id": "suzuki-gixxer-250",
+      "brand": "Suzuki",
+      "model": "Gixxer 250",
+      "category": "STREET",
+      "class": "Performance Naked",
+      "gallery": [
+        "../assets/vehicles/bikes/suzuki/gixxer-250/gixxer-250-front.webp",
+        "../assets/vehicles/bikes/suzuki/gixxer-250/gixxer-250-rear.webp",
+        "../assets/vehicles/bikes/suzuki/gixxer-250/gixxer-250-side.webp"
+      ]
+    },
+    {
+      "id": "suzuki-v-strom-sx",
+      "brand": "Suzuki",
+      "model": "V-Strom SX",
+      "category": "ADVENTURE",
+      "class": "Adventure Tourer",
+      "gallery": [
+        "../assets/vehicles/bikes/suzuki/v-strom-sx/v-strom-sx-front.webp",
+        "../assets/vehicles/bikes/suzuki/v-strom-sx/v-strom-sx-rear.webp",
+        "../assets/vehicles/bikes/suzuki/v-strom-sx/v-strom-sx-side.webp"
+      ]
+    },
+    {
+      "id": "suzuki-hayabusa",
+      "brand": "Suzuki",
+      "model": "Hayabusa",
+      "category": "PREMIUM",
+      "class": "Hyperbike Flagship",
+      "gallery": [
+        "../assets/vehicles/bikes/suzuki/hayabusa/hayabusa-front.webp",
+        "../assets/vehicles/bikes/suzuki/hayabusa/hayabusa-rear.webp",
+        "../assets/vehicles/bikes/suzuki/hayabusa/hayabusa-side.webp"
+      ]
+    },
+    {
+      "id": "kawasaki-ninja-300",
+      "brand": "Kawasaki",
+      "model": "Ninja 300",
+      "category": "SPORT",
+      "class": "Supersport",
+      "gallery": [
+        "../assets/vehicles/bikes/kawasaki/ninja-300/ninja-300-front.webp",
+        "../assets/vehicles/bikes/kawasaki/ninja-300/ninja-300-rear.webp",
+        "../assets/vehicles/bikes/kawasaki/ninja-300/ninja-300-side.webp"
+      ]
+    },
+    {
+      "id": "kawasaki-ninja-500",
+      "brand": "Kawasaki",
+      "model": "Ninja 500",
+      "category": "SPORT",
+      "class": "Middleweight Sport",
+      "gallery": [
+        "../assets/vehicles/bikes/kawasaki/ninja-500/ninja-500-front.webp",
+        "../assets/vehicles/bikes/kawasaki/ninja-500/ninja-500-rear.webp",
+        "../assets/vehicles/bikes/kawasaki/ninja-500/ninja-500-side.webp"
+      ]
+    },
+    {
+      "id": "kawasaki-z900",
+      "brand": "Kawasaki",
+      "model": "Z900",
+      "category": "PREMIUM",
+      "class": "Performance Naked",
+      "gallery": [
+        "../assets/vehicles/bikes/kawasaki/z900/z900-front.webp",
+        "../assets/vehicles/bikes/kawasaki/z900/z900-rear.webp",
+        "../assets/vehicles/bikes/kawasaki/z900/z900-side.webp"
+      ]
+    },
+    {
+      "id": "kawasaki-eliminator",
+      "brand": "Kawasaki",
+      "model": "Eliminator",
+      "category": "CRUISER",
+      "class": "Modern Classic Cruiser",
+      "gallery": [
+        "../assets/vehicles/bikes/kawasaki/eliminator/eliminator-front.webp",
+        "../assets/vehicles/bikes/kawasaki/eliminator/eliminator-rear.webp",
+        "../assets/vehicles/bikes/kawasaki/eliminator/eliminator-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-motorrad-g-310-r",
+      "brand": "BMW Motorrad",
+      "model": "G 310 R",
+      "category": "STREET",
+      "class": "Urban Roadster",
+      "gallery": [
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-r/g-310-r-front.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-r/g-310-r-rear.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-r/g-310-r-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-motorrad-g-310-gs",
+      "brand": "BMW Motorrad",
+      "model": "G 310 GS",
+      "category": "ADVENTURE",
+      "class": "Adventure Tourer",
+      "gallery": [
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-gs/g-310-gs-front.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-gs/g-310-gs-rear.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-gs/g-310-gs-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-motorrad-g-310-rr",
+      "brand": "BMW Motorrad",
+      "model": "G 310 RR",
+      "category": "SPORT",
+      "class": "Track Supersport",
+      "gallery": [
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-rr/g-310-rr-front.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-rr/g-310-rr-rear.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-rr/g-310-rr-side.webp"
+      ]
+    },
+    {
+      "id": "bmw-motorrad-r-1250-gs",
+      "brand": "BMW Motorrad",
+      "model": "R 1250 GS",
+      "category": "PREMIUM",
+      "class": "Flagship Adventure Tourer",
+      "gallery": [
+        "../assets/vehicles/bikes/bmw-motorrad/r-1250-gs/r-1250-gs-front.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/r-1250-gs/r-1250-gs-rear.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/r-1250-gs/r-1250-gs-side.webp"
+      ]
+    },
+    {
+      "id": "triumph-speed-400",
+      "brand": "Triumph",
+      "model": "Speed 400",
+      "category": "STREET",
+      "class": "Urban Roadster",
+      "gallery": [
+        "../assets/vehicles/bikes/triumph/speed-400/speed-400-front.webp",
+        "../assets/vehicles/bikes/triumph/speed-400/speed-400-rear.webp",
+        "../assets/vehicles/bikes/triumph/speed-400/speed-400-side.webp"
+      ]
+    },
+    {
+      "id": "triumph-scrambler-400-x",
+      "brand": "Triumph",
+      "model": "Scrambler 400 X",
+      "category": "ADVENTURE",
+      "class": "All-Terrain Scrambler",
+      "gallery": [
+        "../assets/vehicles/bikes/triumph/scrambler-400-x/scrambler-400-x-front.webp",
+        "../assets/vehicles/bikes/triumph/scrambler-400-x/scrambler-400-x-rear.webp",
+        "../assets/vehicles/bikes/triumph/scrambler-400-x/scrambler-400-x-side.webp"
+      ]
+    },
+    {
+      "id": "triumph-bonneville-t120",
+      "brand": "Triumph",
+      "model": "Bonneville T120",
+      "category": "PREMIUM",
+      "class": "British Heritage Classic",
+      "gallery": [
+        "../assets/vehicles/bikes/triumph/bonneville-t120/bonneville-t120-front.webp",
+        "../assets/vehicles/bikes/triumph/bonneville-t120/bonneville-t120-rear.webp",
+        "../assets/vehicles/bikes/triumph/bonneville-t120/bonneville-t120-side.webp"
+      ]
+    },
+    {
+      "id": "harley-davidson-x440",
+      "brand": "Harley-Davidson",
+      "model": "X440",
+      "category": "CRUISER",
+      "class": "Modern Classic Cruiser",
+      "gallery": [
+        "../assets/vehicles/bikes/harley-davidson/x440/x440-front.webp",
+        "../assets/vehicles/bikes/harley-davidson/x440/x440-rear.webp",
+        "../assets/vehicles/bikes/harley-davidson/x440/x440-side.webp"
+      ]
+    },
+    {
+      "id": "harley-davidson-fat-boy",
+      "brand": "Harley-Davidson",
+      "model": "Fat Boy",
+      "category": "PREMIUM",
+      "class": "Custom Heavyweight Cruiser",
+      "gallery": [
+        "../assets/vehicles/bikes/harley-davidson/fat-boy/fat-boy-front.webp",
+        "../assets/vehicles/bikes/harley-davidson/fat-boy/fat-boy-rear.webp",
+        "../assets/vehicles/bikes/harley-davidson/fat-boy/fat-boy-side.webp"
+      ]
+    },
+    {
+      "id": "aprilia-rs-457",
+      "brand": "Aprilia",
+      "model": "RS 457",
+      "category": "SPORT",
+      "class": "Track Supersport",
+      "gallery": [
+        "../assets/vehicles/bikes/aprilia/rs-457/rs-457-front.webp",
+        "../assets/vehicles/bikes/aprilia/rs-457/rs-457-rear.webp",
+        "../assets/vehicles/bikes/aprilia/rs-457/rs-457-side.webp"
+      ]
+    },
+    {
+      "id": "aprilia-sr-160",
+      "brand": "Aprilia",
+      "model": "SR 160",
+      "category": "SCOOTER",
+      "class": "Sporty Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/aprilia/sr-160/sr-160-front.webp",
+        "../assets/vehicles/bikes/aprilia/sr-160/sr-160-rear.webp",
+        "../assets/vehicles/bikes/aprilia/sr-160/sr-160-side.webp"
+      ]
+    },
+    {
+      "id": "ola-electric-s1-pro",
+      "brand": "Ola Electric",
+      "model": "S1 Pro",
+      "category": "ELECTRIC",
+      "class": "Performance Electric Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/ola-electric/s1-pro/s1-pro-front.webp",
+        "../assets/vehicles/bikes/ola-electric/s1-pro/s1-pro-rear.webp",
+        "../assets/vehicles/bikes/ola-electric/s1-pro/s1-pro-side.webp"
+      ]
+    },
+    {
+      "id": "ola-electric-s1-air",
+      "brand": "Ola Electric",
+      "model": "S1 Air",
+      "category": "ELECTRIC",
+      "class": "Electric Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/ola-electric/s1-air/s1-air-front.webp",
+        "../assets/vehicles/bikes/ola-electric/s1-air/s1-air-rear.webp",
+        "../assets/vehicles/bikes/ola-electric/s1-air/s1-air-side.webp"
+      ]
+    },
+    {
+      "id": "ola-electric-s1-x",
+      "brand": "Ola Electric",
+      "model": "S1 X",
+      "category": "ELECTRIC",
+      "class": "Electric Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/ola-electric/s1-x/s1-x-front.webp",
+        "../assets/vehicles/bikes/ola-electric/s1-x/s1-x-rear.webp",
+        "../assets/vehicles/bikes/ola-electric/s1-x/s1-x-side.webp"
+      ]
+    },
+    {
+      "id": "ather-450x",
+      "brand": "Ather",
+      "model": "450X",
+      "category": "ELECTRIC",
+      "class": "Hyper Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/ather/450x/450x-front.webp",
+        "../assets/vehicles/bikes/ather/450x/450x-rear.webp",
+        "../assets/vehicles/bikes/ather/450x/450x-side.webp"
+      ]
+    },
+    {
+      "id": "ather-rizta",
+      "brand": "Ather",
+      "model": "Rizta",
+      "category": "ELECTRIC",
+      "class": "Family Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/ather/rizta/rizta-front.webp",
+        "../assets/vehicles/bikes/ather/rizta/rizta-rear.webp",
+        "../assets/vehicles/bikes/ather/rizta/rizta-side.webp"
+      ]
+    },
+    {
+      "id": "vida-v1-pro",
+      "brand": "Vida",
+      "model": "V1 Pro",
+      "category": "ELECTRIC",
+      "class": "Electric Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/vida/v1-pro/v1-pro-front.webp",
+        "../assets/vehicles/bikes/vida/v1-pro/v1-pro-rear.webp",
+        "../assets/vehicles/bikes/vida/v1-pro/v1-pro-side.webp"
+      ]
+    }
+  ]
+}

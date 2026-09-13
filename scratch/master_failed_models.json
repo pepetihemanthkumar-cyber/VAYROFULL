@@ -1,0 +1,334 @@
+[
+  {
+    "id": "maruti-suzuki-invicto",
+    "title": "Maruti Suzuki Invicto",
+    "brand": "Maruti Suzuki",
+    "model": "Invicto",
+    "type": "Car",
+    "keywords": [
+      "invicto"
+    ]
+  },
+  {
+    "id": "mahindra-bolero-neo",
+    "title": "Mahindra Bolero Neo",
+    "brand": "Mahindra",
+    "model": "Bolero Neo",
+    "type": "Car",
+    "keywords": [
+      "bolero",
+      "neo"
+    ]
+  },
+  {
+    "id": "toyota-urban-cruiser-taisor",
+    "title": "Toyota Urban Cruiser Taisor",
+    "brand": "Toyota",
+    "model": "Urban Cruiser Taisor",
+    "type": "Car",
+    "keywords": [
+      "urban",
+      "cruiser",
+      "taisor"
+    ]
+  },
+  {
+    "id": "toyota-innova-hycross",
+    "title": "Toyota Innova HyCross",
+    "brand": "Toyota",
+    "model": "Innova HyCross",
+    "type": "Car",
+    "keywords": [
+      "innova",
+      "hycross"
+    ]
+  },
+  {
+    "id": "honda-elevate",
+    "title": "Honda Elevate",
+    "brand": "Honda",
+    "model": "Elevate",
+    "type": "Car",
+    "keywords": [
+      "elevate"
+    ]
+  },
+  {
+    "id": "skoda-slavia",
+    "title": "Skoda Slavia",
+    "brand": "Skoda",
+    "model": "Slavia",
+    "type": "Car",
+    "keywords": [
+      "slavia"
+    ]
+  },
+  {
+    "id": "mg-windsor-ev",
+    "title": "MG Windsor EV",
+    "brand": "MG",
+    "model": "Windsor EV",
+    "type": "Car",
+    "keywords": [
+      "windsor"
+    ]
+  },
+  {
+    "id": "yamaha-rayzr-125",
+    "title": "Yamaha RayZR 125",
+    "brand": "Yamaha",
+    "model": "RayZR 125",
+    "type": "Bike/Scooter",
+    "keywords": [
+      "rayzr"
+    ]
+  },
+  {
+    "id": "honda-activa-6g",
+    "title": "Honda Activa 6G",
+    "brand": "Honda",
+    "model": "Activa 6G",
+    "type": "Bike/Scooter",
+    "keywords": [
+      "activa"
+    ]
+  },
+  {
+    "id": "honda-dio-125",
+    "title": "Honda Dio 125",
+    "brand": "Honda",
+    "model": "Dio 125",
+    "type": "Bike/Scooter",
+    "keywords": [
+      "dio"
+    ]
+  },
+  {
+    "id": "honda-shine-125",
+    "title": "Honda Shine 125",
+    "brand": "Honda",
+    "model": "Shine 125",
+    "type": "Car",
+    "keywords": [
+      "shine"
+    ]
+  },
+  {
+    "id": "honda-cb350-hness",
+    "title": "Honda CB350 Hness",
+    "brand": "Honda",
+    "model": "CB350 Hness",
+    "type": "Car",
+    "keywords": [
+      "cb350",
+      "hness"
+    ]
+  },
+  {
+    "id": "bajaj-pulsar-rs200",
+    "title": "Bajaj Pulsar RS200",
+    "brand": "Bajaj",
+    "model": "Pulsar RS200",
+    "type": "Car",
+    "keywords": [
+      "pulsar",
+      "rs200"
+    ]
+  },
+  {
+    "id": "bajaj-pulsar-n160",
+    "title": "Bajaj Pulsar N160",
+    "brand": "Bajaj",
+    "model": "Pulsar N160",
+    "type": "Car",
+    "keywords": [
+      "pulsar",
+      "n160"
+    ]
+  },
+  {
+    "id": "bajaj-platina-110",
+    "title": "Bajaj Platina 110",
+    "brand": "Bajaj",
+    "model": "Platina 110",
+    "type": "Car",
+    "keywords": [
+      "platina",
+      "110"
+    ]
+  },
+  {
+    "id": "tvs-apache-rr-310",
+    "title": "TVS Apache RR 310",
+    "brand": "TVS",
+    "model": "Apache RR 310",
+    "type": "Car",
+    "keywords": [
+      "apache",
+      "310"
+    ]
+  },
+  {
+    "id": "tvs-jupiter-125",
+    "title": "TVS Jupiter 125",
+    "brand": "TVS",
+    "model": "Jupiter 125",
+    "type": "Bike/Scooter",
+    "keywords": [
+      "jupiter"
+    ]
+  },
+  {
+    "id": "tvs-ronin",
+    "title": "TVS Ronin",
+    "brand": "TVS",
+    "model": "Ronin",
+    "type": "Car",
+    "keywords": [
+      "ronin"
+    ]
+  },
+  {
+    "id": "tvs-iqube",
+    "title": "TVS iQube",
+    "brand": "TVS",
+    "model": "iQube",
+    "type": "Car",
+    "keywords": [
+      "iqube"
+    ]
+  },
+  {
+    "id": "hero-hf-deluxe",
+    "title": "Hero HF Deluxe",
+    "brand": "Hero",
+    "model": "HF Deluxe",
+    "type": "Car",
+    "keywords": [
+      "deluxe"
+    ]
+  },
+  {
+    "id": "hero-xtreme-125r",
+    "title": "Hero Xtreme 125R",
+    "brand": "Hero",
+    "model": "Xtreme 125R",
+    "type": "Car",
+    "keywords": [
+      "xtreme",
+      "125r"
+    ]
+  },
+  {
+    "id": "hero-mavrick-440",
+    "title": "Hero Mavrick 440",
+    "brand": "Hero",
+    "model": "Mavrick 440",
+    "type": "Car",
+    "keywords": [
+      "mavrick",
+      "440"
+    ]
+  },
+  {
+    "id": "bmw-motorrad-g-310-r",
+    "title": "BMW Motorrad G 310 R",
+    "brand": "BMW Motorrad",
+    "model": "G 310 R",
+    "type": "Car",
+    "keywords": [
+      "310"
+    ]
+  },
+  {
+    "id": "bmw-motorrad-g-310-rr",
+    "title": "BMW Motorrad G 310 RR",
+    "brand": "BMW Motorrad",
+    "model": "G 310 RR",
+    "type": "Car",
+    "keywords": [
+      "310"
+    ]
+  },
+  {
+    "id": "triumph-speed-400",
+    "title": "Triumph Speed 400",
+    "brand": "Triumph",
+    "model": "Speed 400",
+    "type": "Car",
+    "keywords": [
+      "speed"
+    ]
+  },
+  {
+    "id": "harley-davidson-x440",
+    "title": "Harley-Davidson X440",
+    "brand": "Harley-Davidson",
+    "model": "X440",
+    "type": "Car",
+    "keywords": [
+      "x440"
+    ]
+  },
+  {
+    "id": "aprilia-rs-457",
+    "title": "Aprilia RS 457",
+    "brand": "Aprilia",
+    "model": "RS 457",
+    "type": "Car",
+    "keywords": [
+      "457"
+    ]
+  },
+  {
+    "id": "aprilia-sr-160",
+    "title": "Aprilia SR 160",
+    "brand": "Aprilia",
+    "model": "SR 160",
+    "type": "Bike/Scooter",
+    "keywords": [
+      "160"
+    ]
+  },
+  {
+    "id": "ola-electric-s1-air",
+    "title": "Ola Electric S1 Air",
+    "brand": "Ola Electric",
+    "model": "S1 Air",
+    "type": "Car",
+    "keywords": [
+      "air"
+    ]
+  },
+  {
+    "id": "ather-450x",
+    "title": "Ather 450X",
+    "brand": "Ather",
+    "model": "450X",
+    "type": "Car",
+    "keywords": [
+      "450x"
+    ]
+  },
+  {
+    "id": "ather-rizta",
+    "title": "Ather Rizta",
+    "brand": "Ather",
+    "model": "Rizta",
+    "type": "Car",
+    "keywords": [
+      "rizta"
+    ]
+  },
+  {
+    "id": "vida-v1-pro",
+    "title": "Vida V1 Pro",
+    "brand": "Vida",
+    "model": "V1 Pro",
+    "type": "Car",
+    "keywords": [
+      "v1",
+      "pro"
+    ]
+  }
+]

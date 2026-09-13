@@ -1,0 +1,3940 @@
+{
+  "summary": {
+    "cars": 135,
+    "bikes": 72,
+    "total_models": 207,
+    "models_with_3_valid_photos": 5,
+    "total_valid_photos": 621,
+    "wrong_model_photos": 0,
+    "duplicate_photos": 0,
+    "artificially_modified": 202,
+    "missing_files": 0,
+    "broken_manifest_mappings": 0,
+    "cross_model_reused_photos": 0
+  },
+  "details": [
+    {
+      "id": "maruti-suzuki-swift",
+      "title": "Maruti Suzuki Swift",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/swift/swift-front.webp",
+        "../assets/vehicles/maruti-suzuki/swift/swift-rear.webp",
+        "../assets/vehicles/maruti-suzuki/swift/swift-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/maruti-suzuki/swift/swift-front.webp",
+        "src/assets/vehicles/maruti-suzuki/swift/swift-rear.webp",
+        "src/assets/vehicles/maruti-suzuki/swift/swift-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-baleno",
+      "title": "Maruti Suzuki Baleno",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/baleno/baleno-front.webp",
+        "../assets/vehicles/maruti-suzuki/baleno/baleno-rear.webp",
+        "../assets/vehicles/maruti-suzuki/baleno/baleno-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/maruti-suzuki/baleno/baleno-front.webp",
+        "src/assets/vehicles/maruti-suzuki/baleno/baleno-rear.webp",
+        "src/assets/vehicles/maruti-suzuki/baleno/baleno-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-dzire",
+      "title": "Maruti Suzuki Dzire",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/dzire/dzire-front.webp",
+        "../assets/vehicles/maruti-suzuki/dzire/dzire-rear.webp",
+        "../assets/vehicles/maruti-suzuki/dzire/dzire-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/maruti-suzuki/dzire/dzire-front.webp",
+        "src/assets/vehicles/maruti-suzuki/dzire/dzire-rear.webp",
+        "src/assets/vehicles/maruti-suzuki/dzire/dzire-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-fronx",
+      "title": "Maruti Suzuki Fronx",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/fronx/fronx-front.webp",
+        "../assets/vehicles/maruti-suzuki/fronx/fronx-rear.webp",
+        "../assets/vehicles/maruti-suzuki/fronx/fronx-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/maruti-suzuki/fronx/fronx-front.webp",
+        "src/assets/vehicles/maruti-suzuki/fronx/fronx-rear.webp",
+        "src/assets/vehicles/maruti-suzuki/fronx/fronx-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-brezza",
+      "title": "Maruti Suzuki Brezza",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/brezza/brezza-front.webp",
+        "../assets/vehicles/maruti-suzuki/brezza/brezza-rear.webp",
+        "../assets/vehicles/maruti-suzuki/brezza/brezza-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/maruti-suzuki/brezza/brezza-front.webp",
+        "src/assets/vehicles/maruti-suzuki/brezza/brezza-rear.webp",
+        "src/assets/vehicles/maruti-suzuki/brezza/brezza-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-grand-vitara",
+      "title": "Maruti Suzuki Grand Vitara",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/grand-vitara/grand-vitara-front.webp",
+        "../assets/vehicles/maruti-suzuki/grand-vitara/grand-vitara-rear.webp",
+        "../assets/vehicles/maruti-suzuki/grand-vitara/grand-vitara-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/maruti-suzuki/grand-vitara/grand-vitara-front.webp",
+        "src/assets/vehicles/maruti-suzuki/grand-vitara/grand-vitara-rear.webp",
+        "src/assets/vehicles/maruti-suzuki/grand-vitara/grand-vitara-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-ertiga",
+      "title": "Maruti Suzuki Ertiga",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/ertiga/ertiga-front.webp",
+        "../assets/vehicles/maruti-suzuki/ertiga/ertiga-rear.webp",
+        "../assets/vehicles/maruti-suzuki/ertiga/ertiga-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/maruti-suzuki/ertiga/ertiga-front.webp",
+        "src/assets/vehicles/maruti-suzuki/ertiga/ertiga-rear.webp",
+        "src/assets/vehicles/maruti-suzuki/ertiga/ertiga-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-xl6",
+      "title": "Maruti Suzuki XL6",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/xl6/xl6-front.webp",
+        "../assets/vehicles/maruti-suzuki/xl6/xl6-rear.webp",
+        "../assets/vehicles/maruti-suzuki/xl6/xl6-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/maruti-suzuki/xl6/xl6-front.webp",
+        "src/assets/vehicles/maruti-suzuki/xl6/xl6-rear.webp",
+        "src/assets/vehicles/maruti-suzuki/xl6/xl6-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-jimny",
+      "title": "Maruti Suzuki Jimny",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/jimny/jimny-front.webp",
+        "../assets/vehicles/maruti-suzuki/jimny/jimny-rear.webp",
+        "../assets/vehicles/maruti-suzuki/jimny/jimny-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/maruti-suzuki/jimny/jimny-front.webp",
+        "src/assets/vehicles/maruti-suzuki/jimny/jimny-rear.webp",
+        "src/assets/vehicles/maruti-suzuki/jimny/jimny-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "maruti-suzuki-invicto",
+      "title": "Maruti Suzuki Invicto",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/maruti-suzuki/invicto/invicto-front.webp",
+        "../assets/vehicles/maruti-suzuki/invicto/invicto-rear.webp",
+        "../assets/vehicles/maruti-suzuki/invicto/invicto-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/maruti-suzuki/invicto/invicto-front.webp",
+        "src/assets/vehicles/maruti-suzuki/invicto/invicto-rear.webp",
+        "src/assets/vehicles/maruti-suzuki/invicto/invicto-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tata-tiago",
+      "title": "Tata Tiago",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/tata/tiago/tiago-front.webp",
+        "../assets/vehicles/tata/tiago/tiago-rear.webp",
+        "../assets/vehicles/tata/tiago/tiago-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/tata/tiago/tiago-front.webp",
+        "src/assets/vehicles/tata/tiago/tiago-rear.webp",
+        "src/assets/vehicles/tata/tiago/tiago-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tata-altroz",
+      "title": "Tata Altroz",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/tata/altroz/altroz-front.webp",
+        "../assets/vehicles/tata/altroz/altroz-rear.webp",
+        "../assets/vehicles/tata/altroz/altroz-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/tata/altroz/altroz-front.webp",
+        "src/assets/vehicles/tata/altroz/altroz-rear.webp",
+        "src/assets/vehicles/tata/altroz/altroz-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tata-tigor",
+      "title": "Tata Tigor",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/tata/tigor/tigor-front.webp",
+        "../assets/vehicles/tata/tigor/tigor-rear.webp",
+        "../assets/vehicles/tata/tigor/tigor-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/tata/tigor/tigor-front.webp",
+        "src/assets/vehicles/tata/tigor/tigor-rear.webp",
+        "src/assets/vehicles/tata/tigor/tigor-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tata-punch",
+      "title": "Tata Punch",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/tata/punch/punch-front.webp",
+        "../assets/vehicles/tata/punch/punch-rear.webp",
+        "../assets/vehicles/tata/punch/punch-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/tata/punch/punch-front.webp",
+        "src/assets/vehicles/tata/punch/punch-rear.webp",
+        "src/assets/vehicles/tata/punch/punch-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tata-nexon",
+      "title": "Tata Nexon",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/tata/nexon/nexon-front.webp",
+        "../assets/vehicles/tata/nexon/nexon-rear.webp",
+        "../assets/vehicles/tata/nexon/nexon-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/tata/nexon/nexon-front.webp",
+        "src/assets/vehicles/tata/nexon/nexon-rear.webp",
+        "src/assets/vehicles/tata/nexon/nexon-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tata-harrier",
+      "title": "Tata Harrier",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/tata/harrier/harrier-front.webp",
+        "../assets/vehicles/tata/harrier/harrier-rear.webp",
+        "../assets/vehicles/tata/harrier/harrier-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/tata/harrier/harrier-front.webp",
+        "src/assets/vehicles/tata/harrier/harrier-rear.webp",
+        "src/assets/vehicles/tata/harrier/harrier-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tata-safari",
+      "title": "Tata Safari",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/tata/safari/safari-front.webp",
+        "../assets/vehicles/tata/safari/safari-rear.webp",
+        "../assets/vehicles/tata/safari/safari-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/tata/safari/safari-front.webp",
+        "src/assets/vehicles/tata/safari/safari-rear.webp",
+        "src/assets/vehicles/tata/safari/safari-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tata-curvv",
+      "title": "Tata Curvv",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/tata/curvv/curvv-front.webp",
+        "../assets/vehicles/tata/curvv/curvv-rear.webp",
+        "../assets/vehicles/tata/curvv/curvv-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/tata/curvv/curvv-front.webp",
+        "src/assets/vehicles/tata/curvv/curvv-rear.webp",
+        "src/assets/vehicles/tata/curvv/curvv-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tata-nexon-ev",
+      "title": "Tata Nexon EV",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/tata/nexon-ev/nexon-ev-front.webp",
+        "../assets/vehicles/tata/nexon-ev/nexon-ev-rear.webp",
+        "../assets/vehicles/tata/nexon-ev/nexon-ev-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/tata/nexon-ev/nexon-ev-front.webp",
+        "src/assets/vehicles/tata/nexon-ev/nexon-ev-rear.webp",
+        "src/assets/vehicles/tata/nexon-ev/nexon-ev-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tata-punch-ev",
+      "title": "Tata Punch EV",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/tata/punch-ev/punch-ev-front.webp",
+        "../assets/vehicles/tata/punch-ev/punch-ev-rear.webp",
+        "../assets/vehicles/tata/punch-ev/punch-ev-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/tata/punch-ev/punch-ev-front.webp",
+        "src/assets/vehicles/tata/punch-ev/punch-ev-rear.webp",
+        "src/assets/vehicles/tata/punch-ev/punch-ev-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mahindra-xuv-3xo",
+      "title": "Mahindra XUV 3XO",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mahindra/xuv-3xo/xuv-3xo-front.webp",
+        "../assets/vehicles/mahindra/xuv-3xo/xuv-3xo-rear.webp",
+        "../assets/vehicles/mahindra/xuv-3xo/xuv-3xo-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mahindra/xuv-3xo/xuv-3xo-front.webp",
+        "src/assets/vehicles/mahindra/xuv-3xo/xuv-3xo-rear.webp",
+        "src/assets/vehicles/mahindra/xuv-3xo/xuv-3xo-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mahindra-xuv700",
+      "title": "Mahindra XUV700",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mahindra/xuv700/xuv700-front.webp",
+        "../assets/vehicles/mahindra/xuv700/xuv700-rear.webp",
+        "../assets/vehicles/mahindra/xuv700/xuv700-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mahindra/xuv700/xuv700-front.webp",
+        "src/assets/vehicles/mahindra/xuv700/xuv700-rear.webp",
+        "src/assets/vehicles/mahindra/xuv700/xuv700-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mahindra-scorpio",
+      "title": "Mahindra Scorpio",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mahindra/scorpio/scorpio-front.webp",
+        "../assets/vehicles/mahindra/scorpio/scorpio-rear.webp",
+        "../assets/vehicles/mahindra/scorpio/scorpio-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mahindra/scorpio/scorpio-front.webp",
+        "src/assets/vehicles/mahindra/scorpio/scorpio-rear.webp",
+        "src/assets/vehicles/mahindra/scorpio/scorpio-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mahindra-scorpio-n",
+      "title": "Mahindra Scorpio-N",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mahindra/scorpio-n/scorpio-n-front.webp",
+        "../assets/vehicles/mahindra/scorpio-n/scorpio-n-rear.webp",
+        "../assets/vehicles/mahindra/scorpio-n/scorpio-n-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mahindra/scorpio-n/scorpio-n-front.webp",
+        "src/assets/vehicles/mahindra/scorpio-n/scorpio-n-rear.webp",
+        "src/assets/vehicles/mahindra/scorpio-n/scorpio-n-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mahindra-thar",
+      "title": "Mahindra Thar",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mahindra/thar/thar-front.webp",
+        "../assets/vehicles/mahindra/thar/thar-rear.webp",
+        "../assets/vehicles/mahindra/thar/thar-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mahindra/thar/thar-front.webp",
+        "src/assets/vehicles/mahindra/thar/thar-rear.webp",
+        "src/assets/vehicles/mahindra/thar/thar-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mahindra-bolero",
+      "title": "Mahindra Bolero",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mahindra/bolero/bolero-front.webp",
+        "../assets/vehicles/mahindra/bolero/bolero-rear.webp",
+        "../assets/vehicles/mahindra/bolero/bolero-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mahindra/bolero/bolero-front.webp",
+        "src/assets/vehicles/mahindra/bolero/bolero-rear.webp",
+        "src/assets/vehicles/mahindra/bolero/bolero-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mahindra-bolero-neo",
+      "title": "Mahindra Bolero Neo",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mahindra/bolero-neo/bolero-neo-front.webp",
+        "../assets/vehicles/mahindra/bolero-neo/bolero-neo-rear.webp",
+        "../assets/vehicles/mahindra/bolero-neo/bolero-neo-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mahindra/bolero-neo/bolero-neo-front.webp",
+        "src/assets/vehicles/mahindra/bolero-neo/bolero-neo-rear.webp",
+        "src/assets/vehicles/mahindra/bolero-neo/bolero-neo-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mahindra-marazzo",
+      "title": "Mahindra Marazzo",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mahindra/marazzo/marazzo-front.webp",
+        "../assets/vehicles/mahindra/marazzo/marazzo-rear.webp",
+        "../assets/vehicles/mahindra/marazzo/marazzo-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mahindra/marazzo/marazzo-front.webp",
+        "src/assets/vehicles/mahindra/marazzo/marazzo-rear.webp",
+        "src/assets/vehicles/mahindra/marazzo/marazzo-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hyundai-grand-i10-nios",
+      "title": "Hyundai Grand i10 Nios",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/hyundai/grand-i10-nios/grand-i10-nios-front.webp",
+        "../assets/vehicles/hyundai/grand-i10-nios/grand-i10-nios-rear.webp",
+        "../assets/vehicles/hyundai/grand-i10-nios/grand-i10-nios-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/hyundai/grand-i10-nios/grand-i10-nios-front.webp",
+        "src/assets/vehicles/hyundai/grand-i10-nios/grand-i10-nios-rear.webp",
+        "src/assets/vehicles/hyundai/grand-i10-nios/grand-i10-nios-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hyundai-i20",
+      "title": "Hyundai i20",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/hyundai/i20/i20-front.webp",
+        "../assets/vehicles/hyundai/i20/i20-rear.webp",
+        "../assets/vehicles/hyundai/i20/i20-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/hyundai/i20/i20-front.webp",
+        "src/assets/vehicles/hyundai/i20/i20-rear.webp",
+        "src/assets/vehicles/hyundai/i20/i20-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hyundai-aura",
+      "title": "Hyundai Aura",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/hyundai/aura/aura-front.webp",
+        "../assets/vehicles/hyundai/aura/aura-rear.webp",
+        "../assets/vehicles/hyundai/aura/aura-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/hyundai/aura/aura-front.webp",
+        "src/assets/vehicles/hyundai/aura/aura-rear.webp",
+        "src/assets/vehicles/hyundai/aura/aura-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hyundai-verna",
+      "title": "Hyundai Verna",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/hyundai/verna/verna-front.webp",
+        "../assets/vehicles/hyundai/verna/verna-rear.webp",
+        "../assets/vehicles/hyundai/verna/verna-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/hyundai/verna/verna-front.webp",
+        "src/assets/vehicles/hyundai/verna/verna-rear.webp",
+        "src/assets/vehicles/hyundai/verna/verna-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hyundai-exter",
+      "title": "Hyundai Exter",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/hyundai/exter/exter-front.webp",
+        "../assets/vehicles/hyundai/exter/exter-rear.webp",
+        "../assets/vehicles/hyundai/exter/exter-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/hyundai/exter/exter-front.webp",
+        "src/assets/vehicles/hyundai/exter/exter-rear.webp",
+        "src/assets/vehicles/hyundai/exter/exter-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hyundai-venue",
+      "title": "Hyundai Venue",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/hyundai/venue/venue-front.webp",
+        "../assets/vehicles/hyundai/venue/venue-rear.webp",
+        "../assets/vehicles/hyundai/venue/venue-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/hyundai/venue/venue-front.webp",
+        "src/assets/vehicles/hyundai/venue/venue-rear.webp",
+        "src/assets/vehicles/hyundai/venue/venue-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hyundai-creta",
+      "title": "Hyundai Creta",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/hyundai/creta/creta-front.webp",
+        "../assets/vehicles/hyundai/creta/creta-rear.webp",
+        "../assets/vehicles/hyundai/creta/creta-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/hyundai/creta/creta-front.webp",
+        "src/assets/vehicles/hyundai/creta/creta-rear.webp",
+        "src/assets/vehicles/hyundai/creta/creta-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hyundai-alcazar",
+      "title": "Hyundai Alcazar",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/hyundai/alcazar/alcazar-front.webp",
+        "../assets/vehicles/hyundai/alcazar/alcazar-rear.webp",
+        "../assets/vehicles/hyundai/alcazar/alcazar-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/hyundai/alcazar/alcazar-front.webp",
+        "src/assets/vehicles/hyundai/alcazar/alcazar-rear.webp",
+        "src/assets/vehicles/hyundai/alcazar/alcazar-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hyundai-tucson",
+      "title": "Hyundai Tucson",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/hyundai/tucson/tucson-front.webp",
+        "../assets/vehicles/hyundai/tucson/tucson-rear.webp",
+        "../assets/vehicles/hyundai/tucson/tucson-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/hyundai/tucson/tucson-front.webp",
+        "src/assets/vehicles/hyundai/tucson/tucson-rear.webp",
+        "src/assets/vehicles/hyundai/tucson/tucson-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hyundai-ioniq-5",
+      "title": "Hyundai Ioniq 5",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/hyundai/ioniq-5/ioniq-5-front.webp",
+        "../assets/vehicles/hyundai/ioniq-5/ioniq-5-rear.webp",
+        "../assets/vehicles/hyundai/ioniq-5/ioniq-5-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/hyundai/ioniq-5/ioniq-5-front.webp",
+        "src/assets/vehicles/hyundai/ioniq-5/ioniq-5-rear.webp",
+        "src/assets/vehicles/hyundai/ioniq-5/ioniq-5-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "kia-sonet",
+      "title": "Kia Sonet",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/kia/sonet/sonet-front.webp",
+        "../assets/vehicles/kia/sonet/sonet-rear.webp",
+        "../assets/vehicles/kia/sonet/sonet-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/kia/sonet/sonet-front.webp",
+        "src/assets/vehicles/kia/sonet/sonet-rear.webp",
+        "src/assets/vehicles/kia/sonet/sonet-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "kia-seltos",
+      "title": "Kia Seltos",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/kia/seltos/seltos-front.webp",
+        "../assets/vehicles/kia/seltos/seltos-rear.webp",
+        "../assets/vehicles/kia/seltos/seltos-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/kia/seltos/seltos-front.webp",
+        "src/assets/vehicles/kia/seltos/seltos-rear.webp",
+        "src/assets/vehicles/kia/seltos/seltos-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "kia-carens",
+      "title": "Kia Carens",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/kia/carens/carens-front.webp",
+        "../assets/vehicles/kia/carens/carens-rear.webp",
+        "../assets/vehicles/kia/carens/carens-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/kia/carens/carens-front.webp",
+        "src/assets/vehicles/kia/carens/carens-rear.webp",
+        "src/assets/vehicles/kia/carens/carens-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "kia-carnival",
+      "title": "Kia Carnival",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/kia/carnival/carnival-front.webp",
+        "../assets/vehicles/kia/carnival/carnival-rear.webp",
+        "../assets/vehicles/kia/carnival/carnival-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/kia/carnival/carnival-front.webp",
+        "src/assets/vehicles/kia/carnival/carnival-rear.webp",
+        "src/assets/vehicles/kia/carnival/carnival-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "kia-ev6",
+      "title": "Kia EV6",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/kia/ev6/ev6-front.webp",
+        "../assets/vehicles/kia/ev6/ev6-rear.webp",
+        "../assets/vehicles/kia/ev6/ev6-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/kia/ev6/ev6-front.webp",
+        "src/assets/vehicles/kia/ev6/ev6-rear.webp",
+        "src/assets/vehicles/kia/ev6/ev6-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "toyota-glanza",
+      "title": "Toyota Glanza",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/toyota/glanza/glanza-front.webp",
+        "../assets/vehicles/toyota/glanza/glanza-rear.webp",
+        "../assets/vehicles/toyota/glanza/glanza-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/toyota/glanza/glanza-front.webp",
+        "src/assets/vehicles/toyota/glanza/glanza-rear.webp",
+        "src/assets/vehicles/toyota/glanza/glanza-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "toyota-urban-cruiser-taisor",
+      "title": "Toyota Urban Cruiser Taisor",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/toyota/urban-cruiser-taisor/urban-cruiser-taisor-front.webp",
+        "../assets/vehicles/toyota/urban-cruiser-taisor/urban-cruiser-taisor-rear.webp",
+        "../assets/vehicles/toyota/urban-cruiser-taisor/urban-cruiser-taisor-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/toyota/urban-cruiser-taisor/urban-cruiser-taisor-front.webp",
+        "src/assets/vehicles/toyota/urban-cruiser-taisor/urban-cruiser-taisor-rear.webp",
+        "src/assets/vehicles/toyota/urban-cruiser-taisor/urban-cruiser-taisor-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "toyota-urban-cruiser-hyryder",
+      "title": "Toyota Urban Cruiser Hyryder",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/toyota/urban-cruiser-hyryder/urban-cruiser-hyryder-front.webp",
+        "../assets/vehicles/toyota/urban-cruiser-hyryder/urban-cruiser-hyryder-rear.webp",
+        "../assets/vehicles/toyota/urban-cruiser-hyryder/urban-cruiser-hyryder-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/toyota/urban-cruiser-hyryder/urban-cruiser-hyryder-front.webp",
+        "src/assets/vehicles/toyota/urban-cruiser-hyryder/urban-cruiser-hyryder-rear.webp",
+        "src/assets/vehicles/toyota/urban-cruiser-hyryder/urban-cruiser-hyryder-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "toyota-rumion",
+      "title": "Toyota Rumion",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/toyota/rumion/rumion-front.webp",
+        "../assets/vehicles/toyota/rumion/rumion-rear.webp",
+        "../assets/vehicles/toyota/rumion/rumion-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/toyota/rumion/rumion-front.webp",
+        "src/assets/vehicles/toyota/rumion/rumion-rear.webp",
+        "src/assets/vehicles/toyota/rumion/rumion-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "toyota-innova-crysta",
+      "title": "Toyota Innova Crysta",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/toyota/innova-crysta/innova-crysta-front.webp",
+        "../assets/vehicles/toyota/innova-crysta/innova-crysta-rear.webp",
+        "../assets/vehicles/toyota/innova-crysta/innova-crysta-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/toyota/innova-crysta/innova-crysta-front.webp",
+        "src/assets/vehicles/toyota/innova-crysta/innova-crysta-rear.webp",
+        "src/assets/vehicles/toyota/innova-crysta/innova-crysta-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "toyota-innova-hycross",
+      "title": "Toyota Innova HyCross",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/toyota/innova-hycross/innova-hycross-front.webp",
+        "../assets/vehicles/toyota/innova-hycross/innova-hycross-rear.webp",
+        "../assets/vehicles/toyota/innova-hycross/innova-hycross-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/toyota/innova-hycross/innova-hycross-front.webp",
+        "src/assets/vehicles/toyota/innova-hycross/innova-hycross-rear.webp",
+        "src/assets/vehicles/toyota/innova-hycross/innova-hycross-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "toyota-fortuner",
+      "title": "Toyota Fortuner",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/toyota/fortuner/fortuner-front.webp",
+        "../assets/vehicles/toyota/fortuner/fortuner-rear.webp",
+        "../assets/vehicles/toyota/fortuner/fortuner-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/toyota/fortuner/fortuner-front.webp",
+        "src/assets/vehicles/toyota/fortuner/fortuner-rear.webp",
+        "src/assets/vehicles/toyota/fortuner/fortuner-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "toyota-legender",
+      "title": "Toyota Legender",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/toyota/legender/legender-front.webp",
+        "../assets/vehicles/toyota/legender/legender-rear.webp",
+        "../assets/vehicles/toyota/legender/legender-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/toyota/legender/legender-front.webp",
+        "src/assets/vehicles/toyota/legender/legender-rear.webp",
+        "src/assets/vehicles/toyota/legender/legender-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "toyota-hilux",
+      "title": "Toyota Hilux",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/toyota/hilux/hilux-front.webp",
+        "../assets/vehicles/toyota/hilux/hilux-rear.webp",
+        "../assets/vehicles/toyota/hilux/hilux-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/toyota/hilux/hilux-front.webp",
+        "src/assets/vehicles/toyota/hilux/hilux-rear.webp",
+        "src/assets/vehicles/toyota/hilux/hilux-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "toyota-camry",
+      "title": "Toyota Camry",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/toyota/camry/camry-front.webp",
+        "../assets/vehicles/toyota/camry/camry-rear.webp",
+        "../assets/vehicles/toyota/camry/camry-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/toyota/camry/camry-front.webp",
+        "src/assets/vehicles/toyota/camry/camry-rear.webp",
+        "src/assets/vehicles/toyota/camry/camry-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "toyota-land-cruiser",
+      "title": "Toyota Land Cruiser",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/toyota/land-cruiser/land-cruiser-front.webp",
+        "../assets/vehicles/toyota/land-cruiser/land-cruiser-rear.webp",
+        "../assets/vehicles/toyota/land-cruiser/land-cruiser-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/toyota/land-cruiser/land-cruiser-front.webp",
+        "src/assets/vehicles/toyota/land-cruiser/land-cruiser-rear.webp",
+        "src/assets/vehicles/toyota/land-cruiser/land-cruiser-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "toyota-vellfire",
+      "title": "Toyota Vellfire",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/toyota/vellfire/vellfire-front.webp",
+        "../assets/vehicles/toyota/vellfire/vellfire-rear.webp",
+        "../assets/vehicles/toyota/vellfire/vellfire-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/toyota/vellfire/vellfire-front.webp",
+        "src/assets/vehicles/toyota/vellfire/vellfire-rear.webp",
+        "src/assets/vehicles/toyota/vellfire/vellfire-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "honda-amaze",
+      "title": "Honda Amaze",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/honda/amaze/amaze-front.webp",
+        "../assets/vehicles/honda/amaze/amaze-rear.webp",
+        "../assets/vehicles/honda/amaze/amaze-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/honda/amaze/amaze-front.webp",
+        "src/assets/vehicles/honda/amaze/amaze-rear.webp",
+        "src/assets/vehicles/honda/amaze/amaze-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "honda-city",
+      "title": "Honda City",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/honda/city/city-front.webp",
+        "../assets/vehicles/honda/city/city-rear.webp",
+        "../assets/vehicles/honda/city/city-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/honda/city/city-front.webp",
+        "src/assets/vehicles/honda/city/city-rear.webp",
+        "src/assets/vehicles/honda/city/city-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "honda-elevate",
+      "title": "Honda Elevate",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/honda/elevate/elevate-front.webp",
+        "../assets/vehicles/honda/elevate/elevate-rear.webp",
+        "../assets/vehicles/honda/elevate/elevate-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/honda/elevate/elevate-front.webp",
+        "src/assets/vehicles/honda/elevate/elevate-rear.webp",
+        "src/assets/vehicles/honda/elevate/elevate-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "honda-city-e-hev",
+      "title": "Honda City e:HEV",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/honda/city-e-hev/city-e-hev-front.webp",
+        "../assets/vehicles/honda/city-e-hev/city-e-hev-rear.webp",
+        "../assets/vehicles/honda/city-e-hev/city-e-hev-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/honda/city-e-hev/city-e-hev-front.webp",
+        "src/assets/vehicles/honda/city-e-hev/city-e-hev-rear.webp",
+        "src/assets/vehicles/honda/city-e-hev/city-e-hev-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "renault-kwid",
+      "title": "Renault Kwid",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/renault/kwid/kwid-front.webp",
+        "../assets/vehicles/renault/kwid/kwid-rear.webp",
+        "../assets/vehicles/renault/kwid/kwid-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/renault/kwid/kwid-front.webp",
+        "src/assets/vehicles/renault/kwid/kwid-rear.webp",
+        "src/assets/vehicles/renault/kwid/kwid-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "renault-triber",
+      "title": "Renault Triber",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/renault/triber/triber-front.webp",
+        "../assets/vehicles/renault/triber/triber-rear.webp",
+        "../assets/vehicles/renault/triber/triber-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/renault/triber/triber-front.webp",
+        "src/assets/vehicles/renault/triber/triber-rear.webp",
+        "src/assets/vehicles/renault/triber/triber-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "renault-kiger",
+      "title": "Renault Kiger",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/renault/kiger/kiger-front.webp",
+        "../assets/vehicles/renault/kiger/kiger-rear.webp",
+        "../assets/vehicles/renault/kiger/kiger-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/renault/kiger/kiger-front.webp",
+        "src/assets/vehicles/renault/kiger/kiger-rear.webp",
+        "src/assets/vehicles/renault/kiger/kiger-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "renault-duster",
+      "title": "Renault Duster",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/renault/duster/duster-front.webp",
+        "../assets/vehicles/renault/duster/duster-rear.webp",
+        "../assets/vehicles/renault/duster/duster-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/renault/duster/duster-front.webp",
+        "src/assets/vehicles/renault/duster/duster-rear.webp",
+        "src/assets/vehicles/renault/duster/duster-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "nissan-magnite",
+      "title": "Nissan Magnite",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/nissan/magnite/magnite-front.webp",
+        "../assets/vehicles/nissan/magnite/magnite-rear.webp",
+        "../assets/vehicles/nissan/magnite/magnite-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/nissan/magnite/magnite-front.webp",
+        "src/assets/vehicles/nissan/magnite/magnite-rear.webp",
+        "src/assets/vehicles/nissan/magnite/magnite-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "nissan-x-trail",
+      "title": "Nissan X-Trail",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/nissan/x-trail/x-trail-front.webp",
+        "../assets/vehicles/nissan/x-trail/x-trail-rear.webp",
+        "../assets/vehicles/nissan/x-trail/x-trail-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/nissan/x-trail/x-trail-front.webp",
+        "src/assets/vehicles/nissan/x-trail/x-trail-rear.webp",
+        "src/assets/vehicles/nissan/x-trail/x-trail-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "volkswagen-virtus",
+      "title": "Volkswagen Virtus",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/volkswagen/virtus/virtus-front.webp",
+        "../assets/vehicles/volkswagen/virtus/virtus-rear.webp",
+        "../assets/vehicles/volkswagen/virtus/virtus-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/volkswagen/virtus/virtus-front.webp",
+        "src/assets/vehicles/volkswagen/virtus/virtus-rear.webp",
+        "src/assets/vehicles/volkswagen/virtus/virtus-side.webp"
+      ],
+      "status": "VALID",
+      "issues": []
+    },
+    {
+      "id": "volkswagen-taigun",
+      "title": "Volkswagen Taigun",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/volkswagen/taigun/taigun-front.webp",
+        "../assets/vehicles/volkswagen/taigun/taigun-rear.webp",
+        "../assets/vehicles/volkswagen/taigun/taigun-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/volkswagen/taigun/taigun-front.webp",
+        "src/assets/vehicles/volkswagen/taigun/taigun-rear.webp",
+        "src/assets/vehicles/volkswagen/taigun/taigun-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "volkswagen-tiguan",
+      "title": "Volkswagen Tiguan",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/volkswagen/tiguan/tiguan-front.webp",
+        "../assets/vehicles/volkswagen/tiguan/tiguan-rear.webp",
+        "../assets/vehicles/volkswagen/tiguan/tiguan-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/volkswagen/tiguan/tiguan-front.webp",
+        "src/assets/vehicles/volkswagen/tiguan/tiguan-rear.webp",
+        "src/assets/vehicles/volkswagen/tiguan/tiguan-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "skoda-slavia",
+      "title": "Skoda Slavia",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/skoda/slavia/slavia-front.webp",
+        "../assets/vehicles/skoda/slavia/slavia-rear.webp",
+        "../assets/vehicles/skoda/slavia/slavia-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/skoda/slavia/slavia-front.webp",
+        "src/assets/vehicles/skoda/slavia/slavia-rear.webp",
+        "src/assets/vehicles/skoda/slavia/slavia-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "skoda-kushaq",
+      "title": "Skoda Kushaq",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/skoda/kushaq/kushaq-front.webp",
+        "../assets/vehicles/skoda/kushaq/kushaq-rear.webp",
+        "../assets/vehicles/skoda/kushaq/kushaq-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/skoda/kushaq/kushaq-front.webp",
+        "src/assets/vehicles/skoda/kushaq/kushaq-rear.webp",
+        "src/assets/vehicles/skoda/kushaq/kushaq-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "skoda-kodiaq",
+      "title": "Skoda Kodiaq",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/skoda/kodiaq/kodiaq-front.webp",
+        "../assets/vehicles/skoda/kodiaq/kodiaq-rear.webp",
+        "../assets/vehicles/skoda/kodiaq/kodiaq-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/skoda/kodiaq/kodiaq-front.webp",
+        "src/assets/vehicles/skoda/kodiaq/kodiaq-rear.webp",
+        "src/assets/vehicles/skoda/kodiaq/kodiaq-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "skoda-superb",
+      "title": "Skoda Superb",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/skoda/superb/superb-front.webp",
+        "../assets/vehicles/skoda/superb/superb-rear.webp",
+        "../assets/vehicles/skoda/superb/superb-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/skoda/superb/superb-front.webp",
+        "src/assets/vehicles/skoda/superb/superb-rear.webp",
+        "src/assets/vehicles/skoda/superb/superb-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mg-comet-ev",
+      "title": "MG Comet EV",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mg/comet-ev/comet-ev-front.webp",
+        "../assets/vehicles/mg/comet-ev/comet-ev-rear.webp",
+        "../assets/vehicles/mg/comet-ev/comet-ev-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mg/comet-ev/comet-ev-front.webp",
+        "src/assets/vehicles/mg/comet-ev/comet-ev-rear.webp",
+        "src/assets/vehicles/mg/comet-ev/comet-ev-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mg-astor",
+      "title": "MG Astor",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mg/astor/astor-front.webp",
+        "../assets/vehicles/mg/astor/astor-rear.webp",
+        "../assets/vehicles/mg/astor/astor-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mg/astor/astor-front.webp",
+        "src/assets/vehicles/mg/astor/astor-rear.webp",
+        "src/assets/vehicles/mg/astor/astor-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mg-hector",
+      "title": "MG Hector",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mg/hector/hector-front.webp",
+        "../assets/vehicles/mg/hector/hector-rear.webp",
+        "../assets/vehicles/mg/hector/hector-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mg/hector/hector-front.webp",
+        "src/assets/vehicles/mg/hector/hector-rear.webp",
+        "src/assets/vehicles/mg/hector/hector-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mg-hector-plus",
+      "title": "MG Hector Plus",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mg/hector-plus/hector-plus-front.webp",
+        "../assets/vehicles/mg/hector-plus/hector-plus-rear.webp",
+        "../assets/vehicles/mg/hector-plus/hector-plus-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mg/hector-plus/hector-plus-front.webp",
+        "src/assets/vehicles/mg/hector-plus/hector-plus-rear.webp",
+        "src/assets/vehicles/mg/hector-plus/hector-plus-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mg-zs-ev",
+      "title": "MG ZS EV",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mg/zs-ev/zs-ev-front.webp",
+        "../assets/vehicles/mg/zs-ev/zs-ev-rear.webp",
+        "../assets/vehicles/mg/zs-ev/zs-ev-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mg/zs-ev/zs-ev-front.webp",
+        "src/assets/vehicles/mg/zs-ev/zs-ev-rear.webp",
+        "src/assets/vehicles/mg/zs-ev/zs-ev-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mg-gloster",
+      "title": "MG Gloster",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mg/gloster/gloster-front.webp",
+        "../assets/vehicles/mg/gloster/gloster-rear.webp",
+        "../assets/vehicles/mg/gloster/gloster-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mg/gloster/gloster-front.webp",
+        "src/assets/vehicles/mg/gloster/gloster-rear.webp",
+        "src/assets/vehicles/mg/gloster/gloster-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mg-windsor-ev",
+      "title": "MG Windsor EV",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mg/windsor-ev/windsor-ev-front.webp",
+        "../assets/vehicles/mg/windsor-ev/windsor-ev-rear.webp",
+        "../assets/vehicles/mg/windsor-ev/windsor-ev-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mg/windsor-ev/windsor-ev-front.webp",
+        "src/assets/vehicles/mg/windsor-ev/windsor-ev-rear.webp",
+        "src/assets/vehicles/mg/windsor-ev/windsor-ev-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "jeep-compass",
+      "title": "Jeep Compass",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/jeep/compass/compass-front.webp",
+        "../assets/vehicles/jeep/compass/compass-rear.webp",
+        "../assets/vehicles/jeep/compass/compass-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/jeep/compass/compass-front.webp",
+        "src/assets/vehicles/jeep/compass/compass-rear.webp",
+        "src/assets/vehicles/jeep/compass/compass-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "jeep-meridian",
+      "title": "Jeep Meridian",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/jeep/meridian/meridian-front.webp",
+        "../assets/vehicles/jeep/meridian/meridian-rear.webp",
+        "../assets/vehicles/jeep/meridian/meridian-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/jeep/meridian/meridian-front.webp",
+        "src/assets/vehicles/jeep/meridian/meridian-rear.webp",
+        "src/assets/vehicles/jeep/meridian/meridian-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "jeep-wrangler",
+      "title": "Jeep Wrangler",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/jeep/wrangler/wrangler-front.webp",
+        "../assets/vehicles/jeep/wrangler/wrangler-rear.webp",
+        "../assets/vehicles/jeep/wrangler/wrangler-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/jeep/wrangler/wrangler-front.webp",
+        "src/assets/vehicles/jeep/wrangler/wrangler-rear.webp",
+        "src/assets/vehicles/jeep/wrangler/wrangler-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "jeep-grand-cherokee",
+      "title": "Jeep Grand Cherokee",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/jeep/grand-cherokee/grand-cherokee-front.webp",
+        "../assets/vehicles/jeep/grand-cherokee/grand-cherokee-rear.webp",
+        "../assets/vehicles/jeep/grand-cherokee/grand-cherokee-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/jeep/grand-cherokee/grand-cherokee-front.webp",
+        "src/assets/vehicles/jeep/grand-cherokee/grand-cherokee-rear.webp",
+        "src/assets/vehicles/jeep/grand-cherokee/grand-cherokee-side.webp"
+      ],
+      "status": "VALID",
+      "issues": []
+    },
+    {
+      "id": "bmw-2-series",
+      "title": "BMW 2 Series",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bmw/2-series/2-series-front.webp",
+        "../assets/vehicles/bmw/2-series/2-series-rear.webp",
+        "../assets/vehicles/bmw/2-series/2-series-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bmw/2-series/2-series-front.webp",
+        "src/assets/vehicles/bmw/2-series/2-series-rear.webp",
+        "src/assets/vehicles/bmw/2-series/2-series-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-3-series",
+      "title": "BMW 3 Series",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bmw/3-series/3-series-front.webp",
+        "../assets/vehicles/bmw/3-series/3-series-rear.webp",
+        "../assets/vehicles/bmw/3-series/3-series-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bmw/3-series/3-series-front.webp",
+        "src/assets/vehicles/bmw/3-series/3-series-rear.webp",
+        "src/assets/vehicles/bmw/3-series/3-series-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-5-series",
+      "title": "BMW 5 Series",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bmw/5-series/5-series-front.webp",
+        "../assets/vehicles/bmw/5-series/5-series-rear.webp",
+        "../assets/vehicles/bmw/5-series/5-series-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bmw/5-series/5-series-front.webp",
+        "src/assets/vehicles/bmw/5-series/5-series-rear.webp",
+        "src/assets/vehicles/bmw/5-series/5-series-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-x1",
+      "title": "BMW X1",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bmw/x1/x1-front.webp",
+        "../assets/vehicles/bmw/x1/x1-rear.webp",
+        "../assets/vehicles/bmw/x1/x1-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bmw/x1/x1-front.webp",
+        "src/assets/vehicles/bmw/x1/x1-rear.webp",
+        "src/assets/vehicles/bmw/x1/x1-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-x3",
+      "title": "BMW X3",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bmw/x3/x3-front.webp",
+        "../assets/vehicles/bmw/x3/x3-rear.webp",
+        "../assets/vehicles/bmw/x3/x3-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bmw/x3/x3-front.webp",
+        "src/assets/vehicles/bmw/x3/x3-rear.webp",
+        "src/assets/vehicles/bmw/x3/x3-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-x5",
+      "title": "BMW X5",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bmw/x5/x5-front.webp",
+        "../assets/vehicles/bmw/x5/x5-rear.webp",
+        "../assets/vehicles/bmw/x5/x5-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bmw/x5/x5-front.webp",
+        "src/assets/vehicles/bmw/x5/x5-rear.webp",
+        "src/assets/vehicles/bmw/x5/x5-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-x7",
+      "title": "BMW X7",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bmw/x7/x7-front.webp",
+        "../assets/vehicles/bmw/x7/x7-rear.webp",
+        "../assets/vehicles/bmw/x7/x7-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bmw/x7/x7-front.webp",
+        "src/assets/vehicles/bmw/x7/x7-rear.webp",
+        "src/assets/vehicles/bmw/x7/x7-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-i4",
+      "title": "BMW i4",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bmw/i4/i4-front.webp",
+        "../assets/vehicles/bmw/i4/i4-rear.webp",
+        "../assets/vehicles/bmw/i4/i4-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bmw/i4/i4-front.webp",
+        "src/assets/vehicles/bmw/i4/i4-rear.webp",
+        "src/assets/vehicles/bmw/i4/i4-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-i5",
+      "title": "BMW i5",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bmw/i5/i5-front.webp",
+        "../assets/vehicles/bmw/i5/i5-rear.webp",
+        "../assets/vehicles/bmw/i5/i5-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bmw/i5/i5-front.webp",
+        "src/assets/vehicles/bmw/i5/i5-rear.webp",
+        "src/assets/vehicles/bmw/i5/i5-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-i7",
+      "title": "BMW i7",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bmw/i7/i7-front.webp",
+        "../assets/vehicles/bmw/i7/i7-rear.webp",
+        "../assets/vehicles/bmw/i7/i7-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bmw/i7/i7-front.webp",
+        "src/assets/vehicles/bmw/i7/i7-rear.webp",
+        "src/assets/vehicles/bmw/i7/i7-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-ix",
+      "title": "BMW iX",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bmw/ix/ix-front.webp",
+        "../assets/vehicles/bmw/ix/ix-rear.webp",
+        "../assets/vehicles/bmw/ix/ix-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bmw/ix/ix-front.webp",
+        "src/assets/vehicles/bmw/ix/ix-rear.webp",
+        "src/assets/vehicles/bmw/ix/ix-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mercedes-benz-a-class",
+      "title": "Mercedes-Benz A-Class",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/a-class/a-class-front.webp",
+        "../assets/vehicles/mercedes-benz/a-class/a-class-rear.webp",
+        "../assets/vehicles/mercedes-benz/a-class/a-class-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mercedes-benz/a-class/a-class-front.webp",
+        "src/assets/vehicles/mercedes-benz/a-class/a-class-rear.webp",
+        "src/assets/vehicles/mercedes-benz/a-class/a-class-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mercedes-benz-c-class",
+      "title": "Mercedes-Benz C-Class",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/c-class/c-class-front.webp",
+        "../assets/vehicles/mercedes-benz/c-class/c-class-rear.webp",
+        "../assets/vehicles/mercedes-benz/c-class/c-class-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mercedes-benz/c-class/c-class-front.webp",
+        "src/assets/vehicles/mercedes-benz/c-class/c-class-rear.webp",
+        "src/assets/vehicles/mercedes-benz/c-class/c-class-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mercedes-benz-e-class",
+      "title": "Mercedes-Benz E-Class",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/e-class/e-class-front.webp",
+        "../assets/vehicles/mercedes-benz/e-class/e-class-rear.webp",
+        "../assets/vehicles/mercedes-benz/e-class/e-class-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mercedes-benz/e-class/e-class-front.webp",
+        "src/assets/vehicles/mercedes-benz/e-class/e-class-rear.webp",
+        "src/assets/vehicles/mercedes-benz/e-class/e-class-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mercedes-benz-s-class",
+      "title": "Mercedes-Benz S-Class",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/s-class/s-class-front.webp",
+        "../assets/vehicles/mercedes-benz/s-class/s-class-rear.webp",
+        "../assets/vehicles/mercedes-benz/s-class/s-class-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mercedes-benz/s-class/s-class-front.webp",
+        "src/assets/vehicles/mercedes-benz/s-class/s-class-rear.webp",
+        "src/assets/vehicles/mercedes-benz/s-class/s-class-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mercedes-benz-gla",
+      "title": "Mercedes-Benz GLA",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/gla/gla-front.webp",
+        "../assets/vehicles/mercedes-benz/gla/gla-rear.webp",
+        "../assets/vehicles/mercedes-benz/gla/gla-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mercedes-benz/gla/gla-front.webp",
+        "src/assets/vehicles/mercedes-benz/gla/gla-rear.webp",
+        "src/assets/vehicles/mercedes-benz/gla/gla-side.webp"
+      ],
+      "status": "VALID",
+      "issues": []
+    },
+    {
+      "id": "mercedes-benz-glc",
+      "title": "Mercedes-Benz GLC",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/glc/glc-front.webp",
+        "../assets/vehicles/mercedes-benz/glc/glc-rear.webp",
+        "../assets/vehicles/mercedes-benz/glc/glc-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mercedes-benz/glc/glc-front.webp",
+        "src/assets/vehicles/mercedes-benz/glc/glc-rear.webp",
+        "src/assets/vehicles/mercedes-benz/glc/glc-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mercedes-benz-gle",
+      "title": "Mercedes-Benz GLE",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/gle/gle-front.webp",
+        "../assets/vehicles/mercedes-benz/gle/gle-rear.webp",
+        "../assets/vehicles/mercedes-benz/gle/gle-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mercedes-benz/gle/gle-front.webp",
+        "src/assets/vehicles/mercedes-benz/gle/gle-rear.webp",
+        "src/assets/vehicles/mercedes-benz/gle/gle-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mercedes-benz-gls",
+      "title": "Mercedes-Benz GLS",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/gls/gls-front.webp",
+        "../assets/vehicles/mercedes-benz/gls/gls-rear.webp",
+        "../assets/vehicles/mercedes-benz/gls/gls-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mercedes-benz/gls/gls-front.webp",
+        "src/assets/vehicles/mercedes-benz/gls/gls-rear.webp",
+        "src/assets/vehicles/mercedes-benz/gls/gls-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mercedes-benz-eqe",
+      "title": "Mercedes-Benz EQE",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/eqe/eqe-front.webp",
+        "../assets/vehicles/mercedes-benz/eqe/eqe-rear.webp",
+        "../assets/vehicles/mercedes-benz/eqe/eqe-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mercedes-benz/eqe/eqe-front.webp",
+        "src/assets/vehicles/mercedes-benz/eqe/eqe-rear.webp",
+        "src/assets/vehicles/mercedes-benz/eqe/eqe-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mercedes-benz-eqs",
+      "title": "Mercedes-Benz EQS",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mercedes-benz/eqs/eqs-front.webp",
+        "../assets/vehicles/mercedes-benz/eqs/eqs-rear.webp",
+        "../assets/vehicles/mercedes-benz/eqs/eqs-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mercedes-benz/eqs/eqs-front.webp",
+        "src/assets/vehicles/mercedes-benz/eqs/eqs-rear.webp",
+        "src/assets/vehicles/mercedes-benz/eqs/eqs-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "audi-a4",
+      "title": "Audi A4",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/audi/a4/a4-front.webp",
+        "../assets/vehicles/audi/a4/a4-rear.webp",
+        "../assets/vehicles/audi/a4/a4-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/audi/a4/a4-front.webp",
+        "src/assets/vehicles/audi/a4/a4-rear.webp",
+        "src/assets/vehicles/audi/a4/a4-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "audi-a6",
+      "title": "Audi A6",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/audi/a6/a6-front.webp",
+        "../assets/vehicles/audi/a6/a6-rear.webp",
+        "../assets/vehicles/audi/a6/a6-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/audi/a6/a6-front.webp",
+        "src/assets/vehicles/audi/a6/a6-rear.webp",
+        "src/assets/vehicles/audi/a6/a6-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "audi-a8",
+      "title": "Audi A8",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/audi/a8/a8-front.webp",
+        "../assets/vehicles/audi/a8/a8-rear.webp",
+        "../assets/vehicles/audi/a8/a8-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/audi/a8/a8-front.webp",
+        "src/assets/vehicles/audi/a8/a8-rear.webp",
+        "src/assets/vehicles/audi/a8/a8-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "audi-q3",
+      "title": "Audi Q3",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/audi/q3/q3-front.webp",
+        "../assets/vehicles/audi/q3/q3-rear.webp",
+        "../assets/vehicles/audi/q3/q3-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/audi/q3/q3-front.webp",
+        "src/assets/vehicles/audi/q3/q3-rear.webp",
+        "src/assets/vehicles/audi/q3/q3-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "audi-q5",
+      "title": "Audi Q5",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/audi/q5/q5-front.webp",
+        "../assets/vehicles/audi/q5/q5-rear.webp",
+        "../assets/vehicles/audi/q5/q5-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/audi/q5/q5-front.webp",
+        "src/assets/vehicles/audi/q5/q5-rear.webp",
+        "src/assets/vehicles/audi/q5/q5-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "audi-q7",
+      "title": "Audi Q7",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/audi/q7/q7-front.webp",
+        "../assets/vehicles/audi/q7/q7-rear.webp",
+        "../assets/vehicles/audi/q7/q7-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/audi/q7/q7-front.webp",
+        "src/assets/vehicles/audi/q7/q7-rear.webp",
+        "src/assets/vehicles/audi/q7/q7-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "audi-q8",
+      "title": "Audi Q8",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/audi/q8/q8-front.webp",
+        "../assets/vehicles/audi/q8/q8-rear.webp",
+        "../assets/vehicles/audi/q8/q8-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/audi/q8/q8-front.webp",
+        "src/assets/vehicles/audi/q8/q8-rear.webp",
+        "src/assets/vehicles/audi/q8/q8-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "audi-e-tron",
+      "title": "Audi e-tron",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/audi/e-tron/e-tron-front.webp",
+        "../assets/vehicles/audi/e-tron/e-tron-rear.webp",
+        "../assets/vehicles/audi/e-tron/e-tron-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/audi/e-tron/e-tron-front.webp",
+        "src/assets/vehicles/audi/e-tron/e-tron-rear.webp",
+        "src/assets/vehicles/audi/e-tron/e-tron-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "audi-q8-e-tron",
+      "title": "Audi Q8 e-tron",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/audi/q8-e-tron/q8-e-tron-front.webp",
+        "../assets/vehicles/audi/q8-e-tron/q8-e-tron-rear.webp",
+        "../assets/vehicles/audi/q8-e-tron/q8-e-tron-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/audi/q8-e-tron/q8-e-tron-front.webp",
+        "src/assets/vehicles/audi/q8-e-tron/q8-e-tron-rear.webp",
+        "src/assets/vehicles/audi/q8-e-tron/q8-e-tron-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "volvo-s90",
+      "title": "Volvo S90",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/volvo/s90/s90-front.webp",
+        "../assets/vehicles/volvo/s90/s90-rear.webp",
+        "../assets/vehicles/volvo/s90/s90-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/volvo/s90/s90-front.webp",
+        "src/assets/vehicles/volvo/s90/s90-rear.webp",
+        "src/assets/vehicles/volvo/s90/s90-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "volvo-xc40",
+      "title": "Volvo XC40",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/volvo/xc40/xc40-front.webp",
+        "../assets/vehicles/volvo/xc40/xc40-rear.webp",
+        "../assets/vehicles/volvo/xc40/xc40-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/volvo/xc40/xc40-front.webp",
+        "src/assets/vehicles/volvo/xc40/xc40-rear.webp",
+        "src/assets/vehicles/volvo/xc40/xc40-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "volvo-xc60",
+      "title": "Volvo XC60",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/volvo/xc60/xc60-front.webp",
+        "../assets/vehicles/volvo/xc60/xc60-rear.webp",
+        "../assets/vehicles/volvo/xc60/xc60-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/volvo/xc60/xc60-front.webp",
+        "src/assets/vehicles/volvo/xc60/xc60-rear.webp",
+        "src/assets/vehicles/volvo/xc60/xc60-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "volvo-xc90",
+      "title": "Volvo XC90",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/volvo/xc90/xc90-front.webp",
+        "../assets/vehicles/volvo/xc90/xc90-rear.webp",
+        "../assets/vehicles/volvo/xc90/xc90-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/volvo/xc90/xc90-front.webp",
+        "src/assets/vehicles/volvo/xc90/xc90-rear.webp",
+        "src/assets/vehicles/volvo/xc90/xc90-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "volvo-ex30",
+      "title": "Volvo EX30",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/volvo/ex30/ex30-front.webp",
+        "../assets/vehicles/volvo/ex30/ex30-rear.webp",
+        "../assets/vehicles/volvo/ex30/ex30-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/volvo/ex30/ex30-front.webp",
+        "src/assets/vehicles/volvo/ex30/ex30-rear.webp",
+        "src/assets/vehicles/volvo/ex30/ex30-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "volvo-ex40",
+      "title": "Volvo EX40",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/volvo/ex40/ex40-front.webp",
+        "../assets/vehicles/volvo/ex40/ex40-rear.webp",
+        "../assets/vehicles/volvo/ex40/ex40-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/volvo/ex40/ex40-front.webp",
+        "src/assets/vehicles/volvo/ex40/ex40-rear.webp",
+        "src/assets/vehicles/volvo/ex40/ex40-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "volvo-ex90",
+      "title": "Volvo EX90",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/volvo/ex90/ex90-front.webp",
+        "../assets/vehicles/volvo/ex90/ex90-rear.webp",
+        "../assets/vehicles/volvo/ex90/ex90-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/volvo/ex90/ex90-front.webp",
+        "src/assets/vehicles/volvo/ex90/ex90-rear.webp",
+        "src/assets/vehicles/volvo/ex90/ex90-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "lexus-es",
+      "title": "Lexus ES",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/lexus/es/es-front.webp",
+        "../assets/vehicles/lexus/es/es-rear.webp",
+        "../assets/vehicles/lexus/es/es-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/lexus/es/es-front.webp",
+        "src/assets/vehicles/lexus/es/es-rear.webp",
+        "src/assets/vehicles/lexus/es/es-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "lexus-nx",
+      "title": "Lexus NX",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/lexus/nx/nx-front.webp",
+        "../assets/vehicles/lexus/nx/nx-rear.webp",
+        "../assets/vehicles/lexus/nx/nx-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/lexus/nx/nx-front.webp",
+        "src/assets/vehicles/lexus/nx/nx-rear.webp",
+        "src/assets/vehicles/lexus/nx/nx-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "lexus-rx",
+      "title": "Lexus RX",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/lexus/rx/rx-front.webp",
+        "../assets/vehicles/lexus/rx/rx-rear.webp",
+        "../assets/vehicles/lexus/rx/rx-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/lexus/rx/rx-front.webp",
+        "src/assets/vehicles/lexus/rx/rx-rear.webp",
+        "src/assets/vehicles/lexus/rx/rx-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "lexus-lx",
+      "title": "Lexus LX",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/lexus/lx/lx-front.webp",
+        "../assets/vehicles/lexus/lx/lx-rear.webp",
+        "../assets/vehicles/lexus/lx/lx-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/lexus/lx/lx-front.webp",
+        "src/assets/vehicles/lexus/lx/lx-rear.webp",
+        "src/assets/vehicles/lexus/lx/lx-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "lexus-lm",
+      "title": "Lexus LM",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/lexus/lm/lm-front.webp",
+        "../assets/vehicles/lexus/lm/lm-rear.webp",
+        "../assets/vehicles/lexus/lm/lm-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/lexus/lm/lm-front.webp",
+        "src/assets/vehicles/lexus/lm/lm-rear.webp",
+        "src/assets/vehicles/lexus/lm/lm-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "land-rover-defender",
+      "title": "Land Rover Defender",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/land-rover/defender/defender-front.webp",
+        "../assets/vehicles/land-rover/defender/defender-rear.webp",
+        "../assets/vehicles/land-rover/defender/defender-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/land-rover/defender/defender-front.webp",
+        "src/assets/vehicles/land-rover/defender/defender-rear.webp",
+        "src/assets/vehicles/land-rover/defender/defender-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "land-rover-discovery",
+      "title": "Land Rover Discovery",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/land-rover/discovery/discovery-front.webp",
+        "../assets/vehicles/land-rover/discovery/discovery-rear.webp",
+        "../assets/vehicles/land-rover/discovery/discovery-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/land-rover/discovery/discovery-front.webp",
+        "src/assets/vehicles/land-rover/discovery/discovery-rear.webp",
+        "src/assets/vehicles/land-rover/discovery/discovery-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-evoque",
+      "title": "Land Rover Range Rover Evoque",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/land-rover/range-rover-evoque/range-rover-evoque-front.webp",
+        "../assets/vehicles/land-rover/range-rover-evoque/range-rover-evoque-rear.webp",
+        "../assets/vehicles/land-rover/range-rover-evoque/range-rover-evoque-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/land-rover/range-rover-evoque/range-rover-evoque-front.webp",
+        "src/assets/vehicles/land-rover/range-rover-evoque/range-rover-evoque-rear.webp",
+        "src/assets/vehicles/land-rover/range-rover-evoque/range-rover-evoque-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-sport",
+      "title": "Land Rover Range Rover Sport",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/land-rover/range-rover-sport/range-rover-sport-front.webp",
+        "../assets/vehicles/land-rover/range-rover-sport/range-rover-sport-rear.webp",
+        "../assets/vehicles/land-rover/range-rover-sport/range-rover-sport-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/land-rover/range-rover-sport/range-rover-sport-front.webp",
+        "src/assets/vehicles/land-rover/range-rover-sport/range-rover-sport-rear.webp",
+        "src/assets/vehicles/land-rover/range-rover-sport/range-rover-sport-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover",
+      "title": "Land Rover Range Rover",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/land-rover/range-rover/range-rover-front.webp",
+        "../assets/vehicles/land-rover/range-rover/range-rover-rear.webp",
+        "../assets/vehicles/land-rover/range-rover/range-rover-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/land-rover/range-rover/range-rover-front.webp",
+        "src/assets/vehicles/land-rover/range-rover/range-rover-rear.webp",
+        "src/assets/vehicles/land-rover/range-rover/range-rover-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "land-rover-range-rover-velar",
+      "title": "Land Rover Range Rover Velar",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/land-rover/range-rover-velar/range-rover-velar-front.webp",
+        "../assets/vehicles/land-rover/range-rover-velar/range-rover-velar-rear.webp",
+        "../assets/vehicles/land-rover/range-rover-velar/range-rover-velar-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/land-rover/range-rover-velar/range-rover-velar-front.webp",
+        "src/assets/vehicles/land-rover/range-rover-velar/range-rover-velar-rear.webp",
+        "src/assets/vehicles/land-rover/range-rover-velar/range-rover-velar-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mini-cooper",
+      "title": "MINI Cooper",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mini/cooper/cooper-front.webp",
+        "../assets/vehicles/mini/cooper/cooper-rear.webp",
+        "../assets/vehicles/mini/cooper/cooper-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mini/cooper/cooper-front.webp",
+        "src/assets/vehicles/mini/cooper/cooper-rear.webp",
+        "src/assets/vehicles/mini/cooper/cooper-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mini-cooper-s",
+      "title": "MINI Cooper S",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mini/cooper-s/cooper-s-front.webp",
+        "../assets/vehicles/mini/cooper-s/cooper-s-rear.webp",
+        "../assets/vehicles/mini/cooper-s/cooper-s-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mini/cooper-s/cooper-s-front.webp",
+        "src/assets/vehicles/mini/cooper-s/cooper-s-rear.webp",
+        "src/assets/vehicles/mini/cooper-s/cooper-s-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mini-countryman",
+      "title": "MINI Countryman",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mini/countryman/countryman-front.webp",
+        "../assets/vehicles/mini/countryman/countryman-rear.webp",
+        "../assets/vehicles/mini/countryman/countryman-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mini/countryman/countryman-front.webp",
+        "src/assets/vehicles/mini/countryman/countryman-rear.webp",
+        "src/assets/vehicles/mini/countryman/countryman-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "mini-convertible",
+      "title": "MINI Convertible",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/mini/convertible/convertible-front.webp",
+        "../assets/vehicles/mini/convertible/convertible-rear.webp",
+        "../assets/vehicles/mini/convertible/convertible-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/mini/convertible/convertible-front.webp",
+        "src/assets/vehicles/mini/convertible/convertible-rear.webp",
+        "src/assets/vehicles/mini/convertible/convertible-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "royal-enfield-classic-350",
+      "title": "Royal Enfield Classic 350",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/classic-350/classic-350-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/classic-350/classic-350-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/classic-350/classic-350-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/royal-enfield/classic-350/classic-350-front.webp",
+        "src/assets/vehicles/bikes/royal-enfield/classic-350/classic-350-rear.webp",
+        "src/assets/vehicles/bikes/royal-enfield/classic-350/classic-350-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "royal-enfield-bullet-350",
+      "title": "Royal Enfield Bullet 350",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/bullet-350/bullet-350-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/bullet-350/bullet-350-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/bullet-350/bullet-350-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/royal-enfield/bullet-350/bullet-350-front.webp",
+        "src/assets/vehicles/bikes/royal-enfield/bullet-350/bullet-350-rear.webp",
+        "src/assets/vehicles/bikes/royal-enfield/bullet-350/bullet-350-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "royal-enfield-hunter-350",
+      "title": "Royal Enfield Hunter 350",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/hunter-350/hunter-350-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/hunter-350/hunter-350-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/hunter-350/hunter-350-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/royal-enfield/hunter-350/hunter-350-front.webp",
+        "src/assets/vehicles/bikes/royal-enfield/hunter-350/hunter-350-rear.webp",
+        "src/assets/vehicles/bikes/royal-enfield/hunter-350/hunter-350-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "royal-enfield-meteor-350",
+      "title": "Royal Enfield Meteor 350",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/meteor-350/meteor-350-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/meteor-350/meteor-350-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/meteor-350/meteor-350-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/royal-enfield/meteor-350/meteor-350-front.webp",
+        "src/assets/vehicles/bikes/royal-enfield/meteor-350/meteor-350-rear.webp",
+        "src/assets/vehicles/bikes/royal-enfield/meteor-350/meteor-350-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "royal-enfield-himalayan-450",
+      "title": "Royal Enfield Himalayan 450",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/himalayan-450/himalayan-450-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/himalayan-450/himalayan-450-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/himalayan-450/himalayan-450-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/royal-enfield/himalayan-450/himalayan-450-front.webp",
+        "src/assets/vehicles/bikes/royal-enfield/himalayan-450/himalayan-450-rear.webp",
+        "src/assets/vehicles/bikes/royal-enfield/himalayan-450/himalayan-450-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "royal-enfield-continental-gt-650",
+      "title": "Royal Enfield Continental GT 650",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/continental-gt-650/continental-gt-650-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/continental-gt-650/continental-gt-650-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/continental-gt-650/continental-gt-650-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/royal-enfield/continental-gt-650/continental-gt-650-front.webp",
+        "src/assets/vehicles/bikes/royal-enfield/continental-gt-650/continental-gt-650-rear.webp",
+        "src/assets/vehicles/bikes/royal-enfield/continental-gt-650/continental-gt-650-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "royal-enfield-interceptor-650",
+      "title": "Royal Enfield Interceptor 650",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/interceptor-650/interceptor-650-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/interceptor-650/interceptor-650-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/interceptor-650/interceptor-650-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/royal-enfield/interceptor-650/interceptor-650-front.webp",
+        "src/assets/vehicles/bikes/royal-enfield/interceptor-650/interceptor-650-rear.webp",
+        "src/assets/vehicles/bikes/royal-enfield/interceptor-650/interceptor-650-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "royal-enfield-super-meteor-650",
+      "title": "Royal Enfield Super Meteor 650",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/royal-enfield/super-meteor-650/super-meteor-650-front.webp",
+        "../assets/vehicles/bikes/royal-enfield/super-meteor-650/super-meteor-650-rear.webp",
+        "../assets/vehicles/bikes/royal-enfield/super-meteor-650/super-meteor-650-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/royal-enfield/super-meteor-650/super-meteor-650-front.webp",
+        "src/assets/vehicles/bikes/royal-enfield/super-meteor-650/super-meteor-650-rear.webp",
+        "src/assets/vehicles/bikes/royal-enfield/super-meteor-650/super-meteor-650-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "yamaha-yzf-r15",
+      "title": "Yamaha YZF-R15",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/yamaha/yzf-r15/yzf-r15-front.webp",
+        "../assets/vehicles/bikes/yamaha/yzf-r15/yzf-r15-rear.webp",
+        "../assets/vehicles/bikes/yamaha/yzf-r15/yzf-r15-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/yamaha/yzf-r15/yzf-r15-front.webp",
+        "src/assets/vehicles/bikes/yamaha/yzf-r15/yzf-r15-rear.webp",
+        "src/assets/vehicles/bikes/yamaha/yzf-r15/yzf-r15-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "yamaha-mt-15",
+      "title": "Yamaha MT-15",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/yamaha/mt-15/mt-15-front.webp",
+        "../assets/vehicles/bikes/yamaha/mt-15/mt-15-rear.webp",
+        "../assets/vehicles/bikes/yamaha/mt-15/mt-15-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/yamaha/mt-15/mt-15-front.webp",
+        "src/assets/vehicles/bikes/yamaha/mt-15/mt-15-rear.webp",
+        "src/assets/vehicles/bikes/yamaha/mt-15/mt-15-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "yamaha-fz-s-fi",
+      "title": "Yamaha FZ-S FI",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/yamaha/fz-s-fi/fz-s-fi-front.webp",
+        "../assets/vehicles/bikes/yamaha/fz-s-fi/fz-s-fi-rear.webp",
+        "../assets/vehicles/bikes/yamaha/fz-s-fi/fz-s-fi-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/yamaha/fz-s-fi/fz-s-fi-front.webp",
+        "src/assets/vehicles/bikes/yamaha/fz-s-fi/fz-s-fi-rear.webp",
+        "src/assets/vehicles/bikes/yamaha/fz-s-fi/fz-s-fi-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "yamaha-aerox-155",
+      "title": "Yamaha Aerox 155",
+      "type": "Bike/Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/yamaha/aerox-155/aerox-155-front.webp",
+        "../assets/vehicles/bikes/yamaha/aerox-155/aerox-155-rear.webp",
+        "../assets/vehicles/bikes/yamaha/aerox-155/aerox-155-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/yamaha/aerox-155/aerox-155-front.webp",
+        "src/assets/vehicles/bikes/yamaha/aerox-155/aerox-155-rear.webp",
+        "src/assets/vehicles/bikes/yamaha/aerox-155/aerox-155-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "yamaha-rayzr-125",
+      "title": "Yamaha RayZR 125",
+      "type": "Bike/Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/yamaha/rayzr-125/rayzr-125-front.webp",
+        "../assets/vehicles/bikes/yamaha/rayzr-125/rayzr-125-rear.webp",
+        "../assets/vehicles/bikes/yamaha/rayzr-125/rayzr-125-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/yamaha/rayzr-125/rayzr-125-front.webp",
+        "src/assets/vehicles/bikes/yamaha/rayzr-125/rayzr-125-rear.webp",
+        "src/assets/vehicles/bikes/yamaha/rayzr-125/rayzr-125-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "yamaha-yzf-r3",
+      "title": "Yamaha YZF-R3",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/yamaha/yzf-r3/yzf-r3-front.webp",
+        "../assets/vehicles/bikes/yamaha/yzf-r3/yzf-r3-rear.webp",
+        "../assets/vehicles/bikes/yamaha/yzf-r3/yzf-r3-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/yamaha/yzf-r3/yzf-r3-front.webp",
+        "src/assets/vehicles/bikes/yamaha/yzf-r3/yzf-r3-rear.webp",
+        "src/assets/vehicles/bikes/yamaha/yzf-r3/yzf-r3-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "ktm-duke-200",
+      "title": "KTM Duke 200",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/ktm/duke-200/duke-200-front.webp",
+        "../assets/vehicles/bikes/ktm/duke-200/duke-200-rear.webp",
+        "../assets/vehicles/bikes/ktm/duke-200/duke-200-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/ktm/duke-200/duke-200-front.webp",
+        "src/assets/vehicles/bikes/ktm/duke-200/duke-200-rear.webp",
+        "src/assets/vehicles/bikes/ktm/duke-200/duke-200-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "ktm-duke-390",
+      "title": "KTM Duke 390",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/ktm/duke-390/duke-390-front.webp",
+        "../assets/vehicles/bikes/ktm/duke-390/duke-390-rear.webp",
+        "../assets/vehicles/bikes/ktm/duke-390/duke-390-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/ktm/duke-390/duke-390-front.webp",
+        "src/assets/vehicles/bikes/ktm/duke-390/duke-390-rear.webp",
+        "src/assets/vehicles/bikes/ktm/duke-390/duke-390-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "ktm-rc-200",
+      "title": "KTM RC 200",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/ktm/rc-200/rc-200-front.webp",
+        "../assets/vehicles/bikes/ktm/rc-200/rc-200-rear.webp",
+        "../assets/vehicles/bikes/ktm/rc-200/rc-200-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/ktm/rc-200/rc-200-front.webp",
+        "src/assets/vehicles/bikes/ktm/rc-200/rc-200-rear.webp",
+        "src/assets/vehicles/bikes/ktm/rc-200/rc-200-side.webp"
+      ],
+      "status": "VALID",
+      "issues": []
+    },
+    {
+      "id": "ktm-rc-390",
+      "title": "KTM RC 390",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/ktm/rc-390/rc-390-front.webp",
+        "../assets/vehicles/bikes/ktm/rc-390/rc-390-rear.webp",
+        "../assets/vehicles/bikes/ktm/rc-390/rc-390-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/ktm/rc-390/rc-390-front.webp",
+        "src/assets/vehicles/bikes/ktm/rc-390/rc-390-rear.webp",
+        "src/assets/vehicles/bikes/ktm/rc-390/rc-390-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "ktm-390-adventure",
+      "title": "KTM 390 Adventure",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/ktm/390-adventure/390-adventure-front.webp",
+        "../assets/vehicles/bikes/ktm/390-adventure/390-adventure-rear.webp",
+        "../assets/vehicles/bikes/ktm/390-adventure/390-adventure-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/ktm/390-adventure/390-adventure-front.webp",
+        "src/assets/vehicles/bikes/ktm/390-adventure/390-adventure-rear.webp",
+        "src/assets/vehicles/bikes/ktm/390-adventure/390-adventure-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "honda-activa-6g",
+      "title": "Honda Activa 6G",
+      "type": "Bike/Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/activa-6g/activa-6g-front.webp",
+        "../assets/vehicles/bikes/honda/activa-6g/activa-6g-rear.webp",
+        "../assets/vehicles/bikes/honda/activa-6g/activa-6g-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/honda/activa-6g/activa-6g-front.webp",
+        "src/assets/vehicles/bikes/honda/activa-6g/activa-6g-rear.webp",
+        "src/assets/vehicles/bikes/honda/activa-6g/activa-6g-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "honda-dio-125",
+      "title": "Honda Dio 125",
+      "type": "Bike/Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/dio-125/dio-125-front.webp",
+        "../assets/vehicles/bikes/honda/dio-125/dio-125-rear.webp",
+        "../assets/vehicles/bikes/honda/dio-125/dio-125-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/honda/dio-125/dio-125-front.webp",
+        "src/assets/vehicles/bikes/honda/dio-125/dio-125-rear.webp",
+        "src/assets/vehicles/bikes/honda/dio-125/dio-125-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "honda-shine-125",
+      "title": "Honda Shine 125",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/shine-125/shine-125-front.webp",
+        "../assets/vehicles/bikes/honda/shine-125/shine-125-rear.webp",
+        "../assets/vehicles/bikes/honda/shine-125/shine-125-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/honda/shine-125/shine-125-front.webp",
+        "src/assets/vehicles/bikes/honda/shine-125/shine-125-rear.webp",
+        "src/assets/vehicles/bikes/honda/shine-125/shine-125-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "honda-unicorn",
+      "title": "Honda Unicorn",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/unicorn/unicorn-front.webp",
+        "../assets/vehicles/bikes/honda/unicorn/unicorn-rear.webp",
+        "../assets/vehicles/bikes/honda/unicorn/unicorn-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/honda/unicorn/unicorn-front.webp",
+        "src/assets/vehicles/bikes/honda/unicorn/unicorn-rear.webp",
+        "src/assets/vehicles/bikes/honda/unicorn/unicorn-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "honda-cb350-hness",
+      "title": "Honda CB350 Hness",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/cb350-hness/cb350-hness-front.webp",
+        "../assets/vehicles/bikes/honda/cb350-hness/cb350-hness-rear.webp",
+        "../assets/vehicles/bikes/honda/cb350-hness/cb350-hness-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/honda/cb350-hness/cb350-hness-front.webp",
+        "src/assets/vehicles/bikes/honda/cb350-hness/cb350-hness-rear.webp",
+        "src/assets/vehicles/bikes/honda/cb350-hness/cb350-hness-side.webp"
+      ],
+      "status": "VALID",
+      "issues": []
+    },
+    {
+      "id": "honda-cb300r",
+      "title": "Honda CB300R",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/cb300r/cb300r-front.webp",
+        "../assets/vehicles/bikes/honda/cb300r/cb300r-rear.webp",
+        "../assets/vehicles/bikes/honda/cb300r/cb300r-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/honda/cb300r/cb300r-front.webp",
+        "src/assets/vehicles/bikes/honda/cb300r/cb300r-rear.webp",
+        "src/assets/vehicles/bikes/honda/cb300r/cb300r-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "honda-nx500",
+      "title": "Honda NX500",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/honda/nx500/nx500-front.webp",
+        "../assets/vehicles/bikes/honda/nx500/nx500-rear.webp",
+        "../assets/vehicles/bikes/honda/nx500/nx500-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/honda/nx500/nx500-front.webp",
+        "src/assets/vehicles/bikes/honda/nx500/nx500-rear.webp",
+        "src/assets/vehicles/bikes/honda/nx500/nx500-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bajaj-pulsar-ns200",
+      "title": "Bajaj Pulsar NS200",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/bajaj/pulsar-ns200/pulsar-ns200-front.webp",
+        "../assets/vehicles/bikes/bajaj/pulsar-ns200/pulsar-ns200-rear.webp",
+        "../assets/vehicles/bikes/bajaj/pulsar-ns200/pulsar-ns200-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/bajaj/pulsar-ns200/pulsar-ns200-front.webp",
+        "src/assets/vehicles/bikes/bajaj/pulsar-ns200/pulsar-ns200-rear.webp",
+        "src/assets/vehicles/bikes/bajaj/pulsar-ns200/pulsar-ns200-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bajaj-pulsar-rs200",
+      "title": "Bajaj Pulsar RS200",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/bajaj/pulsar-rs200/pulsar-rs200-front.webp",
+        "../assets/vehicles/bikes/bajaj/pulsar-rs200/pulsar-rs200-rear.webp",
+        "../assets/vehicles/bikes/bajaj/pulsar-rs200/pulsar-rs200-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/bajaj/pulsar-rs200/pulsar-rs200-front.webp",
+        "src/assets/vehicles/bikes/bajaj/pulsar-rs200/pulsar-rs200-rear.webp",
+        "src/assets/vehicles/bikes/bajaj/pulsar-rs200/pulsar-rs200-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bajaj-dominar-400",
+      "title": "Bajaj Dominar 400",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/bajaj/dominar-400/dominar-400-front.webp",
+        "../assets/vehicles/bikes/bajaj/dominar-400/dominar-400-rear.webp",
+        "../assets/vehicles/bikes/bajaj/dominar-400/dominar-400-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/bajaj/dominar-400/dominar-400-front.webp",
+        "src/assets/vehicles/bikes/bajaj/dominar-400/dominar-400-rear.webp",
+        "src/assets/vehicles/bikes/bajaj/dominar-400/dominar-400-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bajaj-pulsar-n160",
+      "title": "Bajaj Pulsar N160",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/bajaj/pulsar-n160/pulsar-n160-front.webp",
+        "../assets/vehicles/bikes/bajaj/pulsar-n160/pulsar-n160-rear.webp",
+        "../assets/vehicles/bikes/bajaj/pulsar-n160/pulsar-n160-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/bajaj/pulsar-n160/pulsar-n160-front.webp",
+        "src/assets/vehicles/bikes/bajaj/pulsar-n160/pulsar-n160-rear.webp",
+        "src/assets/vehicles/bikes/bajaj/pulsar-n160/pulsar-n160-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bajaj-chetak",
+      "title": "Bajaj Chetak",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/bajaj/chetak/chetak-front.webp",
+        "../assets/vehicles/bikes/bajaj/chetak/chetak-rear.webp",
+        "../assets/vehicles/bikes/bajaj/chetak/chetak-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/bajaj/chetak/chetak-front.webp",
+        "src/assets/vehicles/bikes/bajaj/chetak/chetak-rear.webp",
+        "src/assets/vehicles/bikes/bajaj/chetak/chetak-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bajaj-platina-110",
+      "title": "Bajaj Platina 110",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/bajaj/platina-110/platina-110-front.webp",
+        "../assets/vehicles/bikes/bajaj/platina-110/platina-110-rear.webp",
+        "../assets/vehicles/bikes/bajaj/platina-110/platina-110-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/bajaj/platina-110/platina-110-front.webp",
+        "src/assets/vehicles/bikes/bajaj/platina-110/platina-110-rear.webp",
+        "src/assets/vehicles/bikes/bajaj/platina-110/platina-110-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tvs-apache-rtr-160-4v",
+      "title": "TVS Apache RTR 160 4V",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/apache-rtr-160-4v/apache-rtr-160-4v-front.webp",
+        "../assets/vehicles/bikes/tvs/apache-rtr-160-4v/apache-rtr-160-4v-rear.webp",
+        "../assets/vehicles/bikes/tvs/apache-rtr-160-4v/apache-rtr-160-4v-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/tvs/apache-rtr-160-4v/apache-rtr-160-4v-front.webp",
+        "src/assets/vehicles/bikes/tvs/apache-rtr-160-4v/apache-rtr-160-4v-rear.webp",
+        "src/assets/vehicles/bikes/tvs/apache-rtr-160-4v/apache-rtr-160-4v-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tvs-apache-rtr-200-4v",
+      "title": "TVS Apache RTR 200 4V",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/apache-rtr-200-4v/apache-rtr-200-4v-front.webp",
+        "../assets/vehicles/bikes/tvs/apache-rtr-200-4v/apache-rtr-200-4v-rear.webp",
+        "../assets/vehicles/bikes/tvs/apache-rtr-200-4v/apache-rtr-200-4v-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/tvs/apache-rtr-200-4v/apache-rtr-200-4v-front.webp",
+        "src/assets/vehicles/bikes/tvs/apache-rtr-200-4v/apache-rtr-200-4v-rear.webp",
+        "src/assets/vehicles/bikes/tvs/apache-rtr-200-4v/apache-rtr-200-4v-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tvs-apache-rr-310",
+      "title": "TVS Apache RR 310",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/apache-rr-310/apache-rr-310-front.webp",
+        "../assets/vehicles/bikes/tvs/apache-rr-310/apache-rr-310-rear.webp",
+        "../assets/vehicles/bikes/tvs/apache-rr-310/apache-rr-310-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/tvs/apache-rr-310/apache-rr-310-front.webp",
+        "src/assets/vehicles/bikes/tvs/apache-rr-310/apache-rr-310-rear.webp",
+        "src/assets/vehicles/bikes/tvs/apache-rr-310/apache-rr-310-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tvs-jupiter-125",
+      "title": "TVS Jupiter 125",
+      "type": "Bike/Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/jupiter-125/jupiter-125-front.webp",
+        "../assets/vehicles/bikes/tvs/jupiter-125/jupiter-125-rear.webp",
+        "../assets/vehicles/bikes/tvs/jupiter-125/jupiter-125-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/tvs/jupiter-125/jupiter-125-front.webp",
+        "src/assets/vehicles/bikes/tvs/jupiter-125/jupiter-125-rear.webp",
+        "src/assets/vehicles/bikes/tvs/jupiter-125/jupiter-125-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tvs-ntorq-125",
+      "title": "TVS Ntorq 125",
+      "type": "Bike/Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/ntorq-125/ntorq-125-front.webp",
+        "../assets/vehicles/bikes/tvs/ntorq-125/ntorq-125-rear.webp",
+        "../assets/vehicles/bikes/tvs/ntorq-125/ntorq-125-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/tvs/ntorq-125/ntorq-125-front.webp",
+        "src/assets/vehicles/bikes/tvs/ntorq-125/ntorq-125-rear.webp",
+        "src/assets/vehicles/bikes/tvs/ntorq-125/ntorq-125-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tvs-ronin",
+      "title": "TVS Ronin",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/ronin/ronin-front.webp",
+        "../assets/vehicles/bikes/tvs/ronin/ronin-rear.webp",
+        "../assets/vehicles/bikes/tvs/ronin/ronin-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/tvs/ronin/ronin-front.webp",
+        "src/assets/vehicles/bikes/tvs/ronin/ronin-rear.webp",
+        "src/assets/vehicles/bikes/tvs/ronin/ronin-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "tvs-iqube",
+      "title": "TVS iQube",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/tvs/iqube/iqube-front.webp",
+        "../assets/vehicles/bikes/tvs/iqube/iqube-rear.webp",
+        "../assets/vehicles/bikes/tvs/iqube/iqube-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/tvs/iqube/iqube-front.webp",
+        "src/assets/vehicles/bikes/tvs/iqube/iqube-rear.webp",
+        "src/assets/vehicles/bikes/tvs/iqube/iqube-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hero-splendor-plus",
+      "title": "Hero Splendor Plus",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/hero/splendor-plus/splendor-plus-front.webp",
+        "../assets/vehicles/bikes/hero/splendor-plus/splendor-plus-rear.webp",
+        "../assets/vehicles/bikes/hero/splendor-plus/splendor-plus-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/hero/splendor-plus/splendor-plus-front.webp",
+        "src/assets/vehicles/bikes/hero/splendor-plus/splendor-plus-rear.webp",
+        "src/assets/vehicles/bikes/hero/splendor-plus/splendor-plus-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hero-hf-deluxe",
+      "title": "Hero HF Deluxe",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/hero/hf-deluxe/hf-deluxe-front.webp",
+        "../assets/vehicles/bikes/hero/hf-deluxe/hf-deluxe-rear.webp",
+        "../assets/vehicles/bikes/hero/hf-deluxe/hf-deluxe-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/hero/hf-deluxe/hf-deluxe-front.webp",
+        "src/assets/vehicles/bikes/hero/hf-deluxe/hf-deluxe-rear.webp",
+        "src/assets/vehicles/bikes/hero/hf-deluxe/hf-deluxe-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hero-glamour",
+      "title": "Hero Glamour",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/hero/glamour/glamour-front.webp",
+        "../assets/vehicles/bikes/hero/glamour/glamour-rear.webp",
+        "../assets/vehicles/bikes/hero/glamour/glamour-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/hero/glamour/glamour-front.webp",
+        "src/assets/vehicles/bikes/hero/glamour/glamour-rear.webp",
+        "src/assets/vehicles/bikes/hero/glamour/glamour-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hero-xtreme-125r",
+      "title": "Hero Xtreme 125R",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/hero/xtreme-125r/xtreme-125r-front.webp",
+        "../assets/vehicles/bikes/hero/xtreme-125r/xtreme-125r-rear.webp",
+        "../assets/vehicles/bikes/hero/xtreme-125r/xtreme-125r-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/hero/xtreme-125r/xtreme-125r-front.webp",
+        "src/assets/vehicles/bikes/hero/xtreme-125r/xtreme-125r-rear.webp",
+        "src/assets/vehicles/bikes/hero/xtreme-125r/xtreme-125r-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hero-xpulse-200-4v",
+      "title": "Hero Xpulse 200 4V",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/hero/xpulse-200-4v/xpulse-200-4v-front.webp",
+        "../assets/vehicles/bikes/hero/xpulse-200-4v/xpulse-200-4v-rear.webp",
+        "../assets/vehicles/bikes/hero/xpulse-200-4v/xpulse-200-4v-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/hero/xpulse-200-4v/xpulse-200-4v-front.webp",
+        "src/assets/vehicles/bikes/hero/xpulse-200-4v/xpulse-200-4v-rear.webp",
+        "src/assets/vehicles/bikes/hero/xpulse-200-4v/xpulse-200-4v-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "hero-mavrick-440",
+      "title": "Hero Mavrick 440",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/hero/mavrick-440/mavrick-440-front.webp",
+        "../assets/vehicles/bikes/hero/mavrick-440/mavrick-440-rear.webp",
+        "../assets/vehicles/bikes/hero/mavrick-440/mavrick-440-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/hero/mavrick-440/mavrick-440-front.webp",
+        "src/assets/vehicles/bikes/hero/mavrick-440/mavrick-440-rear.webp",
+        "src/assets/vehicles/bikes/hero/mavrick-440/mavrick-440-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "suzuki-access-125",
+      "title": "Suzuki Access 125",
+      "type": "Bike/Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/suzuki/access-125/access-125-front.webp",
+        "../assets/vehicles/bikes/suzuki/access-125/access-125-rear.webp",
+        "../assets/vehicles/bikes/suzuki/access-125/access-125-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/suzuki/access-125/access-125-front.webp",
+        "src/assets/vehicles/bikes/suzuki/access-125/access-125-rear.webp",
+        "src/assets/vehicles/bikes/suzuki/access-125/access-125-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "suzuki-burgman-street",
+      "title": "Suzuki Burgman Street",
+      "type": "Bike/Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/suzuki/burgman-street/burgman-street-front.webp",
+        "../assets/vehicles/bikes/suzuki/burgman-street/burgman-street-rear.webp",
+        "../assets/vehicles/bikes/suzuki/burgman-street/burgman-street-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/suzuki/burgman-street/burgman-street-front.webp",
+        "src/assets/vehicles/bikes/suzuki/burgman-street/burgman-street-rear.webp",
+        "src/assets/vehicles/bikes/suzuki/burgman-street/burgman-street-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "suzuki-gixxer-sf",
+      "title": "Suzuki Gixxer SF",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/suzuki/gixxer-sf/gixxer-sf-front.webp",
+        "../assets/vehicles/bikes/suzuki/gixxer-sf/gixxer-sf-rear.webp",
+        "../assets/vehicles/bikes/suzuki/gixxer-sf/gixxer-sf-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/suzuki/gixxer-sf/gixxer-sf-front.webp",
+        "src/assets/vehicles/bikes/suzuki/gixxer-sf/gixxer-sf-rear.webp",
+        "src/assets/vehicles/bikes/suzuki/gixxer-sf/gixxer-sf-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "suzuki-gixxer-250",
+      "title": "Suzuki Gixxer 250",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/suzuki/gixxer-250/gixxer-250-front.webp",
+        "../assets/vehicles/bikes/suzuki/gixxer-250/gixxer-250-rear.webp",
+        "../assets/vehicles/bikes/suzuki/gixxer-250/gixxer-250-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/suzuki/gixxer-250/gixxer-250-front.webp",
+        "src/assets/vehicles/bikes/suzuki/gixxer-250/gixxer-250-rear.webp",
+        "src/assets/vehicles/bikes/suzuki/gixxer-250/gixxer-250-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "suzuki-v-strom-sx",
+      "title": "Suzuki V-Strom SX",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/suzuki/v-strom-sx/v-strom-sx-front.webp",
+        "../assets/vehicles/bikes/suzuki/v-strom-sx/v-strom-sx-rear.webp",
+        "../assets/vehicles/bikes/suzuki/v-strom-sx/v-strom-sx-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/suzuki/v-strom-sx/v-strom-sx-front.webp",
+        "src/assets/vehicles/bikes/suzuki/v-strom-sx/v-strom-sx-rear.webp",
+        "src/assets/vehicles/bikes/suzuki/v-strom-sx/v-strom-sx-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "suzuki-hayabusa",
+      "title": "Suzuki Hayabusa",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/suzuki/hayabusa/hayabusa-front.webp",
+        "../assets/vehicles/bikes/suzuki/hayabusa/hayabusa-rear.webp",
+        "../assets/vehicles/bikes/suzuki/hayabusa/hayabusa-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/suzuki/hayabusa/hayabusa-front.webp",
+        "src/assets/vehicles/bikes/suzuki/hayabusa/hayabusa-rear.webp",
+        "src/assets/vehicles/bikes/suzuki/hayabusa/hayabusa-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "kawasaki-ninja-300",
+      "title": "Kawasaki Ninja 300",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/kawasaki/ninja-300/ninja-300-front.webp",
+        "../assets/vehicles/bikes/kawasaki/ninja-300/ninja-300-rear.webp",
+        "../assets/vehicles/bikes/kawasaki/ninja-300/ninja-300-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/kawasaki/ninja-300/ninja-300-front.webp",
+        "src/assets/vehicles/bikes/kawasaki/ninja-300/ninja-300-rear.webp",
+        "src/assets/vehicles/bikes/kawasaki/ninja-300/ninja-300-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "kawasaki-ninja-500",
+      "title": "Kawasaki Ninja 500",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/kawasaki/ninja-500/ninja-500-front.webp",
+        "../assets/vehicles/bikes/kawasaki/ninja-500/ninja-500-rear.webp",
+        "../assets/vehicles/bikes/kawasaki/ninja-500/ninja-500-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/kawasaki/ninja-500/ninja-500-front.webp",
+        "src/assets/vehicles/bikes/kawasaki/ninja-500/ninja-500-rear.webp",
+        "src/assets/vehicles/bikes/kawasaki/ninja-500/ninja-500-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "kawasaki-z900",
+      "title": "Kawasaki Z900",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/kawasaki/z900/z900-front.webp",
+        "../assets/vehicles/bikes/kawasaki/z900/z900-rear.webp",
+        "../assets/vehicles/bikes/kawasaki/z900/z900-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/kawasaki/z900/z900-front.webp",
+        "src/assets/vehicles/bikes/kawasaki/z900/z900-rear.webp",
+        "src/assets/vehicles/bikes/kawasaki/z900/z900-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "kawasaki-eliminator",
+      "title": "Kawasaki Eliminator",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/kawasaki/eliminator/eliminator-front.webp",
+        "../assets/vehicles/bikes/kawasaki/eliminator/eliminator-rear.webp",
+        "../assets/vehicles/bikes/kawasaki/eliminator/eliminator-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/kawasaki/eliminator/eliminator-front.webp",
+        "src/assets/vehicles/bikes/kawasaki/eliminator/eliminator-rear.webp",
+        "src/assets/vehicles/bikes/kawasaki/eliminator/eliminator-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-motorrad-g-310-r",
+      "title": "BMW Motorrad G 310 R",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-r/g-310-r-front.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-r/g-310-r-rear.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-r/g-310-r-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/bmw-motorrad/g-310-r/g-310-r-front.webp",
+        "src/assets/vehicles/bikes/bmw-motorrad/g-310-r/g-310-r-rear.webp",
+        "src/assets/vehicles/bikes/bmw-motorrad/g-310-r/g-310-r-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-motorrad-g-310-gs",
+      "title": "BMW Motorrad G 310 GS",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-gs/g-310-gs-front.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-gs/g-310-gs-rear.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-gs/g-310-gs-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/bmw-motorrad/g-310-gs/g-310-gs-front.webp",
+        "src/assets/vehicles/bikes/bmw-motorrad/g-310-gs/g-310-gs-rear.webp",
+        "src/assets/vehicles/bikes/bmw-motorrad/g-310-gs/g-310-gs-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-motorrad-g-310-rr",
+      "title": "BMW Motorrad G 310 RR",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-rr/g-310-rr-front.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-rr/g-310-rr-rear.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/g-310-rr/g-310-rr-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/bmw-motorrad/g-310-rr/g-310-rr-front.webp",
+        "src/assets/vehicles/bikes/bmw-motorrad/g-310-rr/g-310-rr-rear.webp",
+        "src/assets/vehicles/bikes/bmw-motorrad/g-310-rr/g-310-rr-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "bmw-motorrad-r-1250-gs",
+      "title": "BMW Motorrad R 1250 GS",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/bmw-motorrad/r-1250-gs/r-1250-gs-front.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/r-1250-gs/r-1250-gs-rear.webp",
+        "../assets/vehicles/bikes/bmw-motorrad/r-1250-gs/r-1250-gs-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/bmw-motorrad/r-1250-gs/r-1250-gs-front.webp",
+        "src/assets/vehicles/bikes/bmw-motorrad/r-1250-gs/r-1250-gs-rear.webp",
+        "src/assets/vehicles/bikes/bmw-motorrad/r-1250-gs/r-1250-gs-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "triumph-speed-400",
+      "title": "Triumph Speed 400",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/triumph/speed-400/speed-400-front.webp",
+        "../assets/vehicles/bikes/triumph/speed-400/speed-400-rear.webp",
+        "../assets/vehicles/bikes/triumph/speed-400/speed-400-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/triumph/speed-400/speed-400-front.webp",
+        "src/assets/vehicles/bikes/triumph/speed-400/speed-400-rear.webp",
+        "src/assets/vehicles/bikes/triumph/speed-400/speed-400-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "triumph-scrambler-400-x",
+      "title": "Triumph Scrambler 400 X",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/triumph/scrambler-400-x/scrambler-400-x-front.webp",
+        "../assets/vehicles/bikes/triumph/scrambler-400-x/scrambler-400-x-rear.webp",
+        "../assets/vehicles/bikes/triumph/scrambler-400-x/scrambler-400-x-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/triumph/scrambler-400-x/scrambler-400-x-front.webp",
+        "src/assets/vehicles/bikes/triumph/scrambler-400-x/scrambler-400-x-rear.webp",
+        "src/assets/vehicles/bikes/triumph/scrambler-400-x/scrambler-400-x-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "triumph-bonneville-t120",
+      "title": "Triumph Bonneville T120",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/triumph/bonneville-t120/bonneville-t120-front.webp",
+        "../assets/vehicles/bikes/triumph/bonneville-t120/bonneville-t120-rear.webp",
+        "../assets/vehicles/bikes/triumph/bonneville-t120/bonneville-t120-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/triumph/bonneville-t120/bonneville-t120-front.webp",
+        "src/assets/vehicles/bikes/triumph/bonneville-t120/bonneville-t120-rear.webp",
+        "src/assets/vehicles/bikes/triumph/bonneville-t120/bonneville-t120-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "harley-davidson-x440",
+      "title": "Harley-Davidson X440",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/harley-davidson/x440/x440-front.webp",
+        "../assets/vehicles/bikes/harley-davidson/x440/x440-rear.webp",
+        "../assets/vehicles/bikes/harley-davidson/x440/x440-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/harley-davidson/x440/x440-front.webp",
+        "src/assets/vehicles/bikes/harley-davidson/x440/x440-rear.webp",
+        "src/assets/vehicles/bikes/harley-davidson/x440/x440-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "harley-davidson-fat-boy",
+      "title": "Harley-Davidson Fat Boy",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/harley-davidson/fat-boy/fat-boy-front.webp",
+        "../assets/vehicles/bikes/harley-davidson/fat-boy/fat-boy-rear.webp",
+        "../assets/vehicles/bikes/harley-davidson/fat-boy/fat-boy-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/harley-davidson/fat-boy/fat-boy-front.webp",
+        "src/assets/vehicles/bikes/harley-davidson/fat-boy/fat-boy-rear.webp",
+        "src/assets/vehicles/bikes/harley-davidson/fat-boy/fat-boy-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "aprilia-rs-457",
+      "title": "Aprilia RS 457",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/aprilia/rs-457/rs-457-front.webp",
+        "../assets/vehicles/bikes/aprilia/rs-457/rs-457-rear.webp",
+        "../assets/vehicles/bikes/aprilia/rs-457/rs-457-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/aprilia/rs-457/rs-457-front.webp",
+        "src/assets/vehicles/bikes/aprilia/rs-457/rs-457-rear.webp",
+        "src/assets/vehicles/bikes/aprilia/rs-457/rs-457-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "aprilia-sr-160",
+      "title": "Aprilia SR 160",
+      "type": "Bike/Scooter",
+      "gallery": [
+        "../assets/vehicles/bikes/aprilia/sr-160/sr-160-front.webp",
+        "../assets/vehicles/bikes/aprilia/sr-160/sr-160-rear.webp",
+        "../assets/vehicles/bikes/aprilia/sr-160/sr-160-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/aprilia/sr-160/sr-160-front.webp",
+        "src/assets/vehicles/bikes/aprilia/sr-160/sr-160-rear.webp",
+        "src/assets/vehicles/bikes/aprilia/sr-160/sr-160-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "ola-electric-s1-pro",
+      "title": "Ola Electric S1 Pro",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/ola-electric/s1-pro/s1-pro-front.webp",
+        "../assets/vehicles/bikes/ola-electric/s1-pro/s1-pro-rear.webp",
+        "../assets/vehicles/bikes/ola-electric/s1-pro/s1-pro-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/ola-electric/s1-pro/s1-pro-front.webp",
+        "src/assets/vehicles/bikes/ola-electric/s1-pro/s1-pro-rear.webp",
+        "src/assets/vehicles/bikes/ola-electric/s1-pro/s1-pro-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "ola-electric-s1-air",
+      "title": "Ola Electric S1 Air",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/ola-electric/s1-air/s1-air-front.webp",
+        "../assets/vehicles/bikes/ola-electric/s1-air/s1-air-rear.webp",
+        "../assets/vehicles/bikes/ola-electric/s1-air/s1-air-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/ola-electric/s1-air/s1-air-front.webp",
+        "src/assets/vehicles/bikes/ola-electric/s1-air/s1-air-rear.webp",
+        "src/assets/vehicles/bikes/ola-electric/s1-air/s1-air-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "ola-electric-s1-x",
+      "title": "Ola Electric S1 X",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/ola-electric/s1-x/s1-x-front.webp",
+        "../assets/vehicles/bikes/ola-electric/s1-x/s1-x-rear.webp",
+        "../assets/vehicles/bikes/ola-electric/s1-x/s1-x-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/ola-electric/s1-x/s1-x-front.webp",
+        "src/assets/vehicles/bikes/ola-electric/s1-x/s1-x-rear.webp",
+        "src/assets/vehicles/bikes/ola-electric/s1-x/s1-x-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "ather-450x",
+      "title": "Ather 450X",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/ather/450x/450x-front.webp",
+        "../assets/vehicles/bikes/ather/450x/450x-rear.webp",
+        "../assets/vehicles/bikes/ather/450x/450x-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/ather/450x/450x-front.webp",
+        "src/assets/vehicles/bikes/ather/450x/450x-rear.webp",
+        "src/assets/vehicles/bikes/ather/450x/450x-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "ather-rizta",
+      "title": "Ather Rizta",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/ather/rizta/rizta-front.webp",
+        "../assets/vehicles/bikes/ather/rizta/rizta-rear.webp",
+        "../assets/vehicles/bikes/ather/rizta/rizta-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/ather/rizta/rizta-front.webp",
+        "src/assets/vehicles/bikes/ather/rizta/rizta-rear.webp",
+        "src/assets/vehicles/bikes/ather/rizta/rizta-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    },
+    {
+      "id": "vida-v1-pro",
+      "title": "Vida V1 Pro",
+      "type": "Car",
+      "gallery": [
+        "../assets/vehicles/bikes/vida/v1-pro/v1-pro-front.webp",
+        "../assets/vehicles/bikes/vida/v1-pro/v1-pro-rear.webp",
+        "../assets/vehicles/bikes/vida/v1-pro/v1-pro-side.webp"
+      ],
+      "paths": [
+        "src/assets/vehicles/bikes/vida/v1-pro/v1-pro-front.webp",
+        "src/assets/vehicles/bikes/vida/v1-pro/v1-pro-rear.webp",
+        "src/assets/vehicles/bikes/vida/v1-pro/v1-pro-side.webp"
+      ],
+      "status": "INVALID",
+      "issues": [
+        "Angle 2 appears to be a horizontally mirrored copy of angle 1"
+      ]
+    }
+  ]
+}

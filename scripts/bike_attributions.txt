@@ -1,0 +1,543 @@
+## Royal Enfield Classic 350
+- **Local file**: `src/assets/vehicles/bikes/royal-enfield/classic-350/classic-350.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Rangilo Gujarati
+- **License**: CC BY-SA 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Arnav_on_Bullet.JPG
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/f/fa/Arnav_on_Bullet.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Royal Enfield Bullet 350
+- **Local file**: `src/assets/vehicles/bikes/royal-enfield/bullet-350/bullet-350.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Thruxton
+- **License**: CC BY 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Royal_Enfield_Bullet_350_1955.JPG
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/9/97/Royal_Enfield_Bullet_350_1955.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Royal Enfield Hunter 350
+- **Local file**: `src/assets/vehicles/bikes/royal-enfield/hunter-350/hunter-350.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Pintu dasaundhi
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Royal_Enfield_Hunter_350_Rebel_balck.png
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/d/dd/Royal_Enfield_Hunter_350_Rebel_balck.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Royal Enfield Meteor 350
+- **Local file**: `src/assets/vehicles/bikes/royal-enfield/meteor-350/meteor-350.webp`
+- **Source**: Wikimedia Commons
+- **Author**: The Drivers Hub
+- **License**: CC BY 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Royal_Enfield_Meteor.png
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/f/f2/Royal_Enfield_Meteor.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Royal Enfield Himalayan 450
+- **Local file**: `src/assets/vehicles/bikes/royal-enfield/himalayan-450/himalayan-450.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Ericxt
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Royal_enfied_HIMALAYAN.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/1/13/Royal_enfied_HIMALAYAN.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Royal Enfield Continental GT 650
+- **Local file**: `src/assets/vehicles/bikes/royal-enfield/continental-gt-650/continental-gt-650.webp`
+- **Source**: Wikimedia Commons
+- **Author**: AxelKing
+- **License**: CC BY-SA 3.0 de
+- **Source page**: https://commons.wikimedia.org/wiki/File:Royal_Enfield_650_01.jpeg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/3/36/Royal_Enfield_650_01.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Royal Enfield Interceptor 650
+- **Local file**: `src/assets/vehicles/bikes/royal-enfield/interceptor-650/interceptor-650.webp`
+- **Source**: Wikimedia Commons
+- **Author**: AxelKing
+- **License**: CC BY-SA 3.0 de
+- **Source page**: https://commons.wikimedia.org/wiki/File:Royal_Enfield_650_02.jpeg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/f/f3/Royal_Enfield_650_02.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Royal Enfield Super Meteor 650
+- **Local file**: `src/assets/vehicles/bikes/royal-enfield/super-meteor-650/super-meteor-650.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Cjp24
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Royal_Enfield_Super_Meteor_650_(1).jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/9/9b/Royal_Enfield_Super_Meteor_650_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Yamaha YZF-R15
+- **Local file**: `src/assets/vehicles/bikes/yamaha/yzf-r15/yzf-r15.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Rikita
+- **License**: CC BY-SA 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Yamaha_YZF-R15.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/6/61/Yamaha_YZF-R15.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Yamaha MT-15
+- **Local file**: `src/assets/vehicles/bikes/yamaha/mt-15/mt-15.webp`
+- **Source**: Wikimedia Commons
+- **Author**: 69PAULWALKER69
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Yamaha_Xabre_150.JPG
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/8/8b/Yamaha_Xabre_150.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Yamaha FZ-S FI
+- **Local file**: `src/assets/vehicles/bikes/yamaha/fz-s-fi/fz-s-fi.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Vishnu
+- **License**: CC BY-SA 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Motorshow.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/e/eb/Motorshow.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Yamaha Aerox 155
+- **Local file**: `src/assets/vehicles/bikes/yamaha/aerox-155/aerox-155.webp`
+- **Source**: Wikimedia Commons
+- **Author**: オーバードライブ83
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:2019_Yamaha_Aerox_155_VVA_S-Version_(20191018).jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/d/d6/2019_Yamaha_Aerox_155_VVA_S-Version_%2820191018%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Yamaha YZF-R3
+- **Local file**: `src/assets/vehicles/bikes/yamaha/yzf-r3/yzf-r3.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Dennis Bratland
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:2015_Yamaha_YZF-R3_right.JPG
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/d/d2/2015_Yamaha_YZF-R3_right.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## KTM Duke 200
+- **Local file**: `src/assets/vehicles/bikes/ktm/duke-200/duke-200.webp`
+- **Source**: Wikimedia Commons
+- **Author**: じぶろ
+- **License**: CC BY-SA 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:KTM_DUKE_200_front.JPG
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/b/b0/KTM_DUKE_200_front.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## KTM Duke 390
+- **Local file**: `src/assets/vehicles/bikes/ktm/duke-390/duke-390.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Priwo
+- **License**: Public domain
+- **Source page**: https://commons.wikimedia.org/wiki/File:KTM_Duke_390-01.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/a/a0/KTM_Duke_390-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## KTM RC 200
+- **Local file**: `src/assets/vehicles/bikes/ktm/rc-200/rc-200.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Sachintrishala21
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Sachin_Rathod_photo_with_ktm_rc_200_taken_in_satara_while_riding_with_besties.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/c/c0/Sachin_Rathod_photo_with_ktm_rc_200_taken_in_satara_while_riding_with_besties.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## KTM RC 390
+- **Local file**: `src/assets/vehicles/bikes/ktm/rc-390/rc-390.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Priwo
+- **License**: Public domain
+- **Source page**: https://commons.wikimedia.org/wiki/File:KTM_Duke_390-01.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/a/a0/KTM_Duke_390-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## KTM 390 Adventure
+- **Local file**: `src/assets/vehicles/bikes/ktm/390-adventure/390-adventure.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Priwo
+- **License**: Public domain
+- **Source page**: https://commons.wikimedia.org/wiki/File:KTM_Duke_390-01.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/a/a0/KTM_Duke_390-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Honda Activa 6G
+- **Local file**: `src/assets/vehicles/bikes/honda/activa-6g/activa-6g.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Adityamadhav83
+- **License**: CC BY-SA 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Honda_Activa_Scooters_in_Visakhapatnam.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/e/e7/Honda_Activa_Scooters_in_Visakhapatnam.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Honda Dio 125
+- **Local file**: `src/assets/vehicles/bikes/honda/dio-125/dio-125.webp`
+- **Source**: Wikimedia Commons
+- **Author**: TTTNIS
+- **License**: Public domain
+- **Source page**: https://commons.wikimedia.org/wiki/File:Honda_Dio.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/4/48/Honda_Dio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Honda Shine 125
+- **Local file**: `src/assets/vehicles/bikes/honda/shine-125/shine-125.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Perumalnadar
+- **License**: CC0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Honda_Shine.JPG
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/7/72/Honda_Shine.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Honda Unicorn
+- **Local file**: `src/assets/vehicles/bikes/honda/unicorn/unicorn.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Vivek Patankar
+- **License**: CC BY 2.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Honda_Unicorn_150.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/a/aa/Honda_Unicorn_150.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Honda CB350 Hness
+- **Local file**: `src/assets/vehicles/bikes/honda/cb350-hness/cb350-hness.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Brstones at English Wikipedia
+- **License**: Public domain
+- **Source page**: https://commons.wikimedia.org/wiki/File:1972cb350.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/4/48/1972cb350.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Honda CB300R
+- **Local file**: `src/assets/vehicles/bikes/honda/cb300r/cb300r.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Onjacktallcuca
+- **License**: Public domain
+- **Source page**: https://commons.wikimedia.org/wiki/File:Honda_CB_300_R.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/f/fa/Honda_CB_300_R.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Honda NX500
+- **Local file**: `src/assets/vehicles/bikes/honda/nx500/nx500.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Thesupermat
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Salon_de_la_Moto_et_du_Scooter_de_Paris_2013_-_Honda_-_CB500F_-_006.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/9/96/Salon_de_la_Moto_et_du_Scooter_de_Paris_2013_-_Honda_-_CB500F_-_006.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Bajaj Pulsar NS200
+- **Local file**: `src/assets/vehicles/bikes/bajaj/pulsar-ns200/pulsar-ns200.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Subhash Chandra from Bangalore, India
+- **License**: CC BY 2.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Red_Bajaj_Pulsar_outside_hotel_in_Goa.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/f/f0/Red_Bajaj_Pulsar_outside_hotel_in_Goa.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Bajaj Pulsar RS200
+- **Local file**: `src/assets/vehicles/bikes/bajaj/pulsar-rs200/pulsar-rs200.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Ritinkar Malakar
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Bajaj_Pulsar_RS200.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/c/c2/Bajaj_Pulsar_RS200.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Bajaj Dominar 400
+- **Local file**: `src/assets/vehicles/bikes/bajaj/dominar-400/dominar-400.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Retired electrician
+- **License**: CC0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Moscow,_Bajaj_Dominar_400_green,_Aug_2026_04.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/0/02/Moscow%2C_Bajaj_Dominar_400_green%2C_Aug_2026_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Bajaj Pulsar N160
+- **Local file**: `src/assets/vehicles/bikes/bajaj/pulsar-n160/pulsar-n160.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Subhash Chandra from Bangalore, India
+- **License**: CC BY 2.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Red_Bajaj_Pulsar_outside_hotel_in_Goa.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/f/f0/Red_Bajaj_Pulsar_outside_hotel_in_Goa.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Bajaj Chetak
+- **Local file**: `src/assets/vehicles/bikes/bajaj/chetak/chetak.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Gpkp
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Bajaj_Chetak_electric_scooters_(2026)_01.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/3/38/Bajaj_Chetak_electric_scooters_%282026%29_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Bajaj Platina 110
+- **Local file**: `src/assets/vehicles/bikes/bajaj/platina-110/platina-110.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Manuspanicker
+- **License**: CC BY-SA 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Gear_Box_Cover.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/4/4e/Gear_Box_Cover.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## TVS Apache RTR 160 4V
+- **Local file**: `src/assets/vehicles/bikes/tvs/apache-rtr-160-4v/apache-rtr-160-4v.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Ganesh Mohan T
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:TVS_Apache_RTR_160_4V.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/c/c7/TVS_Apache_RTR_160_4V.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## TVS Apache RTR 200 4V
+- **Local file**: `src/assets/vehicles/bikes/tvs/apache-rtr-200-4v/apache-rtr-200-4v.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Crazyranga
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:TVS_Apache_RTR_200_4v.png
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/b/b5/TVS_Apache_RTR_200_4v.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## TVS Apache RR 310
+- **Local file**: `src/assets/vehicles/bikes/tvs/apache-rr-310/apache-rr-310.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Icestorm6
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Apacherr310c.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/0/07/Apacherr310c.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## TVS Jupiter 125
+- **Local file**: `src/assets/vehicles/bikes/tvs/jupiter-125/jupiter-125.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Gausanchennai
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Scooter_1.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/9/93/Scooter_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## TVS Ntorq 125
+- **Local file**: `src/assets/vehicles/bikes/tvs/ntorq-125/ntorq-125.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Vandipranthan
+- **License**: CC BY 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:TVS_Ntorq_125_red_1.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/6/68/TVS_Ntorq_125_red_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## TVS Ronin
+- **Local file**: `src/assets/vehicles/bikes/tvs/ronin/ronin.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Ganesh Mohan T
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:TVS_Apache_RTR_160_4V.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/c/c7/TVS_Apache_RTR_160_4V.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## TVS iQube
+- **Local file**: `src/assets/vehicles/bikes/tvs/iqube/iqube.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Maneesh Sreekariyam
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Tvs_i_qube.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/8/83/Tvs_i_qube.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Hero Splendor Plus
+- **Local file**: `src/assets/vehicles/bikes/hero/splendor-plus/splendor-plus.webp`
+- **Source**: Wikimedia Commons
+- **Author**: No machine-readable author provided. Ganeshk assumed (based on copyright claims).
+- **License**: CC BY-SA 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Hero_honda_2006_03.JPG
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/2/2a/Hero_honda_2006_03.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Hero Glamour
+- **Local file**: `src/assets/vehicles/bikes/hero/glamour/glamour.webp`
+- **Source**: Wikimedia Commons
+- **Author**: BikeBD2012
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Hero_Ignitor_125cc_Bike_in_Bangladesh.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/d/d9/Hero_Ignitor_125cc_Bike_in_Bangladesh.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Hero Xtreme 125R
+- **Local file**: `src/assets/vehicles/bikes/hero/xtreme-125r/xtreme-125r.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Sahaquiel9102
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Hero_Hunk_160r_en_el_Desierto_de_la_Tatacoa.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/f/f9/Hero_Hunk_160r_en_el_Desierto_de_la_Tatacoa.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Hero Xpulse 200 4V
+- **Local file**: `src/assets/vehicles/bikes/hero/xpulse-200-4v/xpulse-200-4v.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Crazyranga
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Hero_Xpulse_200_2021_model.png
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/b/bf/Hero_Xpulse_200_2021_model.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Suzuki Access 125
+- **Local file**: `src/assets/vehicles/bikes/suzuki/access-125/access-125.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Pooja0709
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Suzuki_access_125.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/7/7c/Suzuki_access_125.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Suzuki Burgman Street
+- **Local file**: `src/assets/vehicles/bikes/suzuki/burgman-street/burgman-street.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Gunnar Richter Namenlos.net
+- **License**: CC BY-SA 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Suzuki_Burgman_400.JPG
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/0/07/Suzuki_Burgman_400.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Suzuki Gixxer SF
+- **Local file**: `src/assets/vehicles/bikes/suzuki/gixxer-sf/gixxer-sf.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Tokumeigakarinoaoshima
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Osaka_Motor_Show_2015_(136)_-_Suzuki_GIXXER.JPG
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/b/b9/Osaka_Motor_Show_2015_%28136%29_-_Suzuki_GIXXER.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Suzuki Gixxer 250
+- **Local file**: `src/assets/vehicles/bikes/suzuki/gixxer-250/gixxer-250.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Arunjayantvm
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Photograph_by_arun_jayan_(25).jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/b/b5/Photograph_by_arun_jayan_%2825%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Suzuki V-Strom SX
+- **Local file**: `src/assets/vehicles/bikes/suzuki/v-strom-sx/v-strom-sx.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Pzj70v
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:CA3I0053.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/5/51/CA3I0053.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Suzuki Hayabusa
+- **Local file**: `src/assets/vehicles/bikes/suzuki/hayabusa/hayabusa.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Yuichiro Katsumoto
+- **License**: CC BY-SA 2.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Hayabusa.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/5/5e/Hayabusa.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Kawasaki Ninja 300
+- **Local file**: `src/assets/vehicles/bikes/kawasaki/ninja-300/ninja-300.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Dennis Bratland
+- **License**: CC BY-SA 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:2013_Kawasaki_Ninja_300_Seattle_Motorcycle_Show.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/c/c2/2013_Kawasaki_Ninja_300_Seattle_Motorcycle_Show.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Kawasaki Ninja 500
+- **Local file**: `src/assets/vehicles/bikes/kawasaki/ninja-500/ninja-500.webp`
+- **Source**: Wikimedia Commons
+- **Author**: No machine-readable author provided. Amux assumed (based on copyright claims).
+- **License**: Public domain
+- **Source page**: https://commons.wikimedia.org/wiki/File:Kawasaki_GPZ_500_S_1994_red.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/b/b9/Kawasaki_GPZ_500_S_1994_red.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Kawasaki Z900
+- **Local file**: `src/assets/vehicles/bikes/kawasaki/z900/z900.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Tokyorider23o
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Z900_2019_color_model.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/d/d9/Z900_2019_color_model.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Kawasaki Eliminator
+- **Local file**: `src/assets/vehicles/bikes/kawasaki/eliminator/eliminator.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Ben Helps
+- **License**: CC BY 2.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Kawasaki_ELIMINATOR_EL250_01.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/5/52/Kawasaki_ELIMINATOR_EL250_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## BMW Motorrad G 310 R
+- **Local file**: `src/assets/vehicles/bikes/bmw-motorrad/g-310-r/g-310-r.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Erluw
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:BMW_G_310_R.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/5/58/BMW_G_310_R.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## BMW Motorrad G 310 GS
+- **Local file**: `src/assets/vehicles/bikes/bmw-motorrad/g-310-gs/g-310-gs.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Bayahusa
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Bmw_g310gs_blau.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/a/ae/Bmw_g310gs_blau.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## BMW Motorrad G 310 RR
+- **Local file**: `src/assets/vehicles/bikes/bmw-motorrad/g-310-rr/g-310-rr.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Icestorm6
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Apacherr310c.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/0/07/Apacherr310c.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## BMW Motorrad R 1250 GS
+- **Local file**: `src/assets/vehicles/bikes/bmw-motorrad/r-1250-gs/r-1250-gs.webp`
+- **Source**: Wikimedia Commons
+- **Author**: San Andreas
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:BMW_R1250GS_HP_2018-10-12.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/4/44/BMW_R1250GS_HP_2018-10-12.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Triumph Speed 400
+- **Local file**: `src/assets/vehicles/bikes/triumph/speed-400/speed-400.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Corvettec6r
+- **License**: CC BY 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Triumph_Speed_400.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/e/e7/Triumph_Speed_400.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Triumph Scrambler 400 X
+- **Local file**: `src/assets/vehicles/bikes/triumph/scrambler-400-x/scrambler-400-x.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Rouv1505
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Triumph-Scrambler-400-X.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/8/84/Triumph-Scrambler-400-X.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Triumph Bonneville T120
+- **Local file**: `src/assets/vehicles/bikes/triumph/bonneville-t120/bonneville-t120.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Joachim Köhler
+- **License**: CC BY-SA 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:ZweiRadMuseumNSU_Triumph_Bonneville.JPG
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/6/62/ZweiRadMuseumNSU_Triumph_Bonneville.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Harley-Davidson Fat Boy
+- **Local file**: `src/assets/vehicles/bikes/harley-davidson/fat-boy/fat-boy.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Øyvind Holmstad
+- **License**: CC BY-SA 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Harley_Davidson_Fatboy.JPG
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/4/4f/Harley_Davidson_Fatboy.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Aprilia RS 457
+- **Local file**: `src/assets/vehicles/bikes/aprilia/rs-457/rs-457.webp`
+- **Source**: Wikimedia Commons
+- **Author**: NicoWmann
+- **License**: CC BY 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Aprilia_RS_457.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/a/ad/Aprilia_RS_457.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Aprilia SR 160
+- **Local file**: `src/assets/vehicles/bikes/aprilia/sr-160/sr-160.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Nprefontaine at en.wikipedia
+- **License**: CC BY-SA 3.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Aprilia_SR50_Factory.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/6/64/Aprilia_SR50_Factory.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Ola Electric S1 Pro
+- **Local file**: `src/assets/vehicles/bikes/ola-electric/s1-pro/s1-pro.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Ganesh Mohan T
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Ola_S1_Pro.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/7/76/Ola_S1_Pro.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Ola Electric S1 Air
+- **Local file**: `src/assets/vehicles/bikes/ola-electric/s1-air/s1-air.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Curtis Palmer
+- **License**: CC BY 2.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:1960_BMW_R69.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/7/72/1960_BMW_R69.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Ola Electric S1 X
+- **Local file**: `src/assets/vehicles/bikes/ola-electric/s1-x/s1-x.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Ganesh Mohan T
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Ola_S1_Pro.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/7/76/Ola_S1_Pro.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Ather 450X
+- **Local file**: `src/assets/vehicles/bikes/ather/450x/450x.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Merzperson at English Wikipedia
+- **License**: Public domain
+- **Source page**: https://commons.wikimedia.org/wiki/File:CRF450X.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/3/3c/CRF450X.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Ather Rizta
+- **Local file**: `src/assets/vehicles/bikes/ather/rizta/rizta.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Guptashreyas
+- **License**: Public domain
+- **Source page**: https://commons.wikimedia.org/wiki/File:Ather_New_Logo.jpg
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/d/d1/Ather_New_Logo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+
+## Vida V1 Pro
+- **Local file**: `src/assets/vehicles/bikes/vida/v1-pro/v1-pro.webp`
+- **Source**: Wikimedia Commons
+- **Author**: Kukunmishra
+- **License**: CC BY-SA 4.0
+- **Source page**: https://commons.wikimedia.org/wiki/File:Wire_Type7_Diagram.png
+- **Media URL**: https://upload.wikimedia.org/wikipedia/commons/c/c0/Wire_Type7_Diagram.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original

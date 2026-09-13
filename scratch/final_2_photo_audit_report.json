@@ -1,0 +1,19 @@
+{
+  "cars_count": 135,
+  "bikes_count": 72,
+  "total_vehicles": 207,
+  "vehicles_with_2_valid": 207,
+  "photo1_valid": 207,
+  "photo2_valid": 207,
+  "total_valid_photos": 414,
+  "missing_photos": 0,
+  "broken_mappings": 0,
+  "duplicate_photos": 0,
+  "mirrored_photos": 0,
+  "artificially_modified": 0,
+  "ai_cgi_photos": 0,
+  "wrong_model_photos": 0,
+  "cross_model_reused": 0,
+  "models_visually_verified": 207,
+  "source_license_records": 414
+}

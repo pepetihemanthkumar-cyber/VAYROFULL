@@ -1,0 +1,1878 @@
+{
+  "summary": {
+    "totalVehicles": 207,
+    "carsCount": 135,
+    "bikesCount": 72,
+    "vehiclesWith3Images": 207,
+    "totalGalleryImages": 621,
+    "missingFileCount": 0,
+    "duplicateGalleryCount": 0,
+    "crossModelAssetReuse": 0,
+    "crossModelHashReuse": 0
+  },
+  "detailedResults": [
+    {
+      "id": "maruti-suzuki-swift",
+      "brand": "Maruti Suzuki",
+      "model": "Swift",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "maruti-suzuki-baleno",
+      "brand": "Maruti Suzuki",
+      "model": "Baleno",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "maruti-suzuki-dzire",
+      "brand": "Maruti Suzuki",
+      "model": "Dzire",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "maruti-suzuki-fronx",
+      "brand": "Maruti Suzuki",
+      "model": "Fronx",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "maruti-suzuki-brezza",
+      "brand": "Maruti Suzuki",
+      "model": "Brezza",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "maruti-suzuki-grand-vitara",
+      "brand": "Maruti Suzuki",
+      "model": "Grand Vitara",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "maruti-suzuki-ertiga",
+      "brand": "Maruti Suzuki",
+      "model": "Ertiga",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "maruti-suzuki-xl6",
+      "brand": "Maruti Suzuki",
+      "model": "XL6",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "maruti-suzuki-jimny",
+      "brand": "Maruti Suzuki",
+      "model": "Jimny",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "maruti-suzuki-invicto",
+      "brand": "Maruti Suzuki",
+      "model": "Invicto",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tata-tiago",
+      "brand": "Tata",
+      "model": "Tiago",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tata-altroz",
+      "brand": "Tata",
+      "model": "Altroz",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tata-tigor",
+      "brand": "Tata",
+      "model": "Tigor",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tata-punch",
+      "brand": "Tata",
+      "model": "Punch",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tata-nexon",
+      "brand": "Tata",
+      "model": "Nexon",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tata-harrier",
+      "brand": "Tata",
+      "model": "Harrier",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tata-safari",
+      "brand": "Tata",
+      "model": "Safari",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tata-curvv",
+      "brand": "Tata",
+      "model": "Curvv",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tata-nexon-ev",
+      "brand": "Tata",
+      "model": "Nexon EV",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tata-punch-ev",
+      "brand": "Tata",
+      "model": "Punch EV",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mahindra-xuv-3xo",
+      "brand": "Mahindra",
+      "model": "XUV 3XO",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mahindra-xuv700",
+      "brand": "Mahindra",
+      "model": "XUV700",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mahindra-scorpio",
+      "brand": "Mahindra",
+      "model": "Scorpio",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mahindra-scorpio-n",
+      "brand": "Mahindra",
+      "model": "Scorpio-N",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mahindra-thar",
+      "brand": "Mahindra",
+      "model": "Thar",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mahindra-bolero",
+      "brand": "Mahindra",
+      "model": "Bolero",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mahindra-bolero-neo",
+      "brand": "Mahindra",
+      "model": "Bolero Neo",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mahindra-marazzo",
+      "brand": "Mahindra",
+      "model": "Marazzo",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hyundai-grand-i10-nios",
+      "brand": "Hyundai",
+      "model": "Grand i10 Nios",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hyundai-i20",
+      "brand": "Hyundai",
+      "model": "i20",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hyundai-aura",
+      "brand": "Hyundai",
+      "model": "Aura",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hyundai-verna",
+      "brand": "Hyundai",
+      "model": "Verna",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hyundai-exter",
+      "brand": "Hyundai",
+      "model": "Exter",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hyundai-venue",
+      "brand": "Hyundai",
+      "model": "Venue",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hyundai-creta",
+      "brand": "Hyundai",
+      "model": "Creta",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hyundai-alcazar",
+      "brand": "Hyundai",
+      "model": "Alcazar",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hyundai-tucson",
+      "brand": "Hyundai",
+      "model": "Tucson",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hyundai-ioniq-5",
+      "brand": "Hyundai",
+      "model": "Ioniq 5",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "kia-sonet",
+      "brand": "Kia",
+      "model": "Sonet",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "kia-seltos",
+      "brand": "Kia",
+      "model": "Seltos",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "kia-carens",
+      "brand": "Kia",
+      "model": "Carens",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "kia-carnival",
+      "brand": "Kia",
+      "model": "Carnival",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "kia-ev6",
+      "brand": "Kia",
+      "model": "EV6",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "toyota-glanza",
+      "brand": "Toyota",
+      "model": "Glanza",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "toyota-urban-cruiser-taisor",
+      "brand": "Toyota",
+      "model": "Urban Cruiser Taisor",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "toyota-urban-cruiser-hyryder",
+      "brand": "Toyota",
+      "model": "Urban Cruiser Hyryder",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "toyota-rumion",
+      "brand": "Toyota",
+      "model": "Rumion",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "toyota-innova-crysta",
+      "brand": "Toyota",
+      "model": "Innova Crysta",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "toyota-innova-hycross",
+      "brand": "Toyota",
+      "model": "Innova HyCross",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "toyota-fortuner",
+      "brand": "Toyota",
+      "model": "Fortuner",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "toyota-legender",
+      "brand": "Toyota",
+      "model": "Legender",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "toyota-hilux",
+      "brand": "Toyota",
+      "model": "Hilux",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "toyota-camry",
+      "brand": "Toyota",
+      "model": "Camry",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "toyota-land-cruiser",
+      "brand": "Toyota",
+      "model": "Land Cruiser",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "toyota-vellfire",
+      "brand": "Toyota",
+      "model": "Vellfire",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "honda-amaze",
+      "brand": "Honda",
+      "model": "Amaze",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "honda-city",
+      "brand": "Honda",
+      "model": "City",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "honda-elevate",
+      "brand": "Honda",
+      "model": "Elevate",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "honda-city-e-hev",
+      "brand": "Honda",
+      "model": "City e:HEV",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "renault-kwid",
+      "brand": "Renault",
+      "model": "Kwid",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "renault-triber",
+      "brand": "Renault",
+      "model": "Triber",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "renault-kiger",
+      "brand": "Renault",
+      "model": "Kiger",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "renault-duster",
+      "brand": "Renault",
+      "model": "Duster",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "nissan-magnite",
+      "brand": "Nissan",
+      "model": "Magnite",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "nissan-x-trail",
+      "brand": "Nissan",
+      "model": "X-Trail",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "volkswagen-virtus",
+      "brand": "Volkswagen",
+      "model": "Virtus",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "volkswagen-taigun",
+      "brand": "Volkswagen",
+      "model": "Taigun",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "volkswagen-tiguan",
+      "brand": "Volkswagen",
+      "model": "Tiguan",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "skoda-slavia",
+      "brand": "Skoda",
+      "model": "Slavia",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "skoda-kushaq",
+      "brand": "Skoda",
+      "model": "Kushaq",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "skoda-kodiaq",
+      "brand": "Skoda",
+      "model": "Kodiaq",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "skoda-superb",
+      "brand": "Skoda",
+      "model": "Superb",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mg-comet-ev",
+      "brand": "MG",
+      "model": "Comet EV",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mg-astor",
+      "brand": "MG",
+      "model": "Astor",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mg-hector",
+      "brand": "MG",
+      "model": "Hector",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mg-hector-plus",
+      "brand": "MG",
+      "model": "Hector Plus",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mg-zs-ev",
+      "brand": "MG",
+      "model": "ZS EV",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mg-gloster",
+      "brand": "MG",
+      "model": "Gloster",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mg-windsor-ev",
+      "brand": "MG",
+      "model": "Windsor EV",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "jeep-compass",
+      "brand": "Jeep",
+      "model": "Compass",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "jeep-meridian",
+      "brand": "Jeep",
+      "model": "Meridian",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "jeep-wrangler",
+      "brand": "Jeep",
+      "model": "Wrangler",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "jeep-grand-cherokee",
+      "brand": "Jeep",
+      "model": "Grand Cherokee",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-2-series",
+      "brand": "BMW",
+      "model": "2 Series",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-3-series",
+      "brand": "BMW",
+      "model": "3 Series",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-5-series",
+      "brand": "BMW",
+      "model": "5 Series",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-x1",
+      "brand": "BMW",
+      "model": "X1",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-x3",
+      "brand": "BMW",
+      "model": "X3",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-x5",
+      "brand": "BMW",
+      "model": "X5",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-x7",
+      "brand": "BMW",
+      "model": "X7",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-i4",
+      "brand": "BMW",
+      "model": "i4",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-i5",
+      "brand": "BMW",
+      "model": "i5",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-i7",
+      "brand": "BMW",
+      "model": "i7",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-ix",
+      "brand": "BMW",
+      "model": "iX",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mercedes-benz-a-class",
+      "brand": "Mercedes-Benz",
+      "model": "A-Class",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mercedes-benz-c-class",
+      "brand": "Mercedes-Benz",
+      "model": "C-Class",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mercedes-benz-e-class",
+      "brand": "Mercedes-Benz",
+      "model": "E-Class",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mercedes-benz-s-class",
+      "brand": "Mercedes-Benz",
+      "model": "S-Class",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mercedes-benz-gla",
+      "brand": "Mercedes-Benz",
+      "model": "GLA",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mercedes-benz-glc",
+      "brand": "Mercedes-Benz",
+      "model": "GLC",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mercedes-benz-gle",
+      "brand": "Mercedes-Benz",
+      "model": "GLE",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mercedes-benz-gls",
+      "brand": "Mercedes-Benz",
+      "model": "GLS",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mercedes-benz-eqe",
+      "brand": "Mercedes-Benz",
+      "model": "EQE",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mercedes-benz-eqs",
+      "brand": "Mercedes-Benz",
+      "model": "EQS",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "audi-a4",
+      "brand": "Audi",
+      "model": "A4",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "audi-a6",
+      "brand": "Audi",
+      "model": "A6",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "audi-a8",
+      "brand": "Audi",
+      "model": "A8",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "audi-q3",
+      "brand": "Audi",
+      "model": "Q3",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "audi-q5",
+      "brand": "Audi",
+      "model": "Q5",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "audi-q7",
+      "brand": "Audi",
+      "model": "Q7",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "audi-q8",
+      "brand": "Audi",
+      "model": "Q8",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "audi-e-tron",
+      "brand": "Audi",
+      "model": "e-tron",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "audi-q8-e-tron",
+      "brand": "Audi",
+      "model": "Q8 e-tron",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "volvo-s90",
+      "brand": "Volvo",
+      "model": "S90",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "volvo-xc40",
+      "brand": "Volvo",
+      "model": "XC40",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "volvo-xc60",
+      "brand": "Volvo",
+      "model": "XC60",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "volvo-xc90",
+      "brand": "Volvo",
+      "model": "XC90",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "volvo-ex30",
+      "brand": "Volvo",
+      "model": "EX30",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "volvo-ex40",
+      "brand": "Volvo",
+      "model": "EX40",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "volvo-ex90",
+      "brand": "Volvo",
+      "model": "EX90",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "lexus-es",
+      "brand": "Lexus",
+      "model": "ES",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "lexus-nx",
+      "brand": "Lexus",
+      "model": "NX",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "lexus-rx",
+      "brand": "Lexus",
+      "model": "RX",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "lexus-lx",
+      "brand": "Lexus",
+      "model": "LX",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "lexus-lm",
+      "brand": "Lexus",
+      "model": "LM",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "land-rover-defender",
+      "brand": "Land Rover",
+      "model": "Defender",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "land-rover-discovery",
+      "brand": "Land Rover",
+      "model": "Discovery",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "land-rover-range-rover-evoque",
+      "brand": "Land Rover",
+      "model": "Range Rover Evoque",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "land-rover-range-rover-sport",
+      "brand": "Land Rover",
+      "model": "Range Rover Sport",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "land-rover-range-rover",
+      "brand": "Land Rover",
+      "model": "Range Rover",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "land-rover-range-rover-velar",
+      "brand": "Land Rover",
+      "model": "Range Rover Velar",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mini-cooper",
+      "brand": "MINI",
+      "model": "Cooper",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mini-cooper-s",
+      "brand": "MINI",
+      "model": "Cooper S",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mini-countryman",
+      "brand": "MINI",
+      "model": "Countryman",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "mini-convertible",
+      "brand": "MINI",
+      "model": "Convertible",
+      "vehicleType": "car",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "royal-enfield-classic-350",
+      "brand": "Royal Enfield",
+      "model": "Classic 350",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "royal-enfield-bullet-350",
+      "brand": "Royal Enfield",
+      "model": "Bullet 350",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "royal-enfield-hunter-350",
+      "brand": "Royal Enfield",
+      "model": "Hunter 350",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "royal-enfield-meteor-350",
+      "brand": "Royal Enfield",
+      "model": "Meteor 350",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "royal-enfield-himalayan-450",
+      "brand": "Royal Enfield",
+      "model": "Himalayan 450",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "royal-enfield-continental-gt-650",
+      "brand": "Royal Enfield",
+      "model": "Continental GT 650",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "royal-enfield-interceptor-650",
+      "brand": "Royal Enfield",
+      "model": "Interceptor 650",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "royal-enfield-super-meteor-650",
+      "brand": "Royal Enfield",
+      "model": "Super Meteor 650",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "yamaha-yzf-r15",
+      "brand": "Yamaha",
+      "model": "YZF-R15",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "yamaha-mt-15",
+      "brand": "Yamaha",
+      "model": "MT-15",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "yamaha-fz-s-fi",
+      "brand": "Yamaha",
+      "model": "FZ-S FI",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "yamaha-aerox-155",
+      "brand": "Yamaha",
+      "model": "Aerox 155",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "yamaha-rayzr-125",
+      "brand": "Yamaha",
+      "model": "RayZR 125",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "yamaha-yzf-r3",
+      "brand": "Yamaha",
+      "model": "YZF-R3",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "ktm-duke-200",
+      "brand": "KTM",
+      "model": "Duke 200",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "ktm-duke-390",
+      "brand": "KTM",
+      "model": "Duke 390",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "ktm-rc-200",
+      "brand": "KTM",
+      "model": "RC 200",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "ktm-rc-390",
+      "brand": "KTM",
+      "model": "RC 390",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "ktm-390-adventure",
+      "brand": "KTM",
+      "model": "390 Adventure",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "honda-activa-6g",
+      "brand": "Honda",
+      "model": "Activa 6G",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "honda-dio-125",
+      "brand": "Honda",
+      "model": "Dio 125",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "honda-shine-125",
+      "brand": "Honda",
+      "model": "Shine 125",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "honda-unicorn",
+      "brand": "Honda",
+      "model": "Unicorn",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "honda-cb350-hness",
+      "brand": "Honda",
+      "model": "CB350 Hness",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "honda-cb300r",
+      "brand": "Honda",
+      "model": "CB300R",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "honda-nx500",
+      "brand": "Honda",
+      "model": "NX500",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bajaj-pulsar-ns200",
+      "brand": "Bajaj",
+      "model": "Pulsar NS200",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bajaj-pulsar-rs200",
+      "brand": "Bajaj",
+      "model": "Pulsar RS200",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bajaj-dominar-400",
+      "brand": "Bajaj",
+      "model": "Dominar 400",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bajaj-pulsar-n160",
+      "brand": "Bajaj",
+      "model": "Pulsar N160",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bajaj-chetak",
+      "brand": "Bajaj",
+      "model": "Chetak",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bajaj-platina-110",
+      "brand": "Bajaj",
+      "model": "Platina 110",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tvs-apache-rtr-160-4v",
+      "brand": "TVS",
+      "model": "Apache RTR 160 4V",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tvs-apache-rtr-200-4v",
+      "brand": "TVS",
+      "model": "Apache RTR 200 4V",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tvs-apache-rr-310",
+      "brand": "TVS",
+      "model": "Apache RR 310",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tvs-jupiter-125",
+      "brand": "TVS",
+      "model": "Jupiter 125",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tvs-ntorq-125",
+      "brand": "TVS",
+      "model": "Ntorq 125",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tvs-ronin",
+      "brand": "TVS",
+      "model": "Ronin",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "tvs-iqube",
+      "brand": "TVS",
+      "model": "iQube",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hero-splendor-plus",
+      "brand": "Hero",
+      "model": "Splendor Plus",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hero-hf-deluxe",
+      "brand": "Hero",
+      "model": "HF Deluxe",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hero-glamour",
+      "brand": "Hero",
+      "model": "Glamour",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hero-xtreme-125r",
+      "brand": "Hero",
+      "model": "Xtreme 125R",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hero-xpulse-200-4v",
+      "brand": "Hero",
+      "model": "Xpulse 200 4V",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "hero-mavrick-440",
+      "brand": "Hero",
+      "model": "Mavrick 440",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "suzuki-access-125",
+      "brand": "Suzuki",
+      "model": "Access 125",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "suzuki-burgman-street",
+      "brand": "Suzuki",
+      "model": "Burgman Street",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "suzuki-gixxer-sf",
+      "brand": "Suzuki",
+      "model": "Gixxer SF",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "suzuki-gixxer-250",
+      "brand": "Suzuki",
+      "model": "Gixxer 250",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "suzuki-v-strom-sx",
+      "brand": "Suzuki",
+      "model": "V-Strom SX",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "suzuki-hayabusa",
+      "brand": "Suzuki",
+      "model": "Hayabusa",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "kawasaki-ninja-300",
+      "brand": "Kawasaki",
+      "model": "Ninja 300",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "kawasaki-ninja-500",
+      "brand": "Kawasaki",
+      "model": "Ninja 500",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "kawasaki-z900",
+      "brand": "Kawasaki",
+      "model": "Z900",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "kawasaki-eliminator",
+      "brand": "Kawasaki",
+      "model": "Eliminator",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-motorrad-g-310-r",
+      "brand": "BMW Motorrad",
+      "model": "G 310 R",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-motorrad-g-310-gs",
+      "brand": "BMW Motorrad",
+      "model": "G 310 GS",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-motorrad-g-310-rr",
+      "brand": "BMW Motorrad",
+      "model": "G 310 RR",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "bmw-motorrad-r-1250-gs",
+      "brand": "BMW Motorrad",
+      "model": "R 1250 GS",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "triumph-speed-400",
+      "brand": "Triumph",
+      "model": "Speed 400",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "triumph-scrambler-400-x",
+      "brand": "Triumph",
+      "model": "Scrambler 400 X",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "triumph-bonneville-t120",
+      "brand": "Triumph",
+      "model": "Bonneville T120",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "harley-davidson-x440",
+      "brand": "Harley-Davidson",
+      "model": "X440",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "harley-davidson-fat-boy",
+      "brand": "Harley-Davidson",
+      "model": "Fat Boy",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "aprilia-rs-457",
+      "brand": "Aprilia",
+      "model": "RS 457",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "aprilia-sr-160",
+      "brand": "Aprilia",
+      "model": "SR 160",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "ola-electric-s1-pro",
+      "brand": "Ola Electric",
+      "model": "S1 Pro",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "ola-electric-s1-air",
+      "brand": "Ola Electric",
+      "model": "S1 Air",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "ola-electric-s1-x",
+      "brand": "Ola Electric",
+      "model": "S1 X",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "ather-450x",
+      "brand": "Ather",
+      "model": "450X",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "ather-rizta",
+      "brand": "Ather",
+      "model": "Rizta",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    },
+    {
+      "id": "vida-v1-pro",
+      "brand": "Vida",
+      "model": "V1 Pro",
+      "vehicleType": "bike",
+      "galleryCount": 3,
+      "uniqueImageCount": 3,
+      "status": "🟢 VERIFIED (3/3 ANGLES)"
+    }
+  ]
+}

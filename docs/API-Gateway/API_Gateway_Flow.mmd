@@ -1,0 +1,69 @@
+sequenceDiagram
+    autonumber
+    actor Client as DriveEase React Client
+    participant Gateway as API Gateway Router
+    participant Discovery as Service Discovery (Eureka / Consul)
+    participant RateLimiter as Redis Rate Limiter
+    participant AuthSvc as Auth Microservice
+    participant VehicleSvc as Vehicle Microservice
+    participant BookingSvc as Booking Microservice
+    participant DB as Microservice DBs
+
+    %% Public Request Flow (Browse Vehicles)
+    rect rgb(240, 245, 255)
+        note over Client, VehicleSvc: PUBLIC ROUTE REQUEST FLOW (Catalog Browsing)
+        Client->>Gateway: GET /api/v1/vehicles?category=car
+        Gateway->>RateLimiter: Check Rate Limit (IP Token Bucket)
+        RateLimiter-->>Gateway: Allowed (Within Limit)
+        Gateway->>Gateway: Match Route: /api/v1/vehicles/** -> VEHICLE-SERVICE
+        Gateway->>Discovery: Lookup Healthy Instance for VEHICLE-SERVICE
+        Discovery-->>Gateway: Return Instance IP: [10.0.1.45:8083]
+        Gateway->>VehicleSvc: Forward GET Request (Public Endpoint)
+        VehicleSvc->>DB: Query Vehicle Catalog
+        DB-->>VehicleSvc: Return Vehicles List
+        VehicleSvc-->>Gateway: 200 OK (Vehicle JSON Array)
+        Gateway-->>Client: 200 OK (Render Catalog Grid)
+    end
+
+    %% Protected Request Flow (Create Booking)
+    rect rgb(245, 240, 255)
+        note over Client, BookingSvc: PROTECTED ROUTE REQUEST FLOW (Create Booking)
+        Client->>Gateway: POST /api/v1/bookings<br/>Header: Authorization: Bearer <Access-JWT>
+        Gateway->>Gateway: Extract Bearer Token & Verify Signature (RS256)
+        Gateway->>Gateway: Check Expiration & Issuer
+        alt Token Invalid or Expired
+            Gateway-->>Client: 401 Unauthorized
+        else Token Signature & Claims Valid
+            Gateway->>Gateway: Check Required Role (CUSTOMER)
+            Gateway->>Gateway: Inject Header: X-User-Id: usr_8912, X-User-Role: CUSTOMER
+            Gateway->>Discovery: Lookup Healthy Instance for BOOKING-SERVICE
+            Discovery-->>Gateway: Return Instance IP: [10.0.1.48:8084]
+            Gateway->>BookingSvc: Forward POST Request with User Headers
+            BookingSvc->>BookingSvc: Execute Business Validation
+            BookingSvc->>DB: Persist Booking Record
+            DB-->>BookingSvc: Saved Confirmation
+            BookingSvc-->>Gateway: 201 Created (Booking Details JSON)
+            Gateway-->>Client: 201 Created (Render Invoice Confirmation)
+        end
+    end
+
+    %% Admin Route Blocked Flow (Unauthorized Customer)
+    rect rgb(255, 240, 240)
+        note over Client, Gateway: ADMIN ROUTE SECURITY GUARD (Unauthorized Access)
+        Client->>Gateway: PUT /api/v1/vehicles/car-101<br/>Header: Authorization: Bearer <Customer-JWT>
+        Gateway->>Gateway: Verify JWT (Valid Customer Identity)
+        Gateway->>Gateway: Inspect Route Policy: Required Role = ADMIN
+        Gateway->>Gateway: Role Match Failed (Customer != Admin)
+        Gateway-->>Client: 403 Forbidden (Insufficient Privileges)
+    end
+
+    %% Service Timeout / Circuit Breaker Flow
+    rect rgb(255, 250, 240)
+        note over Client, Gateway: CIRCUIT BREAKER & TIMEOUT FALLBACK
+        Client->>Gateway: GET /api/v1/reviews/vehicle/car-101
+        Gateway->>Discovery: Lookup REVIEW-SERVICE
+        Gateway->>Gateway: Forward Request with Timeout (2000ms)
+        note over Gateway: Review Service Unresponsive (Timeout Exceeded)
+        Gateway->>Gateway: Trigger Circuit Breaker Fallback
+        Gateway-->>Client: 200 OK (Fallback: Review Service Temporarily Unavailable)
+    end

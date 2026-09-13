@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DriveEase Bike Fleet Visual Audit</title>
+  <style>
+    body {
+      background: #0d0d11;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 24px;
+      margin: 0;
+    }
+    h1 {
+      margin-bottom: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #18181f;
+      border: 1px solid #2d2d38;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .img-container {
+      width: 100%;
+      height: 200px;
+      background: #000;
+      position: relative;
+    }
+    .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .meta {
+      padding: 14px;
+    }
+    .brand {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #ef4444;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .model {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 4px 0 6px;
+    }
+    .specs {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+    .path {
+      font-size: 10px;
+      color: #6b7280;
+      margin-top: 8px;
+      font-family: monospace;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <h1>DriveEase Bike Fleet Visual Audit (72 Models)</h1>
+  <p style="color: #9ca3af; margin-bottom: 24px;">Visually inspect every single model to ensure it is a complete, authentic, full motorcycle/scooter photograph.</p>
+  <div id="grid" class="grid"></div>
+
+  <script type="module">
+    import { bikes } from '/src/data/bikes.js';
+    const grid = document.getElementById('grid');
+    bikes.forEach((b, i) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.id = 'card-' + b.id;
+      card.innerHTML = `
+        <div class="img-container">
+          <img src="${b.image}" alt="${b.name}" loading="lazy" />
+        </div>
+        <div class="meta">
+          <span class="brand">${b.brand} (${i + 1}/72)</span>
+          <div class="model">${b.name}</div>
+          <div class="specs">${b.category} · ${b.class} · ${b.enginePower || ''}</div>
+          <div class="path">ID: ${b.id}</div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
