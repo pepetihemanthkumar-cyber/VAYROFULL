@@ -4,6 +4,18 @@ import { LoaderCircle } from 'lucide-react'
 import { glassHover } from '../../animations/variants'
 import { cn } from '../../utils/cn'
 
+const componentCache = new Map()
+
+function getMotionComponent(as) {
+  if (as === 'button') return motion.button
+  if (as === 'a') return motion.a
+  if (typeof as === 'string' && motion[as]) return motion[as]
+  if (!componentCache.has(as)) {
+    componentCache.set(as, motion.create(as))
+  }
+  return componentCache.get(as)
+}
+
 export const GlassButton = forwardRef(function GlassButton(
   {
     as = 'button',
@@ -18,7 +30,7 @@ export const GlassButton = forwardRef(function GlassButton(
   },
   ref,
 ) {
-  const Component = as === 'button' ? motion.button : motion.create(as)
+  const Component = getMotionComponent(as)
 
   return (
     <Component
@@ -38,3 +50,4 @@ export const GlassButton = forwardRef(function GlassButton(
     </Component>
   )
 })
+

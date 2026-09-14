@@ -23,18 +23,15 @@ export function AppLayout() {
         />
         <TopNavigation />
         <main className="application-main">
-          <AnimatePresence mode="wait" initial={true}>
-            <motion.div
-              key={location.pathname}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={pageTransition}
-              className="page-transition-wrapper"
-            >
-              <Outlet />
-            </motion.div>
-          </AnimatePresence>
+          <motion.div
+            key={location.pathname + location.search}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="page-transition-wrapper"
+          >
+            <Outlet />
+          </motion.div>
         </main>
       </div>
     </div>

@@ -195,9 +195,13 @@ export function validateStoredVehicleImages() {
 export function getVehicleById(id) {
   if (!id || typeof id !== 'string') return null
   const vehicles = getStoredVehicles()
+  const cleanId = id.trim().toLowerCase()
   return (
     vehicles.find((vehicle) => vehicle.id === id) ||
-    vehicles.find((vehicle) => vehicle.id?.replace(/-\d{4}$/, '') === id.replace(/-\d{4}$/, '')) ||
+    vehicles.find((vehicle) => vehicle.id === cleanId) ||
+    vehicles.find((vehicle) => vehicle.id?.toLowerCase() === cleanId) ||
+    vehicles.find((vehicle) => vehicle.id?.replace(/-\d{4}$/, '') === cleanId.replace(/-\d{4}$/, '')) ||
+    vehicles.find((vehicle) => `${vehicle.brand}-${vehicle.model}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') === cleanId) ||
     null
   )
 }

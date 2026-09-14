@@ -104,40 +104,41 @@ export default function VehiclesPage() {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
 
-  // Determine active vehicleType (cars vs bikes)
-  const initialType = useMemo(() => {
+  // Determine active vehicleType (cars vs bikes) directly from route & params
+  const vehicleType = useMemo(() => {
     if (location.pathname === '/bikes' || searchParams.get('type') === 'bikes') {
       return 'bike'
     }
     return 'car'
   }, [location.pathname, searchParams])
 
-  const [vehicleType, setVehicleType] = useState(initialType)
   const [filters, setFilters] = useState(() => parseFiltersFromParams(searchParams))
   const [isLoading, setIsLoading] = useState(true)
   const [recentSearches, setRecentSearches] = useState(() => getRecentVehicleSearches())
 
   const allVehicles = useMemo(() => getVehicles(), [])
 
-  // Sync vehicleType from route/param changes
+  // Sync filters from URL searchParams when location/searchParams change externally
   useEffect(() => {
-    if (location.pathname === '/bikes' || searchParams.get('type') === 'bikes') {
-      setVehicleType('bike')
-    } else if (location.pathname === '/cars' || searchParams.get('type') === 'cars') {
-      setVehicleType('car')
-    }
-  }, [location.pathname, searchParams])
+    const parsed = parseFiltersFromParams(searchParams)
+    setFilters((prev) => {
+      const isSame = Object.keys(parsed).every((k) => prev[k] === parsed[k])
+      return isSame ? prev : parsed
+    })
+  }, [searchParams])
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setIsLoading(false), 200)
+    const timer = window.setTimeout(() => setIsLoading(false), 150)
     return () => window.clearTimeout(timer)
-  }, [vehicleType])
+  }, [vehicleType, filters.category, filters.brand])
 
-  // Sync state to URL params
+  // Sync state to URL params safely without infinite loop
   useEffect(() => {
     const nextParams = syncFiltersToParams(vehicleType, filters)
-    setSearchParams(nextParams, { replace: true })
-  }, [vehicleType, filters, setSearchParams])
+    if (nextParams.toString() !== searchParams.toString()) {
+      setSearchParams(nextParams, { replace: true })
+    }
+  }, [vehicleType, filters, searchParams, setSearchParams])
 
   // Filter pool by active vehicleType ('car' or 'bike')
   const fleetByType = useMemo(() => {
@@ -248,13 +249,17 @@ export default function VehiclesPage() {
   )
 
   const handleTypeChange = useCallback((nextType) => {
-    setVehicleType(nextType)
-    setFilters({
+    if (nextType === 'bike') {
+      navigate('/bikes')
+    } else {
+      navigate('/cars')
+    }
+    setFilters((prev) => ({
       ...defaultFilters,
-      search: filters.search,
-    })
+      search: prev.search,
+    }))
     setIsLoading(true)
-  }, [filters.search])
+  }, [navigate])
 
   const handleSelectCategory = useCallback((categoryId) => {
     setFilters((prev) => ({

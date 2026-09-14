@@ -18,7 +18,7 @@ import {
   UserRound,
 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { fadeUp, pageTransition } from '../animations/variants'
 import { BookingAddons } from '../components/bookings/BookingAddons'
 import { BookingReview } from '../components/bookings/BookingReview'
@@ -332,8 +332,12 @@ export default function NewBookingPage() {
           <span className="vehicle-empty-icon">
             <CarFront size={28} />
           </span>
-          <h2>No vehicle selected</h2>
-          <p>Please select an available vehicle from our fleet catalogue to begin your booking.</p>
+          <h2>{vehicleId ? 'Vehicle not found' : 'No vehicle selected'}</h2>
+          <p>
+            {vehicleId
+              ? `We couldn't find a vehicle matching "${vehicleId}". Please select a valid vehicle from our fleet catalogue.`
+              : 'Please select an available vehicle from our fleet catalogue to begin your booking.'}
+          </p>
           <GlassButton as={Link} to="/vehicles">
             Browse fleet catalogue
           </GlassButton>
@@ -475,7 +479,11 @@ export default function NewBookingPage() {
                 <div className="booking-vehicle-card-body">
                   <p className="eyebrow">Selected vehicle</p>
                   <h3>{vehicle.name}</h3>
-                  <p>{vehicle.year} · {vehicle.type} · {vehicle.transmission}</p>
+                  <p>
+                    {vehicle.vehicleType === 'bike'
+                      ? `${vehicle.category || vehicle.type} · ${vehicle.class || 'Standard'} · ${vehicle.fuelType || 'Petrol'}`
+                      : `${vehicle.year} · ${vehicle.type} · ${vehicle.transmission || 'Automatic'}`}
+                  </p>
                   <strong>
                     {formatCurrency(vehicle.dailyRate)} <span>per day</span>
                   </strong>
