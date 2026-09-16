@@ -11,6 +11,7 @@ import { VehicleTypeSelector } from '../components/vehicles/VehicleTypeSelector'
 import { GlassButton } from '../components/ui/GlassButton'
 import { GlassCard } from '../components/ui/GlassCard'
 import {
+  fetchVehicles,
   getRecentVehicleSearches,
   getVehicles,
   saveRecentVehicleSearches,
@@ -116,7 +117,29 @@ export default function VehiclesPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [recentSearches, setRecentSearches] = useState(() => getRecentVehicleSearches())
 
-  const allVehicles = useMemo(() => getVehicles(), [])
+  const [allVehicles, setAllVehicles] = useState(() => getVehicles())
+
+  useEffect(() => {
+    let isCancelled = false
+    setIsLoading(true)
+
+    fetchVehicles()
+      .then((res) => {
+        if (!isCancelled && res.content?.length) {
+          setAllVehicles(res.content)
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (!isCancelled) {
+          setIsLoading(false)
+        }
+      })
+
+    return () => {
+      isCancelled = true
+    }
+  }, [])
 
   // Sync filters from URL searchParams when location/searchParams change externally
   useEffect(() => {

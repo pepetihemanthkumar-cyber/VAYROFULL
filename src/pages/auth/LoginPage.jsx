@@ -19,7 +19,7 @@ export function getRememberedCredentials() {
     const raw = localStorage.getItem(REMEMBER_ME_STORAGE_KEY)
     if (!raw) return null
     const parsed = JSON.parse(raw)
-    if (parsed && typeof parsed === 'object' && parsed.email && parsed.password) {
+    if (parsed && typeof parsed === 'object' && parsed.email) {
       return parsed
     }
     return null
@@ -34,7 +34,6 @@ export function saveRememberedCredentials(credentials) {
       REMEMBER_ME_STORAGE_KEY,
       JSON.stringify({
         email: credentials.email,
-        password: credentials.password,
         mode: credentials.mode || 'user',
         savedAt: new Date().toISOString(),
       })
@@ -120,10 +119,10 @@ export default function LoginPage() {
       const user = await login(form)
 
       // STRICT ROLE VALIDATION:
-      // USER mode requires CUSTOMER role (user.role !== 'ADMIN')
+      // USER mode requires USER role (user.role === 'USER')
       // ADMIN mode requires ADMIN role (user.role === 'ADMIN')
       const isRoleValid =
-        loginMode === 'admin' ? user.role === 'ADMIN' : user.role !== 'ADMIN'
+        loginMode === 'admin' ? user.role === 'ADMIN' : user.role === 'USER'
 
       if (!isRoleValid) {
         logout()
@@ -132,7 +131,7 @@ export default function LoginPage() {
       }
 
       if (rememberMe && loginMode === 'user') {
-        saveRememberedCredentials({ email: form.email, password: form.password, mode: loginMode })
+        saveRememberedCredentials({ email: form.email, mode: loginMode })
       } else {
         clearRememberedCredentials()
       }
@@ -140,7 +139,7 @@ export default function LoginPage() {
       const targetPath = getValidReturnUrl(location.state?.from, user.role)
       navigate(targetPath, { replace: true })
     } catch (error) {
-      setFormError('Invalid credentials or account type.')
+      setFormError(error.message || 'Invalid credentials or account type.')
     } finally {
       setIsSubmitting(false)
     }

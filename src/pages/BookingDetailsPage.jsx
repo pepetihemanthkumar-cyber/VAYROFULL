@@ -60,15 +60,47 @@ export default function BookingDetailsPage() {
   }
 
   useEffect(() => {
-    const loaded = getBookingById(id)
-    setBooking(loaded)
-    setIsLoading(false)
+    let isCancelled = false
+    setIsLoading(true)
+
+    async function loadBooking() {
+      try {
+        let loaded = null
+        if (/^\d+$/.test(id)) {
+          loaded = await fetchBookingById(id)
+        } else {
+          try {
+            loaded = await fetchBookingByReference(id)
+          } catch {
+            loaded = await fetchBookingById(id)
+          }
+        }
+        if (!isCancelled) {
+          setBooking(loaded)
+        }
+      } catch (err) {
+        if (!isCancelled) {
+          setBooking(null)
+        }
+      } finally {
+        if (!isCancelled) {
+          setIsLoading(false)
+        }
+      }
+    }
+
+    loadBooking()
+
+    return () => {
+      isCancelled = true
+    }
   }, [id])
 
   async function handleConfirmCancel(bookingId) {
     setIsProcessing(true)
     try {
-      const updated = await cancelCustomerBooking(bookingId)
+      const targetId = booking?.rawId || bookingId || id
+      const updated = await cancelCustomerBooking(targetId)
       setBooking(updated)
       setIsCancelModalOpen(false)
       toast.success('Your reservation has been cancelled.')
@@ -90,7 +122,8 @@ export default function BookingDetailsPage() {
   async function handleConfirmReturn(bookingId) {
     setIsProcessing(true)
     try {
-      const updated = await returnCustomerRental(bookingId)
+      const targetId = booking?.rawId || bookingId || id
+      const updated = await returnCustomerRental(targetId)
       setBooking(updated)
       setIsReturnModalOpen(false)
       toast.success('Vehicle returned successfully.')

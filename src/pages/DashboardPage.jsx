@@ -30,14 +30,15 @@ import { useAuth } from '../context/AuthContext'
 import { useToast } from '../context/ToastContext'
 import {
   cancelCustomerBooking,
+  fetchMyBookings,
   getActiveBookings,
   getBookingWithVehicle,
-  getBookingsForCustomer,
   getStoredActivities,
   getUpcomingBooking,
   returnCustomerRental,
 } from '../services/bookingService'
 import {
+  fetchVehicles,
   getCompareVehicleIds,
   getFavoriteVehicles,
   getRecentVehicleSearches,
@@ -74,31 +75,40 @@ export default function DashboardPage() {
   const [cancelTarget, setCancelTarget] = useState(null)
   const [returnTarget, setReturnTarget] = useState(null)
 
-  function loadDashboard() {
+  async function loadDashboard() {
     if (!user?.id) return
 
-    const totalFleet = getVehicles().filter((v) => v.status === 'AVAILABLE').length
-    const activeList = getActiveBookings(user.id)
-    const upcoming = getBookingWithVehicle(getUpcomingBooking(user.id))
-    const customerBookings = getBookingsForCustomer(user.id)
-    const upcomingCount = customerBookings.filter((b) => b.status === 'CONFIRMED').length
-    const activities = getStoredActivities()
+    try {
+      const [vehiclesRes, customerBookings] = await Promise.all([
+        fetchVehicles({ size: 300 }).catch(() => ({ content: getVehicles() })),
+        fetchMyBookings().catch(() => []),
+      ])
 
-    const activeBooking = activeList.length > 0 ? getBookingWithVehicle(activeList[0]) : null
-    const primaryRental = activeBooking || upcoming
+      const vehiclesList = vehiclesRes.content || getVehicles()
+      const totalFleet = vehiclesList.filter((v) => v.status === 'AVAILABLE').length
+      const activeList = customerBookings.filter((b) => b.status === 'ACTIVE')
+      const upcoming = customerBookings.find((b) => b.status === 'CONFIRMED') || null
+      const upcomingCount = customerBookings.filter((b) => b.status === 'CONFIRMED').length
+      const activities = getStoredActivities()
 
-    setDashboardData({
-      availableVehicles: Math.max(0, totalFleet - activeList.length),
-      activeRentals: activeList.length,
-      upcomingCount,
-      primaryRental,
-      activeBooking,
-      upcomingBooking: upcoming,
-      activities,
-      customerBookings,
-    })
-    setFavoriteVehicles(getFavoriteVehicles())
-    setCompareCount(getCompareVehicleIds().length)
+      const activeBooking = activeList.length > 0 ? getBookingWithVehicle(activeList[0]) : null
+      const primaryRental = activeBooking || (upcoming ? getBookingWithVehicle(upcoming) : null)
+
+      setDashboardData({
+        availableVehicles: Math.max(0, totalFleet - activeList.length),
+        activeRentals: activeList.length,
+        upcomingCount,
+        primaryRental,
+        activeBooking,
+        upcomingBooking: upcoming ? getBookingWithVehicle(upcoming) : null,
+        activities,
+        customerBookings,
+      })
+      setFavoriteVehicles(getFavoriteVehicles())
+      setCompareCount(getCompareVehicleIds().length)
+    } catch {
+      // fallback smoothly
+    }
   }
 
   useEffect(() => {

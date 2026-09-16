@@ -7,7 +7,7 @@ import { BookingCard } from '../components/bookings/BookingCard'
 import { GlassButton } from '../components/ui/GlassButton'
 import { GlassCard } from '../components/ui/GlassCard'
 import { useAuth } from '../context/AuthContext'
-import { getBookingsForCustomer } from '../services/bookingService'
+import { fetchMyBookings } from '../services/bookingService'
 
 const TABS = [
   { id: 'ALL', label: 'All bookings' },
@@ -24,13 +24,29 @@ export default function BookingsPage() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Load customer bookings from service
-    if (user?.id) {
-      const list = getBookingsForCustomer(user.id)
-      setBookings(list)
+    let isCancelled = false
+    setIsLoading(true)
+
+    fetchMyBookings()
+      .then((list) => {
+        if (!isCancelled) {
+          setBookings(list)
+        }
+      })
+      .catch(() => {
+        if (!isCancelled) {
+          setBookings([])
+        }
+      })
+      .finally(() => {
+        if (!isCancelled) {
+          setIsLoading(false)
+        }
+      })
+
+    return () => {
+      isCancelled = true
     }
-    const timer = window.setTimeout(() => setIsLoading(false), 240)
-    return () => window.clearTimeout(timer)
   }, [user?.id])
 
   const counts = useMemo(() => {

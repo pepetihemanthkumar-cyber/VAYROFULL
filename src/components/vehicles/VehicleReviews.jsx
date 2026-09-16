@@ -56,6 +56,12 @@ export function VehicleReviews({ vehicle, vehicleId, vehicleName }) {
   const [isAdding, setIsAdding] = useState(false)
   const [editingId, setEditingId] = useState(null)
 
+  useEffect(() => {
+    if (activeVehicleId) {
+      setData(getReviewsByVehicleId(activeVehicleId))
+    }
+  }, [activeVehicleId])
+
   const [form, setForm] = useState({
     rating: 5,
     title: '',

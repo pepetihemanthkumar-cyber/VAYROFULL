@@ -2,9 +2,9 @@ import axios from 'axios'
 
 const SESSION_KEY = 'vayro_session'
 
-// Configured base URL for future Spring Boot API Gateway
+// Configured base URL for Spring Boot API Gateway (Port 8080)
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8080',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -46,7 +46,10 @@ api.interceptors.response.use(
       error.message ||
       'An unexpected network error occurred.'
 
-    return Promise.reject(new Error(message))
+    const err = new Error(message)
+    err.status = error.response?.status
+    err.response = error.response
+    return Promise.reject(err)
   },
 )
 
@@ -54,4 +57,3 @@ export function getApiErrorMessage(err, fallback = 'Operation failed. Please try
   if (!err) return fallback
   return err.response?.data?.message || err.message || fallback
 }
-

@@ -23,9 +23,9 @@ import { GlassCard } from '../components/ui/GlassCard'
 import { VehicleCard } from '../components/vehicles/VehicleCard'
 import { VehicleImage } from '../components/vehicles/VehicleImage'
 import { VehicleReviews } from '../components/vehicles/VehicleReviews'
-import { checkVehicleAvailability } from '../services/bookingService'
+import { checkBookingAvailability } from '../services/bookingService'
 import { recordRecentlyViewed } from '../services/recentlyViewedService'
-import { getVehicleById, getVehicles } from '../services/vehicleService'
+import { fetchVehicleById, fetchVehicles, getVehicleById, getVehicles } from '../services/vehicleService'
 import { formatCurrency, formatStatus } from '../utils/formatters'
 import {
   addDays,
@@ -142,8 +142,38 @@ export default function VehicleDetailsPage() {
   const { id } = useParams()
   const location = useLocation()
   const navigate = useNavigate()
-  const vehicle = getVehicleById(id)
-  const allVehicles = useMemo(() => getVehicles(), [])
+  const [vehicle, setVehicle] = useState(() => getVehicleById(id))
+  const [allVehicles, setAllVehicles] = useState(() => getVehicles())
+  const [isLoading, setIsLoading] = useState(() => !getVehicleById(id))
+
+  useEffect(() => {
+    let isCancelled = false
+    async function load() {
+      try {
+        const fetched = await fetchVehicleById(id)
+        if (!isCancelled && fetched) {
+          setVehicle(fetched)
+        }
+      } catch {
+        // preserve cached or fallback
+      } finally {
+        if (!isCancelled) {
+          setIsLoading(false)
+        }
+      }
+    }
+
+    load()
+    if (allVehicles.length === 0) {
+      fetchVehicles().then((res) => {
+        if (!isCancelled && res.content) setAllVehicles(res.content)
+      }).catch(() => {})
+    }
+
+    return () => {
+      isCancelled = true
+    }
+  }, [id])
 
   useEffect(() => {
     if (vehicle) {
@@ -167,16 +197,28 @@ export default function VehicleDetailsPage() {
 
   useEffect(() => {
     if (!vehicle) return
-    const result = checkVehicleAvailability(
-      vehicle.id,
-      schedule.pickupDate,
-      schedule.returnDate,
-      null,
-      schedule.pickupTime,
-      schedule.returnTime,
-    )
-    setAvailability(result)
-  }, [vehicle, schedule])
+    let isCancelled = false
+    const pTime = schedule.pickupTime?.length === 5 ? `${schedule.pickupTime}:00` : (schedule.pickupTime || '10:00:00')
+    const rTime = schedule.returnTime?.length === 5 ? `${schedule.returnTime}:00` : (schedule.returnTime || '10:00:00')
+    const pickupDateTime = `${schedule.pickupDate}T${pTime}`
+    const returnDateTime = `${schedule.returnDate}T${rTime}`
+
+    checkBookingAvailability(vehicle.id, pickupDateTime, returnDateTime)
+      .then((res) => {
+        if (!isCancelled) setAvailability(res)
+      })
+      .catch(() => {
+        if (!isCancelled) setAvailability({ available: true })
+      })
+
+    return () => {
+      isCancelled = true
+    }
+  }, [vehicle?.id, schedule])
+
+  if (isLoading) {
+    return <div className="route-loading" aria-label="Loading vehicle details" />
+  }
 
   if (!vehicle) {
     return <Navigate to="/vehicles" replace />

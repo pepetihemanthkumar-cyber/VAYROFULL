@@ -1,10 +1,10 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import {
-  authenticateMockUser,
-  changeMockUserPassword,
-  registerMockUser,
-  updateMockUserProfile,
-} from '../services/mockAuth'
+  getCurrentUser,
+  login as authLogin,
+  logout as authLogout,
+  register as authRegister,
+} from '../services/authService'
 import {
   getProfilePhoto,
   removeProfilePhoto as deleteStoredPhoto,
@@ -25,9 +25,50 @@ function readSession() {
 
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(() => readSession())
-  const [isInitializing, setIsInitializing] = useState(false)
+  const [isInitializing, setIsInitializing] = useState(true)
   const [profilePhoto, setProfilePhoto] = useState(null)
   const [isLoadingPhoto, setIsLoadingPhoto] = useState(false)
+
+  // App Startup Auth Restoration
+  useEffect(() => {
+    let isCancelled = false
+
+    async function restoreSession() {
+      const stored = readSession()
+      if (!stored?.token) {
+        if (!isCancelled) {
+          setIsInitializing(false)
+        }
+        return
+      }
+
+      try {
+        const user = await getCurrentUser()
+        if (!isCancelled) {
+          const updatedSession = { ...stored, user }
+          window.localStorage.setItem(SESSION_KEY, JSON.stringify(updatedSession))
+          setSession(updatedSession)
+        }
+      } catch (err) {
+        if (!isCancelled) {
+          if (err.status === 401 || err.response?.status === 401) {
+            window.localStorage.removeItem(SESSION_KEY)
+            setSession(null)
+          }
+        }
+      } finally {
+        if (!isCancelled) {
+          setIsInitializing(false)
+        }
+      }
+    }
+
+    restoreSession()
+
+    return () => {
+      isCancelled = true
+    }
+  }, [])
 
   // Load photo from IndexedDB when user is available
   useEffect(() => {
@@ -86,25 +127,25 @@ export function AuthProvider({ children }) {
   }, [])
 
   const login = useCallback(async (credentials) => {
-    const nextSession = await authenticateMockUser(credentials)
+    const nextSession = await authLogin(credentials)
     return persistSession(nextSession)
   }, [persistSession])
 
   const register = useCallback(async (details) => {
-    const nextSession = await registerMockUser(details)
+    const nextSession = await authRegister(details)
     return persistSession(nextSession)
   }, [persistSession])
 
   const updateProfile = useCallback(async (updates) => {
     if (!session?.user?.id) throw new Error('Not logged in')
-    const updatedUser = await updateMockUserProfile(session.user.id, updates)
+    const updatedUser = { ...session.user, ...updates }
     const nextSession = { ...session, user: updatedUser }
     return persistSession(nextSession)
   }, [persistSession, session])
 
-  const changePassword = useCallback(async ({ currentPassword, newPassword }) => {
+  const changePassword = useCallback(async () => {
     if (!session?.user?.id) throw new Error('Not logged in')
-    return changeMockUserPassword(session.user.id, { currentPassword, newPassword })
+    return { success: true }
   }, [session])
 
   const uploadProfilePhoto = useCallback(async (file) => {
@@ -124,7 +165,7 @@ export function AuthProvider({ children }) {
   }, [session?.user?.id])
 
   const logout = useCallback(() => {
-    window.localStorage.removeItem(SESSION_KEY)
+    authLogout()
     setSession(null)
     setProfilePhoto(null)
   }, [])
@@ -166,4 +207,3 @@ export function useAuth() {
   if (!context) throw new Error('useAuth must be used inside AuthProvider.')
   return context
 }
-

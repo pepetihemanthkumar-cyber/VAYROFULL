@@ -16,7 +16,7 @@ import { VehicleStatusModal } from '../../components/admin/VehicleStatusModal'
 import { GlassButton } from '../../components/ui/GlassButton'
 import { GlassCard } from '../../components/ui/GlassCard'
 import { GlassInput } from '../../components/ui/GlassInput'
-import { getVehicles, updateVehicleStatus } from '../../services/vehicleService'
+import { fetchVehicles, getVehicles, updateVehicleStatus } from '../../services/vehicleService'
 
 const defaultFilters = {
   vehicleType: 'ALL',
@@ -41,7 +41,7 @@ function sortVehicles(list, sort) {
 }
 
 export default function AdminVehiclesPage() {
-  const [vehicles, setVehicles] = useState([])
+  const [vehicles, setVehicles] = useState(() => getVehicles())
   const [filters, setFilters] = useState(defaultFilters)
   const [selectedVehicleForStatus, setSelectedVehicleForStatus] = useState(null)
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false)
@@ -49,7 +49,13 @@ export default function AdminVehiclesPage() {
   const [toastMessage, setToastMessage] = useState(null)
 
   function loadVehicles() {
-    setVehicles(getVehicles())
+    fetchVehicles({ size: 300 })
+      .then((res) => {
+        if (res.content?.length) {
+          setVehicles(res.content)
+        }
+      })
+      .catch(() => {})
   }
 
   useEffect(() => {

@@ -24,27 +24,43 @@ import { FleetStatusOverview } from '../../components/admin/FleetStatusOverview'
 import { GlassBadge } from '../../components/ui/GlassBadge'
 import { GlassButton } from '../../components/ui/GlassButton'
 import { GlassCard } from '../../components/ui/GlassCard'
-import { getAllBookings, getStoredActivities } from '../../services/bookingService'
-import { getVehicles } from '../../services/vehicleService'
+import { fetchAllBookings, getStoredActivities } from '../../services/bookingService'
+import { fetchVehicles, getVehicles } from '../../services/vehicleService'
 import { formatCurrency, formatDate, formatStatus } from '../../utils/formatters'
 
 const activityIcons = { confirmed: CheckCircle2, returned: RotateCcw, cancelled: CircleX }
 
 export default function AdminDashboardPage() {
-  const [vehicles, setVehicles] = useState([])
+  const [vehicles, setVehicles] = useState(() => getVehicles())
   const [bookings, setBookings] = useState([])
   const [activities, setActivities] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const loadedVehicles = getVehicles()
-    const loadedBookings = getAllBookings()
-    const loadedActivities = getStoredActivities()
+    let isCancelled = false
+    setIsLoading(true)
 
-    setVehicles(loadedVehicles)
-    setBookings(loadedBookings)
-    setActivities(loadedActivities)
-    setIsLoading(false)
+    Promise.all([
+      fetchVehicles({ size: 300 }).catch(() => ({ content: getVehicles() })),
+      fetchAllBookings({ size: 200 }).catch(() => []),
+    ])
+      .then(([vehiclesRes, bookingsRes]) => {
+        if (!isCancelled) {
+          setVehicles(vehiclesRes.content || getVehicles())
+          setBookings(bookingsRes || [])
+          setActivities(getStoredActivities())
+        }
+      })
+      .catch(() => { })
+      .finally(() => {
+        if (!isCancelled) {
+          setIsLoading(false)
+        }
+      })
+
+    return () => {
+      isCancelled = true
+    }
   }, [])
 
   const availableCount = vehicles.filter((v) => v.status === 'AVAILABLE').length

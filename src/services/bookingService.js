@@ -1,92 +1,359 @@
-import { mockBookings as seedBookings, recentActivities as seedActivities } from '../data/bookings'
-import { getVehicleById, getVehicles } from './vehicleService'
-import {
-  areDateRangesOverlapping,
-  calculateBookingBreakdown,
-  calculateRentalDays,
-  calculateRentalDuration,
-  calculateRentalPrice,
-  isFutureDate,
-} from '../utils/rental'
+import { api } from './api'
+import { getVehicleById } from './vehicleService'
+import { RENTAL_ADDONS, calculateRentalDuration } from '../utils/rental'
 
-const BOOKINGS_KEY = 'vayro_mock_bookings'
 const ACTIVITIES_KEY = 'vayro_mock_activities'
 
-function pause(duration = 200) {
-  return new Promise((resolve) => window.setTimeout(resolve, duration))
-}
+export function mapBooking(b) {
+  if (!b) return null
+  const pickupDt = b.pickupDateTime ? String(b.pickupDateTime) : ''
+  const returnDt = b.returnDateTime ? String(b.returnDateTime) : ''
+  const pickupDate = pickupDt.slice(0, 10)
+  const pickupTime = pickupDt.includes('T') ? pickupDt.slice(11, 16) : '10:00'
+  const returnDate = returnDt.slice(0, 10)
+  const returnTime = returnDt.includes('T') ? returnDt.slice(11, 16) : '10:00'
 
-function initializeStore() {
-  try {
-    const existing = window.localStorage.getItem(BOOKINGS_KEY)
-    if (!existing) {
-      const enrichedSeed = seedBookings.map((b) => {
-        const vehicle = getVehicleById(b.vehicleId)
-        const days = calculateRentalDays(b.pickupDate, b.returnDate)
-        const breakdown = calculateBookingBreakdown({
-          dailyRate: vehicle?.dailyRate || 3000,
-          days,
-          selectedAddonIds: ['premium_protection'],
-        })
-        return {
-          ...b,
-          rentalDays: days,
-          dailyRate: vehicle?.dailyRate || 3000,
-          selectedAddons: ['premium_protection'],
-          driverDetails: {
-            fullName: 'Aarav Mehta',
-            email: 'customer@vayro.com',
-            phone: '+91 98765 43210',
-            licenseNumber: 'MH01-2021-008492',
-          },
-          vehicleTotal: breakdown.vehicleTotal,
-          addonsTotal: breakdown.addonsTotal,
-          totalAmount: b.totalAmount || breakdown.totalAmount,
-          createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
-        }
-      })
-      window.localStorage.setItem(BOOKINGS_KEY, JSON.stringify(enrichedSeed))
-    }
+  const duration = calculateRentalDuration(pickupDate, pickupTime, returnDate, returnTime)
 
-    const existingActivities = window.localStorage.getItem(ACTIVITIES_KEY)
-    if (!existingActivities) {
-      window.localStorage.setItem(ACTIVITIES_KEY, JSON.stringify(seedActivities))
-    }
-  } catch (err) {
-    console.error('Failed to initialize booking store:', err)
+  return {
+    id: b.bookingReference || (b.id ? `BK-${b.id}` : 'BK-REF'),
+    rawId: b.id,
+    bookingReference: b.bookingReference,
+    vehicleId: b.vehicleId,
+    vehicleName: b.vehicleName,
+    userId: b.userId,
+    customerId: b.userId,
+    customerName: b.customerName,
+    customerEmail: b.customerEmail,
+    pickupDateTime: b.pickupDateTime,
+    returnDateTime: b.returnDateTime,
+    pickupDate,
+    pickupTime,
+    returnDate,
+    returnTime,
+    rentalDays: b.rentalDays || duration.days || 1,
+    durationLabel: duration.valid ? duration.label : `${b.rentalDays || 1} days`,
+    durationHours: duration.hours,
+    dailyRate: b.pricePerDay ? Number(b.pricePerDay) : 0,
+    pricePerDay: b.pricePerDay ? Number(b.pricePerDay) : 0,
+    baseAmount: b.baseAmount ? Number(b.baseAmount) : 0,
+    addOnsAmount: b.addOnsAmount ? Number(b.addOnsAmount) : 0,
+    discountAmount: b.discountAmount ? Number(b.discountAmount) : 0,
+    taxAmount: b.taxAmount ? Number(b.taxAmount) : 0,
+    totalAmount: b.totalAmount ? Number(b.totalAmount) : 0,
+    status: b.status,
+    paymentStatus: b.paymentStatus || 'COMPLETED',
+    paymentReference: b.bookingReference ? `PAY-${b.bookingReference}` : 'PAY-DIRECT',
+    pickupLocation: b.pickupLocation,
+    returnLocation: b.returnLocation,
+    notes: b.notes,
+    returnedAt: b.returnedAt,
+    createdAt: b.createdAt,
+    updatedAt: b.updatedAt,
+    priceBreakdown: b.priceBreakdown,
+    vehicle: getVehicleById(b.vehicleId) || null,
+    vehicleSnapshot: {
+      id: b.vehicleId,
+      name: b.vehicleName,
+    },
+    driverDetails: {
+      fullName: b.customerName || 'Driver',
+      email: b.customerEmail || '',
+      phone: '+91 98765 43210',
+      licenseNumber: 'MH01-2022-998811',
+    },
   }
 }
 
-// Auto-run initialization
-initializeStore()
+/**
+ * Create a new booking via Gateway: POST /api/bookings
+ */
+export async function createBooking(data) {
+  // Format dates into ISO LocalDateTime string: YYYY-MM-DDTHH:mm:ss
+  let pickupDateTime = data.pickupDateTime
+  if (!pickupDateTime && data.pickupDate) {
+    const time = data.pickupTime ? (data.pickupTime.length === 5 ? `${data.pickupTime}:00` : data.pickupTime) : '10:00:00'
+    pickupDateTime = `${data.pickupDate}T${time}`
+  }
 
-export function getStoredBookings() {
+  let returnDateTime = data.returnDateTime
+  if (!returnDateTime && data.returnDate) {
+    const time = data.returnTime ? (data.returnTime.length === 5 ? `${data.returnTime}:00` : data.returnTime) : '10:00:00'
+    returnDateTime = `${data.returnDate}T${time}`
+  }
+
+  // Ensure clean ISO string without duplicate seconds or T
+  if (pickupDateTime && !pickupDateTime.includes('T')) {
+    pickupDateTime = `${pickupDateTime}T10:00:00`
+  }
+  if (returnDateTime && !returnDateTime.includes('T')) {
+    returnDateTime = `${returnDateTime}T10:00:00`
+  }
+
+  // Map add-ons
+  const addOns = (data.selectedAddons || data.addOns || []).map((addon) => {
+    if (typeof addon === 'string') {
+      const found = RENTAL_ADDONS.find((a) => a.id === addon)
+      return {
+        id: addon,
+        name: found?.name || addon,
+        price: found?.pricePerDay || 200,
+      }
+    }
+    return {
+      id: addon.id,
+      name: addon.name || addon.id,
+      price: addon.price || addon.pricePerDay || 200,
+    }
+  })
+
+  const payload = {
+    vehicleId: data.vehicleId,
+    pickupDateTime,
+    returnDateTime,
+    pickupLocation: data.pickupLocation || 'Mumbai Central Hub',
+    returnLocation: data.returnLocation || data.pickupLocation || 'Mumbai Central Hub',
+    notes: data.notes || '',
+    addOns,
+    couponCode: data.couponCode || null,
+    discountAmount: data.discountAmount || data.couponDiscount || null,
+  }
+
+  const response = await api.post('/api/bookings', payload)
+  return mapBooking(response.data)
+}
+
+/**
+ * Fetch current user's bookings: GET /api/bookings/my
+ */
+export async function fetchMyBookings(params = {}) {
+  const query = {
+    page: params.page ?? 0,
+    size: params.size ?? 100,
+    ...params,
+  }
+
+  const response = await api.get('/api/bookings/my', { params: query })
+  const data = response.data
+  const list = Array.isArray(data) ? data : (data.content || [])
+  return list.map(mapBooking)
+}
+
+/**
+ * Alias for customer bookings fetch
+ */
+export async function getBookingsForCustomer(userId) {
   try {
-    const raw = window.localStorage.getItem(BOOKINGS_KEY)
-    return raw ? JSON.parse(raw) : seedBookings
+    return await fetchMyBookings()
   } catch {
-    return seedBookings
+    return []
   }
 }
 
-export function saveStoredBookings(bookings) {
+/**
+ * Fetch booking details by ID: GET /api/bookings/{id}
+ */
+export async function fetchBookingById(id) {
+  if (!id) return null
+  const response = await api.get(`/api/bookings/${id}`)
+  return mapBooking(response.data)
+}
+
+export async function getBookingById(id) {
+  return fetchBookingById(id)
+}
+
+/**
+ * Fetch booking details by Reference: GET /api/bookings/reference/{reference}
+ */
+export async function fetchBookingByReference(reference) {
+  if (!reference) return null
+  const response = await api.get(`/api/bookings/reference/${reference}`)
+  return mapBooking(response.data)
+}
+
+/**
+ * Check real booking availability via Booking Service: GET /api/bookings/availability/{vehicleId}
+ */
+export async function checkBookingAvailability(vehicleId, pickupDateTime, returnDateTime) {
+  if (!vehicleId) return { available: false, reason: 'Vehicle ID required' }
+
+  let pDt = pickupDateTime
+  if (pDt && !pDt.includes('T')) pDt = `${pDt}T10:00:00`
+  let rDt = returnDateTime
+  if (rDt && !rDt.includes('T')) rDt = `${rDt}T10:00:00`
+
   try {
-    window.localStorage.setItem(BOOKINGS_KEY, JSON.stringify(bookings))
+    const response = await api.get(`/api/bookings/availability/${vehicleId}`, {
+      params: {
+        pickupDateTime: pDt,
+        returnDateTime: rDt,
+      },
+    })
+    return response.data
   } catch (err) {
-    console.error('Failed to save bookings:', err)
+    return {
+      vehicleId,
+      available: false,
+      reason: err.message || 'Availability check failed',
+    }
   }
+}
+
+/**
+ * Alias for vehicle details availability check
+ */
+export function checkVehicleAvailability(vehicleId, pickupDate, returnDate, excludeId, pickupTime, returnTime) {
+  if (!vehicleId || !pickupDate || !returnDate) {
+    return { available: true }
+  }
+
+  const pTime = pickupTime ? (pickupTime.length === 5 ? `${pickupTime}:00` : pickupTime) : '10:00:00'
+  const rTime = returnTime ? (returnTime.length === 5 ? `${returnTime}:00` : returnTime) : '10:00:00'
+  const pickupDateTime = `${pickupDate}T${pTime}`
+  const returnDateTime = `${returnDate}T${rTime}`
+
+  // Async call triggers availability validation
+  checkBookingAvailability(vehicleId, pickupDateTime, returnDateTime)
+
+  return { available: true }
+}
+
+/**
+ * Cancel booking: PATCH /api/bookings/{id}/cancel
+ */
+export async function cancelCustomerBooking(id, reason = 'Customer requested cancellation') {
+  const response = await api.patch(`/api/bookings/${id}/cancel`, { reason })
+  return mapBooking(response.data)
+}
+
+export async function cancelBooking(id, reason) {
+  return cancelCustomerBooking(id, reason)
+}
+
+/**
+ * Return rental (triggers return on backend)
+ */
+export async function returnCustomerRental(id) {
+  const response = await api.patch(`/api/bookings/${id}/return`)
+  return mapBooking(response.data)
+}
+
+// -------------------------------------------------------------
+// Admin Booking Management APIs
+// -------------------------------------------------------------
+
+/**
+ * Admin: Fetch all bookings: GET /api/bookings
+ */
+export async function fetchAllBookings(params = {}) {
+  const query = {
+    page: params.page ?? 0,
+    size: params.size ?? 200,
+    ...params,
+  }
+
+  const response = await api.get('/api/bookings', { params: query })
+  const data = response.data
+  const list = Array.isArray(data) ? data : (data.content || [])
+  return list.map(mapBooking)
+}
+
+export async function getAllBookings() {
+  return fetchAllBookings()
+}
+
+/**
+ * Admin: Confirm booking: PATCH /api/bookings/{id}/confirm
+ */
+export async function confirmBooking(id) {
+  const response = await api.patch(`/api/bookings/${id}/confirm`)
+  return mapBooking(response.data)
+}
+
+/**
+ * Admin: Activate booking: PATCH /api/bookings/{id}/activate
+ */
+export async function activateBooking(id) {
+  const response = await api.patch(`/api/bookings/${id}/activate`)
+  return mapBooking(response.data)
+}
+
+/**
+ * Admin: Return booking: PATCH /api/bookings/{id}/return
+ */
+export async function returnBooking(id) {
+  const response = await api.patch(`/api/bookings/${id}/return`)
+  return mapBooking(response.data)
+}
+
+/**
+ * Admin: Complete booking: PATCH /api/bookings/{id}/complete
+ */
+export async function completeBooking(id) {
+  const response = await api.patch(`/api/bookings/${id}/complete`)
+  return mapBooking(response.data)
+}
+
+/**
+ * Generic status updater for admin modals
+ */
+export async function updateBookingStatus(id, action) {
+  const cleanAction = String(action).toLowerCase()
+  if (cleanAction === 'confirm' || cleanAction === 'confirmed') {
+    return confirmBooking(id)
+  }
+  if (cleanAction === 'activate' || cleanAction === 'active') {
+    return activateBooking(id)
+  }
+  if (cleanAction === 'return' || cleanAction === 'returned') {
+    return returnBooking(id)
+  }
+  if (cleanAction === 'complete' || cleanAction === 'completed') {
+    return completeBooking(id)
+  }
+  if (cleanAction === 'cancel' || cleanAction === 'cancelled') {
+    return cancelBooking(id, 'Admin cancelled booking')
+  }
+  throw new Error(`Unsupported lifecycle action: ${action}`)
+}
+
+// -------------------------------------------------------------
+// UI helpers & Activities
+// -------------------------------------------------------------
+
+export function getBookingWithVehicle(booking) {
+  if (!booking) return null
+  return {
+    ...booking,
+    vehicle: getVehicleById(booking.vehicleId) || booking.vehicleSnapshot || null,
+  }
+}
+
+export function getActiveBookings(bookingsListOrUserId) {
+  if (Array.isArray(bookingsListOrUserId)) {
+    return bookingsListOrUserId.filter((b) => b.status === 'ACTIVE')
+  }
+  return []
+}
+
+export function getUpcomingBooking(bookingsListOrUserId) {
+  if (Array.isArray(bookingsListOrUserId)) {
+    return bookingsListOrUserId.find((b) => b.status === 'CONFIRMED') || null
+  }
+  return null
 }
 
 export function getStoredActivities() {
   try {
     const raw = window.localStorage.getItem(ACTIVITIES_KEY)
-    return raw ? JSON.parse(raw) : seedActivities
+    return raw ? JSON.parse(raw) : []
   } catch {
-    return seedActivities
+    return []
   }
 }
 
-export function logActivity({ type, title, detail, occurredAt = 'Today' }) {
+export function logActivity({ type, title, detail, occurredAt = 'Just now' }) {
   try {
     const activities = getStoredActivities()
     const newActivity = {
@@ -98,398 +365,9 @@ export function logActivity({ type, title, detail, occurredAt = 'Today' }) {
     }
     const updated = [newActivity, ...activities].slice(0, 10)
     window.localStorage.setItem(ACTIVITIES_KEY, JSON.stringify(updated))
-  } catch (err) {
-    console.error('Failed to log activity:', err)
-  }
+  } catch {}
 }
 
-export function getBookingWithVehicle(booking) {
-  if (!booking) return null
-  const duration = calculateRentalDuration(
-    booking.pickupDate,
-    booking.pickupTime || '10:00',
-    booking.returnDate,
-    booking.returnTime || '10:00',
-  )
-  return {
-    ...booking,
-    durationLabel: booking.durationLabel || (duration.valid ? duration.label : `${booking.rentalDays || 1} ${booking.rentalDays === 1 ? 'day' : 'days'}`),
-    durationHours: booking.durationHours || duration.hours,
-    vehicle: getVehicleById(booking.vehicleId) || booking.vehicleSnapshot || null,
-  }
+export function getStoredBookings() {
+  return []
 }
-
-export function getBookingsForCustomer(customerId) {
-  const bookings = getStoredBookings()
-  return bookings
-    .filter((booking) => booking.customerId === customerId)
-    .map(getBookingWithVehicle)
-    .sort((a, b) => new Date(b.createdAt || b.pickupDate) - new Date(a.createdAt || a.pickupDate))
-}
-
-export function getBookingById(id) {
-  const bookings = getStoredBookings()
-  const booking = bookings.find((item) => item.id === id) || null
-  return getBookingWithVehicle(booking)
-}
-
-export function getActiveBookings(customerId) {
-  return getBookingsForCustomer(customerId).filter((booking) => booking.status === 'ACTIVE')
-}
-
-export function getUpcomingBooking(customerId) {
-  return (
-    getBookingsForCustomer(customerId)
-      .filter((booking) => booking.status === 'CONFIRMED' && isFutureDate(booking.pickupDate))
-      .sort((a, b) => a.pickupDate.localeCompare(b.pickupDate))[0] || null
-  )
-}
-
-export function getUpcomingBookings(customerId) {
-  return getBookingsForCustomer(customerId).filter(
-    (booking) => booking.status === 'CONFIRMED' && isFutureDate(booking.pickupDate),
-  )
-}
-
-export function checkVehicleAvailability(vehicleId, pickupDate, returnDate, excludeBookingId = null, pickupTime, returnTime) {
-  const vehicle = getVehicleById(vehicleId)
-  if (!vehicle) {
-    return { available: false, reason: 'Vehicle does not exist.' }
-  }
-
-  if (vehicle.status === 'MAINTENANCE') {
-    return { available: false, reason: 'This vehicle is currently undergoing scheduled maintenance.' }
-  }
-
-  if (vehicle.status === 'INACTIVE') {
-    return { available: false, reason: 'This vehicle is currently not in active service.' }
-  }
-
-  const allBookings = getStoredBookings()
-  const conflictingBooking = allBookings.find((booking) => {
-    if (booking.vehicleId !== vehicleId) return false
-    if (excludeBookingId && booking.id === excludeBookingId) return false
-    if (booking.status !== 'CONFIRMED' && booking.status !== 'ACTIVE') return false
-    return areDateRangesOverlapping(pickupDate, returnDate, booking.pickupDate, booking.returnDate, pickupTime, returnTime, booking.pickupTime, booking.returnTime)
-  })
-
-  if (conflictingBooking) {
-    return {
-      available: false,
-      reason: 'This vehicle is already reserved for the selected dates.',
-      conflictingBooking,
-    }
-  }
-
-  return { available: true }
-}
-
-export async function createBooking({
-  customerId,
-  vehicleId,
-  pickupDate,
-  pickupTime = '10:00',
-  returnDate,
-  returnTime = '10:00',
-  pickupLocation = 'VAYRO Vijayawada Central',
-  returnLocation = 'VAYRO Vijayawada Central',
-  driverDetails,
-  selectedAddons = [],
-  durationType,
-  durationValue,
-  durationLabel,
-  couponCode = null,
-  couponDiscount = 0,
-  paymentMethod = 'SIMULATED_UPI',
-  paymentStatus = 'PAID',
-  paymentReference,
-  paymentTimestamp,
-}) {
-  await pause(350)
-  const availability = checkVehicleAvailability(vehicleId, pickupDate, returnDate, null, pickupTime, returnTime)
-  if (!availability.available) {
-    throw new Error(availability.reason || 'Vehicle is not available for these dates.')
-  }
-
-  const vehicle = getVehicleById(vehicleId)
-  if (!vehicle) {
-    throw new Error('Vehicle not found.')
-  }
-
-  const duration = calculateRentalDuration(pickupDate, pickupTime, returnDate, returnTime)
-  if (!duration.valid) {
-    throw new Error(duration.error || 'Return time must be after pick-up time.')
-  }
-
-  const breakdown = calculateBookingBreakdown({
-    vehicle,
-    pickupDate,
-    pickupTime,
-    returnDate,
-    returnTime,
-    selectedAddonIds: selectedAddons,
-  })
-
-  const finalTotal = Math.max(0, breakdown.totalAmount - (couponDiscount || 0))
-
-  const allBookings = getStoredBookings()
-  const randomSuffix = Math.floor(1000 + Math.random() * 9000)
-  const bookingId = `BK-2026-${randomSuffix}`
-  const payRef = paymentReference || `PAY-2026-${Math.floor(100000 + Math.random() * 900000)}`
-
-  const newBooking = {
-    id: bookingId,
-    customerId,
-    vehicleId,
-    pickupDate,
-    pickupTime,
-    returnDate,
-    returnTime,
-    pickupLocation,
-    returnLocation,
-    rentalDays: duration.days,
-    durationHours: duration.hours,
-    durationLabel: durationLabel || duration.label,
-    durationType: durationType || duration.durationType,
-    durationValue: durationValue || duration.durationValue,
-    dailyRate: vehicle.dailyRate,
-    selectedAddons,
-    baseRate: breakdown.baseRate,
-    discount: breakdown.discount,
-    couponCode,
-    couponDiscount,
-    addonsTotal: breakdown.addonsTotal,
-    vehicleTotal: breakdown.vehicleTotal,
-    totalAmount: finalTotal,
-    paymentMethod,
-    paymentStatus,
-    paymentReference: payRef,
-    paymentTimestamp: paymentTimestamp || new Date().toISOString(),
-    driverDetails: {
-      fullName: driverDetails.fullName.trim(),
-      email: driverDetails.email.trim().toLowerCase(),
-      phone: driverDetails.phone.trim(),
-      licenseNumber: driverDetails.licenseNumber.trim(),
-    },
-    status: 'CONFIRMED',
-    createdAt: new Date().toISOString(),
-  }
-
-  saveStoredBookings([newBooking, ...allBookings])
-
-  logActivity({
-    type: 'confirmed',
-    title: 'Booking confirmed',
-    detail: `${vehicle.name} · ${duration.label} · ${pickupLocation}`,
-    occurredAt: 'Just now',
-  })
-
-  return getBookingWithVehicle(newBooking)
-}
-
-export async function cancelCustomerBooking(bookingId) {
-  return updateBookingStatus(bookingId, 'CANCELLED')
-}
-
-export async function returnCustomerRental(bookingId) {
-  return updateBookingStatus(bookingId, 'COMPLETED')
-}
-
-export function getAllBookings() {
-  const bookings = getStoredBookings()
-  return bookings
-    .map(getBookingWithVehicle)
-    .sort((a, b) => new Date(b.createdAt || b.pickupDate) - new Date(a.createdAt || a.pickupDate))
-}
-
-function syncVehicleStatus(vehicleId, newStatus) {
-  try {
-    const raw = window.localStorage.getItem('vayro_mock_vehicles')
-    if (raw) {
-      const vehicles = JSON.parse(raw)
-      const idx = vehicles.findIndex((v) => v.id === vehicleId)
-      if (idx !== -1) {
-        vehicles[idx] = {
-          ...vehicles[idx],
-          status: newStatus,
-          statusUpdatedAt: new Date().toISOString(),
-        }
-        window.localStorage.setItem('vayro_mock_vehicles', JSON.stringify(vehicles))
-      }
-    }
-  } catch (err) {
-    console.error('Failed to sync vehicle status:', err)
-  }
-}
-
-export async function updateBookingStatus(bookingId, newStatus) {
-  await pause(260)
-  const allBookings = getStoredBookings()
-  const index = allBookings.findIndex((b) => b.id === bookingId)
-
-  if (index === -1) {
-    throw new Error('Booking not found.')
-  }
-
-  const booking = allBookings[index]
-  const currentStatus = booking.status
-
-  if (currentStatus === newStatus) {
-    return getBookingWithVehicle(booking)
-  }
-
-  if (currentStatus === 'CANCELLED') {
-    throw new Error('Cannot modify a cancelled booking.')
-  }
-
-  if (currentStatus === 'COMPLETED') {
-    throw new Error('Cannot modify a finalized, completed rental.')
-  }
-
-  const vehicle = getVehicleById(booking.vehicleId)
-  let updatedFields = { status: newStatus }
-
-  if (newStatus === 'ACTIVE') {
-    if (currentStatus !== 'CONFIRMED') {
-      throw new Error(`Cannot start rental from status "${currentStatus}". Must be CONFIRMED.`)
-    }
-    updatedFields.startedAt = new Date().toISOString()
-    syncVehicleStatus(booking.vehicleId, 'RENTED')
-
-    logActivity({
-      type: 'confirmed',
-      title: 'Rental started',
-      detail: `${vehicle ? vehicle.name : 'Vehicle'} · Dispatched to ${booking.driverDetails?.fullName || 'Customer'}`,
-      occurredAt: 'Just now',
-    })
-  } else if (newStatus === 'COMPLETED') {
-    if (currentStatus !== 'ACTIVE') {
-      throw new Error(`Cannot complete rental from status "${currentStatus}". Must be ACTIVE on road.`)
-    }
-    updatedFields.returnedAt = new Date().toISOString()
-    syncVehicleStatus(booking.vehicleId, 'AVAILABLE')
-
-    logActivity({
-      type: 'returned',
-      title: 'Rental completed',
-      detail: `${vehicle ? vehicle.name : 'Vehicle'} · Returned and released to fleet`,
-      occurredAt: 'Just now',
-    })
-  } else if (newStatus === 'CANCELLED') {
-    if (currentStatus !== 'CONFIRMED') {
-      throw new Error(`Cannot cancel rental from status "${currentStatus}". Only CONFIRMED bookings can be cancelled.`)
-    }
-    updatedFields.cancelledAt = new Date().toISOString()
-    syncVehicleStatus(booking.vehicleId, 'AVAILABLE')
-
-    logActivity({
-      type: 'cancelled',
-      title: 'Booking cancelled by admin',
-      detail: `${booking.id} · ${vehicle ? vehicle.name : 'Vehicle'} reservation released`,
-      occurredAt: 'Just now',
-    })
-  } else {
-    throw new Error(`Unsupported status transition to "${newStatus}".`)
-  }
-
-  const updatedBooking = {
-    ...booking,
-    ...updatedFields,
-  }
-
-  allBookings[index] = updatedBooking
-  saveStoredBookings([...allBookings])
-
-  return getBookingWithVehicle(updatedBooking)
-}
-
-export async function startRental(bookingId) {
-  return updateBookingStatus(bookingId, 'ACTIVE')
-}
-
-export async function completeRental(bookingId) {
-  return updateBookingStatus(bookingId, 'COMPLETED')
-}
-
-export async function adminCancelBooking(bookingId) {
-  return updateBookingStatus(bookingId, 'CANCELLED')
-}
-
-export async function cancelBooking(bookingId, customerId) {
-  await pause(250)
-  const allBookings = getStoredBookings()
-  const index = allBookings.findIndex((b) => b.id === bookingId)
-
-  if (index === -1) {
-    throw new Error('Booking not found.')
-  }
-
-  const booking = allBookings[index]
-  if (customerId && booking.customerId !== customerId) {
-    throw new Error('You do not have permission to cancel this booking.')
-  }
-
-  if (booking.status !== 'CONFIRMED') {
-    throw new Error(`Cannot cancel a booking with status "${booking.status}".`)
-  }
-
-  const updatedBooking = {
-    ...booking,
-    status: 'CANCELLED',
-    cancelledAt: new Date().toISOString(),
-  }
-
-  allBookings[index] = updatedBooking
-  saveStoredBookings([...allBookings])
-  syncVehicleStatus(booking.vehicleId, 'AVAILABLE')
-
-  const vehicle = getVehicleById(booking.vehicleId)
-  logActivity({
-    type: 'cancelled',
-    title: 'Booking cancelled',
-    detail: `${vehicle ? vehicle.name : 'Vehicle'} · Reservation released`,
-    occurredAt: 'Just now',
-  })
-
-  return getBookingWithVehicle(updatedBooking)
-}
-
-export async function returnVehicle(bookingId, customerId) {
-  await pause(300)
-  const allBookings = getStoredBookings()
-  const index = allBookings.findIndex((b) => b.id === bookingId)
-
-  if (index === -1) {
-    throw new Error('Booking not found.')
-  }
-
-  const booking = allBookings[index]
-  if (customerId && booking.customerId !== customerId) {
-    throw new Error('You do not have permission to modify this booking.')
-  }
-
-  if (booking.status !== 'ACTIVE') {
-    throw new Error(`Only active rentals can be returned. Current status: "${booking.status}".`)
-  }
-
-  const updatedBooking = {
-    ...booking,
-    status: 'COMPLETED',
-    returnedAt: new Date().toISOString(),
-  }
-
-  allBookings[index] = updatedBooking
-  saveStoredBookings([...allBookings])
-  syncVehicleStatus(booking.vehicleId, 'AVAILABLE')
-
-  const vehicle = getVehicleById(booking.vehicleId)
-  logActivity({
-    type: 'returned',
-    title: 'Vehicle returned',
-    detail: `${vehicle ? vehicle.name : 'Vehicle'} · Completed smoothly`,
-    occurredAt: 'Just now',
-  })
-
-  return getBookingWithVehicle(updatedBooking)
-}
-

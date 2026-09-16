@@ -39,7 +39,7 @@ import {
   DRIVE_EASE_LOCATIONS,
 } from '../data/locations'
 import { checkVehicleAvailability, createBooking } from '../services/bookingService'
-import { getVehicleById } from '../services/vehicleService'
+import { fetchVehicleById, getVehicleById } from '../services/vehicleService'
 import { validateAndApplyCoupon } from '../utils/coupons'
 import { formatCurrency, formatDate } from '../utils/formatters'
 import {
@@ -76,7 +76,30 @@ export default function NewBookingPage() {
   const requestedDurationType = searchParams.get('durationType') || 'DAYS'
   const requestedDurationValue = Number(searchParams.get('durationValue')) || 4
 
-  const vehicle = useMemo(() => getVehicleById(vehicleId), [vehicleId])
+  const [vehicle, setVehicle] = useState(() => getVehicleById(vehicleId))
+  const [isLoadingVehicle, setIsLoadingVehicle] = useState(() => !getVehicleById(vehicleId))
+
+  useEffect(() => {
+    if (!vehicleId) return
+    let isCancelled = false
+
+    fetchVehicleById(vehicleId)
+      .then((fetched) => {
+        if (!isCancelled && fetched) {
+          setVehicle(fetched)
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (!isCancelled) {
+          setIsLoadingVehicle(false)
+        }
+      })
+
+    return () => {
+      isCancelled = true
+    }
+  }, [vehicleId])
 
   const today = dateToInputValue(new Date())
   const rawPickup = searchParams.get('pickupDate')
@@ -109,11 +132,22 @@ export default function NewBookingPage() {
   )
   const [appliedCoupon, setAppliedCoupon] = useState(null)
   const [driverDetails, setDriverDetails] = useState({
-    fullName: user?.name || '',
+    fullName: user?.name || `${user?.firstName || ''} ${user?.lastName || ''}`.trim() || '',
     email: user?.email || '',
     phone: user?.phone || '+91 98765 43210',
     licenseNumber: 'MH01-2022-009182',
   })
+
+  useEffect(() => {
+    if (user) {
+      setDriverDetails((prev) => ({
+        ...prev,
+        fullName: prev.fullName || user.name || `${user.firstName || ''} ${user.lastName || ''}`.trim() || '',
+        email: prev.email || user.email || '',
+        phone: prev.phone || user.phone || '+91 98765 43210',
+      }))
+    }
+  }, [user])
   const [driverErrors, setDriverErrors] = useState({})
   const [availabilityError, setAvailabilityError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
