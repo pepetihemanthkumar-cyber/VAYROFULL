@@ -60,6 +60,10 @@ export function AppRoutes() {
             <Route path="/admin/vehicles/new" element={<AdminAddVehiclePage />} />
             <Route path="/admin/vehicles/:id" element={<AdminVehicleDetailsPage />} />
             <Route path="/admin/vehicles/:id/edit" element={<AdminEditVehiclePage />} />
+            <Route path="/admin/fleet" element={<AdminVehiclesPage />} />
+            <Route path="/admin/fleet/new" element={<AdminAddVehiclePage />} />
+            <Route path="/admin/fleet/:id" element={<AdminVehicleDetailsPage />} />
+            <Route path="/admin/fleet/:id/edit" element={<AdminEditVehiclePage />} />
             <Route path="/admin/bookings" element={<AdminBookingsPage />} />
             <Route path="/admin/bookings/:id" element={<AdminBookingDetailsPage />} />
             <Route path="/admin/users" element={<AdminUsersPage />} />

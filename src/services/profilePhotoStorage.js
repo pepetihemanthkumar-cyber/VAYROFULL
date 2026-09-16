@@ -1,5 +1,5 @@
 /**
- * Local IndexedDB Storage for DriveEase Customer Profile Photos
+ * Local IndexedDB Storage for VAYRO Customer Profile Photos
  * Frontend-only persistence without server/backend dependencies.
  */
 

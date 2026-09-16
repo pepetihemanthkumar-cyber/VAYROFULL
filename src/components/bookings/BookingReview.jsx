@@ -46,7 +46,8 @@ export function BookingReview({
 
   const durationLabel = pricing?.duration?.label || (rentalDays ? `${rentalDays} ${rentalDays === 1 ? 'day' : 'days'}` : '1 day')
   const isHourly = pricing?.duration?.durationType === 'HOURS'
-  const finalPayable = Math.max(0, (pricing.totalAmount || 0) - (appliedCoupon?.discount || 0))
+  const couponDiscountAmount = appliedCoupon?.discount ?? appliedCoupon?.discountAmount ?? 0
+  const finalPayable = Math.max(0, (pricing.totalAmount || 0) - couponDiscountAmount)
 
   function handleApplyClick(e) {
     e.preventDefault()
@@ -219,7 +220,7 @@ export function BookingReview({
             <div className="coupon-applied-badge">
               <div>
                 <strong className="coupon-applied-code">✓ {appliedCoupon.code}</strong>
-                <small>{appliedCoupon.description} (−{formatCurrency(appliedCoupon.discount)})</small>
+                <small>{appliedCoupon.description} (−{formatCurrency(couponDiscountAmount)})</small>
               </div>
               <button
                 type="button"
@@ -278,14 +279,14 @@ export function BookingReview({
               </div>
             )}
 
-            {appliedCoupon && appliedCoupon.discount > 0 && (
+            {appliedCoupon && couponDiscountAmount > 0 && (
               <div className="review-cost-row review-discount-row">
                 <div className="discount-label-wrap">
                   <Tag size={13} aria-hidden="true" />
                   <span>Promo code ({appliedCoupon.code})</span>
                   <small>Discount applied</small>
                 </div>
-                <strong className="discount-amount">−{formatCurrency(appliedCoupon.discount)}</strong>
+                <strong className="discount-amount">−{formatCurrency(couponDiscountAmount)}</strong>
               </div>
             )}
 

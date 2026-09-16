@@ -300,11 +300,11 @@ export default function DashboardPage() {
               <Sparkles size={28} className="text-accent" aria-hidden="true" />
               <div>
                 <h4>Book your first drive</h4>
-                <p>Choose from 135 models across 20 global brands with flexible hourly, daily, and long-term rental rates.</p>
+                <p>Choose from 207 models across 36 global brands with flexible hourly, daily, and long-term rental rates.</p>
               </div>
             </div>
             <GlassButton as={Link} to="/vehicles">
-              Browse 135 models <ArrowRight size={15} aria-hidden="true" />
+              Browse 207 models <ArrowRight size={15} aria-hidden="true" />
             </GlassButton>
           </GlassCard>
         </div>

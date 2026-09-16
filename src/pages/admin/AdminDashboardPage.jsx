@@ -101,7 +101,7 @@ export default function AdminDashboardPage() {
           icon={CarFront}
           label="Total Fleet"
           value={vehicles.length}
-          supportingText="20 Brands / 135 Models"
+          supportingText="36 Brands · 207 Models"
           tone="accent"
         />
         <AdminStatCard

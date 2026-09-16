@@ -163,23 +163,6 @@ export default function AdminUserDetailsPage() {
         </div>
       </motion.div>
 
-      {/* Toast Alert */}
-      {toast && (
-        <motion.div
-          className={`details-toast details-toast--${toast.type}`}
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          role="status"
-        >
-          {toast.type === 'success' ? (
-            <CheckCircle2 size={18} aria-hidden="true" />
-          ) : (
-            <AlertCircle size={18} aria-hidden="true" />
-          )}
-          <span>{toast.text}</span>
-        </motion.div>
-      )}
-
       {/* Profile Overview Card */}
       <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0.06}>
         <GlassCard className="profile-hero-card">

@@ -96,18 +96,6 @@ export default function AdminEditVehiclePage() {
         </div>
       </motion.div>
 
-      {toast && (
-        <motion.div
-          className={`details-toast details-toast--${toast.type}`}
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          role="status"
-        >
-          <CheckCircle2 size={18} aria-hidden="true" />
-          <span>{toast.text}</span>
-        </motion.div>
-      )}
-
       {error && (
         <div className="form-alert" role="alert">
           <AlertCircle size={17} aria-hidden="true" />

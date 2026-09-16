@@ -1,4 +1,4 @@
-import { bikes, bikeImageMap, bikeCatalogue, ALLOWED_BIKE_BRANDS, ALLOWED_BIKE_CATEGORIES, ALLOWED_BIKE_CLASSES } from './bikes'
+import { bikes, bikeImageMap, bikeCatalogue, ALLOWED_BIKE_BRANDS, ALLOWED_BIKE_CATEGORIES, ALLOWED_BIKE_CLASSES } from './bikes.js'
 import vehicleCatalogueImage from '../assets/vehicle-catalogue.png'
 import marutiSuzukiSwiftImageFront from '../assets/vehicles/maruti-suzuki/swift/swift-front.webp'
 import marutiSuzukiSwiftImageRear from '../assets/vehicles/maruti-suzuki/swift/swift-rear.webp'

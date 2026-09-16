@@ -306,7 +306,7 @@ export default function NewBookingPage() {
         durationValue: duration.durationValue,
         durationLabel: duration.label,
         couponCode: appliedCoupon?.code || null,
-        couponDiscount: appliedCoupon?.discount || 0,
+        couponDiscount: appliedCoupon?.discount ?? appliedCoupon?.discountAmount ?? 0,
         paymentMethod: paymentMeta.paymentMethod,
         paymentStatus: paymentMeta.paymentStatus,
         paymentReference: paymentMeta.paymentReference,

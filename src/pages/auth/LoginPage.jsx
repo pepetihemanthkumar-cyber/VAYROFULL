@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { Loader2, LockKeyhole, Mail, ShieldCheck, UserRound } from 'lucide-react'
+import { useState } from 'react'
+import { LockKeyhole, Mail, ShieldCheck, UserRound } from 'lucide-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { GlassButton } from '../../components/ui/GlassButton'
@@ -89,49 +89,10 @@ export default function LoginPage() {
   const [errors, setErrors] = useState({})
   const [formError, setFormError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isAutoAuthenticating, setIsAutoAuthenticating] = useState(Boolean(initialSaved))
   
   const { login, logout } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
-  const hasAttemptedAutoLogin = useRef(false)
-
-  // Automatic login on page mount if Remember Me was previously enabled
-  useEffect(() => {
-    if (hasAttemptedAutoLogin.current) return
-    const saved = getRememberedCredentials()
-
-    if (saved) {
-      hasAttemptedAutoLogin.current = true
-      setIsAutoAuthenticating(true)
-      
-      login({ email: saved.email, password: saved.password })
-        .then((user) => {
-          const expectedRoleMode = saved.mode || 'user'
-          const isRoleValid = expectedRoleMode === 'admin' ? user.role === 'ADMIN' : user.role !== 'ADMIN'
-
-          if (!isRoleValid) {
-            logout()
-            clearRememberedCredentials()
-            setRememberMe(false)
-            setIsAutoAuthenticating(false)
-            setFormError('Invalid credentials or account type.')
-            return
-          }
-
-          const targetPath = getValidReturnUrl(location.state?.from, user.role)
-          navigate(targetPath, { replace: true })
-        })
-        .catch(() => {
-          clearRememberedCredentials()
-          setRememberMe(false)
-          setIsAutoAuthenticating(false)
-          setFormError('Invalid credentials or account type.')
-        })
-    } else {
-      setIsAutoAuthenticating(false)
-    }
-  }, [location.state?.from, login, logout, navigate])
 
   function handleModeChange(mode) {
     if (mode === loginMode) return
@@ -183,25 +144,6 @@ export default function LoginPage() {
     } finally {
       setIsSubmitting(false)
     }
-  }
-
-  if (isAutoAuthenticating) {
-    return (
-      <AuthLayout
-        eyebrow="Welcome back to VAYRO"
-        title="Authenticating automatically..."
-        description="Restoring your saved session credentials. Please wait a moment."
-      >
-        <GlassCard className="auth-card" as="section" style={{ textAlign: 'center', padding: '40px 24px' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-            <Loader2 className="animate-spin" size={36} style={{ color: '#e22718' }} />
-            <p style={{ color: '#f1f5f9', fontSize: '15px', fontWeight: '500' }}>
-              Signing you in with remembered credentials...
-            </p>
-          </div>
-        </GlassCard>
-      </AuthLayout>
-    )
   }
 
   return (

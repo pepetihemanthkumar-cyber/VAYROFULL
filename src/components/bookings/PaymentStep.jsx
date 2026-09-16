@@ -77,7 +77,8 @@ export function PaymentStep({
   const [processingState, setProcessingState] = useState('') // 'verifying' | 'charging' | 'complete'
 
   const durationLabel = pricing?.duration?.label || 'Trip duration'
-  const finalPayable = Math.max(0, (pricing.totalAmount || 0) - (appliedCoupon?.discount || 0))
+  const couponDiscountAmount = appliedCoupon?.discount ?? appliedCoupon?.discountAmount ?? 0
+  const finalPayable = Math.max(0, (pricing.totalAmount || 0) - couponDiscountAmount)
 
   async function handleExecutePayment(e) {
     if (e) e.preventDefault()
@@ -334,10 +335,10 @@ export function PaymentStep({
               </div>
             )}
 
-            {appliedCoupon && appliedCoupon.discount > 0 && (
+            {appliedCoupon && couponDiscountAmount > 0 && (
               <div className="review-cost-row review-discount-row">
                 <span>Coupon ({appliedCoupon.code})</span>
-                <strong>−{formatCurrency(appliedCoupon.discount)}</strong>
+                <strong>−{formatCurrency(couponDiscountAmount)}</strong>
               </div>
             )}
 

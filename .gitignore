@@ -24,3 +24,14 @@ dist-ssr
 
 # Scratch & temporary artifacts
 scratch/
+
+# Backend Build & Logs
+**/target/
+**/*.class
+**/*.jar
+**/*.war
+backend/**/.env
+backend/**/.env.*
+backend/**/application-local.yml
+backend/**/application-prod.yml
+backend/**/*.log

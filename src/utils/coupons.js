@@ -73,6 +73,7 @@ export function validateAndApplyCoupon(code, vehicleSubtotal = 0, rentalDays = 1
     coupon: {
       code: coupon.code,
       description: coupon.description,
+      discount,
       discountAmount: discount,
     },
     error: null,

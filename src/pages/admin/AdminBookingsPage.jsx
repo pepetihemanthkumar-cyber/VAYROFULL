@@ -73,7 +73,6 @@ export default function AdminBookingsPage() {
   const [filters, setFilters] = useState(defaultFilters)
   const [activeModalState, setActiveModalState] = useState({ isOpen: false, booking: null, action: null })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [toastMessage, setToastMessage] = useState(null)
   const toast = useToast()
 
   function loadBookings() {
@@ -178,23 +177,6 @@ export default function AdminBookingsPage() {
         <AdminStatCard icon={CheckCircle2} label="Completed" value={counts.completed} supportingText="Returned" tone="success" />
         <AdminStatCard icon={XCircle} label="Cancelled" value={counts.cancelled} supportingText="Released" tone="attention" />
       </motion.div>
-
-      {/* Toast Alert */}
-      {toast && (
-        <motion.div
-          className={`details-toast details-toast--${toast.type}`}
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          role="status"
-        >
-          {toast.type === 'success' ? (
-            <CheckCircle2 size={18} aria-hidden="true" />
-          ) : (
-            <AlertCircle size={18} aria-hidden="true" />
-          )}
-          <span>{toast.text}</span>
-        </motion.div>
-      )}
 
       {/* Filters Toolbar */}
       <motion.div

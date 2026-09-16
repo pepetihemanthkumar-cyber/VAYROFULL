@@ -1,5 +1,5 @@
 /**
- * DriveEase — Centralized Premium Motion & Transition System
+ * VAYRO — Centralized Premium Motion & Transition System
  * 
  * Easing: Apple/Liquid-Glass curve cubic-bezier(0.22, 1, 0.36, 1)
  * Timing Standards:

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import {
   AlertCircle,
   ArrowLeft,
+  Bike,
   CalendarDays,
   CarFront,
   CheckCircle2,

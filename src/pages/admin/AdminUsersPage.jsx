@@ -150,23 +150,6 @@ export default function AdminUsersPage() {
         <AdminStatCard icon={CheckCircle2} label="Active Users" value={counts.active} supportingText="Good standing" tone="success" />
       </motion.div>
 
-      {/* Toast Alert */}
-      {toast && (
-        <motion.div
-          className={`details-toast details-toast--${toast.type}`}
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          role="status"
-        >
-          {toast.type === 'success' ? (
-            <CheckCircle2 size={18} aria-hidden="true" />
-          ) : (
-            <AlertCircle size={18} aria-hidden="true" />
-          )}
-          <span>{toast.text}</span>
-        </motion.div>
-      )}
-
       {/* Filters Toolbar */}
       <motion.div
         className="admin-filters-card"

@@ -46,10 +46,13 @@ function StarRating({ rating, size = 16, interactive = false, onSelect }) {
   )
 }
 
-export function VehicleReviews({ vehicleId, vehicleName }) {
+export function VehicleReviews({ vehicle, vehicleId, vehicleName }) {
   const { user } = useAuth()
   const toast = useToast()
-  const [data, setData] = useState(() => getReviewsByVehicleId(vehicleId))
+  const activeVehicleId = vehicleId || vehicle?.id
+  const activeVehicleName = vehicleName || vehicle?.name || 'Vehicle'
+
+  const [data, setData] = useState(() => getReviewsByVehicleId(activeVehicleId))
   const [isAdding, setIsAdding] = useState(false)
   const [editingId, setEditingId] = useState(null)
 
@@ -60,7 +63,7 @@ export function VehicleReviews({ vehicleId, vehicleName }) {
   })
 
   function refresh() {
-    setData(getReviewsByVehicleId(vehicleId))
+    setData(getReviewsByVehicleId(activeVehicleId))
   }
 
   const { reviews, avgRating, totalReviews } = data
@@ -101,7 +104,7 @@ export function VehicleReviews({ vehicleId, vehicleName }) {
       toast.success('Your review has been updated.')
     } else {
       addReview({
-        vehicleId,
+        vehicleId: activeVehicleId,
         author: user?.name ? user.name.split(' ')[0] : 'Verified Customer',
         rating: form.rating,
         title: form.title || 'Exceptional experience',
@@ -173,7 +176,7 @@ export function VehicleReviews({ vehicleId, vehicleName }) {
             animate="animate"
             exit="exit"
           >
-            <h4>{editingId ? 'Edit your review' : `Review ${vehicleName || 'Vehicle'}`}</h4>
+            <h4>{editingId ? 'Edit your review' : `Review ${activeVehicleName}`}</h4>
             <div className="form-rating-selector">
               <span>Your rating:</span>
               <StarRating

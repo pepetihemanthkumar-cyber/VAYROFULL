@@ -141,22 +141,6 @@ export default function AdminVehicleDetailsPage() {
         </div>
       </motion.div>
 
-      {toast && (
-        <motion.div
-          className={`details-toast details-toast--${toast.type}`}
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          role="status"
-        >
-          {toast.type === 'success' ? (
-            <CheckCircle2 size={18} aria-hidden="true" />
-          ) : (
-            <AlertCircle size={18} aria-hidden="true" />
-          )}
-          <span>{toast.text}</span>
-        </motion.div>
-      )}
-
       {/* Main Grid */}
       <div className="admin-details-grid">
         {/* Left Column: Visual & Specs */}

@@ -170,8 +170,9 @@ export default function VehicleDetailsPage() {
     const result = checkVehicleAvailability(
       vehicle.id,
       schedule.pickupDate,
-      schedule.pickupTime,
       schedule.returnDate,
+      null,
+      schedule.pickupTime,
       schedule.returnTime,
     )
     setAvailability(result)
@@ -488,7 +489,7 @@ export default function VehicleDetailsPage() {
 
       {/* Reviews & Ratings */}
       <div>
-        <VehicleReviews vehicle={vehicle} />
+        <VehicleReviews vehicle={vehicle} vehicleId={vehicle.id} vehicleName={vehicle.name} />
       </div>
 
       {/* Related Fleet Section */}
