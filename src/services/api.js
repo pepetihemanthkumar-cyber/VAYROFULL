@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { SESSION_KEY } from './authService'
 
-// Configured base URL for Spring Boot API Gateway (Port 8080)
+// Configured base URL for API (proxied in dev, /api in prod)
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8080',
+  baseURL: import.meta.env.VITE_API_URL || '',
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
