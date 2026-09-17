@@ -37,7 +37,7 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    @Value("${app.google.client-id:${GOOGLE_CLIENT_ID:718836314167-geld1ctvampfjqblcagrkhhcnlvgt4fi.apps.googleusercontent.com}}")
+    @Value("${app.google.client-id:${GOOGLE_CLIENT_ID:718836314167-kekvffi6ugr8s6gfg6ds00qb190ee12s.apps.googleusercontent.com}}")
     private String googleClientId;
 
     public AuthService(

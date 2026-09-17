@@ -38,7 +38,8 @@ jwt:
 
 app:
   google:
-    client-id: ${GOOGLE_CLIENT_ID:718836314167-geld1ctvampfjqblcagrkhhcnlvgt4fi.apps.googleusercontent.com}
+    client-id: ${GOOGLE_CLIENT_ID:718836314167-kekvffi6ugr8s6gfg6ds00qb190ee12s.apps.googleusercontent.com}
+    client-secret: ${GOOGLE_CLIENT_SECRET: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}
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
   admin:
