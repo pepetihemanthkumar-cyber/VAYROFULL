@@ -4,6 +4,7 @@ import {
   login as authLogin,
   logout as authLogout,
   register as authRegister,
+  SESSION_KEY,
 } from '../services/authService'
 import {
   getProfilePhoto,
@@ -11,8 +12,6 @@ import {
   saveProfilePhoto,
   PROFILE_PHOTO_EVENT,
 } from '../services/profilePhotoStorage'
-
-const SESSION_KEY = 'vayro_session'
 const AuthContext = createContext(null)
 
 function readSession() {

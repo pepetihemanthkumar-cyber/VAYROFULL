@@ -134,8 +134,8 @@ export default function NewBookingPage() {
   const [driverDetails, setDriverDetails] = useState({
     fullName: user?.name || `${user?.firstName || ''} ${user?.lastName || ''}`.trim() || '',
     email: user?.email || '',
-    phone: user?.phone || '+91 98765 43210',
-    licenseNumber: 'MH01-2022-009182',
+    phone: user?.phone || '',
+    licenseNumber: user?.licenseNumber || '',
   })
 
   useEffect(() => {
@@ -144,7 +144,8 @@ export default function NewBookingPage() {
         ...prev,
         fullName: prev.fullName || user.name || `${user.firstName || ''} ${user.lastName || ''}`.trim() || '',
         email: prev.email || user.email || '',
-        phone: prev.phone || user.phone || '+91 98765 43210',
+        phone: prev.phone || user.phone || '',
+        licenseNumber: prev.licenseNumber || user.licenseNumber || '',
       }))
     }
   }, [user])

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Star, CheckCircle2, MessageSquarePlus, Edit3, Trash2, ShieldCheck, ThumbsUp } from 'lucide-react'
 import { GlassCard } from '../ui/GlassCard'

@@ -31,6 +31,8 @@ import { useAuth } from '../context/AuthContext'
 import { useToast } from '../context/ToastContext'
 import {
   cancelCustomerBooking,
+  fetchBookingByReference,
+  fetchBookingById,
   getBookingById,
   returnCustomerRental,
 } from '../services/bookingService'
@@ -164,7 +166,7 @@ export default function BookingDetailsPage() {
   }
 
   const vehicle = booking.vehicle
-  const canCancel = booking.status === 'CONFIRMED'
+  const canCancel = booking.status === 'CONFIRMED' || booking.status === 'PENDING'
   const canReturn = booking.status === 'ACTIVE'
 
   return (

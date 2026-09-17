@@ -70,13 +70,22 @@ function sortBookings(list, sort) {
 
 export default function AdminBookingsPage() {
   const [bookings, setBookings] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const [filters, setFilters] = useState(defaultFilters)
   const [activeModalState, setActiveModalState] = useState({ isOpen: false, booking: null, action: null })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const toast = useToast()
 
-  function loadBookings() {
-    setBookings(getAllBookings())
+  async function loadBookings() {
+    setIsLoading(true)
+    try {
+      const data = await getAllBookings()
+      setBookings(data || [])
+    } catch (err) {
+      toast.error(err.message || 'Failed to load bookings.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {

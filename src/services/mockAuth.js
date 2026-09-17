@@ -12,7 +12,6 @@ const seedUsers = [
     phone: '+91 98765 43210',
     address: 'Bandra West, Mumbai, MH',
     joinedAt: '2025-08-12',
-    password: 'Vayro2026!',
   },
   {
     id: 'usr_admin_001',
@@ -23,7 +22,6 @@ const seedUsers = [
     phone: '+91 98200 11223',
     address: 'Indiranagar, Bengaluru, KA',
     joinedAt: '2025-01-10',
-    password: 'Vayro2026!',
   },
   {
     id: 'usr_customer_002',
@@ -34,7 +32,6 @@ const seedUsers = [
     phone: '+91 98111 22334',
     address: 'Connaught Place, New Delhi, DL',
     joinedAt: '2025-09-18',
-    password: 'Vayro2026!',
   },
   {
     id: 'usr_customer_003',
@@ -45,7 +42,6 @@ const seedUsers = [
     phone: '+91 98450 33445',
     address: 'Koramangala, Bengaluru, KA',
     joinedAt: '2025-10-05',
-    password: 'Vayro2026!',
   },
   {
     id: 'usr_customer_004',
@@ -56,7 +52,6 @@ const seedUsers = [
     phone: '+91 97666 44556',
     address: 'Koregaon Park, Pune, MH',
     joinedAt: '2025-11-22',
-    password: 'Vayro2026!',
   },
   {
     id: 'usr_customer_005',
@@ -67,7 +62,6 @@ const seedUsers = [
     phone: '+91 99888 77665',
     address: 'Jubilee Hills, Hyderabad, TS',
     joinedAt: '2025-12-01',
-    password: 'Vayro2026!',
   },
 ]
 

@@ -16,7 +16,7 @@ if ('serviceWorker' in navigator) {
     for (const registration of registrations) {
       registration.unregister()
     }
-  })
+  }).catch(() => {})
 }
 
 createRoot(document.getElementById('root')).render(

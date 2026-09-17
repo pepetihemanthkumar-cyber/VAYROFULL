@@ -208,7 +208,7 @@ export default function VehicleDetailsPage() {
         if (!isCancelled) setAvailability(res)
       })
       .catch(() => {
-        if (!isCancelled) setAvailability({ available: true })
+        if (!isCancelled) setAvailability({ available: false, reason: 'Availability check failed' })
       })
 
     return () => {

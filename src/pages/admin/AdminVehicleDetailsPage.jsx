@@ -22,7 +22,7 @@ import { GlassCard } from '../../components/ui/GlassCard'
 import { VehicleImage } from '../../components/vehicles/VehicleImage'
 import { useToast } from '../../context/ToastContext'
 import { getStoredBookings } from '../../services/bookingService'
-import { getVehicleById, updateVehicleStatus } from '../../services/vehicleService'
+import { fetchVehicleById, getVehicleById, updateVehicleStatus } from '../../services/vehicleService'
 import { formatCurrency, formatDate, formatStatus } from '../../utils/formatters'
 
 function SpecItem({ icon: Icon, label, value }) {
@@ -44,10 +44,10 @@ export default function AdminVehicleDetailsPage() {
   const location = useLocation()
   const navigate = useNavigate()
   const toast = useToast()
-  const [vehicle, setVehicle] = useState(null)
+  const [vehicle, setVehicle] = useState(() => getVehicleById(id))
   const [activeBooking, setActiveBooking] = useState(null)
   const [upcomingBookings, setUpcomingBookings] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(() => !getVehicleById(id))
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false)
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false)
   const [toastMessage, setToastMessage] = useState(null)
@@ -60,16 +60,23 @@ export default function AdminVehicleDetailsPage() {
     }
   }
 
-  function loadData() {
-    const loadedVehicle = getVehicleById(id)
-    setVehicle(loadedVehicle)
+  async function loadData() {
+    setIsLoading(true)
+    try {
+      const loadedVehicle = (await fetchVehicleById(id)) || getVehicleById(id)
+      setVehicle(loadedVehicle)
 
-    if (loadedVehicle) {
-      const allBookings = getStoredBookings()
-      const active = allBookings.find((b) => b.vehicleId === id && b.status === 'ACTIVE')
-      const upcoming = allBookings.filter((b) => b.vehicleId === id && b.status === 'CONFIRMED')
-      setActiveBooking(active || null)
-      setUpcomingBookings(upcoming)
+      if (loadedVehicle) {
+        const allBookings = getStoredBookings()
+        const active = allBookings.find((b) => (b.vehicleId === id || b.vehicle?.id === id) && b.status === 'ACTIVE')
+        const upcoming = allBookings.filter((b) => (b.vehicleId === id || b.vehicle?.id === id) && b.status === 'CONFIRMED')
+        setActiveBooking(active || null)
+        setUpcomingBookings(upcoming || [])
+      }
+    } catch {
+      setVehicle(getVehicleById(id))
+    } finally {
+      setIsLoading(false)
     }
   }
 

@@ -26,7 +26,7 @@ import {
   UserCheck,
   UserRound,
 } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { fadeUp, smoothSpring, tabTransition } from '../animations/variants'
 import { GlassBadge } from '../components/ui/GlassBadge'
@@ -38,7 +38,7 @@ import { VehicleImage } from '../components/vehicles/VehicleImage'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
 import { useToast } from '../context/ToastContext'
-import { getBookingsForCustomer } from '../services/bookingService'
+import { fetchMyBookings } from '../services/bookingService'
 import { getFavoriteVehicles } from '../services/vehicleService'
 import { formatCurrency, formatDate, formatStatus } from '../utils/formatters'
 
@@ -128,27 +128,40 @@ export default function ProfilePage() {
   const [preferences, setPreferences] = useState(getSavedPreferences)
   const [favorites, setFavorites] = useState(() => getFavoriteVehicles())
 
-  // Lifetime metrics from user bookings
-  const { stats, userBookings } = useMemo(() => {
-    if (!user?.id) return { stats: { total: 0, active: 0, completed: 0, cancelled: 0, spend: 0, totalDays: 0 }, userBookings: [] }
-    const bookings = getBookingsForCustomer(user.id)
-    const active = bookings.filter((b) => b.status === 'ACTIVE').length
-    const completed = bookings.filter((b) => b.status === 'COMPLETED').length
-    const cancelled = bookings.filter((b) => b.status === 'CANCELLED').length
-    const spend = bookings.reduce((sum, b) => (b.status !== 'CANCELLED' ? sum + b.totalAmount : sum), 0)
-    const totalDays = bookings.reduce((sum, b) => (b.status !== 'CANCELLED' ? sum + (b.rentalDays || 1) : sum), 0)
-    return {
-      stats: {
-        total: bookings.length,
-        active,
-        completed,
-        cancelled,
-        spend,
-        totalDays,
-      },
-      userBookings: bookings,
+  // Async booking data for lifetime stats
+  const [userBookings, setUserBookings] = useState([])
+  const [isLoadingBookings, setIsLoadingBookings] = useState(true)
+
+  useEffect(() => {
+    if (!user?.id) {
+      setIsLoadingBookings(false)
+      return
     }
+    let cancelled = false
+    setIsLoadingBookings(true)
+    fetchMyBookings()
+      .then((list) => {
+        if (!cancelled) setUserBookings(list || [])
+      })
+      .catch(() => {
+        if (!cancelled) setUserBookings([])
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoadingBookings(false)
+      })
+    return () => { cancelled = true }
   }, [user?.id])
+
+  // Lifetime metrics derived from real backend booking data
+  const stats = useMemo(() => {
+    if (!userBookings.length) return { total: 0, active: 0, completed: 0, cancelled: 0, spend: 0, totalDays: 0 }
+    const active = userBookings.filter((b) => b.status === 'ACTIVE').length
+    const completed = userBookings.filter((b) => b.status === 'COMPLETED').length
+    const cancelled = userBookings.filter((b) => b.status === 'CANCELLED').length
+    const spend = userBookings.reduce((sum, b) => (b.status !== 'CANCELLED' ? sum + (b.totalAmount || 0) : sum), 0)
+    const totalDays = userBookings.reduce((sum, b) => (b.status !== 'CANCELLED' ? sum + (b.rentalDays || 1) : sum), 0)
+    return { total: userBookings.length, active, completed, cancelled, spend, totalDays }
+  }, [userBookings])
 
   // Profile completion calculation
   const completionScore = useMemo(() => {
@@ -283,7 +296,7 @@ export default function ProfilePage() {
                 </div>
                 <p className="profile-email-meta">{user?.email}</p>
                 <div className="profile-meta-badges">
-                  <span>Member since Aug 2026</span>
+                  <span>Member since {user?.createdAt ? formatDate(user.createdAt) : (user?.joinedAt ? formatDate(user.joinedAt) : 'VAYRO Member')}</span>
                   <span>•</span>
                   <span>Verified Identity Tier</span>
                 </div>

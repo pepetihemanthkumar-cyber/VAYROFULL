@@ -1,6 +1,6 @@
 import { api } from './api'
 
-const SESSION_KEY = 'vayro_session'
+export const SESSION_KEY = 'vayro_session'
 
 export function mapUserResponse(user) {
   if (!user) return null

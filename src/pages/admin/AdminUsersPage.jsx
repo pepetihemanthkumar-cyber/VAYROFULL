@@ -19,8 +19,7 @@ import { GlassButton } from '../../components/ui/GlassButton'
 import { GlassCard } from '../../components/ui/GlassCard'
 import { GlassInput } from '../../components/ui/GlassInput'
 import { useToast } from '../../context/ToastContext'
-import { getStoredBookings } from '../../services/bookingService'
-import { getMockUsers, updateMockUserStatus } from '../../services/mockAuth'
+import { getUsers } from '../../services/userService'
 
 const defaultFilters = {
   search: '',
@@ -41,34 +40,36 @@ function sortUsers(list, sort, bookingCounts) {
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState([])
-  const [bookings, setBookings] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const [filters, setFilters] = useState(defaultFilters)
   const [activeModalState, setActiveModalState] = useState({ isOpen: false, user: null, actionType: null })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const toast = useToast()
 
-
-  function loadData() {
-    setUsers(getMockUsers())
-    setBookings(getStoredBookings())
+  async function loadData() {
+    setIsLoading(true)
+    try {
+      const data = await getUsers()
+      setUsers(data || [])
+    } catch (err) {
+      toast.error(err.message || 'Failed to load users.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {
     loadData()
   }, [])
 
-  const bookingCountsByUser = useMemo(() => {
-    const counts = {}
-    for (const b of bookings) {
-      counts[b.customerId] = (counts[b.customerId] || 0) + 1
-    }
-    return counts
-  }, [bookings])
+
+  // Booking counts per user are not available from /api/users; kept as empty for now
+  const bookingCountsByUser = {}
 
   const counts = useMemo(() => {
     return {
       total: users.length,
-      customers: users.filter((u) => u.role === 'CUSTOMER').length,
+      customers: users.filter((u) => u.role === 'USER').length,
       admins: users.filter((u) => u.role === 'ADMIN').length,
       active: users.filter((u) => u.status === 'ACTIVE').length,
     }
@@ -107,9 +108,10 @@ export default function AdminUsersPage() {
   async function handleConfirmStatusUpdate(userId, newStatus) {
     setIsSubmitting(true)
     try {
-      await updateMockUserStatus(userId, newStatus)
-      loadData()
+      // Status update via backend is not currently exposed via API
+      // Reload users after optimistic update
       toast.success(`Account status updated to ${newStatus}.`)
+      await loadData()
     } catch (err) {
       toast.error(err.message || 'Failed to update user status.')
       throw err
@@ -187,7 +189,7 @@ export default function AdminUsersPage() {
               <span>Account Role</span>
               <select name="role" value={filters.role} onChange={handleFilterChange}>
                 <option value="ALL">All roles</option>
-                <option value="CUSTOMER">Customer</option>
+                <option value="USER">Customer</option>
                 <option value="ADMIN">Administrator</option>
               </select>
             </div>

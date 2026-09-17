@@ -91,10 +91,10 @@ export function useToast() {
   if (!context) {
     // Fallback object so components won't throw if rendered outside ToastProvider
     return {
-      success: (msg) => console.log('[Toast Success]', msg),
-      error: (msg) => console.error('[Toast Error]', msg),
-      warning: (msg) => console.warn('[Toast Warning]', msg),
-      info: (msg) => console.log('[Toast Info]', msg),
+      success: (msg) => { if (import.meta.env.DEV) console.log('[Toast Success]', msg) },
+      error: (msg) => { if (import.meta.env.DEV) console.error('[Toast Error]', msg) },
+      warning: (msg) => { if (import.meta.env.DEV) console.warn('[Toast Warning]', msg) },
+      info: (msg) => { if (import.meta.env.DEV) console.log('[Toast Info]', msg) },
       dismiss: () => {},
     }
   }

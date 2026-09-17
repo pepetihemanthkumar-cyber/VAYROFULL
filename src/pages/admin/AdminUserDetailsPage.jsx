@@ -22,7 +22,7 @@ import { GlassButton } from '../../components/ui/GlassButton'
 import { GlassCard } from '../../components/ui/GlassCard'
 import { useToast } from '../../context/ToastContext'
 import { getBookingsForCustomer } from '../../services/bookingService'
-import { getMockUserById, updateMockUserStatus } from '../../services/mockAuth'
+import { getUserById, updateUserStatus } from '../../services/userService'
 import { formatCurrency, formatDate, formatStatus } from '../../utils/formatters'
 
 function getUserInitials(name = '') {
@@ -54,30 +54,40 @@ export default function AdminUserDetailsPage() {
     }
   }
 
-  function loadData() {
-    const loadedUser = getMockUserById(id)
-    setUser(loadedUser)
-    if (loadedUser) {
-      const bookings = getBookingsForCustomer(id)
-      setUserBookings(bookings)
+  async function loadData() {
+    setIsLoading(true)
+    try {
+      const loadedUser = await getUserById(id)
+      setUser(loadedUser)
+      if (loadedUser) {
+        const bookings = await getBookingsForCustomer(id)
+        setUserBookings(Array.isArray(bookings) ? bookings : [])
+      } else {
+        setUserBookings([])
+      }
+    } catch {
+      setUser(null)
+      setUserBookings([])
+    } finally {
+      setIsLoading(false)
     }
   }
 
   useEffect(() => {
     loadData()
-    setIsLoading(false)
   }, [id])
 
   const stats = useMemo(() => {
-    const totalSpend = userBookings
+    const safeBookings = Array.isArray(userBookings) ? userBookings : []
+    const totalSpend = safeBookings
       .filter((b) => b.status !== 'CANCELLED')
       .reduce((sum, b) => sum + (b.totalAmount || 0), 0)
 
     return {
-      total: userBookings.length,
-      active: userBookings.filter((b) => b.status === 'ACTIVE').length,
-      completed: userBookings.filter((b) => b.status === 'COMPLETED').length,
-      cancelled: userBookings.filter((b) => b.status === 'CANCELLED').length,
+      total: safeBookings.length,
+      active: safeBookings.filter((b) => b.status === 'ACTIVE').length,
+      completed: safeBookings.filter((b) => b.status === 'COMPLETED').length,
+      cancelled: safeBookings.filter((b) => b.status === 'CANCELLED').length,
       totalSpend,
     }
   }, [userBookings])
@@ -85,8 +95,8 @@ export default function AdminUserDetailsPage() {
   async function handleConfirmStatusUpdate(userId, newStatus) {
     setIsSubmitting(true)
     try {
-      await updateMockUserStatus(userId, newStatus)
-      loadData()
+      await updateUserStatus(userId, newStatus)
+      await loadData()
       toast.success(`Account status updated to ${newStatus}.`)
     } catch (err) {
       toast.error(err.message || 'Failed to update user status.')

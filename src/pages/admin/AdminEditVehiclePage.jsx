@@ -8,7 +8,7 @@ import { GlassBadge } from '../../components/ui/GlassBadge'
 import { GlassButton } from '../../components/ui/GlassButton'
 import { GlassCard } from '../../components/ui/GlassCard'
 import { useToast } from '../../context/ToastContext'
-import { getVehicleById, updateVehicle } from '../../services/vehicleService'
+import { fetchVehicleById, getVehicleById, updateVehicle } from '../../services/vehicleService'
 import { formatStatus } from '../../utils/formatters'
 
 
@@ -17,8 +17,8 @@ export default function AdminEditVehiclePage() {
   const navigate = useNavigate()
   const location = useLocation()
   const toast = useToast()
-  const [vehicle, setVehicle] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [vehicle, setVehicle] = useState(() => getVehicleById(id))
+  const [isLoading, setIsLoading] = useState(() => !getVehicleById(id))
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [toastMessage, setToastMessage] = useState(null)
   const [error, setError] = useState('')
@@ -32,9 +32,29 @@ export default function AdminEditVehiclePage() {
   }
 
   useEffect(() => {
-    const loaded = getVehicleById(id)
-    setVehicle(loaded)
-    setIsLoading(false)
+    let isCancelled = false
+    setIsLoading(true)
+
+    fetchVehicleById(id)
+      .then((fetched) => {
+        if (!isCancelled && fetched) {
+          setVehicle(fetched)
+        }
+      })
+      .catch(() => {
+        if (!isCancelled) {
+          setVehicle(getVehicleById(id))
+        }
+      })
+      .finally(() => {
+        if (!isCancelled) {
+          setIsLoading(false)
+        }
+      })
+
+    return () => {
+      isCancelled = true
+    }
   }, [id])
 
   async function handleUpdateVehicle(formData) {

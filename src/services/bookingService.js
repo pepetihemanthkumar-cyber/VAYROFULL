@@ -203,7 +203,7 @@ export async function checkBookingAvailability(vehicleId, pickupDateTime, return
 /**
  * Alias for vehicle details availability check
  */
-export function checkVehicleAvailability(vehicleId, pickupDate, returnDate, excludeId, pickupTime, returnTime) {
+export async function checkVehicleAvailability(vehicleId, pickupDate, returnDate, excludeId, pickupTime, returnTime) {
   if (!vehicleId || !pickupDate || !returnDate) {
     return { available: true }
   }
@@ -213,10 +213,7 @@ export function checkVehicleAvailability(vehicleId, pickupDate, returnDate, excl
   const pickupDateTime = `${pickupDate}T${pTime}`
   const returnDateTime = `${returnDate}T${rTime}`
 
-  // Async call triggers availability validation
-  checkBookingAvailability(vehicleId, pickupDateTime, returnDateTime)
-
-  return { available: true }
+  return await checkBookingAvailability(vehicleId, pickupDateTime, returnDateTime)
 }
 
 /**
@@ -369,5 +366,14 @@ export function logActivity({ type, title, detail, occurredAt = 'Just now' }) {
 }
 
 export function getStoredBookings() {
+  return []
+}
+
+/**
+ * Synchronous upcoming bookings accessor for UI components.
+ * Returns an empty array — real upcoming bookings are loaded asynchronously
+ * via fetchMyBookings(). This export resolves legacy import compatibility.
+ */
+export function getUpcomingBookings() {
   return []
 }

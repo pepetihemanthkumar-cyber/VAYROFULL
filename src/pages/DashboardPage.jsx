@@ -75,7 +75,7 @@ export default function DashboardPage() {
   const [cancelTarget, setCancelTarget] = useState(null)
   const [returnTarget, setReturnTarget] = useState(null)
 
-  async function loadDashboard() {
+  const loadDashboard = useCallback(async () => {
     if (!user?.id) return
 
     try {
@@ -109,11 +109,11 @@ export default function DashboardPage() {
     } catch {
       // fallback smoothly
     }
-  }
+  }, [user?.id])
 
   useEffect(() => {
     loadDashboard()
-  }, [user?.id])
+  }, [loadDashboard])
 
   async function handleConfirmCancel(bookingId) {
     try {

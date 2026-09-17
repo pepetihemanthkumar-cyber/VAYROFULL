@@ -54,21 +54,27 @@ export default function AdminBookingDetailsPage() {
     }
   }
 
-  function loadBooking() {
-    const loaded = getBookingById(id)
-    setBooking(loaded)
+  async function loadBooking() {
+    setIsLoading(true)
+    try {
+      const loaded = await getBookingById(id)
+      setBooking(loaded)
+    } catch {
+      setBooking(null)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {
     loadBooking()
-    setIsLoading(false)
   }, [id])
 
   async function handleConfirmStatusUpdate(bookingId, newStatus) {
     setIsSubmitting(true)
     try {
       await updateBookingStatus(bookingId, newStatus)
-      loadBooking()
+      await loadBooking()
       toast.success(`Booking ${bookingId} successfully updated to ${newStatus}.`)
     } catch (err) {
       toast.error(err.message || 'Failed to update status.')

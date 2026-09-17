@@ -361,10 +361,10 @@ export default function VehiclesPage() {
           <p className="eyebrow">Fleet Discovery</p>
           <h2>Find your next {typeNoun}</h2>
           <p>
-            {isBike
-              ? 'Explore 72 premium motorcycles and smart electric scooters across 16 global brands.'
-              : 'Browse our complete catalogue of 135 verified cars across 20 leading automobile brands.'}
-          </p>
+          {isBike
+            ? `Explore ${bikeTotalCount > 0 ? bikeTotalCount : ''} premium motorcycles and smart electric scooters across our global brands.`
+            : `Browse our complete catalogue of ${carTotalCount > 0 ? carTotalCount : ''} verified cars across leading automobile brands.`}
+        </p>
         </div>
         <span className="inventory-count">
           {isBike ? <Bike size={17} aria-hidden="true" /> : <CarFront size={17} aria-hidden="true" />}{' '}

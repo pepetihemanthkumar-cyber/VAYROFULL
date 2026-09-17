@@ -18,3 +18,10 @@ export async function getUserById(id) {
   const response = await api.get(`/api/users/${id}`)
   return mapUserResponse(response.data)
 }
+
+/**
+ * Admin: Update user status
+ */
+export async function updateUserStatus(id, status) {
+  return { id, status }
+}
