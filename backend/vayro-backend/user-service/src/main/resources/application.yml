@@ -37,6 +37,8 @@ jwt:
   expiration: ${JWT_EXPIRATION:86400000}
 
 app:
+  google:
+    client-id: ${GOOGLE_CLIENT_ID:718836314167-geld1ctvampfjqblcagrkhhcnlvgt4fi.apps.googleusercontent.com}
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
   admin:

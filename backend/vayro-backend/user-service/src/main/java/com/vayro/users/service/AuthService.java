@@ -17,6 +17,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.gson.GsonFactory;
+import com.vayro.users.dto.GoogleAuthRequest;
+import org.springframework.beans.factory.annotation.Value;
+import java.util.Collections;
+import java.util.Optional;
+
 /**
  * Service managing user registration and authentication workflows.
  */
@@ -27,6 +36,9 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+
+    @Value("${app.google.client-id:${GOOGLE_CLIENT_ID:718836314167-geld1ctvampfjqblcagrkhhcnlvgt4fi.apps.googleusercontent.com}}")
+    private String googleClientId;
 
     public AuthService(
             UserRepository userRepository,
@@ -76,6 +88,102 @@ public class AuthService {
 
         User user = userRepository.findByEmail(normalizedEmail)
                 .orElseThrow(() -> new InvalidCredentialsException("Invalid email or password"));
+
+        if (!user.isEnabled()) {
+            throw new InvalidCredentialsException("Account is disabled. Please contact support.");
+        }
+
+        String token = jwtService.generateToken(user);
+        return new AuthResponse(token, UserResponse.fromEntity(user));
+    }
+
+    private volatile GoogleIdTokenVerifier cachedVerifier;
+
+    private GoogleIdTokenVerifier getVerifier() {
+        if (cachedVerifier == null) {
+            synchronized (this) {
+                if (cachedVerifier == null) {
+                    GoogleIdTokenVerifier.Builder verifierBuilder = new GoogleIdTokenVerifier.Builder(
+                            new NetHttpTransport(),
+                            new GsonFactory()
+                    );
+                    if (googleClientId != null && !googleClientId.trim().isEmpty()) {
+                        verifierBuilder.setAudience(Collections.singletonList(googleClientId.trim()));
+                    }
+                    cachedVerifier = verifierBuilder.build();
+                }
+            }
+        }
+        return cachedVerifier;
+    }
+
+    @Transactional
+    public AuthResponse authenticateGoogleUser(GoogleAuthRequest request) {
+        String tokenString = request.getCredential();
+        if (tokenString == null || tokenString.trim().isEmpty()) {
+            throw new InvalidCredentialsException("Google credential token is missing");
+        }
+
+        String googleSub = null;
+        String email = null;
+        String firstName = "User";
+        String lastName = "Member";
+
+        try {
+            GoogleIdTokenVerifier verifier = getVerifier();
+            GoogleIdToken idToken = verifier.verify(tokenString);
+
+            if (idToken != null) {
+                GoogleIdToken.Payload payload = idToken.getPayload();
+                googleSub = payload.getSubject();
+                email = payload.getEmail();
+                if (payload.get("given_name") != null) {
+                    firstName = (String) payload.get("given_name");
+                }
+                if (payload.get("family_name") != null) {
+                    lastName = (String) payload.get("family_name");
+                } else if (payload.get("name") != null) {
+                    lastName = (String) payload.get("name");
+                }
+            } else {
+                throw new InvalidCredentialsException("Invalid or expired Google credential token");
+            }
+        } catch (InvalidCredentialsException ice) {
+            throw ice;
+        } catch (Exception e) {
+            throw new InvalidCredentialsException("Google authentication verification failed: " + e.getMessage());
+        }
+
+        if (email == null || email.trim().isEmpty()) {
+            throw new InvalidCredentialsException("Google account email could not be verified");
+        }
+
+        String normalizedEmail = email.trim().toLowerCase();
+
+        Optional<User> existingUserOpt = userRepository.findByGoogleSubjectId(googleSub);
+        if (existingUserOpt.isEmpty()) {
+            existingUserOpt = userRepository.findByEmail(normalizedEmail);
+        }
+
+        User user;
+        if (existingUserOpt.isPresent()) {
+            user = existingUserOpt.get();
+            if (user.getGoogleSubjectId() == null && googleSub != null) {
+                user.setGoogleSubjectId(googleSub);
+                userRepository.save(user);
+            }
+        } else {
+            user = new User();
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setEmail(normalizedEmail);
+            user.setPassword(passwordEncoder.encode(java.util.UUID.randomUUID().toString()));
+            user.setPhone("+91 98765 43210");
+            user.setGoogleSubjectId(googleSub);
+            user.setRole(Role.USER); // Google authentication strictly creates regular USER role
+            user.setEnabled(true);
+            user = userRepository.save(user);
+        }
 
         if (!user.isEnabled()) {
             throw new InvalidCredentialsException("Account is disabled. Please contact support.");

@@ -56,6 +56,17 @@ class GatewaySecurityTest {
     }
 
     @Test
+    @DisplayName("Public auth endpoints (google) should be accessible without Authorization token")
+    void testPublicGoogleAuthEndpoint() {
+        webTestClient.post()
+                .uri("/api/auth/google")
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue("{\"credential\":\"test-google-token\"}")
+                .exchange()
+                .expectStatus().isEqualTo(org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE); // Passes gateway security filter (routes to USER-SERVICE which is offline in unit test, giving 503 instead of 401)
+    }
+
+    @Test
     @DisplayName("Unauthenticated request to protected endpoint should return 401 Unauthorized")
     void testProtectedUsersEndpointWithoutTokenReturns401() {
         webTestClient.get()

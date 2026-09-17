@@ -32,11 +32,14 @@ public class User {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = true)
     private String password;
 
-    @Column(name = "phone", nullable = false)
+    @Column(name = "phone", nullable = true)
     private String phone;
+
+    @Column(name = "google_subject_id", unique = true)
+    private String googleSubjectId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
@@ -123,6 +126,14 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getGoogleSubjectId() {
+        return googleSubjectId;
+    }
+
+    public void setGoogleSubjectId(String googleSubjectId) {
+        this.googleSubjectId = googleSubjectId;
     }
 
     public Role getRole() {

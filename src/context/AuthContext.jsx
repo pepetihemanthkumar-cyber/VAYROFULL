@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import {
   getCurrentUser,
   login as authLogin,
+  loginWithGoogle as authLoginWithGoogle,
   logout as authLogout,
   register as authRegister,
   SESSION_KEY,
@@ -130,6 +131,11 @@ export function AuthProvider({ children }) {
     return persistSession(nextSession)
   }, [persistSession])
 
+  const loginWithGoogle = useCallback(async (payload) => {
+    const nextSession = await authLoginWithGoogle(payload)
+    return persistSession(nextSession)
+  }, [persistSession])
+
   const register = useCallback(async (details) => {
     const nextSession = await authRegister(details)
     return persistSession(nextSession)
@@ -180,6 +186,7 @@ export function AuthProvider({ children }) {
     uploadProfilePhoto,
     removeProfilePhoto,
     login,
+    loginWithGoogle,
     register,
     updateProfile,
     changePassword,
@@ -189,6 +196,7 @@ export function AuthProvider({ children }) {
     isInitializing,
     isLoadingPhoto,
     login,
+    loginWithGoogle,
     logout,
     profilePhoto,
     register,

@@ -78,6 +78,18 @@ export async function getCurrentUser() {
 }
 
 /**
+ * Real backend Google authentication via API Gateway: POST /api/auth/google
+ */
+export async function loginWithGoogle({ credential }) {
+  const response = await api.post('/api/auth/google', { credential })
+  const { token, user } = response.data
+  return {
+    token,
+    user: mapUserResponse(user),
+  }
+}
+
+/**
  * Session clearing for logout
  */
 export function logout() {

@@ -7,6 +7,7 @@ import { GlassCard } from '../../components/ui/GlassCard'
 import { GlassInput } from '../../components/ui/GlassInput'
 import { AuthLayout } from '../../components/layout/AuthLayout'
 import { useAuth } from '../../context/AuthContext'
+import { GoogleSignInButton } from '../../components/auth/GoogleSignInButton'
 
 const REMEMBER_ME_STORAGE_KEY = 'vayro_remembered_credentials'
 
@@ -89,7 +90,7 @@ export default function LoginPage() {
   const [formError, setFormError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   
-  const { login, logout } = useAuth()
+  const { login, loginWithGoogle, logout } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -143,6 +144,31 @@ export default function LoginPage() {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  async function handleGoogleSuccess(googleResponse) {
+    const credential = typeof googleResponse === 'string' ? googleResponse : googleResponse?.credential
+    if (!credential) return
+    setIsSubmitting(true)
+    setFormError('')
+    try {
+      const user = await loginWithGoogle({ credential })
+      if (user.role !== 'USER') {
+        logout()
+        setFormError('Google sign-in is available for USER accounts only.')
+        return
+      }
+      const targetPath = getValidReturnUrl(location.state?.from, user.role)
+      navigate(targetPath, { replace: true })
+    } catch (error) {
+      setFormError(error.message || 'Google sign-in failed. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  function handleGoogleError(error) {
+    setFormError(typeof error === 'string' ? error : 'Google sign-in could not be completed.')
   }
 
   return (
@@ -244,6 +270,14 @@ export default function LoginPage() {
             <GlassButton type="submit" loading={isSubmitting} className="auth-submit">
               SIGN IN &nbsp;&rarr;
             </GlassButton>
+
+            {loginMode === 'user' && (
+              <GoogleSignInButton
+                onSuccess={handleGoogleSuccess}
+                onError={handleGoogleError}
+                disabled={isSubmitting}
+              />
+            )}
           </form>
           <div className="auth-divider" />
           {loginMode === 'user' ? (

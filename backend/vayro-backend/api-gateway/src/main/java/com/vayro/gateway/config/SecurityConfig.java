@@ -61,6 +61,12 @@ public class SecurityConfig {
         AuthenticationWebFilter authenticationWebFilter = new AuthenticationWebFilter(authenticationManager);
         authenticationWebFilter.setServerAuthenticationConverter(authenticationConverter);
         authenticationWebFilter.setSecurityContextRepository(NoOpServerSecurityContextRepository.getInstance());
+        authenticationWebFilter.setRequiresAuthenticationMatcher(
+                org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers.pathMatchers(
+                        "/api/users/**",
+                        "/api/bookings/**"
+                )
+        );
         authenticationWebFilter.setAuthenticationFailureHandler((webFilterExchange, exception) ->
                 authenticationEntryPoint().commence(webFilterExchange.getExchange(), exception)
         );
@@ -86,7 +92,7 @@ public class SecurityConfig {
                         .pathMatchers(HttpMethod.GET, "/actuator/health", "/actuator/info").permitAll()
 
                         // Public Auth Endpoints
-                        .pathMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login").permitAll()
+                        .pathMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login", "/api/auth/google").permitAll()
 
                         // Public Vehicle Catalogue Read Endpoints
                         .pathMatchers(HttpMethod.GET, "/api/vehicles/**").permitAll()
@@ -207,10 +213,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        Arrays.stream(allowedOrigins.split(","))
-                .map(String::trim)
-                .filter(s -> !s.isEmpty())
-                .forEach(config::addAllowedOrigin);
+        config.addAllowedOriginPattern("*");
         config.addAllowedMethod("GET");
         config.addAllowedMethod("POST");
         config.addAllowedMethod("PUT");

@@ -44,9 +44,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({InvalidCredentialsException.class, BadCredentialsException.class, UsernameNotFoundException.class})
     public ResponseEntity<ErrorResponse> handleAuthenticationFailures(Exception ex) {
+        String msg = (ex.getMessage() != null && !ex.getMessage().isBlank()) ? ex.getMessage() : "Invalid email or password";
         ErrorResponse response = new ErrorResponse(
                 HttpStatus.UNAUTHORIZED.value(),
-                "Invalid email or password"
+                msg
         );
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
