@@ -67,5 +67,20 @@ public class AdminInitializer implements CommandLineRunner {
         } else {
             log.info("Admin account already exists for: {}", normalizedEmail);
         }
+
+        String customerEmail = "customer@vayro.com";
+        if (!userRepository.existsByEmail(customerEmail)) {
+            User customer = new User();
+            customer.setFirstName("Vayro");
+            customer.setLastName("Customer");
+            customer.setEmail(customerEmail);
+            customer.setPassword(passwordEncoder.encode("Password123!"));
+            customer.setPhone("+91 98765 43210");
+            customer.setRole(Role.USER);
+            customer.setEnabled(true);
+
+            userRepository.save(customer);
+            log.info("Development customer account initialized for: {}", customerEmail);
+        }
     }
 }
