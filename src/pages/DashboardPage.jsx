@@ -15,7 +15,7 @@ import {
   Sparkles,
   UserRound,
 } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CancelBookingModal } from '../components/bookings/CancelBookingModal'
 import { ReturnVehicleModal } from '../components/bookings/ReturnVehicleModal'
