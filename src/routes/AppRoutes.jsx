@@ -11,6 +11,7 @@ import AdminUsersPage from '../pages/admin/AdminUsersPage'
 import AdminVehicleDetailsPage from '../pages/admin/AdminVehicleDetailsPage'
 import AdminVehiclesPage from '../pages/admin/AdminVehiclesPage'
 import BookingDetailsPage from '../pages/BookingDetailsPage'
+import BookingSuccessPage from '../pages/BookingSuccessPage'
 import BookingsPage from '../pages/BookingsPage'
 import DashboardPage from '../pages/DashboardPage'
 import NewBookingPage from '../pages/NewBookingPage'
@@ -50,6 +51,7 @@ export function AppRoutes() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/bookings" element={<BookingsPage />} />
           <Route path="/bookings/new" element={<NewBookingPage />} />
+          <Route path="/bookings/success/:id" element={<BookingSuccessPage />} />
           <Route path="/bookings/:id" element={<BookingDetailsPage />} />
           <Route path="/profile" element={<ProfilePage />} />
 

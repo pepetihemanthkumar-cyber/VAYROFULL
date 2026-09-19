@@ -1,4 +1,4 @@
-# DriveEase Vehicle Image Coverage
+# VAYRO Vehicle Image Coverage
 
 Total Catalogue Fleet: 135 models across 20 brands.
 

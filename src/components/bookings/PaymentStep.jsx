@@ -13,6 +13,7 @@ import {
   ArrowLeft,
   ChevronRight,
   Info,
+  AlertTriangle,
 } from 'lucide-react'
 import { GlassCard } from '../ui/GlassCard'
 import { GlassButton } from '../ui/GlassButton'
@@ -75,6 +76,7 @@ export function PaymentStep({
   const [selectedBank, setSelectedBank] = useState('HDFC Bank')
   const [isProcessing, setIsProcessing] = useState(false)
   const [processingState, setProcessingState] = useState('') // 'verifying' | 'charging' | 'complete'
+  const [paymentError, setPaymentError] = useState(null) // null | { type: 'FAILED' | 'CANCELLED', message: string }
 
   const durationLabel = pricing?.duration?.label || 'Trip duration'
   const couponDiscountAmount = appliedCoupon?.discount ?? appliedCoupon?.discountAmount ?? 0
@@ -83,25 +85,49 @@ export function PaymentStep({
   async function handleExecutePayment(e) {
     if (e) e.preventDefault()
     setIsProcessing(true)
-    setProcessingState('Verifying payment details...')
+    setPaymentError(null)
+    setProcessingState('Verifying payment details with payment gateway...')
 
-    await new Promise((r) => setTimeout(r, 650))
-    setProcessingState(selectedMethod === 'pay_at_pickup' ? 'Securing reservation...' : 'Authorizing transaction...')
+    try {
+      await new Promise((r) => setTimeout(r, 600))
+      setProcessingState(selectedMethod === 'pay_at_pickup' ? 'Securing reservation...' : 'Authorizing payment transaction...')
 
-    await new Promise((r) => setTimeout(r, 700))
-    setProcessingState('Payment authorized successfully!')
+      await new Promise((r) => setTimeout(r, 650))
+      const uniqueSuffix = `${Date.now()}-${Math.floor(100000 + Math.random() * 900000)}`
+      const paymentOrderId = `ORD-SIM-${uniqueSuffix}`
+      const paymentReference = `PAY-SIM-${uniqueSuffix}`
 
-    await new Promise((r) => setTimeout(r, 450))
+      await onCompletePayment({
+        paymentMethod: selectedMethod === 'pay_at_pickup' ? 'PAY_AT_PICKUP' : selectedMethod.toUpperCase(),
+        paymentStatus: selectedMethod === 'pay_at_pickup' ? 'PENDING_AT_PICKUP' : 'PAID',
+        paymentOrderId,
+        paymentReference,
+        paymentTimestamp: new Date().toISOString(),
+        paidAmount: finalPayable,
+      })
+      setIsProcessing(false)
+    } catch (err) {
+      setIsProcessing(false)
+      const field = err.field || err.response?.data?.field
+      let title = 'PAYMENT FAILED'
+      if (err.status === 400 || (field && !['paymentMethod', 'paymentStatus'].includes(field))) {
+        title = 'BOOKING DETAILS NEED ATTENTION'
+      }
+      setPaymentError({
+        type: 'FAILED',
+        title,
+        field,
+        message: err.message || 'Your payment could not be completed.',
+      })
+    }
+  }
 
-    const randomSuffix = Math.floor(100000 + Math.random() * 900000)
-    const paymentReference = `PAY-2026-${randomSuffix}`
-
-    onCompletePayment({
-      paymentMethod: selectedMethod === 'pay_at_pickup' ? 'PAY_AT_PICKUP' : selectedMethod.toUpperCase(),
-      paymentStatus: selectedMethod === 'pay_at_pickup' ? 'PENDING_AT_PICKUP' : 'PAID',
-      paymentReference,
-      paymentTimestamp: new Date().toISOString(),
-      paidAmount: finalPayable,
+  function handleCancelPayment() {
+    setIsProcessing(false)
+    setPaymentError({
+      type: 'CANCELLED',
+      title: 'PAYMENT CANCELLED',
+      message: 'Your payment was not completed. No booking has been confirmed.',
     })
   }
 
@@ -273,6 +299,49 @@ export function PaymentStep({
                 <h4>Processing transaction</h4>
                 <p>{processingState}</p>
                 <span className="processing-note">Do not refresh or close this browser tab</span>
+                <button
+                  type="button"
+                  className="cancel-payment-link"
+                  onClick={handleCancelPayment}
+                >
+                  Cancel Transaction
+                </button>
+              </GlassCard>
+            </motion.div>
+          )}
+
+          {paymentError && (
+            <motion.div
+              className="payment-processing-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <GlassCard className="payment-processing-modal payment-error-modal">
+                <AlertTriangle size={44} className="text-warning mb-2" aria-hidden="true" />
+                <h4>{paymentError.title || 'PAYMENT FAILED'}</h4>
+                <p>{paymentError.message}</p>
+                <div className="step-actions mt-4">
+                  {paymentError.type === 'CANCELLED' ? (
+                    <>
+                      <GlassButton variant="primary" onClick={() => setPaymentError(null)}>
+                        Return to Payment
+                      </GlassButton>
+                      <GlassButton variant="secondary" onClick={onBack}>
+                        Back to Vehicle
+                      </GlassButton>
+                    </>
+                  ) : (
+                    <>
+                      <GlassButton variant="primary" onClick={() => setPaymentError(null)}>
+                        Try Again
+                      </GlassButton>
+                      <GlassButton variant="secondary" onClick={onBack}>
+                        Back to Booking
+                      </GlassButton>
+                    </>
+                  )}
+                </div>
               </GlassCard>
             </motion.div>
           )}

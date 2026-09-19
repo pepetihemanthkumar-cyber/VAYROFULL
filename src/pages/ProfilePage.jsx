@@ -76,14 +76,14 @@ function getSavedPreferences() {
           emailConfirmations: true,
           tripReminders: true,
           promotions: false,
-          smsAlerts: true,
+          pdfInvoices: true,
         }
   } catch {
     return {
       emailConfirmations: true,
       tripReminders: true,
       promotions: false,
-      smsAlerts: true,
+      pdfInvoices: true,
     }
   }
 }
@@ -876,15 +876,15 @@ export default function ProfilePage() {
 
                   <div className="preference-row">
                     <div>
-                      <strong>SMS alerts & updates</strong>
-                      <p>Receive quick SMS notifications about vehicle availability and security updates.</p>
+                      <strong>Automated PDF tax invoices &amp; receipts</strong>
+                      <p>Receive itemized PDF invoices and payment receipts with every confirmed booking.</p>
                     </div>
                     <button
                       type="button"
-                      className={`preference-toggle ${preferences.smsAlerts ? 'is-enabled' : ''}`}
-                      onClick={() => handleTogglePreference('smsAlerts')}
-                      aria-pressed={preferences.smsAlerts}
-                      aria-label="Toggle SMS alerts"
+                      className={`preference-toggle ${preferences.pdfInvoices ? 'is-enabled' : ''}`}
+                      onClick={() => handleTogglePreference('pdfInvoices')}
+                      aria-pressed={preferences.pdfInvoices}
+                      aria-label="Toggle PDF tax invoices"
                     >
                       <span className="preference-toggle-thumb" />
                     </button>

@@ -35,6 +35,7 @@ import {
   fetchBookingById,
   getBookingById,
   returnCustomerRental,
+  downloadInvoicePdf,
 } from '../services/bookingService'
 import { formatCurrency, formatDate, formatStatus } from '../utils/formatters'
 import { maskLicenseNumber } from '../utils/rental'
@@ -197,9 +198,24 @@ export default function BookingDetailsPage() {
           <GlassButton
             variant="secondary"
             size="sm"
+            onClick={async () => {
+              try {
+                await downloadInvoicePdf(booking.bookingReference || booking.id)
+                toast.success('Invoice downloaded successfully.')
+              } catch {
+                toast.error('Failed to download invoice PDF.')
+              }
+            }}
+          >
+            <Download size={15} aria-hidden="true" /> Download Invoice (PDF)
+          </GlassButton>
+
+          <GlassButton
+            variant="ghost"
+            size="sm"
             onClick={() => setIsInvoiceModalOpen(true)}
           >
-            <Printer size={15} aria-hidden="true" /> Invoice / Receipt
+            <Printer size={15} aria-hidden="true" /> Print / View
           </GlassButton>
 
           {canCancel && (
@@ -337,15 +353,15 @@ export default function BookingDetailsPage() {
               <div className="detail-driver-info-grid">
                 <div>
                   <small>Full name</small>
-                  <strong>{booking.driverDetails?.fullName || '—'}</strong>
+                  <strong>{booking.customerName || booking.driverDetails?.fullName || '—'}</strong>
                 </div>
                 <div>
                   <small>Email address</small>
-                  <strong>{booking.driverDetails?.email || '—'}</strong>
+                  <strong className="text-accent">{booking.customerEmail || booking.driverDetails?.email || '—'}</strong>
                 </div>
                 <div>
                   <small>Contact phone</small>
-                  <strong>{booking.driverDetails?.phone || '—'}</strong>
+                  <strong>{booking.customerPhone || booking.driverDetails?.phone || '—'}</strong>
                 </div>
                 <div>
                   <small>Driving license</small>

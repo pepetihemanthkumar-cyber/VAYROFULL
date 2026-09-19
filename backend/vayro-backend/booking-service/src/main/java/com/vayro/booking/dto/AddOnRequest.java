@@ -8,23 +8,24 @@ import java.math.BigDecimal;
 
 public class AddOnRequest {
 
-    @NotBlank(message = "Add-on name or type is required")
+    @NotBlank(message = "Add-on name is required")
     private String name;
 
-    @NotNull(message = "Quantity is required")
-    @Min(value = 1, message = "Quantity must be at least 1")
-    private Integer quantity;
+    @NotNull(message = "Add-on quantity must be at least 1")
+    @Min(value = 1, message = "Add-on quantity must be at least 1")
+    private Integer quantity = 1;
 
-    @NotNull(message = "Unit price is required")
-    @DecimalMin(value = "0.00", message = "Unit price cannot be negative")
+    @NotNull(message = "Add-on unit price is required")
+    @DecimalMin(value = "0.00", message = "Add-on unit price cannot be negative")
     private BigDecimal unitPrice;
 
     public AddOnRequest() {
+        this.quantity = 1;
     }
 
     public AddOnRequest(String name, Integer quantity, BigDecimal unitPrice) {
         this.name = name;
-        this.quantity = quantity;
+        this.quantity = quantity != null ? quantity : 1;
         this.unitPrice = unitPrice;
     }
 
@@ -50,5 +51,11 @@ public class AddOnRequest {
 
     public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    public void setPrice(BigDecimal price) {
+        if (this.unitPrice == null) {
+            this.unitPrice = price;
+        }
     }
 }

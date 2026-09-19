@@ -37,8 +37,7 @@ management:
         include: health,info
 
 jwt:
-  # Shared 256-bit development key (Must match User Service token validation)
-  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+  secret: ${JWT_SECRET:}
 
 app:
   cors:

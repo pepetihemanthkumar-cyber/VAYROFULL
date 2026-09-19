@@ -1,5 +1,6 @@
 package com.vayro.booking.service;
 
+import com.vayro.booking.client.NotificationServiceClient;
 import com.vayro.booking.client.VehicleServiceClient;
 import com.vayro.booking.dto.*;
 import com.vayro.booking.entity.Booking;
@@ -40,15 +41,18 @@ public class BookingServiceImpl implements BookingService {
 
     private final BookingRepository bookingRepository;
     private final VehicleServiceClient vehicleServiceClient;
+    private final NotificationServiceClient notificationServiceClient;
     private final BigDecimal taxRate;
 
     public BookingServiceImpl(
             BookingRepository bookingRepository,
             VehicleServiceClient vehicleServiceClient,
+            NotificationServiceClient notificationServiceClient,
             @Value("${app.booking.tax-rate:0.18}") BigDecimal taxRate
     ) {
         this.bookingRepository = bookingRepository;
         this.vehicleServiceClient = vehicleServiceClient;
+        this.notificationServiceClient = notificationServiceClient;
         this.taxRate = taxRate;
 
         // Initialize bounded lock stripes for JVM-local thread synchronization
@@ -76,6 +80,16 @@ public class BookingServiceImpl implements BookingService {
         // Concurrency lock striped by vehicleId (JVM-local synchronization)
         Object lock = getLockStripe(request.getVehicleId());
         synchronized (lock) {
+            // 0. Idempotency Check for Duplicate Payment Callbacks / Submissions
+            if (request.getPaymentOrderId() != null && !request.getPaymentOrderId().isBlank()) {
+                Optional<Booking> existing = bookingRepository.findByPaymentOrderId(request.getPaymentOrderId().trim());
+                if (existing.isPresent()) {
+                    log.info("Idempotent booking hit for paymentOrderId: {}. Returning existing booking reference: {}",
+                            request.getPaymentOrderId(), existing.get().getBookingReference());
+                    return BookingResponse.fromEntity(existing.get());
+                }
+            }
+
             // 1. Fetch and validate vehicle from Vehicle Service
             VehicleDto vehicle = vehicleServiceClient.getVehicleById(request.getVehicleId())
                     .orElseThrow(() -> new VehicleUnavailableException("Vehicle with ID '" + request.getVehicleId() + "' was not found or Vehicle Service is unavailable."));
@@ -134,14 +148,35 @@ public class BookingServiceImpl implements BookingService {
             BigDecimal taxAmount = subtotal.multiply(taxRate).setScale(2, RoundingMode.HALF_UP);
             BigDecimal totalAmount = subtotal.add(taxAmount).setScale(2, RoundingMode.HALF_UP);
 
-            // 5. Build entity
+            // 5. Payment Verification & Status Determination
+            String payStatus = request.getPaymentStatus() != null ? request.getPaymentStatus().trim().toUpperCase() : null;
+            if ("FAILED".equals(payStatus) || "CANCELLED".equals(payStatus)) {
+                throw new IllegalArgumentException("Payment was not completed successfully (Status: " + payStatus + "). Booking cannot be confirmed.");
+            }
+
+            boolean isPaid = "PAID".equals(payStatus) || "COMPLETED".equals(payStatus);
+
+            // 6. Build entity
             Booking booking = new Booking();
-            booking.setBookingReference(generateBookingReference());
+            String bookingRef = generateBookingReference();
+            booking.setBookingReference(bookingRef);
             booking.setVehicleId(vehicle.getId());
             booking.setVehicleName(vehicle.getName());
+            String email = (request.getCustomerEmail() != null && !request.getCustomerEmail().trim().isEmpty())
+                    ? request.getCustomerEmail().trim().toLowerCase()
+                    : (currentUser.getEmail() != null ? currentUser.getEmail().trim().toLowerCase() : "customer@vayro.com");
+
+            if (!email.contains("@") || email.length() < 5) {
+                throw new IllegalArgumentException("Invalid customer email address: " + email);
+            }
+
+            String name = (request.getCustomerName() != null && !request.getCustomerName().trim().isEmpty())
+                    ? request.getCustomerName().trim()
+                    : (currentUser.getName() != null ? currentUser.getName().trim() : "Valued Customer");
+
             booking.setUserId(currentUser.getUserId());
-            booking.setCustomerName(currentUser.getName());
-            booking.setCustomerEmail(currentUser.getEmail());
+            booking.setCustomerName(name);
+            booking.setCustomerEmail(email);
             booking.setPickupDateTime(request.getPickupDateTime());
             booking.setReturnDateTime(request.getReturnDateTime());
             booking.setRentalDays(rentalDays);
@@ -151,15 +186,36 @@ public class BookingServiceImpl implements BookingService {
             booking.setDiscountAmount(discountAmount);
             booking.setTaxAmount(taxAmount);
             booking.setTotalAmount(totalAmount);
-            booking.setStatus(BookingStatus.PENDING);
-            booking.setPaymentStatus(PaymentStatus.PENDING);
+
+            if (isPaid) {
+                booking.setStatus(BookingStatus.CONFIRMED);
+                booking.setPaymentStatus(PaymentStatus.PAID);
+                booking.setPaymentMethod(request.getPaymentMethod() != null ? request.getPaymentMethod().trim().toUpperCase() : "UPI");
+                booking.setPaymentVerifiedAt(LocalDateTime.now());
+            } else {
+                booking.setStatus(BookingStatus.PENDING);
+                booking.setPaymentStatus(PaymentStatus.PENDING);
+                booking.setPaymentMethod(request.getPaymentMethod() != null ? request.getPaymentMethod().trim().toUpperCase() : "PAY_AT_PICKUP");
+            }
+
+            booking.setPaymentReference(request.getPaymentReference() != null && !request.getPaymentReference().isBlank()
+                    ? request.getPaymentReference().trim()
+                    : "PAY-" + bookingRef);
+            booking.setPaymentOrderId(request.getPaymentOrderId() != null && !request.getPaymentOrderId().isBlank()
+                    ? request.getPaymentOrderId().trim()
+                    : null);
+
+            booking.setCustomerPhone(request.getCustomerPhone());
             booking.setPickupLocation(request.getPickupLocation());
             booking.setReturnLocation(request.getReturnLocation());
             booking.setNotes(request.getNotes());
 
             Booking saved = bookingRepository.save(booking);
-            log.info("Booking created successfully with reference: {} for vehicleId: {} by user: {}",
-                    saved.getBookingReference(), saved.getVehicleId(), saved.getCustomerEmail());
+            log.info("Booking created successfully with reference: {} (Status: {}, Payment: {}) for vehicleId: {} by user: {}",
+                    saved.getBookingReference(), saved.getStatus(), saved.getPaymentStatus(), saved.getVehicleId(), saved.getCustomerEmail());
+
+            // Asynchronously dispatch booking confirmation email & invoice (non-blocking, failure does not roll back booking)
+            notificationServiceClient.sendBookingConfirmedNotificationAsync(saved);
 
             return BookingResponse.fromEntity(saved);
         }
@@ -331,6 +387,9 @@ public class BookingServiceImpl implements BookingService {
 
         // Synchronize vehicle status back to AVAILABLE in Vehicle Service
         vehicleServiceClient.updateVehicleStatus(saved.getVehicleId(), "AVAILABLE", authToken);
+
+        // Asynchronously dispatch vehicle return notification to Admin (non-blocking, failure does not roll back return)
+        notificationServiceClient.sendVehicleReturnedAdminNotificationAsync(saved);
 
         log.info("Booking {} vehicle returned (status RETURNED) by admin {}", saved.getBookingReference(), currentUser.getEmail());
         return BookingResponse.fromEntity(saved);

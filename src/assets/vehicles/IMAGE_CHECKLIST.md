@@ -1,6 +1,6 @@
-# DriveEase Vehicle Image Checklist
+# VAYRO Vehicle Image Checklist
 
-This checklist tracks all 135 seeded vehicles from `src/data/vehicles.js`.
+This checklist tracks vehicles across `src/data/vehicles.js` and `backend/.../vehicles.json`.
 
 | Brand | Model | Vehicle ID | Image Status | Asset Path |
 | --- | --- | --- | --- | --- |

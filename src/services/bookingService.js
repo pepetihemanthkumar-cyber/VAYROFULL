@@ -65,47 +65,76 @@ export function mapBooking(b) {
   }
 }
 
+export function formatToLocalDateTime(dateStr, timeStr = '10:00:00') {
+  if (!dateStr) return null
+  const str = String(dateStr).trim()
+  if (str.includes('T')) {
+    const [dPart, tPartRaw] = str.split('T')
+    const tPart = tPartRaw.replace('Z', '').split('.')[0]
+    const parts = tPart.split(':')
+    const hh = parts[0] ? parts[0].padStart(2, '0') : '10'
+    const mm = parts[1] ? parts[1].padStart(2, '0') : '00'
+    const ss = parts[2] ? parts[2].padStart(2, '0') : '00'
+    return `${dPart}T${hh}:${mm}:${ss}`
+  }
+  const time = timeStr ? (timeStr.length === 5 ? `${timeStr}:00` : timeStr) : '10:00:00'
+  return `${str}T${time}`
+}
+
 /**
  * Create a new booking via Gateway: POST /api/bookings
  */
 export async function createBooking(data) {
-  // Format dates into ISO LocalDateTime string: YYYY-MM-DDTHH:mm:ss
-  let pickupDateTime = data.pickupDateTime
-  if (!pickupDateTime && data.pickupDate) {
-    const time = data.pickupTime ? (data.pickupTime.length === 5 ? `${data.pickupTime}:00` : data.pickupTime) : '10:00:00'
-    pickupDateTime = `${data.pickupDate}T${time}`
-  }
+  const pickupDateTime = formatToLocalDateTime(data.pickupDateTime || data.pickupDate, data.pickupTime)
+  const returnDateTime = formatToLocalDateTime(data.returnDateTime || data.returnDate, data.returnTime)
 
-  let returnDateTime = data.returnDateTime
-  if (!returnDateTime && data.returnDate) {
-    const time = data.returnTime ? (data.returnTime.length === 5 ? `${data.returnTime}:00` : data.returnTime) : '10:00:00'
-    returnDateTime = `${data.returnDate}T${time}`
-  }
+  // Map add-ons safely with valid name, quantity, and unitPrice
+  const rawAddons = data.selectedAddons || data.addOns || []
+  const addOns = (Array.isArray(rawAddons) ? rawAddons : [])
+    .filter(Boolean)
+    .map((addon) => {
+      let name = ''
+      let unitPrice = 0
+      let quantity = 1
 
-  // Ensure clean ISO string without duplicate seconds or T
-  if (pickupDateTime && !pickupDateTime.includes('T')) {
-    pickupDateTime = `${pickupDateTime}T10:00:00`
-  }
-  if (returnDateTime && !returnDateTime.includes('T')) {
-    returnDateTime = `${returnDateTime}T10:00:00`
-  }
-
-  // Map add-ons
-  const addOns = (data.selectedAddons || data.addOns || []).map((addon) => {
-    if (typeof addon === 'string') {
-      const found = RENTAL_ADDONS.find((a) => a.id === addon)
-      return {
-        id: addon,
-        name: found?.name || addon,
-        price: found?.pricePerDay || 200,
+      if (typeof addon === 'string') {
+        const found = RENTAL_ADDONS.find((a) => a.id === addon)
+        name = found?.name || addon
+        unitPrice = found?.pricePerDay || 200
+        quantity = 1
+      } else if (typeof addon === 'object') {
+        const found = RENTAL_ADDONS.find((a) => a.id === addon.id)
+        name = addon.name || found?.name || addon.id || ''
+        unitPrice = Number(addon.unitPrice ?? addon.price ?? addon.pricePerDay ?? found?.pricePerDay ?? 200)
+        quantity = Number(addon.quantity) >= 1 ? Math.floor(Number(addon.quantity)) : 1
       }
-    }
-    return {
-      id: addon.id,
-      name: addon.name || addon.id,
-      price: addon.price || addon.pricePerDay || 200,
-    }
-  })
+
+      if (!name) return null
+
+      return {
+        name,
+        quantity: Math.max(1, quantity),
+        unitPrice: Math.max(0, unitPrice),
+      }
+    })
+    .filter(Boolean)
+
+  const customerPhone =
+    (data.driverDetails?.phone && data.driverDetails.phone.trim()) ||
+    (data.customerPhone && data.customerPhone.trim()) ||
+    (data.phone && data.phone.trim()) ||
+    '+91 98765 43210'
+
+  const customerEmail =
+    (data.driverDetails?.email && data.driverDetails.email.trim().toLowerCase()) ||
+    (data.customerEmail && data.customerEmail.trim().toLowerCase()) ||
+    (data.email && data.email.trim().toLowerCase()) ||
+    undefined
+
+  const customerName =
+    (data.driverDetails?.fullName && data.driverDetails.fullName.trim()) ||
+    (data.customerName && data.customerName.trim()) ||
+    undefined
 
   const payload = {
     vehicleId: data.vehicleId,
@@ -114,9 +143,16 @@ export async function createBooking(data) {
     pickupLocation: data.pickupLocation || 'Mumbai Central Hub',
     returnLocation: data.returnLocation || data.pickupLocation || 'Mumbai Central Hub',
     notes: data.notes || '',
+    customerName,
+    customerEmail,
+    customerPhone,
     addOns,
     couponCode: data.couponCode || null,
     discountAmount: data.discountAmount || data.couponDiscount || null,
+    paymentOrderId: data.paymentOrderId || null,
+    paymentMethod: data.paymentMethod || 'UPI',
+    paymentStatus: data.paymentStatus || 'PAID',
+    paymentReference: data.paymentReference || null,
   }
 
   const response = await api.post('/api/bookings', payload)
@@ -178,10 +214,8 @@ export async function fetchBookingByReference(reference) {
 export async function checkBookingAvailability(vehicleId, pickupDateTime, returnDateTime) {
   if (!vehicleId) return { available: false, reason: 'Vehicle ID required' }
 
-  let pDt = pickupDateTime
-  if (pDt && !pDt.includes('T')) pDt = `${pDt}T10:00:00`
-  let rDt = returnDateTime
-  if (rDt && !rDt.includes('T')) rDt = `${rDt}T10:00:00`
+  const pDt = formatToLocalDateTime(pickupDateTime)
+  const rDt = formatToLocalDateTime(returnDateTime)
 
   try {
     const response = await api.get(`/api/bookings/availability/${vehicleId}`, {
@@ -377,3 +411,43 @@ export function getStoredBookings() {
 export function getUpcomingBookings() {
   return []
 }
+
+/**
+ * Fetch latest email notification status for a booking: GET /api/notifications/latest/{bookingReference}
+ */
+export async function fetchNotificationStatus(bookingReference) {
+  if (!bookingReference) return null
+  try {
+    const res = await api.get(`/api/notifications/latest/${bookingReference}`)
+    return res.data
+  } catch {
+    // Fallback to idempotency key check
+    try {
+      const res = await api.get(`/api/notifications/status/BOOKING_CONFIRMED:${bookingReference}`)
+      return res.data
+    } catch {
+      return null
+    }
+  }
+}
+
+/**
+ * Download booking PDF tax invoice: GET /api/notifications/invoice/{bookingReference}
+ */
+export async function downloadInvoicePdf(bookingReference) {
+  if (!bookingReference) return
+  const response = await api.get(`/api/notifications/invoice/${bookingReference}`, {
+    responseType: 'blob',
+  })
+
+  const blob = new Blob([response.data], { type: 'application/pdf' })
+  const url = window.URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `VAYRO-Invoice-${bookingReference}.pdf`
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  window.URL.revokeObjectURL(url)
+}
+

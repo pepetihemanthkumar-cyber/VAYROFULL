@@ -34,6 +34,22 @@ public class BookingCreateRequest {
 
     private BigDecimal discountAmount;
 
+    private String customerName;
+
+    private String customerEmail;
+
+    private String customerPhone;
+
+    private String paymentOrderId;
+
+    private String paymentMethod;
+
+    private String paymentStatus;
+
+    private String paymentReference;
+
+    private String paymentSignature;
+
     public BookingCreateRequest() {
     }
 
@@ -116,5 +132,69 @@ public class BookingCreateRequest {
 
     public void setDiscountAmount(BigDecimal discountAmount) {
         this.discountAmount = discountAmount;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public String getPaymentOrderId() {
+        return paymentOrderId;
+    }
+
+    public void setPaymentOrderId(String paymentOrderId) {
+        this.paymentOrderId = paymentOrderId;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public String getPaymentReference() {
+        return paymentReference;
+    }
+
+    public void setPaymentReference(String paymentReference) {
+        this.paymentReference = paymentReference;
+    }
+
+    public String getPaymentSignature() {
+        return paymentSignature;
+    }
+
+    public void setPaymentSignature(String paymentSignature) {
+        this.paymentSignature = paymentSignature;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
 }

@@ -64,7 +64,8 @@ public class SecurityConfig {
         authenticationWebFilter.setRequiresAuthenticationMatcher(
                 org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers.pathMatchers(
                         "/api/users/**",
-                        "/api/bookings/**"
+                        "/api/bookings/**",
+                        "/api/notifications/**"
                 )
         );
         authenticationWebFilter.setAuthenticationFailureHandler((webFilterExchange, exception) ->
@@ -105,6 +106,12 @@ public class SecurityConfig {
 
                         // Protected Booking endpoints
                         .pathMatchers("/api/bookings/**").authenticated()
+
+                        // Notifications endpoints
+                        .pathMatchers(HttpMethod.GET, "/api/notifications/status/**").permitAll()
+                        .pathMatchers(HttpMethod.GET, "/api/notifications/latest/**").permitAll()
+                        .pathMatchers(HttpMethod.GET, "/api/notifications/invoice/**").permitAll()
+                        .pathMatchers("/api/notifications/**").authenticated()
 
                         // Protected Vehicle mutation endpoints
                         .pathMatchers(HttpMethod.POST, "/api/vehicles/**").authenticated()
@@ -213,7 +220,15 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOriginPattern("*");
+        if (allowedOrigins != null && !allowedOrigins.isBlank()) {
+            Arrays.stream(allowedOrigins.split(","))
+                    .map(String::trim)
+                    .filter(s -> !s.isEmpty())
+                    .forEach(config::addAllowedOriginPattern);
+        } else {
+            config.addAllowedOriginPattern("http://localhost:*");
+            config.addAllowedOriginPattern("https://vayro.com");
+        }
         config.addAllowedMethod("GET");
         config.addAllowedMethod("POST");
         config.addAllowedMethod("PUT");

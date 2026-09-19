@@ -16,6 +16,7 @@ public class BookingResponse {
     private String userId;
     private String customerName;
     private String customerEmail;
+    private String customerPhone;
     private LocalDateTime pickupDateTime;
     private LocalDateTime returnDateTime;
     private Integer rentalDays;
@@ -28,6 +29,9 @@ public class BookingResponse {
     private PriceBreakdownResponse priceBreakdown;
     private BookingStatus status;
     private PaymentStatus paymentStatus;
+    private String paymentMethod;
+    private String paymentReference;
+    private String paymentOrderId;
     private String pickupLocation;
     private String returnLocation;
     private String notes;
@@ -48,6 +52,7 @@ public class BookingResponse {
         res.userId = b.getUserId();
         res.customerName = b.getCustomerName();
         res.customerEmail = b.getCustomerEmail();
+        res.customerPhone = b.getCustomerPhone();
         res.pickupDateTime = b.getPickupDateTime();
         res.returnDateTime = b.getReturnDateTime();
         res.rentalDays = b.getRentalDays();
@@ -59,6 +64,9 @@ public class BookingResponse {
         res.totalAmount = b.getTotalAmount();
         res.status = b.getStatus();
         res.paymentStatus = b.getPaymentStatus();
+        res.paymentMethod = b.getPaymentMethod();
+        res.paymentReference = b.getPaymentReference();
+        res.paymentOrderId = b.getPaymentOrderId();
         res.pickupLocation = b.getPickupLocation();
         res.returnLocation = b.getReturnLocation();
         res.notes = b.getNotes();
@@ -134,6 +142,14 @@ public class BookingResponse {
 
     public void setCustomerEmail(String customerEmail) {
         this.customerEmail = customerEmail;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
     }
 
     public LocalDateTime getPickupDateTime() {
@@ -230,6 +246,30 @@ public class BookingResponse {
 
     public void setPaymentStatus(PaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentReference() {
+        return paymentReference;
+    }
+
+    public void setPaymentReference(String paymentReference) {
+        this.paymentReference = paymentReference;
+    }
+
+    public String getPaymentOrderId() {
+        return paymentOrderId;
+    }
+
+    public void setPaymentOrderId(String paymentOrderId) {
+        this.paymentOrderId = paymentOrderId;
     }
 
     public String getPickupLocation() {

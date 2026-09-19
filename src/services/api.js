@@ -39,15 +39,30 @@ api.interceptors.response.use(
       } catch {}
     }
 
-    const message =
-      error.response?.data?.message ||
-      error.response?.data?.error ||
-      error.message ||
-      'An unexpected network error occurred.'
+    const data = error.response?.data
+    let message = ''
+
+    if (data) {
+      if (data.message && data.message !== 'Validation failed for request parameters') {
+        message = data.message
+      } else if (Array.isArray(data.errors) && data.errors.length > 0) {
+        message = data.errors[0]
+      } else if (data.message) {
+        message = data.message
+      } else if (data.error) {
+        message = data.error
+      }
+    }
+
+    if (!message) {
+      message = error.message || 'An unexpected network error occurred.'
+    }
 
     const err = new Error(message)
     err.status = error.response?.status
     err.response = error.response
+    err.field = data?.field
+    err.errors = data?.errors
     return Promise.reject(err)
   },
 )

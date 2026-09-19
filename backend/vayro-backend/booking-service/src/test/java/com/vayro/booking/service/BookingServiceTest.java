@@ -34,6 +34,9 @@ class BookingServiceTest {
     @Mock
     private VehicleServiceClient vehicleServiceClient;
 
+    @Mock
+    private com.vayro.booking.client.NotificationServiceClient notificationServiceClient;
+
     private BookingServiceImpl bookingService;
 
     private AuthenticatedUser normalUser;
@@ -43,7 +46,7 @@ class BookingServiceTest {
 
     @BeforeEach
     void setUp() {
-        bookingService = new BookingServiceImpl(bookingRepository, vehicleServiceClient, BigDecimal.valueOf(0.18));
+        bookingService = new BookingServiceImpl(bookingRepository, vehicleServiceClient, notificationServiceClient, BigDecimal.valueOf(0.18));
 
         normalUser = new AuthenticatedUser("1001", "user@vayro.com", "USER", "Alice Customer");
         adminUser = new AuthenticatedUser("9999", "admin@vayro.com", "ADMIN", "Vayro Admin");
@@ -644,5 +647,63 @@ class BookingServiceTest {
         b.setPickupLocation("Vijayawada");
         b.setReturnLocation("Vijayawada");
         return b;
+    }
+
+    @Test
+    @DisplayName("Notification: createBooking triggers async booking confirmation notification")
+    void createBooking_triggersAsyncConfirmationNotification() {
+        BookingCreateRequest request = new BookingCreateRequest(
+                "veh-001",
+                LocalDateTime.now().plusDays(2),
+                LocalDateTime.now().plusDays(4),
+                "Hyderabad",
+                "Hyderabad"
+        );
+        request.setCustomerPhone("+91 99887 76655");
+
+        when(vehicleServiceClient.getVehicleById("veh-001")).thenReturn(Optional.of(availableVehicle));
+        when(bookingRepository.findOverlappingBookings(anyString(), any(), any(), anyList())).thenReturn(List.of());
+        when(bookingRepository.save(any(Booking.class))).thenAnswer(invocation -> {
+            Booking b = invocation.getArgument(0);
+            b.setId(101L);
+            return b;
+        });
+
+        BookingResponse response = bookingService.createBooking(request, normalUser, "test-jwt-token");
+
+        assertNotNull(response);
+        verify(notificationServiceClient, times(1))
+                .sendBookingConfirmedNotificationAsync(any(Booking.class));
+    }
+
+    @Test
+    @DisplayName("Notification: returnBooking triggers async vehicle return admin notification")
+    void returnBooking_triggersAsyncVehicleReturnAdminNotification() {
+        Booking activeBooking = createSampleBooking(201L, "1001", "user@vayro.com", BookingStatus.ACTIVE);
+        when(bookingRepository.findById(201L)).thenReturn(Optional.of(activeBooking));
+        when(vehicleServiceClient.updateVehicleStatus("veh-001", "AVAILABLE", "admin-jwt-token")).thenReturn(true);
+        when(bookingRepository.save(any(Booking.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        BookingResponse response = bookingService.returnBooking(201L, adminUser, "admin-jwt-token");
+
+        assertNotNull(response);
+        assertEquals(BookingStatus.RETURNED, response.getStatus());
+        verify(notificationServiceClient, times(1))
+                .sendVehicleReturnedAdminNotificationAsync(any(Booking.class));
+    }
+
+    @Test
+    @DisplayName("Notification: cancelBooking does NOT trigger vehicle return notification")
+    void cancelBooking_doesNotTriggerVehicleReturnNotification() {
+        Booking pendingBooking = createSampleBooking(301L, "1001", "user@vayro.com", BookingStatus.PENDING);
+        when(bookingRepository.findById(301L)).thenReturn(Optional.of(pendingBooking));
+        when(bookingRepository.save(any(Booking.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        BookingResponse response = bookingService.cancelBooking(301L, new BookingCancelRequest("Change of plans"), normalUser, "jwt-token");
+
+        assertNotNull(response);
+        assertEquals(BookingStatus.CANCELLED, response.getStatus());
+        verify(notificationServiceClient, never())
+                .sendVehicleReturnedAdminNotificationAsync(any(Booking.class));
     }
 }

@@ -34,13 +34,19 @@ public class VehicleServiceClientImpl implements VehicleServiceClient {
             VehicleDto vehicle = restClient.get()
                     .uri("/api/vehicles/{id}", vehicleId)
                     .accept(MediaType.APPLICATION_JSON)
-                    .retrieve()
-                    .onStatus(HttpStatusCode::is4xxClientError, (request, response) -> {
-                        log.warn("Vehicle Service returned client error status {} for vehicleId: {}", response.getStatusCode(), vehicleId);
-                    })
-                    .body(VehicleDto.class);
+                    .exchange((request, response) -> {
+                        if (response.getStatusCode().is2xxSuccessful()) {
+                            return response.bodyTo(VehicleDto.class);
+                        } else {
+                            log.warn("Vehicle Service returned status {} for vehicleId: {}", response.getStatusCode(), vehicleId);
+                            return null;
+                        }
+                    });
 
-            return Optional.ofNullable(vehicle);
+            if (vehicle == null || vehicle.getId() == null || vehicle.getId().isBlank()) {
+                return Optional.empty();
+            }
+            return Optional.of(vehicle);
         } catch (Exception e) {
             log.warn("Could not retrieve vehicle {} from Vehicle Service: {}", vehicleId, e.getMessage());
             return Optional.empty();

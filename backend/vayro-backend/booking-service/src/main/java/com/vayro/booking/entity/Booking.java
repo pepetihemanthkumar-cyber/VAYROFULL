@@ -35,6 +35,9 @@ public class Booking {
     @Column(name = "customer_email", nullable = false)
     private String customerEmail;
 
+    @Column(name = "customer_phone", length = 32)
+    private String customerPhone;
+
     @Column(name = "pickup_date_time", nullable = false)
     private LocalDateTime pickupDateTime;
 
@@ -69,6 +72,18 @@ public class Booking {
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_status", nullable = false, length = 32)
     private PaymentStatus paymentStatus;
+
+    @Column(name = "payment_method", length = 32)
+    private String paymentMethod;
+
+    @Column(name = "payment_reference", length = 64)
+    private String paymentReference;
+
+    @Column(name = "payment_order_id", length = 64)
+    private String paymentOrderId;
+
+    @Column(name = "payment_verified_at")
+    private LocalDateTime paymentVerifiedAt;
 
     @Column(name = "pickup_location", nullable = false)
     private String pickupLocation;
@@ -170,6 +185,14 @@ public class Booking {
 
     public void setCustomerEmail(String customerEmail) {
         this.customerEmail = customerEmail;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
     }
 
     public LocalDateTime getPickupDateTime() {
@@ -298,6 +321,38 @@ public class Booking {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentReference() {
+        return paymentReference;
+    }
+
+    public void setPaymentReference(String paymentReference) {
+        this.paymentReference = paymentReference;
+    }
+
+    public String getPaymentOrderId() {
+        return paymentOrderId;
+    }
+
+    public void setPaymentOrderId(String paymentOrderId) {
+        this.paymentOrderId = paymentOrderId;
+    }
+
+    public LocalDateTime getPaymentVerifiedAt() {
+        return paymentVerifiedAt;
+    }
+
+    public void setPaymentVerifiedAt(LocalDateTime paymentVerifiedAt) {
+        this.paymentVerifiedAt = paymentVerifiedAt;
     }
 
     public LocalDateTime getUpdatedAt() {

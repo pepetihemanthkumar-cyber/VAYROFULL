@@ -9,8 +9,10 @@ dist-ssr
 
 # Environment variables
 .env
+.env.production
 .env.local
 .env.*.local
+!.env.example
 
 # IDE & OS files
 .DS_Store

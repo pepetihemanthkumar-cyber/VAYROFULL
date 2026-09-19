@@ -21,13 +21,13 @@ public class AdminInitializer implements CommandLineRunner {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${app.admin.bootstrap-enabled:true}")
+    @Value("${app.admin.bootstrap-enabled:false}")
     private boolean bootstrapEnabled;
 
-    @Value("${app.admin.email:admin@vayro.com}")
+    @Value("${app.admin.email:}")
     private String adminEmail;
 
-    @Value("${app.admin.password:VayroAdmin2026!}")
+    @Value("${app.admin.password:}")
     private String adminPassword;
 
     @Value("${app.admin.first-name:Vayro}")
@@ -47,40 +47,30 @@ public class AdminInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) {
         if (!bootstrapEnabled) {
-            log.info("Admin bootstrap initializer is disabled.");
+            log.info("Admin bootstrap initializer is disabled (ADMIN_BOOTSTRAP_ENABLED=false).");
+            return;
+        }
+
+        if (adminEmail == null || adminEmail.isBlank() || adminPassword == null || adminPassword.isBlank()) {
+            log.warn("Admin bootstrap is enabled but ADMIN_EMAIL or ADMIN_PASSWORD is empty. Skipping bootstrap account creation.");
             return;
         }
 
         String normalizedEmail = adminEmail.trim().toLowerCase();
         if (!userRepository.existsByEmail(normalizedEmail)) {
             User admin = new User();
-            admin.setFirstName(adminFirstName.trim());
-            admin.setLastName(adminLastName.trim());
+            admin.setFirstName(adminFirstName != null && !adminFirstName.isBlank() ? adminFirstName.trim() : "Vayro");
+            admin.setLastName(adminLastName != null && !adminLastName.isBlank() ? adminLastName.trim() : "Admin");
             admin.setEmail(normalizedEmail);
             admin.setPassword(passwordEncoder.encode(adminPassword));
-            admin.setPhone(adminPhone.trim());
+            admin.setPhone(adminPhone != null && !adminPhone.isBlank() ? adminPhone.trim() : "+91 98200 11223");
             admin.setRole(Role.ADMIN);
             admin.setEnabled(true);
 
             userRepository.save(admin);
-            log.info("Development admin account initialized for: {}", normalizedEmail);
+            log.info("Admin bootstrap initialized account for: {}", normalizedEmail);
         } else {
             log.info("Admin account already exists for: {}", normalizedEmail);
-        }
-
-        String customerEmail = "customer@vayro.com";
-        if (!userRepository.existsByEmail(customerEmail)) {
-            User customer = new User();
-            customer.setFirstName("Vayro");
-            customer.setLastName("Customer");
-            customer.setEmail(customerEmail);
-            customer.setPassword(passwordEncoder.encode("Password123!"));
-            customer.setPhone("+91 98765 43210");
-            customer.setRole(Role.USER);
-            customer.setEnabled(true);
-
-            userRepository.save(customer);
-            log.info("Development customer account initialized for: {}", customerEmail);
         }
     }
 }

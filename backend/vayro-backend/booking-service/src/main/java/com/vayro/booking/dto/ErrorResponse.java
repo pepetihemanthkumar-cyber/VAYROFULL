@@ -12,6 +12,7 @@ public class ErrorResponse {
     private String error;
     private String message;
     private String path;
+    private String field;
     private List<String> errors;
 
     public ErrorResponse() {
@@ -31,6 +32,16 @@ public class ErrorResponse {
         this.status = status;
         this.error = error;
         this.message = message;
+        this.path = path;
+        this.errors = errors;
+    }
+
+    public ErrorResponse(int status, String error, String message, String field, String path, List<String> errors) {
+        this.timestamp = LocalDateTime.now();
+        this.status = status;
+        this.error = error;
+        this.message = message;
+        this.field = field;
         this.path = path;
         this.errors = errors;
     }
@@ -65,6 +76,14 @@ public class ErrorResponse {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
     }
 
     public String getPath() {

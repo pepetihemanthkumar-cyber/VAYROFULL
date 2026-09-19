@@ -183,7 +183,9 @@ export default function NewBookingPage() {
       return
     }
 
-    const check = checkVehicleAvailability(
+    let isCancelled = false
+
+    checkVehicleAvailability(
       vehicle.id,
       dates.pickupDate,
       dates.returnDate,
@@ -191,11 +193,22 @@ export default function NewBookingPage() {
       dates.pickupTime,
       dates.returnTime,
     )
+      .then((check) => {
+        if (isCancelled) return
+        if (check && check.available === false) {
+          setAvailabilityError(check.reason || 'Vehicle is not available for the selected period.')
+        } else {
+          setAvailabilityError('')
+        }
+      })
+      .catch(() => {
+        if (!isCancelled) {
+          setAvailabilityError('')
+        }
+      })
 
-    if (!check.available) {
-      setAvailabilityError(check.reason || 'Vehicle is not available for the selected period.')
-    } else {
-      setAvailabilityError('')
+    return () => {
+      isCancelled = true
     }
   }, [vehicle, dates.pickupDate, dates.pickupTime, dates.returnDate, dates.returnTime, duration.valid])
 
@@ -342,6 +355,7 @@ export default function NewBookingPage() {
         durationLabel: duration.label,
         couponCode: appliedCoupon?.code || null,
         couponDiscount: appliedCoupon?.discount ?? appliedCoupon?.discountAmount ?? 0,
+        paymentOrderId: paymentMeta.paymentOrderId,
         paymentMethod: paymentMeta.paymentMethod,
         paymentStatus: paymentMeta.paymentStatus,
         paymentReference: paymentMeta.paymentReference,
@@ -350,11 +364,14 @@ export default function NewBookingPage() {
       })
 
       setConfirmedBooking(created)
-      setCurrentStep(6)
-      toast.success(`Booking ${created.id} confirmed successfully!`)
+      toast.success(`Booking ${created.bookingReference || created.id} confirmed.`)
+      navigate(`/bookings/success/${created.bookingReference || created.id}`, {
+        state: { booking: created },
+      })
     } catch (err) {
       setSubmitError(err.message || 'We could not complete your booking. Please try again.')
       toast.error(err.message || 'We could not complete your booking.')
+      throw err
     } finally {
       setIsSubmitting(false)
     }
