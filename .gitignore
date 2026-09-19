@@ -1,18 +1,27 @@
 # Dependencies
+**/node_modules/
 node_modules
 .pnpm-store
 
 # Build output
+**/dist/
 dist
 dist-ssr
 *.local
+.vite/
+**/.vite/
 
 # Environment variables
+**/.env
+**/.env.production
+**/.env.local
+**/.env.*.local
 .env
 .env.production
 .env.local
 .env.*.local
 !.env.example
+!**/.env.example
 
 # IDE & OS files
 .DS_Store
