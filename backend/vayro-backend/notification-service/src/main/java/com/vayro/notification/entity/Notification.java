@@ -39,14 +39,14 @@ public class Notification {
     @Column(name = "subject", nullable = false, length = 255)
     private String subject;
 
-    @Column(name = "message_content", nullable = false, columnDefinition = "LONGTEXT")
+    @Column(name = "message_content", nullable = false, columnDefinition = "TEXT")
     private String messageContent;
 
     @Column(name = "attachment_name", length = 128)
     private String attachmentName;
 
     @Lob
-    @Column(name = "pdf_invoice_data", columnDefinition = "LONGBLOB")
+    @Column(name = "pdf_invoice_data")
     private byte[] pdfInvoiceData;
 
     @Enumerated(EnumType.STRING)

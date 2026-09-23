@@ -61,13 +61,6 @@ public class SecurityConfig {
         AuthenticationWebFilter authenticationWebFilter = new AuthenticationWebFilter(authenticationManager);
         authenticationWebFilter.setServerAuthenticationConverter(authenticationConverter);
         authenticationWebFilter.setSecurityContextRepository(NoOpServerSecurityContextRepository.getInstance());
-        authenticationWebFilter.setRequiresAuthenticationMatcher(
-                org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers.pathMatchers(
-                        "/api/users/**",
-                        "/api/bookings/**",
-                        "/api/notifications/**"
-                )
-        );
         authenticationWebFilter.setAuthenticationFailureHandler((webFilterExchange, exception) ->
                 authenticationEntryPoint().commence(webFilterExchange.getExchange(), exception)
         );

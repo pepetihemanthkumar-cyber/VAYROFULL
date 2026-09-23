@@ -46,17 +46,18 @@ public class VehicleDataInitializer implements CommandLineRunner {
 
             try (InputStream is = resource.getInputStream()) {
                 List<Vehicle> seedVehicles = objectMapper.readValue(is, new TypeReference<List<Vehicle>>() {});
-                int insertedCount = 0;
+                List<String> existingIds = vehicleRepository.findAll().stream().map(Vehicle::getId).toList();
+                List<Vehicle> toInsert = seedVehicles.stream()
+                        .filter(v -> !existingIds.contains(v.getId()))
+                        .toList();
 
-                for (Vehicle vehicle : seedVehicles) {
-                    if (!vehicleRepository.existsById(vehicle.getId())) {
-                        vehicleRepository.save(vehicle);
-                        insertedCount++;
-                    }
+                if (!toInsert.isEmpty()) {
+                    vehicleRepository.saveAll(toInsert);
+                    log.info("Vehicle catalogue initialized. Added {} new vehicles. Total in database: {}",
+                            toInsert.size(), vehicleRepository.count());
+                } else {
+                    log.info("All seed vehicles already exist in database.");
                 }
-
-                log.info("Vehicle catalogue initialized. Added {} new vehicles. Total in database: {}",
-                        insertedCount, vehicleRepository.count());
             }
         } catch (Exception e) {
             log.error("Error initializing vehicle catalogue data: {}", e.getMessage(), e);

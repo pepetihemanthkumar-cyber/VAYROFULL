@@ -1,11 +1,12 @@
 import { api } from './api'
+import { vehicles as initialVehicles } from '../data/vehicles'
 
 const FAVORITES_KEY = 'vayro_favorite_vehicles'
 const COMPARE_KEY = 'vayro_compare_vehicles'
 const RECENT_SEARCHES_KEY = 'vayro_recent_searches'
 
-// In-memory cache for fast synchronous access — populated by real API calls
-let vehiclesCache = []
+// In-memory cache for fast synchronous access — initialized with authoritative 207 fleet vehicles & synchronized with real API
+let vehiclesCache = Array.isArray(initialVehicles) && initialVehicles.length > 0 ? initialVehicles.map(mapVehicle) : []
 
 export function mapVehicle(v) {
   if (!v) return null
@@ -74,45 +75,56 @@ export async function fetchVehicles(params = {}) {
     ...params,
   }
 
-  const response = await api.get('/api/vehicles', { params: query })
-  const data = response.data
+  try {
+    const response = await api.get('/api/vehicles', { params: query })
+    const data = response.data
 
-  let list = []
-  if (Array.isArray(data)) {
-    list = data.map(mapVehicle)
-  } else if (data && Array.isArray(data.content)) {
-    list = data.content.map(mapVehicle)
+    let list = []
+    if (Array.isArray(data)) {
+      list = data.map(mapVehicle)
+    } else if (data && Array.isArray(data.content)) {
+      list = data.content.map(mapVehicle)
 
-    // If caller requested full catalog and backend capped page size, fetch remaining pages
-    if (query.size >= 200 && (!params.page || params.page === 0) && data.totalPages > 1) {
-      const pagePromises = []
-      for (let p = 1; p < data.totalPages; p++) {
-        pagePromises.push(api.get('/api/vehicles', { params: { ...query, page: p } }))
-      }
-      try {
-        const additionalResponses = await Promise.all(pagePromises)
-        for (const res of additionalResponses) {
-          if (res.data && Array.isArray(res.data.content)) {
-            list.push(...res.data.content.map(mapVehicle))
-          }
+      // If caller requested full catalog and backend capped page size, fetch remaining pages
+      if (query.size >= 200 && (!params.page || params.page === 0) && data.totalPages > 1) {
+        const pagePromises = []
+        for (let p = 1; p < data.totalPages; p++) {
+          pagePromises.push(api.get('/api/vehicles', { params: { ...query, page: p } }))
         }
-      } catch {
-        // preserve already loaded page
+        try {
+          const additionalResponses = await Promise.all(pagePromises)
+          for (const res of additionalResponses) {
+            if (res.data && Array.isArray(res.data.content)) {
+              list.push(...res.data.content.map(mapVehicle))
+            }
+          }
+        } catch {
+          // preserve already loaded page
+        }
       }
     }
-  }
 
-  if (list.length > 0) {
-    vehiclesCache = list
-  }
+    if (list.length > 0) {
+      vehiclesCache = list
+    }
 
-  return {
-    content: list,
-    page: data?.page ?? 0,
-    size: data?.size ?? list.length,
-    totalElements: data?.totalElements ?? list.length,
-    totalPages: data?.totalPages ?? 1,
-    isLast: data?.isLast ?? true,
+    return {
+      content: list.length > 0 ? list : vehiclesCache,
+      page: data?.page ?? 0,
+      size: data?.size ?? (list.length || vehiclesCache.length),
+      totalElements: data?.totalElements ?? (list.length || vehiclesCache.length),
+      totalPages: data?.totalPages ?? 1,
+      isLast: data?.isLast ?? true,
+    }
+  } catch {
+    return {
+      content: vehiclesCache,
+      page: 0,
+      size: vehiclesCache.length,
+      totalElements: vehiclesCache.length,
+      totalPages: 1,
+      isLast: true,
+    }
   }
 }
 
@@ -121,18 +133,22 @@ export async function fetchVehicles(params = {}) {
  */
 export async function fetchVehicleById(id) {
   if (!id) return null
-  const response = await api.get(`/api/vehicles/${id}`)
-  const mapped = mapVehicle(response.data)
+  try {
+    const response = await api.get(`/api/vehicles/${id}`)
+    const mapped = mapVehicle(response.data)
 
-  // Update in cache
-  const idx = vehiclesCache.findIndex((v) => v.id === mapped.id)
-  if (idx >= 0) {
-    vehiclesCache[idx] = mapped
-  } else {
-    vehiclesCache.push(mapped)
+    // Update in cache
+    const idx = vehiclesCache.findIndex((v) => v.id === mapped.id)
+    if (idx >= 0) {
+      vehiclesCache[idx] = mapped
+    } else {
+      vehiclesCache.push(mapped)
+    }
+
+    return mapped
+  } catch {
+    return getVehicleById(id)
   }
-
-  return mapped
 }
 
 /**

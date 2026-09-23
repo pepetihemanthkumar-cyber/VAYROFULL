@@ -35,6 +35,8 @@ dist-ssr
 
 # Scratch & temporary artifacts
 scratch/
+VAYROback/
+VAYROfrount/
 
 # Backend Build & Logs
 **/target/
@@ -46,3 +48,4 @@ backend/**/.env.*
 backend/**/application-local.yml
 backend/**/application-prod.yml
 backend/**/*.log
+

@@ -1,15 +1,21 @@
 server:
-  port: ${SERVER_PORT:8084}
+  port: ${SERVER_PORT:${PORT:8084}}
 
 spring:
   application:
     name: NOTIFICATION-SERVICE
 
   datasource:
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:vayro_notifications}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    username: ${DB_USERNAME:root}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}:${DB_PORT:5432}/${DB_NAME:postgres}?sslmode=require}
+    username: ${DB_USERNAME:postgres.lgpuulmsdogxzsyowqdk}
     password: ${DB_PASSWORD:}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 3
+      minimum-idle: 1
+      idle-timeout: 30000
+      max-lifetime: 60000
+      connection-timeout: 20000
 
   jpa:
     hibernate:
@@ -17,11 +23,12 @@ spring:
     show-sql: false
     properties:
       hibernate:
-        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
 
   mail:
     host: ${MAIL_HOST:smtp.gmail.com}
-    port: ${MAIL_PORT:465}
+    port: ${MAIL_PORT:587}
     username: ${MAIL_USERNAME:vayro.notifications@gmail.com}
     password: ${MAIL_PASSWORD:}
     properties:
@@ -29,9 +36,9 @@ spring:
         smtp:
           auth: ${MAIL_SMTP_AUTH:true}
           ssl:
-            enable: ${MAIL_SMTP_SSL_ENABLE:true}
+            enable: ${MAIL_SMTP_SSL_ENABLE:false}
           starttls:
-            enable: false
+            enable: ${MAIL_SMTP_STARTTLS_ENABLE:true}
           connectiontimeout: 5000
           timeout: 5000
           writetimeout: 5000
