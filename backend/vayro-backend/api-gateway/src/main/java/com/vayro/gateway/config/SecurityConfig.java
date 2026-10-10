@@ -82,8 +82,9 @@ public class SecurityConfig {
                                 : org.springframework.security.web.server.util.matcher.ServerWebExchangeMatcher.MatchResult.notMatch()).permitAll()
                         .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                        // Actuator Health and Info
-                        .pathMatchers(HttpMethod.GET, "/actuator/health", "/actuator/info").permitAll()
+                        // Public Root & Actuator Health
+                        .pathMatchers(HttpMethod.GET, "/", "/actuator/health", "/actuator/info").permitAll()
+                        .pathMatchers(HttpMethod.GET, "/eureka", "/eureka/**").permitAll()
 
                         // Public Auth Endpoints
                         .pathMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login", "/api/auth/google").permitAll()

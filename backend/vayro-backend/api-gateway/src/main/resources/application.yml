@@ -30,6 +30,11 @@ spring:
             allowCredentials: true
             maxAge: 3600
       routes:
+        - id: eureka-route
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka, /eureka/**
+
         - id: user-auth-route
           uri: ${USER_SERVICE_URL:http://localhost:8081}
           predicates:
