@@ -16,15 +16,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout VAYRO repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Authenticate to Google Cloud using WIF
+      - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
-          service_account: vayro-deployer@vayro-deployment-511213.iam.gserviceaccount.com
+          service_account: ${{ vars.GCP_WIF_SERVICE_ACCOUNT }}
+          project_id: ${{ vars.GCP_PROJECT_ID }}
 
-      - name: Verify Google Cloud authentication
-        run: |
-          echo "VAYRO GitHub Actions authentication succeeded."
+      - name: Verify authentication
+        run: echo "VAYRO GitHub Actions authentication succeeded."
