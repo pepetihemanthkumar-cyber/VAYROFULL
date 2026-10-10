@@ -11,8 +11,8 @@ permissions:
   id-token: write
 
 jobs:
-  authenticate:
-    name: Authenticate with Google Cloud
+  authenticate-and-build:
+    name: Authenticate and Build VAYRO
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +20,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Validate required configuration
+      # Step 2: Validate Google Cloud configuration
       - name: Validate Google Cloud configuration
         env:
           GCP_WIF_PROVIDER: ${{ vars.GCP_WIF_PROVIDER }}
@@ -62,8 +62,10 @@ jobs:
       # Step 4: Install Google Cloud CLI
       - name: Set up Google Cloud CLI
         uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ vars.GCP_PROJECT_ID }}
 
-      # Step 5: Verify Google Cloud authentication
+      # Step 5: Verify Google Cloud authentication and access
       - name: Verify Google Cloud project
         env:
           GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
@@ -76,22 +78,18 @@ jobs:
 
           gcloud config set project "$GCP_PROJECT_ID"
 
-          echo "Configured project:"
-          gcloud config get-value project
+          echo "Verifying access to the Google Cloud project..."
 
-          echo "Checking project access..."
           gcloud projects describe "$GCP_PROJECT_ID" \
             --format="value(projectId)"
 
-          echo "Google Cloud authentication and project access verified."
+          echo "Google Cloud authentication verified successfully."
 
       # Step 6: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
 
       # Step 7: Build VAYRO frontend
       - name: Build VAYRO frontend
@@ -100,9 +98,11 @@ jobs:
           set -euo pipefail
 
           echo "Installing frontend dependencies..."
+
           npm ci
 
           echo "Building VAYRO frontend..."
+
           npm run build
 
           echo "Frontend build completed successfully."
@@ -113,27 +113,39 @@ jobs:
         with:
           distribution: temurin
           java-version: "21"
-          cache: maven
-          cache-dependency-path: backend/vayro-backend/pom.xml
 
-      # Step 9: Build VAYRO backend
+      # Step 9: Set up Maven cache
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('backend/vayro-backend/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      # Step 10: Build VAYRO backend
       - name: Build VAYRO backend
         working-directory: backend/vayro-backend
         run: |
           set -euo pipefail
 
           echo "Building VAYRO backend..."
+
           mvn clean package -DskipTests -B
 
           echo "Backend build completed successfully."
 
-      # Step 10: Final verification
+      # Step 11: Final verification
       - name: Finish
         run: |
+          set -euo pipefail
+
           echo "=================================="
           echo "VAYRO CI/CD BUILD SUMMARY"
           echo "=================================="
           echo "Google Cloud authentication: SUCCESS"
+          echo "Google Cloud project access: SUCCESS"
           echo "Frontend build: SUCCESS"
           echo "Backend build: SUCCESS"
           echo "=================================="
+          echo "All workflow steps completed successfully."
