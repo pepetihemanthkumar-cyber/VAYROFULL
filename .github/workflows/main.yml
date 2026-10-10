@@ -185,9 +185,9 @@ jobs:
 
           BACKEND_URL="${{ steps.backend.outputs.url }}"
 
-          echo "Checking frontend health..."
+          echo "Checking frontend web application..."
           curl --fail --silent --show-error \
-            --max-time 30 "${FRONTEND_URL}/healthz"
+            --max-time 30 "${FRONTEND_URL}/" > /dev/null
 
           echo
           echo "Checking backend health endpoint..."
