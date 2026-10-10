@@ -3,6 +3,8 @@ package com.vayro.booking.client;
 import com.vayro.booking.entity.Booking;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -19,8 +21,14 @@ public class NotificationServiceClientImpl implements NotificationServiceClient 
 
     private final RestClient restClient;
 
+    @Autowired
+    public NotificationServiceClientImpl(RestClient.Builder restClientBuilder,
+                                        @Value("${app.services.notification-service-url:http://NOTIFICATION-SERVICE}") String baseUrl) {
+        this.restClient = restClientBuilder.baseUrl(baseUrl).build();
+    }
+
     public NotificationServiceClientImpl(RestClient.Builder restClientBuilder) {
-        this.restClient = restClientBuilder.baseUrl(NOTIFICATION_SERVICE_BASE).build();
+        this(restClientBuilder, NOTIFICATION_SERVICE_BASE);
     }
 
     @Override

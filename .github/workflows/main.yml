@@ -81,11 +81,21 @@ jobs:
 
           IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/vayro-backend"
 
+          echo "Checking backend Dockerfile..."
+          test -f backend/vayro-backend/Dockerfile || {
+            echo "::error::backend/vayro-backend/Dockerfile does not exist"
+            exit 1
+          }
+
+          echo "Building backend Docker image..."
           docker build \
+            -f backend/vayro-backend/Dockerfile \
             -t "${IMAGE}:${GITHUB_SHA}" \
+            -t "${IMAGE}:latest" \
             backend/vayro-backend
 
           docker push "${IMAGE}:${GITHUB_SHA}"
+          docker push "${IMAGE}:latest"
 
       - name: Deploy backend to Cloud Run
         run: |
@@ -100,10 +110,11 @@ jobs:
             --platform managed \
             --memory 2Gi \
             --cpu 2 \
-            --min 0 \
-            --max 3 \
+            --min-instances 0 \
+            --max-instances 3 \
             --timeout 300 \
             --allow-unauthenticated \
+            --set-env-vars "DB_HOST=${{ vars.DB_HOST || 'aws-0-ap-southeast-1.pooler.supabase.com' }},DB_PORT=${{ vars.DB_PORT || '5432' }},DB_NAME=${{ vars.DB_NAME || 'postgres' }},DB_USERNAME=${{ vars.DB_USERNAME || 'postgres.lgpuulmsdogxzsyowqdk' }},GOOGLE_CLIENT_ID=${{ vars.GOOGLE_CLIENT_ID || '718836314167-kekvffi6ugr8s6gfg6ds00qb190ee12s.apps.googleusercontent.com' }}" \
             --set-secrets "DB_PASSWORD=DB_PASSWORD:latest,JWT_SECRET=JWT_SECRET:latest" \
             --quiet
 
@@ -127,12 +138,22 @@ jobs:
 
           IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/vayro-frontend"
 
+          echo "Checking frontend Dockerfile..."
+          test -f frontend/Dockerfile || {
+            echo "::error::frontend/Dockerfile does not exist"
+            exit 1
+          }
+
+          echo "Building frontend Docker image with API URL: ${{ steps.backend.outputs.url }}..."
           docker build \
             --build-arg VITE_API_URL="${{ steps.backend.outputs.url }}" \
+            -f frontend/Dockerfile \
             -t "${IMAGE}:${GITHUB_SHA}" \
+            -t "${IMAGE}:latest" \
             frontend
 
           docker push "${IMAGE}:${GITHUB_SHA}"
+          docker push "${IMAGE}:latest"
 
       - name: Deploy frontend to Cloud Run
         run: |
@@ -147,8 +168,8 @@ jobs:
             --platform managed \
             --memory 512Mi \
             --cpu 1 \
-            --min 0 \
-            --max 3 \
+            --min-instances 0 \
+            --max-instances 3 \
             --allow-unauthenticated \
             --quiet
 
@@ -164,7 +185,7 @@ jobs:
 
           BACKEND_URL="${{ steps.backend.outputs.url }}"
 
-          echo "Checking frontend..."
+          echo "Checking frontend health..."
           curl --fail --silent --show-error \
             --max-time 30 "${FRONTEND_URL}/healthz"
 

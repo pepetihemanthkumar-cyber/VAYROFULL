@@ -33,36 +33,37 @@ spring:
             maxAge: 3600
       routes:
         - id: user-auth-route
-          uri: lb://USER-SERVICE
+          uri: ${USER_SERVICE_URL:lb://USER-SERVICE}
           predicates:
             - Path=/api/auth/**
 
         - id: user-service-route
-          uri: lb://USER-SERVICE
+          uri: ${USER_SERVICE_URL:lb://USER-SERVICE}
           predicates:
             - Path=/api/users/**
 
         - id: vehicle-service-route
-          uri: lb://VEHICLE-SERVICE
+          uri: ${VEHICLE_SERVICE_URL:lb://VEHICLE-SERVICE}
           predicates:
             - Path=/api/vehicles/**
 
         - id: booking-service-route
-          uri: lb://BOOKING-SERVICE
+          uri: ${BOOKING_SERVICE_URL:lb://BOOKING-SERVICE}
           predicates:
             - Path=/api/bookings/**
 
         - id: notification-service-route
-          uri: lb://NOTIFICATION-SERVICE
+          uri: ${NOTIFICATION_SERVICE_URL:lb://NOTIFICATION-SERVICE}
           predicates:
             - Path=/api/notifications/**
 
 eureka:
   client:
+    enabled: ${EUREKA_CLIENT_ENABLED:true}
     service-url:
       defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
-    register-with-eureka: true
-    fetch-registry: true
+    register-with-eureka: ${EUREKA_REGISTER_WITH_EUREKA:true}
+    fetch-registry: ${EUREKA_FETCH_REGISTRY:true}
   instance:
     prefer-ip-address: false
     hostname: localhost

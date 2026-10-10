@@ -3,6 +3,8 @@ package com.vayro.booking.client;
 import com.vayro.booking.dto.VehicleDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
@@ -20,8 +22,14 @@ public class VehicleServiceClientImpl implements VehicleServiceClient {
 
     private final RestClient restClient;
 
+    @Autowired
+    public VehicleServiceClientImpl(RestClient.Builder restClientBuilder,
+                                   @Value("${app.services.vehicle-service-url:http://VEHICLE-SERVICE}") String baseUrl) {
+        this.restClient = restClientBuilder.baseUrl(baseUrl).build();
+    }
+
     public VehicleServiceClientImpl(RestClient.Builder restClientBuilder) {
-        this.restClient = restClientBuilder.baseUrl(VEHICLE_SERVICE_BASE).build();
+        this(restClientBuilder, VEHICLE_SERVICE_BASE);
     }
 
     @Override
