@@ -2,17 +2,16 @@ package com.vayro.gateway.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
-import java.io.RandomAccessFile;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-import java.util.*;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @RestController
 public class RootController {
@@ -42,7 +41,7 @@ public class RootController {
     }
 
     @GetMapping({"/api/health/diagnostics", "/diagnostics"})
-    public ResponseEntity<Map<String, Object>> diagnostics(@RequestParam(value = "logs", defaultValue = "false") boolean includeLogs) {
+    public ResponseEntity<Map<String, Object>> diagnostics() {
         Map<String, Object> report = new LinkedHashMap<>();
         report.put("timestamp", new Date().toString());
         report.put("gateway", "UP");
@@ -59,7 +58,6 @@ public class RootController {
             String name = entry.getKey();
             String url = entry.getValue();
             Map<String, Object> svcInfo = new LinkedHashMap<>();
-            boolean isUp = false;
             try {
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create(url))
@@ -68,64 +66,18 @@ public class RootController {
                         .GET()
                         .build();
                 HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+                boolean isUp = response.statusCode() >= 200 && response.statusCode() < 400;
                 svcInfo.put("statusCode", response.statusCode());
-                isUp = response.statusCode() >= 200 && response.statusCode() < 400;
                 svcInfo.put("status", isUp ? "UP" : "DEGRADED");
-                if (response.body() != null && response.body().length() < 500) {
-                    svcInfo.put("response", response.body());
-                }
             } catch (Exception e) {
+                svcInfo.put("statusCode", 503);
                 svcInfo.put("status", "DOWN");
-                svcInfo.put("error", e.getMessage());
-            }
-
-            if (includeLogs || !isUp) {
-                svcInfo.put("logTail", readLogTail("/app/logs/" + getLogFileName(name), 30));
             }
             serviceStatuses.put(name, svcInfo);
         }
         report.put("services", serviceStatuses);
 
         return ResponseEntity.ok(report);
-    }
-
-    private String getLogFileName(String serviceName) {
-        switch (serviceName) {
-            case "eureka": return "eureka.log";
-            case "user-service": return "user.log";
-            case "vehicle-service": return "vehicle.log";
-            case "booking-service": return "booking.log";
-            case "notification-service": return "notification.log";
-            default: return serviceName + ".log";
-        }
-    }
-
-    private List<String> readLogTail(String path, int lines) {
-        List<String> result = new ArrayList<>();
-        File file = new File(path);
-        if (!file.exists()) {
-            String alt = path.replace("/app/logs/", "/tmp/logs/");
-            file = new File(alt);
-            if (!file.exists()) {
-                result.add("Log file not found: " + path);
-                return result;
-            }
-        }
-        try (RandomAccessFile raf = new RandomAccessFile(file, "r")) {
-            long length = raf.length();
-            long pos = Math.max(0, length - 16384);
-            raf.seek(pos);
-            String line;
-            while ((line = raf.readLine()) != null) {
-                result.add(line);
-            }
-            if (result.size() > lines) {
-                result = result.subList(result.size() - lines, result.size());
-            }
-        } catch (Exception e) {
-            result.add("Error reading log: " + e.getMessage());
-        }
-        return result;
     }
 }
 

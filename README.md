@@ -350,38 +350,164 @@ npm run build
 
 ---
 
-## 21. Deployment Architecture
-- **Containerization:** Multi-stage Docker container builds for all 6 microservices and Nginx-based frontend container.
-- **Orchestration:** `docker-compose.yml` defining inter-container networking, health checks, environment propagation, and dependency order (`depends_on`).
-- **Cloud Readiness:** Stateless application containers deployable to AWS ECS / EKS, Azure Kubernetes Service, or Google Cloud Run.
+---
+
+## 21. Production Deployment on Google Cloud Run
+
+VAYRO is fully deployed and operational on Google Cloud Run with an automated CI/CD pipeline via GitHub Actions.
+
+### Live Production Endpoints
+- **Frontend Web Application:** [https://vayro-frontend-6ixokqoxeq-as.a.run.app/](https://vayro-frontend-6ixokqoxeq-as.a.run.app/)
+- **Backend API Gateway:** [https://vayro-backend-6ixokqoxeq-as.a.run.app/](https://vayro-backend-6ixokqoxeq-as.a.run.app/)
+- **Service Discovery (Eureka):** [https://vayro-backend-6ixokqoxeq-as.a.run.app/eureka/apps](https://vayro-backend-6ixokqoxeq-as.a.run.app/eureka/apps)
+- **Container Diagnostics:** [https://vayro-backend-6ixokqoxeq-as.a.run.app/api/health/diagnostics](https://vayro-backend-6ixokqoxeq-as.a.run.app/api/health/diagnostics)
+
+### Cloud Run Architecture & Topology
+1. **Frontend Service (`vayro-frontend`):**
+   - Built with Vite, served via an optimized Nginx reverse-proxy Alpine image.
+   - SPA client-side routing fallback (`try_files $uri $uri/ /index.html`).
+   - Reverse proxies `/api/*` requests directly to `vayro-backend`.
+2. **Backend Service (`vayro-backend`):**
+   - Multi-container orchestrated in a single Cloud Run unit: Eureka Server (8761), User Service (8081), Vehicle Service (8082), Booking Service (8083), Notification Service (8084), and API Gateway (8080 public ingress).
+   - Resources: `4Gi` RAM, `2 CPU`, auto-scaling concurrency.
+   - Supervisor loop traps `SIGTERM`/`SIGINT`, monitors child PIDs, and streams container logs to stdout.
+
+### Workload Identity Federation (Keyless Security)
+VAYRO implements **Workload Identity Federation (WIF)** to authenticate GitHub Actions runners with Google Cloud Platform:
+- **Zero Long-Lived Keys:** Eliminates service-account JSON credential keys stored in GitHub repository secrets, preventing secret exfiltration risks.
+- **Short-Lived OIDC Tokens:** GitHub Actions mints a cryptographically signed OpenID Connect (OIDC) token per job run. GCP STS (Security Token Service) validates the token against the Workload Identity Pool provider and exchanges it for a temporary, scoped GCP access token.
+- **Principle of Least Privilege:** The federated principal `vayro-deployer@vayro-deployment-511213.iam.gserviceaccount.com` possesses strictly scoped permissions (`roles/run.admin`, `roles/artifactregistry.writer`, `roles/iam.serviceAccountUser`).
+
+### GitHub Actions CI/CD Pipeline (`.github/workflows/main.yml`)
+1. **Validate Configuration:** Ensures required project variables are configured.
+2. **Authenticate with GCP:** Uses `google-github-actions/auth@v2` with WIF.
+3. **Artifact Registry Setup:** Authenticates Docker with Google Artifact Registry (`vayro-docker-repo`).
+4. **Backend Build & Push:** Multi-stage Docker packaging of all 6 Spring Boot JARs with JRE 21 Alpine.
+5. **Cloud Run Backend Deployment:** Injects Supabase database credentials from GCP Secret Manager (`DB_PASSWORD`, `JWT_SECRET`).
+6. **Frontend Build & Push:** Injects backend API gateway URL and builds optimized web assets.
+7. **Cloud Run Frontend Deployment:** Deploys Nginx container with zero-downtime traffic switching.
+8. **Automated Verification:** Probes frontend availability, Eureka registration across all 5 services, and tests `GET /api/vehicles`.
 
 ---
 
-## 22. Interactive Review 1 Code Viewer
-For faculty evaluation and technical viva demonstrations:
-```bash
-open docs/review-1/code-viewer/index.html
-# or
-python3 -m http.server 8090 -d docs/review-1/code-viewer
-```
-Visit **[http://localhost:8090](http://localhost:8090)** to inspect all 57 source files with real-time syntax highlighting, line numbers, and architecture justifications.
+## 22. API Reference & Specifications
+
+### Public Endpoints
+
+#### 1. Vehicle Fleet Catalogue
+- **`GET /api/vehicles`**
+  - **Query Params:** `page` (default 0), `size` (default 20), `type` (`car` or `bike`), `category`, `search`
+  - **Response (200 OK):**
+    ```json
+    {
+      "content": [
+        {
+          "id": "aprilia-rs-457",
+          "name": "Aprilia RS 457",
+          "brand": "Aprilia",
+          "model": "RS 457",
+          "year": 2024,
+          "vehicleType": "bike",
+          "category": "SPORT",
+          "vehicleClass": "Track Supersport",
+          "dailyPrice": 2400.00,
+          "hourlyRate": 300.00,
+          "status": "AVAILABLE",
+          "imageUrl": "https://..."
+        }
+      ],
+      "totalElements": 207,
+      "totalPages": 11,
+      "size": 20,
+      "number": 0
+    }
+    ```
+
+#### 2. User Registration
+- **`POST /api/auth/register`**
+  - **Payload:**
+    ```json
+    {
+      "firstName": "Elena",
+      "lastName": "Rostova",
+      "email": "elena.rostova@example.com",
+      "password": "SecurePassword123!",
+      "phone": "+15550123456"
+    }
+    ```
+  - **Response (201 Created):**
+    ```json
+    {
+      "token": "eyJhbGciOiJIUzI1NiJ9...",
+      "type": "Bearer",
+      "user": {
+        "id": 7,
+        "firstName": "Elena",
+        "lastName": "Rostova",
+        "email": "elena.rostova@example.com",
+        "role": "USER"
+      }
+    }
+    ```
+
+#### 3. User Login
+- **`POST /api/auth/login`**
+  - **Payload:** `{"email": "elena.rostova@example.com", "password": "SecurePassword123!"}`
+  - **Response (200 OK):** JWT token and user profile object.
+
+### Protected Endpoints (Requires `Authorization: Bearer <token>`)
+
+#### 4. Booking Creation
+- **`POST /api/bookings`**
+  - **Payload:**
+    ```json
+    {
+      "vehicleId": "aprilia-rs-457",
+      "pickupDateTime": "2026-11-01T10:00:00",
+      "returnDateTime": "2026-11-04T10:00:00",
+      "pickupLocation": "VAYRO Central Hub",
+      "returnLocation": "VAYRO Central Hub",
+      "customerName": "Elena Rostova",
+      "customerEmail": "elena.rostova@example.com",
+      "customerPhone": "+15550123456"
+    }
+    ```
+  - **Response (201 Created):**
+    ```json
+    {
+      "id": 4,
+      "bookingReference": "BK-1791668667213-FD6B",
+      "vehicleId": "aprilia-rs-457",
+      "rentalDays": 3,
+      "pricePerDay": 2400.00,
+      "baseAmount": 7200.00,
+      "taxAmount": 1296.00,
+      "totalAmount": 8496.00,
+      "status": "PENDING"
+    }
+    ```
+
+#### 5. PDF Tax Invoice Retrieval
+- **`GET /api/notifications/invoice/{bookingReference}`**
+  - **Headers:** `Authorization: Bearer <token>`
+  - **Response (200 OK):** Binary PDF (`Content-Type: application/pdf`, `Content-Disposition: attachment; filename="VAYRO-Invoice-BK-1791668667213-FD6B.pdf"`).
 
 ---
 
-## 23. Documentation Index
-Detailed technical documentation is available under `docs/review-1/`:
-- [System Architecture Specification](docs/review-1/system-architecture.md)
-- [API Gateway & Routing Blueprint](docs/review-1/api-gateway.md)
-- [JWT Security & RBAC Specification](docs/review-1/jwt-security.md)
-- [Comprehensive Viva Questions & Answers](docs/review-1/viva-questions.md)
-- [Faculty Demonstration Order](docs/review-1/VAYRO_REVIEW_1_CODE_DEMO_ORDER.md)
-- [LinkedIn DTI & Architecture Article](docs/review-1/linkedin-article.md)
+## 23. Troubleshooting Guide
+
+| Issue | Potential Cause | Resolution |
+| :--- | :--- | :--- |
+| **HTTP 503 on `/api/vehicles`** | Microservices initializing or Eureka registration in progress | Allow 30–45s post-cold start for Spring Context to initialize, or query `/api/health/diagnostics`. |
+| **Database Connection Failure** | Network latency or incorrect pooler hostname | Verify Supabase pooler host (`aws-0-ap-southeast-1.pooler.supabase.com:5432`) and verify tenant project reference in username (`postgres.<ref>`). |
+| **JWT 401 Unauthorized** | Missing or malformed Bearer header; token expired | Pass `Authorization: Bearer <token>` header obtained from `/api/auth/login`. Default token expiry is 24 hours. |
+| **Eureka Lease Eviction** | Cloud Run CPU idle throttling during inactivity | Ensure `lease-renewal-interval-in-seconds: 10` and `lease-expiration-duration-in-seconds: 300` are configured. |
 
 ---
 
 ## 24. Future Enhancements
 - **Real-Time GPS Telematics:** IoT vehicle tracking with geofencing alerts.
-- **Payment Gateway Integration:** Native Razorpay / Stripe webhook processing.
+- **Payment Gateway Webhooks:** Native Razorpay / Stripe webhook processing.
 - **Dynamic Demand Pricing:** Machine-learning-driven seasonal fleet rate adjustments.
 - **Mobile Application:** React Native / Flutter cross-platform companion app.
 

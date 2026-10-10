@@ -37,6 +37,8 @@ eureka:
     prefer-ip-address: false
     hostname: localhost
     instance-id: ${spring.application.name}:${server.port}
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 300
 
 management:
   endpoints:
