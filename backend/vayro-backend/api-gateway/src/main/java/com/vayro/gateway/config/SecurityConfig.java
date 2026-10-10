@@ -213,17 +213,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOriginPattern("http://localhost:*");
-        config.addAllowedOriginPattern("https://vayro.com");
-        config.addAllowedOriginPattern("https://*.run.app");
-        config.addAllowedOriginPattern("https://*.a.run.app");
-
-        if (allowedOrigins != null && !allowedOrigins.isBlank()) {
-            Arrays.stream(allowedOrigins.split(","))
-                    .map(String::trim)
-                    .filter(s -> !s.isEmpty())
-                    .forEach(config::addAllowedOriginPattern);
-        }
+        config.addAllowedOriginPattern("*");
         config.addAllowedMethod("GET");
         config.addAllowedMethod("POST");
         config.addAllowedMethod("PUT");
