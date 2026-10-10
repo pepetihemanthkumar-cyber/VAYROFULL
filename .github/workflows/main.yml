@@ -16,42 +16,98 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Download the repository
+      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Authenticate using Workload Identity Federation
+      # Step 2: Validate required configuration
+      - name: Validate Google Cloud configuration
+        env:
+          GCP_WIF_PROVIDER: ${{ vars.GCP_WIF_PROVIDER }}
+          GCP_WIF_SERVICE_ACCOUNT: ${{ vars.GCP_WIF_SERVICE_ACCOUNT }}
+          GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+        run: |
+          set -euo pipefail
+
+          echo "Checking Google Cloud configuration..."
+
+          if [ -z "$GCP_WIF_PROVIDER" ]; then
+            echo "::error::GCP_WIF_PROVIDER is missing."
+            exit 1
+          fi
+
+          if [ -z "$GCP_WIF_SERVICE_ACCOUNT" ]; then
+            echo "::error::GCP_WIF_SERVICE_ACCOUNT is missing."
+            exit 1
+          fi
+
+          if [ -z "$GCP_PROJECT_ID" ]; then
+            echo "::error::GCP_PROJECT_ID is missing."
+            exit 1
+          fi
+
+          echo "Google Cloud configuration variables are present."
+          echo "Project ID: $GCP_PROJECT_ID"
+          echo "Service account: $GCP_WIF_SERVICE_ACCOUNT"
+
+      # Step 3: Authenticate using Workload Identity Federation
       - name: Authenticate with Google Cloud
+        id: auth
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
           service_account: ${{ vars.GCP_WIF_SERVICE_ACCOUNT }}
+          create_credentials_file: true
 
-      # Step 3: Install Google Cloud CLI
+      # Step 4: Install Google Cloud CLI
       - name: Set up Google Cloud CLI
         uses: google-github-actions/setup-gcloud@v2
 
-      # Step 4: Verify authentication
+      # Step 5: Verify Google Cloud authentication
       - name: Verify Google Cloud project
+        env:
+          GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
         run: |
-          echo "Checking Google Cloud configuration..."
-          gcloud config set project "${{ vars.GCP_PROJECT_ID }}"
-          gcloud config get-value project
-          echo "Google Cloud authentication succeeded."
+          set -euo pipefail
 
-      # Step 5: Build the frontend
+          echo "Checking Google Cloud authentication..."
+
+          gcloud auth list
+
+          gcloud config set project "$GCP_PROJECT_ID"
+
+          echo "Configured project:"
+          gcloud config get-value project
+
+          echo "Checking project access..."
+          gcloud projects describe "$GCP_PROJECT_ID" \
+            --format="value(projectId)"
+
+          echo "Google Cloud authentication and project access verified."
+
+      # Step 6: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
 
+      # Step 7: Build VAYRO frontend
       - name: Build VAYRO frontend
         working-directory: frontend
         run: |
+          set -euo pipefail
+
+          echo "Installing frontend dependencies..."
           npm ci
+
+          echo "Building VAYRO frontend..."
           npm run build
 
-      # Step 6: Set up Java
+          echo "Frontend build completed successfully."
+
+      # Step 8: Set up Java
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
@@ -60,14 +116,24 @@ jobs:
           cache: maven
           cache-dependency-path: backend/vayro-backend/pom.xml
 
-      # Step 7: Build the backend
+      # Step 9: Build VAYRO backend
       - name: Build VAYRO backend
         working-directory: backend/vayro-backend
-        run: mvn clean package -DskipTests -B
+        run: |
+          set -euo pipefail
 
-      # Step 8: Report success
+          echo "Building VAYRO backend..."
+          mvn clean package -DskipTests -B
+
+          echo "Backend build completed successfully."
+
+      # Step 10: Final verification
       - name: Finish
         run: |
-          echo "VAYRO frontend build completed."
-          echo "VAYRO backend build completed."
-          echo "Workload Identity Federation authentication completed."
+          echo "=================================="
+          echo "VAYRO CI/CD BUILD SUMMARY"
+          echo "=================================="
+          echo "Google Cloud authentication: SUCCESS"
+          echo "Frontend build: SUCCESS"
+          echo "Backend build: SUCCESS"
+          echo "=================================="
