@@ -10,142 +10,185 @@ permissions:
   contents: read
   id-token: write
 
+concurrency:
+  group: vayro-deployment
+  cancel-in-progress: false
+
+env:
+  PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+  REGION: asia-southeast1
+  REPOSITORY: vayro-docker-repo
+
 jobs:
-  authenticate-and-build:
-    name: Authenticate and Build VAYRO
+  deploy:
+    name: Build and Deploy VAYRO
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Validate Google Cloud configuration
-      - name: Validate Google Cloud configuration
+      - name: Validate configuration
         env:
-          GCP_WIF_PROVIDER: ${{ vars.GCP_WIF_PROVIDER }}
-          GCP_WIF_SERVICE_ACCOUNT: ${{ vars.GCP_WIF_SERVICE_ACCOUNT }}
-          GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+          WIF_PROVIDER: ${{ vars.GCP_WIF_PROVIDER }}
+          DEPLOYER_ACCOUNT: ${{ vars.GCP_WIF_SERVICE_ACCOUNT }}
+          PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
         run: |
           set -euo pipefail
 
-          echo "Checking Google Cloud configuration..."
-
-          if [ -z "$GCP_WIF_PROVIDER" ]; then
-            echo "::error::GCP_WIF_PROVIDER is missing."
+          test -n "$WIF_PROVIDER" || {
+            echo "::error::GCP_WIF_PROVIDER is missing"
             exit 1
-          fi
+          }
 
-          if [ -z "$GCP_WIF_SERVICE_ACCOUNT" ]; then
-            echo "::error::GCP_WIF_SERVICE_ACCOUNT is missing."
+          test -n "$DEPLOYER_ACCOUNT" || {
+            echo "::error::GCP_WIF_SERVICE_ACCOUNT is missing"
             exit 1
-          fi
+          }
 
-          if [ -z "$GCP_PROJECT_ID" ]; then
-            echo "::error::GCP_PROJECT_ID is missing."
+          test -n "$PROJECT_ID" || {
+            echo "::error::GCP_PROJECT_ID is missing"
             exit 1
-          fi
+          }
 
-          echo "Google Cloud configuration variables are present."
-          echo "Project ID: $GCP_PROJECT_ID"
-          echo "Service account: $GCP_WIF_SERVICE_ACCOUNT"
+          echo "Configuration validated."
 
-      # Step 3: Authenticate using Workload Identity Federation
       - name: Authenticate with Google Cloud
-        id: auth
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
           service_account: ${{ vars.GCP_WIF_SERVICE_ACCOUNT }}
-          create_credentials_file: true
-
-      # Step 4: Install Google Cloud CLI
-      - name: Set up Google Cloud CLI
-        uses: google-github-actions/setup-gcloud@v2
-        with:
           project_id: ${{ vars.GCP_PROJECT_ID }}
 
-      # Step 5: Verify Google Cloud authentication and access
-      - name: Verify Google Cloud project
-        env:
-          GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+      - name: Set up Google Cloud CLI
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Verify project
         run: |
           set -euo pipefail
-
-          echo "Checking Google Cloud authentication..."
-
-          gcloud auth list
-
-          gcloud config set project "$GCP_PROJECT_ID"
-
-          echo "Verifying access to the Google Cloud project..."
-
-          gcloud projects describe "$GCP_PROJECT_ID" \
+          gcloud config set project "$PROJECT_ID"
+          gcloud projects describe "$PROJECT_ID" \
             --format="value(projectId)"
 
-          echo "Google Cloud authentication verified successfully."
+      - name: Configure Docker authentication
+        run: |
+          gcloud auth configure-docker \
+            "${REGION}-docker.pkg.dev" --quiet
 
-      # Step 6: Set up Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
-      # Step 7: Build VAYRO frontend
-      - name: Build VAYRO frontend
-        working-directory: frontend
+      - name: Build and push backend image
         run: |
           set -euo pipefail
 
-          echo "Installing frontend dependencies..."
+          IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/vayro-backend"
 
-          npm ci
+          docker build \
+            -t "${IMAGE}:${GITHUB_SHA}" \
+            backend/vayro-backend
 
-          echo "Building VAYRO frontend..."
+          docker push "${IMAGE}:${GITHUB_SHA}"
 
-          npm run build
-
-          echo "Frontend build completed successfully."
-
-      # Step 8: Set up Java
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: "21"
-
-      # Step 9: Set up Maven cache
-      - name: Cache Maven dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('backend/vayro-backend/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
-      # Step 10: Build VAYRO backend
-      - name: Build VAYRO backend
-        working-directory: backend/vayro-backend
+      - name: Deploy backend to Cloud Run
         run: |
           set -euo pipefail
 
-          echo "Building VAYRO backend..."
+          IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/vayro-backend:${GITHUB_SHA}"
 
-          mvn clean package -DskipTests -B
+          gcloud run deploy vayro-backend \
+            --image "$IMAGE" \
+            --region "$REGION" \
+            --project "$PROJECT_ID" \
+            --platform managed \
+            --memory 2Gi \
+            --cpu 2 \
+            --min 0 \
+            --max 3 \
+            --timeout 300 \
+            --allow-unauthenticated \
+            --set-secrets "DB_PASSWORD=DB_PASSWORD:latest,JWT_SECRET=JWT_SECRET:latest" \
+            --quiet
 
-          echo "Backend build completed successfully."
-
-      # Step 11: Final verification
-      - name: Finish
+      - name: Get backend URL
+        id: backend
         run: |
           set -euo pipefail
 
-          echo "=================================="
-          echo "VAYRO CI/CD BUILD SUMMARY"
-          echo "=================================="
-          echo "Google Cloud authentication: SUCCESS"
-          echo "Google Cloud project access: SUCCESS"
-          echo "Frontend build: SUCCESS"
-          echo "Backend build: SUCCESS"
-          echo "=================================="
-          echo "All workflow steps completed successfully."
+          URL="$(gcloud run services describe vayro-backend \
+            --region "$REGION" \
+            --project "$PROJECT_ID" \
+            --format='value(status.url)')"
+
+          test -n "$URL"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "Backend URL: $URL"
+
+      - name: Build and push frontend image
+        run: |
+          set -euo pipefail
+
+          IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/vayro-frontend"
+
+          docker build \
+            --build-arg VITE_API_URL="${{ steps.backend.outputs.url }}" \
+            -t "${IMAGE}:${GITHUB_SHA}" \
+            frontend
+
+          docker push "${IMAGE}:${GITHUB_SHA}"
+
+      - name: Deploy frontend to Cloud Run
+        run: |
+          set -euo pipefail
+
+          IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/vayro-frontend:${GITHUB_SHA}"
+
+          gcloud run deploy vayro-frontend \
+            --image "$IMAGE" \
+            --region "$REGION" \
+            --project "$PROJECT_ID" \
+            --platform managed \
+            --memory 512Mi \
+            --cpu 1 \
+            --min 0 \
+            --max 3 \
+            --allow-unauthenticated \
+            --quiet
+
+      - name: Verify deployment
+        id: verify
+        run: |
+          set -euo pipefail
+
+          FRONTEND_URL="$(gcloud run services describe vayro-frontend \
+            --region "$REGION" \
+            --project "$PROJECT_ID" \
+            --format='value(status.url)')"
+
+          BACKEND_URL="${{ steps.backend.outputs.url }}"
+
+          echo "Checking frontend..."
+          curl --fail --silent --show-error \
+            --max-time 30 "${FRONTEND_URL}/healthz"
+
+          echo
+          echo "Checking backend health endpoint..."
+          if ! curl --fail --silent --show-error \
+            --max-time 30 "${BACKEND_URL}/actuator/health"; then
+            echo "::warning::Backend health endpoint did not return success. Check Cloud Run logs."
+          fi
+
+          echo "Frontend URL: $FRONTEND_URL"
+          echo "Backend URL: $BACKEND_URL"
+
+          echo "frontend_url=$FRONTEND_URL" >> "$GITHUB_OUTPUT"
+          echo "backend_url=$BACKEND_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Deployment summary
+        env:
+          FRONTEND_URL: ${{ steps.verify.outputs.frontend_url }}
+          BACKEND_URL: ${{ steps.verify.outputs.backend_url }}
+        run: |
+          echo "======================================"
+          echo "VAYRO CLOUD RUN DEPLOYMENT"
+          echo "======================================"
+          echo "Frontend: $FRONTEND_URL"
+          echo "Backend:  $BACKEND_URL"
+          echo "======================================"
