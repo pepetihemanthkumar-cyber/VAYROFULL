@@ -26,8 +26,10 @@ FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /app
 
+RUN apk add --no-cache curl bash coreutils
+
 # Create unprivileged application user and group for security hardening
-RUN addgroup -S vayro && adduser -S vayro -G vayro
+RUN addgroup -S vayro && adduser -S vayro -G vayro && mkdir -p /app/logs
 
 # Copy built JAR files from builder stage
 COPY --from=builder /build/eureka-server/target/*.jar /app/eureka-server.jar
