@@ -89,10 +89,10 @@ public class SecurityConfig {
                         .pathMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login", "/api/auth/google").permitAll()
 
                         // Public Vehicle Catalogue Read Endpoints
-                        .pathMatchers(HttpMethod.GET, "/api/vehicles/**").permitAll()
+                        .pathMatchers(HttpMethod.GET, "/api/vehicles", "/api/vehicles/**").permitAll()
 
                         // Public Booking Availability Checking
-                        .pathMatchers(HttpMethod.GET, "/api/bookings/availability/**").permitAll()
+                        .pathMatchers(HttpMethod.GET, "/api/bookings/availability", "/api/bookings/availability/**").permitAll()
 
                         // Protected User endpoints
                         .pathMatchers("/api/users/**").authenticated()
@@ -213,14 +213,16 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOriginPattern("http://localhost:*");
+        config.addAllowedOriginPattern("https://vayro.com");
+        config.addAllowedOriginPattern("https://*.run.app");
+        config.addAllowedOriginPattern("https://*.a.run.app");
+
         if (allowedOrigins != null && !allowedOrigins.isBlank()) {
             Arrays.stream(allowedOrigins.split(","))
                     .map(String::trim)
                     .filter(s -> !s.isEmpty())
                     .forEach(config::addAllowedOriginPattern);
-        } else {
-            config.addAllowedOriginPattern("http://localhost:*");
-            config.addAllowedOriginPattern("https://vayro.com");
         }
         config.addAllowedMethod("GET");
         config.addAllowedMethod("POST");

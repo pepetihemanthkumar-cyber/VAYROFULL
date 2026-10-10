@@ -16,6 +16,8 @@ spring:
           '[/**]':
             allowedOriginPatterns:
               - "http://localhost:*"
+              - "https://*.run.app"
+              - "https://*.a.run.app"
               - "https://vayro.com"
               - "${CORS_ALLOWED_ORIGINS:http://localhost:5173}"
             allowedMethods:
@@ -33,29 +35,29 @@ spring:
             maxAge: 3600
       routes:
         - id: user-auth-route
-          uri: ${USER_SERVICE_URL:lb://USER-SERVICE}
+          uri: ${USER_SERVICE_URL:http://localhost:8081}
           predicates:
-            - Path=/api/auth/**
+            - Path=/api/auth, /api/auth/**
 
         - id: user-service-route
-          uri: ${USER_SERVICE_URL:lb://USER-SERVICE}
+          uri: ${USER_SERVICE_URL:http://localhost:8081}
           predicates:
-            - Path=/api/users/**
+            - Path=/api/users, /api/users/**
 
         - id: vehicle-service-route
-          uri: ${VEHICLE_SERVICE_URL:lb://VEHICLE-SERVICE}
+          uri: ${VEHICLE_SERVICE_URL:http://localhost:8082}
           predicates:
-            - Path=/api/vehicles/**
+            - Path=/api/vehicles, /api/vehicles/**
 
         - id: booking-service-route
-          uri: ${BOOKING_SERVICE_URL:lb://BOOKING-SERVICE}
+          uri: ${BOOKING_SERVICE_URL:http://localhost:8083}
           predicates:
-            - Path=/api/bookings/**
+            - Path=/api/bookings, /api/bookings/**
 
         - id: notification-service-route
-          uri: ${NOTIFICATION_SERVICE_URL:lb://NOTIFICATION-SERVICE}
+          uri: ${NOTIFICATION_SERVICE_URL:http://localhost:8084}
           predicates:
-            - Path=/api/notifications/**
+            - Path=/api/notifications, /api/notifications/**
 
 eureka:
   client:
