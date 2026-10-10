@@ -114,7 +114,7 @@ jobs:
             --max-instances 3 \
             --timeout 300 \
             --allow-unauthenticated \
-            --set-env-vars "DB_HOST=${{ vars.DB_HOST || 'aws-0-ap-southeast-1.pooler.supabase.com' }},DB_PORT=${{ vars.DB_PORT || '5432' }},DB_NAME=${{ vars.DB_NAME || 'postgres' }},DB_USERNAME=${{ vars.DB_USERNAME || 'postgres.lgpuulmsdogxzsyowqdk' }},GOOGLE_CLIENT_ID=${{ vars.GOOGLE_CLIENT_ID || '718836314167-kekvffi6ugr8s6gfg6ds00qb190ee12s.apps.googleusercontent.com' }}" \
+            --set-env-vars "DB_HOST=${{ vars.DB_HOST || 'aws-0-ap-southeast-1.pooler.supabase.com' }},DB_PORT=${{ vars.DB_PORT || '5432' }},DB_NAME=${{ vars.DB_NAME || 'postgres' }},DB_USERNAME=${{ vars.DB_USERNAME || 'postgres.lgpuulmsdogxzsyoqwdk' }},GOOGLE_CLIENT_ID=${{ vars.GOOGLE_CLIENT_ID || '718836314167-kekvffi6ugr8s6gfg6ds00qb190ee12s.apps.googleusercontent.com' }}" \
             --set-secrets "DB_PASSWORD=DB_PASSWORD:latest,JWT_SECRET=JWT_SECRET:latest" \
             --quiet
 
@@ -189,12 +189,34 @@ jobs:
           curl --fail --silent --show-error \
             --max-time 30 "${FRONTEND_URL}/" > /dev/null
 
+          echo "Checking backend API Gateway root..."
+          curl --fail --silent --show-error \
+            --max-time 30 "${BACKEND_URL}/"
+
           echo
           echo "Checking backend health endpoint..."
-          if ! curl --fail --silent --show-error \
-            --max-time 30 "${BACKEND_URL}/actuator/health"; then
-            echo "::warning::Backend health endpoint did not return success. Check Cloud Run logs."
-          fi
+          curl --fail --silent --show-error \
+            --max-time 30 "${BACKEND_URL}/actuator/health"
+
+          echo
+          echo "Waiting up to 40 seconds for microservices to register with Eureka and become available..."
+          for i in $(seq 1 8); do
+            echo "Checking /api/vehicles attempt $i/8..."
+            HTTP_CODE=$(curl -s -o /tmp/vehicles_test.json -w "%{http_code}" "${BACKEND_URL}/api/vehicles" || echo "000")
+            if [ "$HTTP_CODE" = "200" ]; then
+              echo "✓ Vehicle service responded with HTTP 200 OK"
+              break
+            fi
+            sleep 5
+          done
+
+          echo "Registered Eureka applications:"
+          curl -s -H "Accept: application/json" "${BACKEND_URL}/eureka/apps"
+
+          echo
+          echo "Final check for /api/vehicles:"
+          curl --fail --show-error --max-time 20 "${BACKEND_URL}/api/vehicles" | head -c 200
+          echo
 
           echo "Frontend URL: $FRONTEND_URL"
           echo "Backend URL: $BACKEND_URL"

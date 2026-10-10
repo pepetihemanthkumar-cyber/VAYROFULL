@@ -38,7 +38,7 @@ services:
       DB_HOST: ${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}
       DB_PORT: ${DB_PORT:5432}
       DB_NAME: ${DB_NAME:postgres}
-      DB_USERNAME: ${DB_USERNAME:postgres.lgpuulmsdogxzsyowqdk}
+      DB_USERNAME: ${DB_USERNAME:postgres.lgpuulmsdogxzsyoqwdk}
       DB_PASSWORD: ${DB_PASSWORD:}
       EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
       JWT_SECRET: ${JWT_SECRET:}
@@ -62,7 +62,7 @@ services:
       DB_HOST: ${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}
       DB_PORT: ${DB_PORT:5432}
       DB_NAME: ${DB_NAME:postgres}
-      DB_USERNAME: ${DB_USERNAME:postgres.lgpuulmsdogxzsyowqdk}
+      DB_USERNAME: ${DB_USERNAME:postgres.lgpuulmsdogxzsyoqwdk}
       DB_PASSWORD: ${DB_PASSWORD:}
       EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
       JWT_SECRET: ${JWT_SECRET:}
@@ -81,7 +81,7 @@ services:
       DB_HOST: ${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}
       DB_PORT: ${DB_PORT:5432}
       DB_NAME: ${DB_NAME:postgres}
-      DB_USERNAME: ${DB_USERNAME:postgres.lgpuulmsdogxzsyowqdk}
+      DB_USERNAME: ${DB_USERNAME:postgres.lgpuulmsdogxzsyoqwdk}
       DB_PASSWORD: ${DB_PASSWORD:}
       EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
       JWT_SECRET: ${JWT_SECRET:}
@@ -101,7 +101,7 @@ services:
       DB_HOST: ${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}
       DB_PORT: ${DB_PORT:5432}
       DB_NAME: ${DB_NAME:postgres}
-      DB_USERNAME: ${DB_USERNAME:postgres.lgpuulmsdogxzsyowqdk}
+      DB_USERNAME: ${DB_USERNAME:postgres.lgpuulmsdogxzsyoqwdk}
       DB_PASSWORD: ${DB_PASSWORD:}
       EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
       JWT_SECRET: ${JWT_SECRET:}

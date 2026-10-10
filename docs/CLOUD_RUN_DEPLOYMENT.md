@@ -65,7 +65,7 @@ docker run -p 8080:8080 \
   -e DB_HOST="aws-0-ap-southeast-1.pooler.supabase.com" \
   -e DB_PORT=5432 \
   -e DB_NAME=postgres \
-  -e DB_USERNAME="postgres.lgpuulmsdogxzsyowqdk" \
+  -e DB_USERNAME="postgres.lgpuulmsdogxzsyoqwdk" \
   -e DB_PASSWORD="your_supabase_password" \
   -e JWT_SECRET="your_256_bit_jwt_secret" \
   vayro-backend:latest
