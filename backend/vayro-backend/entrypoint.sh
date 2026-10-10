@@ -5,6 +5,9 @@ echo "=================================================="
 echo "Starting VAYRO Fleet Platform Backend Services"
 echo "=================================================="
 
+# Optimize JVM settings to prevent memory bloat in containerized environment
+JVM_COMMON="-XX:+UseSerialGC -XX:MaxMetaspaceSize=110m -Xss256k -Djava.security.egd=file:/dev/./urandom"
+
 # Function to cleanly terminate all processes on container shutdown
 cleanup() {
     echo "Stopping all VAYRO microservices..."
@@ -16,10 +19,9 @@ trap cleanup SIGTERM SIGINT
 
 # 1. Start Eureka Service Registry on fixed internal port 8761
 echo "[1/6] Launching Eureka Service Discovery Server (internal port 8761)..."
-java -Xms32m -Xmx96m \
+java -Xms32m -Xmx80m $JVM_COMMON \
      -Dserver.port=8761 \
      -DSERVER_PORT=8761 \
-     -Djava.security.egd=file:/dev/./urandom \
      -jar /app/eureka-server.jar &
 EUREKA_PID=$!
 
@@ -28,10 +30,9 @@ sleep 8
 
 # 2. Start User & Identity Service on fixed internal port 8081
 echo "[2/6] Launching User & Authentication Service (internal port 8081)..."
-java -Xms64m -Xmx192m \
+java -Xms48m -Xmx160m $JVM_COMMON \
      -Dserver.port=8081 \
      -DSERVER_PORT=8081 \
-     -Djava.security.egd=file:/dev/./urandom \
      -jar /app/user-service.jar &
 USER_PID=$!
 
@@ -39,10 +40,9 @@ sleep 3
 
 # 3. Start Vehicle & Fleet Service on fixed internal port 8082
 echo "[3/6] Launching Vehicle Fleet Catalog Service (internal port 8082)..."
-java -Xms64m -Xmx192m \
+java -Xms48m -Xmx160m $JVM_COMMON \
      -Dserver.port=8082 \
      -DSERVER_PORT=8082 \
-     -Djava.security.egd=file:/dev/./urandom \
      -jar /app/vehicle-service.jar &
 VEHICLE_PID=$!
 
@@ -50,10 +50,9 @@ sleep 3
 
 # 4. Start Notification Service on fixed internal port 8084
 echo "[4/6] Launching Notification & Invoicing Service (internal port 8084)..."
-java -Xms64m -Xmx192m \
+java -Xms48m -Xmx160m $JVM_COMMON \
      -Dserver.port=8084 \
      -DSERVER_PORT=8084 \
-     -Djava.security.egd=file:/dev/./urandom \
      -jar /app/notification-service.jar &
 NOTIF_PID=$!
 
@@ -61,10 +60,9 @@ sleep 3
 
 # 5. Start Booking Service on fixed internal port 8083
 echo "[5/6] Launching Booking & Rental Reservation Service (internal port 8083)..."
-java -Xms64m -Xmx192m \
+java -Xms48m -Xmx160m $JVM_COMMON \
      -Dserver.port=8083 \
      -DSERVER_PORT=8083 \
-     -Djava.security.egd=file:/dev/./urandom \
      -jar /app/booking-service.jar &
 BOOKING_PID=$!
 
@@ -74,10 +72,9 @@ sleep 8
 # 6. Start API Gateway on Cloud Run public port ($PORT, defaults to 8080)
 PORT_TO_USE="${PORT:-8080}"
 echo "[6/6] Launching API Gateway Ingress Proxy on public port ${PORT_TO_USE}..."
-java -Xms64m -Xmx256m \
+java -Xms64m -Xmx200m $JVM_COMMON \
      -Dserver.port="${PORT_TO_USE}" \
      -DSERVER_PORT="${PORT_TO_USE}" \
-     -Djava.security.egd=file:/dev/./urandom \
      -jar /app/api-gateway.jar &
 GATEWAY_PID=$!
 

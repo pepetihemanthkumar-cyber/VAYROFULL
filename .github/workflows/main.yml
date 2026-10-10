@@ -108,7 +108,7 @@ jobs:
             --region "$REGION" \
             --project "$PROJECT_ID" \
             --platform managed \
-            --memory 2Gi \
+            --memory 4Gi \
             --cpu 2 \
             --min-instances 0 \
             --max-instances 3 \
@@ -199,9 +199,9 @@ jobs:
             --max-time 30 "${BACKEND_URL}/actuator/health"
 
           echo
-          echo "Waiting up to 40 seconds for microservices to register with Eureka and become available..."
-          for i in $(seq 1 8); do
-            echo "Checking /api/vehicles attempt $i/8..."
+          echo "Waiting up to 45 seconds for microservices to register with Eureka and become available..."
+          for i in $(seq 1 9); do
+            echo "Checking /api/vehicles attempt $i/9..."
             HTTP_CODE=$(curl -s -o /tmp/vehicles_test.json -w "%{http_code}" "${BACKEND_URL}/api/vehicles" || echo "000")
             if [ "$HTTP_CODE" = "200" ]; then
               echo "✓ Vehicle service responded with HTTP 200 OK"
@@ -215,7 +215,8 @@ jobs:
 
           echo
           echo "Final check for /api/vehicles:"
-          curl --fail --show-error --max-time 20 "${BACKEND_URL}/api/vehicles" | head -c 200
+          curl --fail --show-error --max-time 20 -o /tmp/vehicles_final.json "${BACKEND_URL}/api/vehicles"
+          head -c 200 /tmp/vehicles_final.json
           echo
 
           echo "Frontend URL: $FRONTEND_URL"
@@ -242,7 +243,7 @@ jobs:
           echo "======================================"
           echo "RECENT CLOUD RUN LOGS (vayro-backend)"
           echo "======================================"
-          gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=vayro-backend" \
-            --limit=300 \
-            --project="$PROJECT_ID" \
-            --format="table(timestamp,severity,textPayload)" || true
+          gcloud run services logs read vayro-backend \
+            --region "$REGION" \
+            --limit 100 \
+            --project "$PROJECT_ID" || true
