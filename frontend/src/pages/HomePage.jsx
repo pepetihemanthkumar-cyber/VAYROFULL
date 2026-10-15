@@ -25,6 +25,7 @@ import {
   Zap,
 } from 'lucide-react'
 import { Brand } from '../components/layout/Brand'
+import { Footer } from '../components/layout/Footer'
 import { VehicleImage } from '../components/vehicles/VehicleImage'
 import { useAuth } from '../context/AuthContext'
 import { bikes, cars, vehicles } from '../data/vehicles'
@@ -936,64 +937,7 @@ export default function HomePage() {
       </section>
 
       {/* 11. FOOTER */}
-      <footer className="home-footer">
-        <div className="footer-container">
-          <div className="footer-main-grid">
-            {/* Brand Column */}
-            <div className="footer-brand-col">
-              <Brand variant="footer" size="md" />
-              <p className="footer-tagline">Vehicle Rental & Mobility</p>
-              <div className="m-stripe-divider" style={{ width: '120px', marginTop: '16px' }} />
-            </div>
-
-            {/* Navigation Column */}
-            <div className="footer-links-col">
-              <h4 className="footer-col-title">NAVIGATION</h4>
-              <ul className="footer-links-list">
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/cars">Cars</Link></li>
-                <li><Link to="/bikes">Bikes</Link></li>
-                <li><Link to="/vehicles">Vehicles</Link></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><Link to="/help">Help</Link></li>
-              </ul>
-            </div>
-
-            {/* Account Column */}
-            <div className="footer-links-col">
-              <h4 className="footer-col-title">ACCOUNT</h4>
-              <ul className="footer-links-list">
-                {!isAuthenticated ? (
-                  <>
-                    <li><Link to="/login">Sign In</Link></li>
-                    <li><Link to="/register">Create Account</Link></li>
-                  </>
-                ) : (
-                  <>
-                    <li><Link to={dashboardPath}>Dashboard</Link></li>
-                    <li><button type="button" onClick={handleLogout} className="footer-logout-link">Logout</button></li>
-                  </>
-                )}
-              </ul>
-            </div>
-
-            {/* Legal Column */}
-            <div className="footer-links-col">
-              <h4 className="footer-col-title">LEGAL</h4>
-              <ul className="footer-links-list">
-                <li><span className="footer-static-link">Privacy Policy</span></li>
-                <li><span className="footer-static-link">Terms of Service</span></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="footer-bottom-row">
-            <p className="footer-copyright">
-              © {new Date().getFullYear()} VAYRO. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

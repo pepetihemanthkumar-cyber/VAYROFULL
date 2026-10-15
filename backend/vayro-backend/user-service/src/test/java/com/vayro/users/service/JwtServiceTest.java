@@ -46,4 +46,50 @@ class JwtServiceTest {
         assertTrue(jwtService.isTokenValid(token, userDetails));
         assertFalse(jwtService.isTokenExpired(token));
     }
+
+    @Test
+    void testTokenContainsIssuerAndAudience() {
+        User user = new User();
+        user.setId(11L);
+        user.setEmail("audtest@vayro.com");
+        user.setRole(Role.USER);
+
+        String token = jwtService.generateToken(user);
+        assertEquals("vayro-auth", jwtService.extractIssuer(token));
+        assertTrue(jwtService.extractAudience(token).contains("vayro-platform"));
+    }
+
+    @Test
+    void testTokenRejectedWhenUserIsDisabled() {
+        User user = new User();
+        user.setId(12L);
+        user.setEmail("disabled@vayro.com");
+        user.setRole(Role.USER);
+
+        String token = jwtService.generateToken(user);
+
+        // Disabled user details: enabled=false
+        UserDetails disabledUserDetails = new org.springframework.security.core.userdetails.User(
+                "disabled@vayro.com", "password", false, true, true, true, Collections.emptyList()
+        );
+
+        assertFalse(jwtService.isTokenValid(token, disabledUserDetails));
+    }
+
+    @Test
+    void testTokenRejectedWhenAccountLocked() {
+        User user = new User();
+        user.setId(13L);
+        user.setEmail("locked@vayro.com");
+        user.setRole(Role.USER);
+
+        String token = jwtService.generateToken(user);
+
+        // Locked user details: accountNonLocked=false
+        UserDetails lockedUserDetails = new org.springframework.security.core.userdetails.User(
+                "locked@vayro.com", "password", true, true, true, false, Collections.emptyList()
+        );
+
+        assertFalse(jwtService.isTokenValid(token, lockedUserDetails));
+    }
 }

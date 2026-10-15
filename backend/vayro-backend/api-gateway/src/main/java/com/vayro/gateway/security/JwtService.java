@@ -47,9 +47,27 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
+    @Value("${jwt.issuer:vayro-auth}")
+    private String jwtIssuer = "vayro-auth";
+
+    @Value("${jwt.audience:vayro-platform}")
+    private String jwtAudience = "vayro-platform";
+
     public boolean isTokenValid(String token) {
         try {
-            return !isTokenExpired(token);
+            if (isTokenExpired(token)) {
+                return false;
+            }
+            Claims claims = extractAllClaims(token);
+            String tokenIssuer = claims.getIssuer();
+            if (tokenIssuer != null && !tokenIssuer.isBlank() && !jwtIssuer.equals(tokenIssuer) && !"https://vayro.com".equals(tokenIssuer)) {
+                return false;
+            }
+            java.util.Set<String> tokenAudience = claims.getAudience();
+            if (tokenAudience != null && !tokenAudience.isEmpty() && !tokenAudience.contains(jwtAudience) && !tokenAudience.contains("vayro-web")) {
+                return false;
+            }
+            return true;
         } catch (JwtException | IllegalArgumentException e) {
             log.warn("Invalid JWT token detected: {}", e.getMessage());
             return false;
@@ -76,7 +94,7 @@ public class JwtService {
         byte[] keyBytes;
         try {
             keyBytes = Decoders.BASE64.decode(secretKey);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
         }
         return Keys.hmacShaKeyFor(keyBytes);

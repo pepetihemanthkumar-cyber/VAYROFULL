@@ -26,10 +26,24 @@ public class JwtService {
     private String secretKey;
 
     @Value("${jwt.expiration:86400000}")
-    private long jwtExpiration;
+    private long jwtExpiration = 86400000L;
+
+    @Value("${jwt.issuer:vayro-auth}")
+    private String jwtIssuer = "vayro-auth";
+
+    @Value("${jwt.audience:vayro-platform}")
+    private String jwtAudience = "vayro-platform";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
+    }
+
+    public String extractIssuer(String token) {
+        return extractClaim(token, Claims::getIssuer);
+    }
+
+    public java.util.Set<String> extractAudience(String token) {
+        return extractClaim(token, Claims::getAudience);
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -49,6 +63,8 @@ public class JwtService {
         return Jwts.builder()
                 .claims(extraClaims)
                 .subject(subject)
+                .issuer(jwtIssuer)
+                .audience().add(jwtAudience).and()
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + jwtExpiration))
                 .signWith(getSigningKey())
@@ -56,8 +72,30 @@ public class JwtService {
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
-        return (username.equalsIgnoreCase(userDetails.getUsername())) && !isTokenExpired(token);
+        try {
+            if (userDetails == null || !userDetails.isEnabled() || !userDetails.isAccountNonLocked()) {
+                return false;
+            }
+            final String username = extractUsername(token);
+            if (!username.equalsIgnoreCase(userDetails.getUsername()) || isTokenExpired(token)) {
+                return false;
+            }
+
+            // Permissive / Dual-Mode Issuer & Audience validation (allows legacy tokens during migration)
+            Claims claims = extractAllClaims(token);
+            String tokenIssuer = claims.getIssuer();
+            if (tokenIssuer != null && !tokenIssuer.isBlank() && !jwtIssuer.equals(tokenIssuer) && !"https://vayro.com".equals(tokenIssuer)) {
+                return false;
+            }
+            java.util.Set<String> tokenAudience = claims.getAudience();
+            if (tokenAudience != null && !tokenAudience.isEmpty() && !tokenAudience.contains(jwtAudience) && !tokenAudience.contains("vayro-web")) {
+                return false;
+            }
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public boolean isTokenExpired(String token) {

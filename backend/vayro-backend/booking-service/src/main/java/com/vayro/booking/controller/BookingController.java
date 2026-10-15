@@ -146,10 +146,9 @@ public class BookingController {
     }
 
     /**
-     * Mark vehicle as returned after drop-off (ADMIN only).
+     * Mark vehicle as returned after drop-off (Owner customer or ADMIN).
      */
     @PatchMapping("/{id}/return")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<BookingResponse> returnBooking(
             @PathVariable Long id,
             @AuthenticationPrincipal AuthenticatedUser currentUser,

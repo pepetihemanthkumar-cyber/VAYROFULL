@@ -2,6 +2,7 @@ package com.vayro.vehicles.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vayro.vehicles.dto.VehicleCreateRequest;
+import com.vayro.vehicles.dto.VehicleMaintenanceRequest;
 import com.vayro.vehicles.dto.VehicleStatusRequest;
 import com.vayro.vehicles.entity.MaintenanceStatus;
 import com.vayro.vehicles.entity.VehicleCategory;
@@ -177,5 +178,222 @@ class VehicleControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(req)))
                 .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void testInternalServiceUpdateStatusReturns200() throws Exception {
+        byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
+        SecretKey key = Keys.hmacShaKeyFor(keyBytes);
+
+        String internalToken = Jwts.builder()
+                .issuer("vayro-booking-service")
+                .audience().add("vayro-vehicle-service").and()
+                .subject("booking-service@internal.vayro.com")
+                .claim("role", "INTERNAL_SERVICE")
+                .claim("userId", "system")
+                .claim("name", "Internal Booking Service")
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 300000))
+                .signWith(key)
+                .compact();
+
+        VehicleStatusRequest req = new VehicleStatusRequest(VehicleStatus.AVAILABLE);
+
+        mockMvc.perform(patch("/api/vehicles/maruti-suzuki-swift/status")
+                        .header("Authorization", "Bearer " + internalToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(req)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value("AVAILABLE"));
+    }
+
+    @Test
+    void testUntrustedIssuerUpdateStatusReturns403() throws Exception {
+        byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
+        SecretKey key = Keys.hmacShaKeyFor(keyBytes);
+
+        String untrustedToken = Jwts.builder()
+                .issuer("untrusted-hacker-issuer")
+                .audience().add("vayro-vehicle-service").and()
+                .subject("booking-service@internal.vayro.com")
+                .claim("role", "INTERNAL_SERVICE")
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 300000))
+                .signWith(key)
+                .compact();
+
+        VehicleStatusRequest req = new VehicleStatusRequest(VehicleStatus.AVAILABLE);
+
+        mockMvc.perform(patch("/api/vehicles/maruti-suzuki-swift/status")
+                        .header("Authorization", "Bearer " + untrustedToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(req)))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void testUntrustedAudienceUpdateStatusReturns403() throws Exception {
+        byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
+        SecretKey key = Keys.hmacShaKeyFor(keyBytes);
+
+        String untrustedToken = Jwts.builder()
+                .issuer("vayro-booking-service")
+                .audience().add("untrusted-audience").and()
+                .subject("booking-service@internal.vayro.com")
+                .claim("role", "INTERNAL_SERVICE")
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 300000))
+                .signWith(key)
+                .compact();
+
+        VehicleStatusRequest req = new VehicleStatusRequest(VehicleStatus.AVAILABLE);
+
+        mockMvc.perform(patch("/api/vehicles/maruti-suzuki-swift/status")
+                        .header("Authorization", "Bearer " + untrustedToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(req)))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void testUpdateMaintenanceAsAdminSucceedsAndSetsStatusToMaintenance() throws Exception {
+        VehicleMaintenanceRequest req = new VehicleMaintenanceRequest(
+                MaintenanceStatus.IN_SERVICE,
+                null,
+                null,
+                java.time.LocalDate.now().plusMonths(1),
+                "Scheduled 50,000km brake rotor and fluid service"
+        );
+
+        mockMvc.perform(patch("/api/vehicles/maruti-suzuki-swift/maintenance")
+                        .header("Authorization", "Bearer " + adminToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(req)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.maintenanceStatus").value("IN_SERVICE"))
+                .andExpect(jsonPath("$.status").value("MAINTENANCE"))
+                .andExpect(jsonPath("$.maintenanceNotes").value("Scheduled 50,000km brake rotor and fluid service"));
+
+        // Transition back to GOOD restores operational status to AVAILABLE
+        VehicleMaintenanceRequest completedReq = new VehicleMaintenanceRequest(
+                MaintenanceStatus.GOOD,
+                null,
+                java.time.LocalDate.now(),
+                java.time.LocalDate.now().plusMonths(6),
+                "Brake service completed. Road test passed."
+        );
+
+        mockMvc.perform(patch("/api/vehicles/maruti-suzuki-swift/maintenance")
+                        .header("Authorization", "Bearer " + adminToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(completedReq)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.maintenanceStatus").value("GOOD"))
+                .andExpect(jsonPath("$.status").value("AVAILABLE"));
+    }
+
+    @Test
+    void testUpdateMaintenanceAsRegularCustomerReturns403Forbidden() throws Exception {
+        VehicleMaintenanceRequest req = new VehicleMaintenanceRequest(
+                MaintenanceStatus.IN_SERVICE,
+                null,
+                null,
+                null,
+                "Unauthorized customer attempt"
+        );
+
+        mockMvc.perform(patch("/api/vehicles/maruti-suzuki-swift/maintenance")
+                        .header("Authorization", "Bearer " + userToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(req)))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void testUpdateMaintenanceOnActivelyRentedVehicleReturns400() throws Exception {
+        // Set vehicle to RENTED
+        var vehicle = vehicleRepository.findById("maruti-suzuki-swift").orElseThrow();
+        vehicle.setStatus(VehicleStatus.RENTED);
+        vehicleRepository.save(vehicle);
+
+        try {
+            VehicleMaintenanceRequest req = new VehicleMaintenanceRequest(
+                    MaintenanceStatus.IN_SERVICE,
+                    null,
+                    null,
+                    null,
+                    "Attempt maintenance on rented vehicle"
+            );
+
+            mockMvc.perform(patch("/api/vehicles/maruti-suzuki-swift/maintenance")
+                            .header("Authorization", "Bearer " + adminToken)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(req)))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.message").value("Cannot change maintenance status of actively rented vehicle. Customer return must be completed first."));
+        } finally {
+            vehicle.setStatus(VehicleStatus.AVAILABLE);
+            vehicleRepository.save(vehicle);
+        }
+    }
+
+    @Test
+    void testReturnWorkflowDoesNotOverwriteInServiceMaintenanceStatus() throws Exception {
+        var vehicle = vehicleRepository.findById("maruti-suzuki-swift").orElseThrow();
+        vehicle.setStatus(VehicleStatus.MAINTENANCE);
+        vehicle.setMaintenanceStatus(MaintenanceStatus.IN_SERVICE);
+        vehicleRepository.save(vehicle);
+
+        try {
+            // Generate valid internal service token simulating booking-service during vehicle return
+            byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
+            SecretKey key = Keys.hmacShaKeyFor(keyBytes);
+
+            String internalToken = Jwts.builder()
+                    .issuer("vayro-booking-service")
+                    .audience().add("vayro-vehicle-service").and()
+                    .subject("booking-service@internal.vayro.com")
+                    .claim("role", "INTERNAL_SERVICE")
+                    .issuedAt(new Date())
+                    .expiration(new Date(System.currentTimeMillis() + 300000))
+                    .signWith(key)
+                    .compact();
+
+            VehicleStatusRequest req = new VehicleStatusRequest(VehicleStatus.AVAILABLE);
+
+            // Return request must NOT overwrite MAINTENANCE operational status
+            mockMvc.perform(patch("/api/vehicles/maruti-suzuki-swift/status")
+                            .header("Authorization", "Bearer " + internalToken)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(req)))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.status").value("MAINTENANCE"))
+                    .andExpect(jsonPath("$.maintenanceStatus").value("IN_SERVICE"));
+        } finally {
+            vehicle.setStatus(VehicleStatus.AVAILABLE);
+            vehicle.setMaintenanceStatus(MaintenanceStatus.GOOD);
+            vehicleRepository.save(vehicle);
+        }
+    }
+
+    @Test
+    void testAdminCannotDirectlyMarkRentedVehicleAsAvailableWithoutReturn() throws Exception {
+        var vehicle = vehicleRepository.findById("maruti-suzuki-swift").orElseThrow();
+        vehicle.setStatus(VehicleStatus.RENTED);
+        vehicleRepository.save(vehicle);
+
+        try {
+            VehicleStatusRequest req = new VehicleStatusRequest(VehicleStatus.AVAILABLE);
+
+            mockMvc.perform(patch("/api/vehicles/maruti-suzuki-swift/status")
+                            .header("Authorization", "Bearer " + adminToken)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(req)))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.message").value("Cannot mark an actively rented vehicle as AVAILABLE. Return handover must be processed through booking service first."));
+        } finally {
+            vehicle.setStatus(VehicleStatus.AVAILABLE);
+            vehicleRepository.save(vehicle);
+        }
     }
 }

@@ -6,7 +6,7 @@ spring:
     name: USER-SERVICE
 
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}:${DB_PORT:5432}/${DB_NAME:postgres}?sslmode=require}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}:${DB_PORT:5432}/${DB_NAME:postgres}${DB_SSLMODE:?sslmode=require}}
     username: ${DB_USERNAME:postgres.lgpuulmsdogxzsyoqwdk}
     password: ${DB_PASSWORD:}
     driver-class-name: org.postgresql.Driver
@@ -19,7 +19,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:validate}
     show-sql: false
     properties:
       hibernate:
@@ -47,7 +47,7 @@ management:
         include: health,info
 
 jwt:
-  secret: ${JWT_SECRET:}
+  secret: ${JWT_SECRET}
   # Expiration time in milliseconds (Default: 24 Hours)
   expiration: ${JWT_EXPIRATION:86400000}
 
@@ -65,3 +65,6 @@ app:
     first-name: ${ADMIN_FIRST_NAME:Vayro}
     last-name: ${ADMIN_LAST_NAME:Admin}
     phone: ${ADMIN_PHONE:+91 98200 11223}
+  demo-accounts:
+    # Test/demo account creation is disabled by default and forbidden in production
+    enabled: ${DEMO_ACCOUNTS_ENABLED:false}

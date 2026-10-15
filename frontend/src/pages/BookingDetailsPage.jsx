@@ -189,7 +189,7 @@ export default function BookingDetailsPage() {
               <p className="eyebrow">Reservation Record</p>
               <h2>{booking.id}</h2>
             </div>
-            <GlassBadge status={booking.status}>{formatStatus(booking.status)}</GlassBadge>
+            <GlassBadge status={booking.status}>{booking.status === 'RETURNED' ? 'RETURNED' : formatStatus(booking.status)}</GlassBadge>
           </div>
         </div>
 
@@ -336,6 +336,12 @@ export default function BookingDetailsPage() {
                 <span>Duration</span>
                 <strong>{booking.durationLabel || `${booking.rentalDays || 1} days`}</strong>
               </div>
+              {booking.returnedAt && (
+                <div className="schedule-duration-bar" style={{ marginTop: '8px', color: '#10b981' }}>
+                  <span>Actual Return Time</span>
+                  <strong>{formatDate(booking.returnedAt)} at {String(booking.returnedAt).includes('T') ? String(booking.returnedAt).slice(11, 16) : '10:00'}</strong>
+                </div>
+              )}
             </GlassCard>
           </motion.div>
 

@@ -1,18 +1,25 @@
 import axios from 'axios'
 import { SESSION_KEY } from './authService'
 
-// Configured base URL for API (proxied in dev, /api in prod)
+// Configured base URL for API (empty string when hosted behind Nginx reverse proxy routing /api)
+const rawBaseUrl = (import.meta.env.VITE_API_URL || '').trim().replace(/\/+$/, '')
+const cleanBaseUrl = rawBaseUrl.replace(/\/api\/?$/, '')
+
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '',
+  baseURL: cleanBaseUrl,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
   },
 })
 
-// Request Interceptor: Attach JWT Bearer token if present
+// Request Interceptor: Attach JWT Bearer token if present & prevent URL doubling
 api.interceptors.request.use(
   (config) => {
+    // Normalization safeguard: prevent /api/api/... doubling if baseURL is non-empty
+    if (config.baseURL && config.baseURL.endsWith('/api') && config.url && config.url.startsWith('/api/')) {
+      config.url = config.url.replace(/^\/api/, '')
+    }
     try {
       const sessionRaw = window.localStorage.getItem(SESSION_KEY)
       if (sessionRaw) {
@@ -33,7 +40,11 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    const isUnauthorized = error.response?.status === 401
+    const requestUrl = error.config?.url || ''
+
+    // Only clear session if authentication check explicitly fails (e.g., /api/users/me)
+    if (isUnauthorized && (requestUrl.includes('/api/users/me') || requestUrl.includes('/api/auth/me'))) {
       try {
         window.localStorage.removeItem(SESSION_KEY)
       } catch {}
@@ -63,6 +74,7 @@ api.interceptors.response.use(
     err.response = error.response
     err.field = data?.field
     err.errors = data?.errors
+    err.isAuthError = isUnauthorized
     return Promise.reject(err)
   },
 )

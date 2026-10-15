@@ -128,6 +128,20 @@ export default function ProfilePage() {
   const [preferences, setPreferences] = useState(getSavedPreferences)
   const [favorites, setFavorites] = useState(() => getFavoriteVehicles())
 
+  // Keep form in sync when user state changes from backend
+  useEffect(() => {
+    if (user) {
+      setPersonalForm((prev) => ({
+        ...prev,
+        name: user.name || `${user.firstName || ''} ${user.lastName || ''}`.trim() || prev.name,
+        email: user.email || prev.email,
+        phone: user.phone || prev.phone,
+        address: user.address || prev.address,
+        licenseNumber: user.licenseNumber || prev.licenseNumber,
+      }))
+    }
+  }, [user])
+
   // Async booking data for lifetime stats
   const [userBookings, setUserBookings] = useState([])
   const [isLoadingBookings, setIsLoadingBookings] = useState(true)
@@ -187,7 +201,7 @@ export default function ProfilePage() {
       nextErrors.name = 'Full name must be at least 2 characters.'
     }
     if (!personalForm.phone.trim() || personalForm.phone.trim().length < 8) {
-      nextErrors.phone = 'Please enter a valid phone number.'
+      nextErrors.phone = 'Please enter a valid phone number (at least 8 digits).'
     }
     if (Object.keys(nextErrors).length > 0) {
       setPersonalErrors(nextErrors)
@@ -206,8 +220,9 @@ export default function ProfilePage() {
       setProfileSuccess('Profile details saved successfully.')
       toast.success('Profile details saved successfully.')
     } catch (err) {
-      setPersonalErrors({ general: err.message || 'Failed to update profile.' })
-      toast.error(err.message || 'Failed to update profile.')
+      const msg = err.response?.data?.message || err.message || 'Failed to update profile.'
+      setPersonalErrors({ general: msg })
+      toast.error(msg)
     } finally {
       setIsSavingProfile(false)
     }
@@ -254,8 +269,9 @@ export default function ProfilePage() {
       setPasswordForm({ currentPassword: '', newPassword: '', confirmPassword: '' })
       setPasswordErrors({})
     } catch (err) {
-      setPasswordMessage({ type: 'error', text: err.message || 'Failed to change password.' })
-      toast.error(err.message || 'Failed to change password.')
+      const msg = err.response?.data?.message || err.message || 'Failed to change password.'
+      setPasswordMessage({ type: 'error', text: msg })
+      toast.error(msg)
     } finally {
       setIsSavingPassword(false)
     }

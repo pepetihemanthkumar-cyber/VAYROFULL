@@ -58,9 +58,28 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
+    @Value("${jwt.issuer:vayro-auth}")
+    private String jwtIssuer = "vayro-auth";
+
+    @Value("${jwt.audience:vayro-platform}")
+    private String jwtAudience = "vayro-platform";
+
     public boolean isTokenValid(String token) {
         try {
-            return !isTokenExpired(token);
+            if (isTokenExpired(token)) {
+                return false;
+            }
+            // Compatible Issuer & Audience Verification (allows legacy tokens during migration)
+            Claims claims = extractAllClaims(token);
+            String tokenIssuer = claims.getIssuer();
+            if (tokenIssuer != null && !tokenIssuer.isBlank() && !jwtIssuer.equals(tokenIssuer) && !"https://vayro.com".equals(tokenIssuer) && !tokenIssuer.startsWith("vayro-")) {
+                return false;
+            }
+            java.util.Set<String> tokenAudience = claims.getAudience();
+            if (tokenAudience != null && !tokenAudience.isEmpty() && !tokenAudience.contains(jwtAudience) && !tokenAudience.contains("vayro-web") && !tokenAudience.contains("vayro-booking-service")) {
+                return false;
+            }
+            return true;
         } catch (Exception e) {
             return false;
         }
@@ -90,5 +109,35 @@ public class JwtService {
             keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
         }
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    public String generateInternalServiceToken() {
+        return Jwts.builder()
+                .issuer("vayro-booking-service")
+                .audience().add("vayro-vehicle-service").and()
+                .subject("booking-service@internal.vayro.com")
+                .claim("role", "INTERNAL_SERVICE")
+                .claim("serviceId", "booking-service")
+                .claim("userId", "system")
+                .claim("name", "Internal Booking Service")
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 300000))
+                .signWith(getSigningKey())
+                .compact();
+    }
+
+    public String generateNotificationServiceToken() {
+        return Jwts.builder()
+                .issuer("vayro-booking-service")
+                .audience().add("vayro-notification-service").and()
+                .subject("booking-service@internal.vayro.com")
+                .claim("role", "INTERNAL_SERVICE")
+                .claim("serviceId", "booking-service")
+                .claim("userId", "system")
+                .claim("name", "Internal Booking Service")
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 60000))
+                .signWith(getSigningKey())
+                .compact();
     }
 }

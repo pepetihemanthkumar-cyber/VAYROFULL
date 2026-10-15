@@ -21,15 +21,22 @@ public class VehicleServiceClientImpl implements VehicleServiceClient {
     private static final String VEHICLE_SERVICE_BASE = "http://VEHICLE-SERVICE";
 
     private final RestClient restClient;
+    private final com.vayro.booking.security.JwtService jwtService;
 
     @Autowired
     public VehicleServiceClientImpl(RestClient.Builder restClientBuilder,
-                                   @Value("${app.services.vehicle-service-url:http://VEHICLE-SERVICE}") String baseUrl) {
+                                   @Value("${app.services.vehicle-service-url:http://VEHICLE-SERVICE}") String baseUrl,
+                                   com.vayro.booking.security.JwtService jwtService) {
         this.restClient = restClientBuilder.baseUrl(baseUrl).build();
+        this.jwtService = jwtService;
+    }
+
+    public VehicleServiceClientImpl(RestClient.Builder restClientBuilder, com.vayro.booking.security.JwtService jwtService) {
+        this(restClientBuilder, VEHICLE_SERVICE_BASE, jwtService);
     }
 
     public VehicleServiceClientImpl(RestClient.Builder restClientBuilder) {
-        this(restClientBuilder, VEHICLE_SERVICE_BASE);
+        this(restClientBuilder, VEHICLE_SERVICE_BASE, null);
     }
 
     @Override
@@ -73,8 +80,15 @@ public class VehicleServiceClientImpl implements VehicleServiceClient {
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(Map.of("status", status));
 
-            if (token != null && !token.isBlank()) {
-                requestSpec.header(HttpHeaders.AUTHORIZATION, token.startsWith("Bearer ") ? token : "Bearer " + token);
+            String authHeader = null;
+            if (jwtService != null) {
+                authHeader = "Bearer " + jwtService.generateInternalServiceToken();
+            } else if (token != null && !token.isBlank()) {
+                authHeader = token.startsWith("Bearer ") ? token : "Bearer " + token;
+            }
+
+            if (authHeader != null) {
+                requestSpec.header(HttpHeaders.AUTHORIZATION, authHeader);
             }
 
             requestSpec.retrieve()

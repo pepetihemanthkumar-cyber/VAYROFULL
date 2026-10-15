@@ -33,6 +33,9 @@ class BookingConcurrencyTest {
     @MockitoBean
     private VehicleServiceClient vehicleServiceClient;
 
+    @MockitoBean
+    private com.vayro.booking.client.UserServiceClient userServiceClient;
+
     @Test
     @DisplayName("Concurrency: 10 simultaneous booking requests for the same vehicle and period result in exactly ONE success and 9 conflict rejections")
     void testSimultaneous10BookingsPreventDoubleBooking() throws InterruptedException {
@@ -45,6 +48,8 @@ class BookingConcurrencyTest {
         vehicle.setStatus("AVAILABLE");
 
         when(vehicleServiceClient.getVehicleById("aprilia-rs-457")).thenReturn(Optional.of(vehicle));
+        when(userServiceClient.isUserActive(org.mockito.ArgumentMatchers.anyString(), org.mockito.ArgumentMatchers.any()))
+                .thenReturn(true);
 
         int numThreads = 10;
         ExecutorService executor = Executors.newFixedThreadPool(numThreads);

@@ -1,59 +1,39 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  CreditCard,
-  QrCode,
-  Building2,
   Banknote,
-  ShieldCheck,
-  Lock,
   Sparkles,
+  ShieldCheck,
   CheckCircle2,
   LoaderCircle,
   ArrowLeft,
-  ChevronRight,
   Info,
   AlertTriangle,
+  Building2,
+  Clock3,
 } from 'lucide-react'
 import { GlassCard } from '../ui/GlassCard'
 import { GlassButton } from '../ui/GlassButton'
-import { GlassInput } from '../ui/GlassInput'
 import { VehicleImage } from '../vehicles/VehicleImage'
 import { formatCurrency, formatDate } from '../../utils/formatters'
 import { fadeUp } from '../../animations/variants'
 
-const PAYMENT_METHODS = [
-  {
-    id: 'upi',
-    label: 'Instant UPI',
-    icon: QrCode,
-    badge: 'Popular',
-    description: 'Google Pay, PhonePe, Paytm, BHIM UPI',
-  },
-  {
-    id: 'card',
-    label: 'Credit / Debit Card',
-    icon: CreditCard,
-    badge: 'Secure',
-    description: 'Visa, Mastercard, RuPay, Amex',
-  },
-  {
-    id: 'netbanking',
-    label: 'Net Banking',
-    icon: Building2,
-    badge: null,
-    description: 'All major Indian retail banks',
-  },
+const PAYMENT_OPTIONS = [
   {
     id: 'pay_at_pickup',
     label: 'Pay at Pickup',
     icon: Banknote,
-    badge: 'Flexible',
-    description: 'Pay by cash or card upon collecting the vehicle',
+    badge: 'Recommended',
+    description: 'Settle by card, UPI, or cash at the VAYRO hub upon vehicle inspection and handover',
+  },
+  {
+    id: 'simulated_checkout',
+    label: 'Simulated Demo Confirmation',
+    icon: Sparkles,
+    badge: 'Instant Sandbox',
+    description: 'Immediate confirmation for demonstration and evaluation. No real payment gateway or funds transferred',
   },
 ]
-
-const POPULAR_BANKS = ['HDFC Bank', 'ICICI Bank', 'State Bank of India', 'Axis Bank', 'Kotak Mahindra']
 
 export function PaymentStep({
   vehicle,
@@ -65,18 +45,9 @@ export function PaymentStep({
   onCompletePayment,
   onBack,
 }) {
-  const [selectedMethod, setSelectedMethod] = useState('upi')
-  const [upiId, setUpiId] = useState('driver@okhdfcbank')
-  const [cardForm, setCardForm] = useState({
-    number: '4532 •••• •••• 8842',
-    name: driverDetails?.fullName || 'Aarav Mehta',
-    expiry: '09/29',
-    cvv: '•••',
-  })
-  const [selectedBank, setSelectedBank] = useState('HDFC Bank')
+  const [selectedMethod, setSelectedMethod] = useState('pay_at_pickup')
   const [isProcessing, setIsProcessing] = useState(false)
-  const [processingState, setProcessingState] = useState('') // 'verifying' | 'charging' | 'complete'
-  const [paymentError, setPaymentError] = useState(null) // null | { type: 'FAILED' | 'CANCELLED', message: string }
+  const [paymentError, setPaymentError] = useState(null)
 
   const durationLabel = pricing?.duration?.label || 'Trip duration'
   const couponDiscountAmount = appliedCoupon?.discount ?? appliedCoupon?.discountAmount ?? 0
@@ -84,84 +55,78 @@ export function PaymentStep({
 
   async function handleExecutePayment(e) {
     if (e) e.preventDefault()
+    if (isProcessing) return
     setIsProcessing(true)
     setPaymentError(null)
-    setProcessingState('Verifying payment details with payment gateway...')
 
     try {
-      await new Promise((r) => setTimeout(r, 600))
-      setProcessingState(selectedMethod === 'pay_at_pickup' ? 'Securing reservation...' : 'Authorizing payment transaction...')
-
-      await new Promise((r) => setTimeout(r, 650))
       const uniqueSuffix = `${Date.now()}-${Math.floor(100000 + Math.random() * 900000)}`
-      const paymentOrderId = `ORD-SIM-${uniqueSuffix}`
-      const paymentReference = `PAY-SIM-${uniqueSuffix}`
+      const paymentOrderId = `ORD-${uniqueSuffix}`
+      const paymentReference = `PAY-${uniqueSuffix}`
 
       await onCompletePayment({
-        paymentMethod: selectedMethod === 'pay_at_pickup' ? 'PAY_AT_PICKUP' : selectedMethod.toUpperCase(),
-        paymentStatus: selectedMethod === 'pay_at_pickup' ? 'PENDING_AT_PICKUP' : 'PAID',
+        paymentMethod: selectedMethod === 'pay_at_pickup' ? 'PAY_AT_PICKUP' : 'SIMULATED',
+        paymentStatus: 'PENDING',
         paymentOrderId,
         paymentReference,
         paymentTimestamp: new Date().toISOString(),
         paidAmount: finalPayable,
       })
-      setIsProcessing(false)
     } catch (err) {
       setIsProcessing(false)
       const field = err.field || err.response?.data?.field
-      let title = 'PAYMENT FAILED'
-      if (err.status === 400 || (field && !['paymentMethod', 'paymentStatus'].includes(field))) {
-        title = 'BOOKING DETAILS NEED ATTENTION'
+      const isAuthError = err.status === 401 || err.isAuthError || (err.message && err.message.toLowerCase().includes('authentication'))
+      let title = 'BOOKING COULD NOT BE COMPLETED'
+      if (isAuthError) {
+        title = 'AUTHENTICATION REQUIRED'
+      } else if (err.status === 409 || err.message?.toLowerCase().includes('already booked')) {
+        title = 'VEHICLE UNAVAILABLE FOR SELECTED DATES'
+      } else if (err.status === 400) {
+        title = 'INVALID RESERVATION PARAMETERS'
       }
       setPaymentError({
         type: 'FAILED',
         title,
         field,
-        message: err.message || 'Your payment could not be completed.',
+        isAuthError,
+        message: isAuthError
+          ? 'Your login session is missing or expired. Please sign in to finalize your booking.'
+          : (err.message || 'We could not complete your booking reservation. Please try again.'),
       })
     }
   }
 
-  function handleCancelPayment() {
-    setIsProcessing(false)
-    setPaymentError({
-      type: 'CANCELLED',
-      title: 'PAYMENT CANCELLED',
-      message: 'Your payment was not completed. No booking has been confirmed.',
-    })
-  }
-
   return (
     <div className="payment-step-layout">
-      {/* Left Column: Payment Method Selection */}
+      {/* Left Column: Settlement Mode Selection */}
       <div className="payment-main-column">
         <GlassCard className="payment-methods-card">
           <div className="payment-section-header">
             <div>
-              <p className="eyebrow">Simulated Checkout</p>
-              <h3>Select payment method</h3>
+              <p className="eyebrow">Settlement & Confirmation</p>
+              <h3>Choose confirmation mode</h3>
             </div>
             <span className="payment-demo-badge">
-              <Lock size={12} aria-hidden="true" /> Demo Sandbox
+              <ShieldCheck size={13} aria-hidden="true" /> No Payment Gateway Required
             </span>
           </div>
 
-          <div className="payment-methods-list" role="radiogroup" aria-label="Select payment method">
-            {PAYMENT_METHODS.map((method) => {
-              const Icon = method.icon
-              const isSelected = selectedMethod === method.id
+          <div className="payment-methods-list" role="radiogroup" aria-label="Select settlement option">
+            {PAYMENT_OPTIONS.map((option) => {
+              const Icon = option.icon
+              const isSelected = selectedMethod === option.id
               return (
                 <div
-                  key={method.id}
+                  key={option.id}
                   role="radio"
                   aria-checked={isSelected}
                   tabIndex={0}
                   className={`payment-method-item ${isSelected ? 'is-selected' : ''}`}
-                  onClick={() => setSelectedMethod(method.id)}
+                  onClick={() => setSelectedMethod(option.id)}
                   onKeyDown={(e) => {
                     if (e.key === ' ' || e.key === 'Enter') {
                       e.preventDefault()
-                      setSelectedMethod(method.id)
+                      setSelectedMethod(option.id)
                     }
                   }}
                 >
@@ -173,91 +138,41 @@ export function PaymentStep({
                   </div>
                   <div className="payment-method-copy">
                     <div className="method-title-row">
-                      <strong>{method.label}</strong>
-                      {method.badge && <span className="method-badge">{method.badge}</span>}
+                      <strong>{option.label}</strong>
+                      {option.badge && <span className="method-badge">{option.badge}</span>}
                     </div>
-                    <small>{method.description}</small>
+                    <small>{option.description}</small>
                   </div>
                 </div>
               )
             })}
           </div>
 
-          {/* Method-Specific Inputs */}
+          {/* Mode-Specific Explanations — Zero Card/UPI Credential Inputs */}
           <div className="payment-method-details-pane">
-            {selectedMethod === 'upi' && (
-              <motion.div initial="hidden" animate="visible" variants={fadeUp} className="payment-pane-form">
-                <GlassInput
-                  label="Virtual Payment Address (VPA / UPI ID)"
-                  value={upiId}
-                  onChange={(e) => setUpiId(e.target.value)}
-                  placeholder="username@bank"
-                  hint="Demo UPI: enter any mock VPA or keep default"
-                />
-                <div className="upi-fast-tags">
-                  <span>Popular apps:</span>
-                  <button type="button" className="upi-app-pill" onClick={() => setUpiId('aarav@okhdfcbank')}>GPay</button>
-                  <button type="button" className="upi-app-pill" onClick={() => setUpiId('aarav@ybl')}>PhonePe</button>
-                  <button type="button" className="upi-app-pill" onClick={() => setUpiId('aarav@paytm')}>Paytm</button>
-                </div>
-              </motion.div>
-            )}
-
-            {selectedMethod === 'card' && (
-              <motion.div initial="hidden" animate="visible" variants={fadeUp} className="payment-pane-form">
-                <GlassInput
-                  label="Card Number"
-                  value={cardForm.number}
-                  onChange={(e) => setCardForm({ ...cardForm, number: e.target.value })}
-                  placeholder="4532 0000 0000 8842"
-                />
-                <div className="card-two-col">
-                  <GlassInput
-                    label="Expiry Date"
-                    value={cardForm.expiry}
-                    onChange={(e) => setCardForm({ ...cardForm, expiry: e.target.value })}
-                    placeholder="MM/YY"
-                  />
-                  <GlassInput
-                    label="CVV / Security Code"
-                    value={cardForm.cvv}
-                    onChange={(e) => setCardForm({ ...cardForm, cvv: e.target.value })}
-                    placeholder="123"
-                  />
-                </div>
-                <GlassInput
-                  label="Cardholder Name"
-                  value={cardForm.name}
-                  onChange={(e) => setCardForm({ ...cardForm, name: e.target.value })}
-                  placeholder="Full Name"
-                />
-              </motion.div>
-            )}
-
-            {selectedMethod === 'netbanking' && (
-              <motion.div initial="hidden" animate="visible" variants={fadeUp} className="payment-pane-form">
-                <label className="glass-select-group">
-                  <span>Select Retail Bank</span>
-                  <select
-                    value={selectedBank}
-                    onChange={(e) => setSelectedBank(e.target.value)}
-                    className="glass-select"
-                  >
-                    {POPULAR_BANKS.map((b) => (
-                      <option key={b} value={b}>{b}</option>
-                    ))}
-                  </select>
-                </label>
-              </motion.div>
-            )}
-
             {selectedMethod === 'pay_at_pickup' && (
               <motion.div initial="hidden" animate="visible" variants={fadeUp} className="payment-pane-form">
                 <div className="pay-at-pickup-callout">
-                  <Banknote size={24} className="pickup-cash-icon" aria-hidden="true" />
+                  <Banknote size={26} className="pickup-cash-icon" aria-hidden="true" />
                   <div>
-                    <strong>No immediate charge today</strong>
-                    <p>Pay <strong>{formatCurrency(finalPayable)}</strong> at the VAYRO counter when inspecting and picking up your vehicle.</p>
+                    <strong>No upfront online payment required</strong>
+                    <p>
+                      Your vehicle will be reserved immediately. Pay <strong>{formatCurrency(finalPayable)}</strong> in person via card, UPI, or cash when you arrive at <strong>{locations?.pickupLocation || 'VAYRO Hub'}</strong> for vehicle inspection.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {selectedMethod === 'simulated_checkout' && (
+              <motion.div initial="hidden" animate="visible" variants={fadeUp} className="payment-pane-form">
+                <div className="pay-at-pickup-callout">
+                  <Sparkles size={26} className="pickup-cash-icon text-accent" aria-hidden="true" />
+                  <div>
+                    <strong>Demonstration & Sandbox Confirmation</strong>
+                    <p>
+                      Instantly registers your reservation for <strong>{formatCurrency(finalPayable)}</strong> directly in the VAYRO database. Generates an authentic tax invoice and email notification without connecting to an external payment processor.
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -265,11 +180,12 @@ export function PaymentStep({
           </div>
 
           <div className="payment-security-footer">
-            <ShieldCheck size={16} className="security-icon" aria-hidden="true" />
-            <span>256-bit encrypted simulated environment. No actual payment card will be charged.</span>
+            <Info size={15} className="security-icon text-muted" aria-hidden="true" />
+            <span>VAYRO operates in demonstration mode. No real credit cards, bank accounts, or digital wallets are charged.</span>
           </div>
         </GlassCard>
 
+        {/* Action Buttons */}
         <div className="step-actions step-actions--between">
           <GlassButton variant="secondary" onClick={onBack} disabled={isProcessing}>
             <ArrowLeft size={16} aria-hidden="true" /> Back to review
@@ -277,39 +193,21 @@ export function PaymentStep({
           <GlassButton
             onClick={handleExecutePayment}
             loading={isProcessing}
+            disabled={isProcessing}
             className="confirm-booking-btn"
           >
-            {selectedMethod === 'pay_at_pickup'
-              ? `Confirm reservation · Pay at pickup`
-              : `Pay ${formatCurrency(finalPayable)} · Complete`}
+            {isProcessing ? (
+              'Securing reservation...'
+            ) : selectedMethod === 'pay_at_pickup' ? (
+              `Confirm Booking — Pay at Pickup`
+            ) : (
+              `Confirm Booking — ${formatCurrency(finalPayable)}`
+            )}
           </GlassButton>
         </div>
 
-        {/* Processing Modal Overlay */}
+        {/* Payment / Booking Error Overlay */}
         <AnimatePresence>
-          {isProcessing && (
-            <motion.div
-              className="payment-processing-overlay"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <GlassCard className="payment-processing-modal">
-                <LoaderCircle size={44} className="animate-spin text-accent" aria-hidden="true" />
-                <h4>Processing transaction</h4>
-                <p>{processingState}</p>
-                <span className="processing-note">Do not refresh or close this browser tab</span>
-                <button
-                  type="button"
-                  className="cancel-payment-link"
-                  onClick={handleCancelPayment}
-                >
-                  Cancel Transaction
-                </button>
-              </GlassCard>
-            </motion.div>
-          )}
-
           {paymentError && (
             <motion.div
               className="payment-processing-overlay"
@@ -319,16 +217,21 @@ export function PaymentStep({
             >
               <GlassCard className="payment-processing-modal payment-error-modal">
                 <AlertTriangle size={44} className="text-warning mb-2" aria-hidden="true" />
-                <h4>{paymentError.title || 'PAYMENT FAILED'}</h4>
+                <h4>{paymentError.title || 'BOOKING FAILED'}</h4>
                 <p>{paymentError.message}</p>
                 <div className="step-actions mt-4">
-                  {paymentError.type === 'CANCELLED' ? (
+                  {paymentError.isAuthError ? (
                     <>
-                      <GlassButton variant="primary" onClick={() => setPaymentError(null)}>
-                        Return to Payment
+                      <GlassButton
+                        variant="primary"
+                        onClick={() => {
+                          window.location.href = `/login?from=${encodeURIComponent(window.location.pathname + window.location.search)}`
+                        }}
+                      >
+                        Sign In to Complete Booking
                       </GlassButton>
-                      <GlassButton variant="secondary" onClick={onBack}>
-                        Back to Vehicle
+                      <GlassButton variant="secondary" onClick={() => setPaymentError(null)}>
+                        Dismiss
                       </GlassButton>
                     </>
                   ) : (
@@ -351,8 +254,8 @@ export function PaymentStep({
       {/* Right Column: Reservation & Cost Breakdown */}
       <div className="payment-sidebar-column">
         <GlassCard className="payment-summary-card">
-          <p className="eyebrow">Order Summary</p>
-          <h3>Reservation details</h3>
+          <p className="eyebrow">Reservation Summary</p>
+          <h3>Order details</h3>
 
           <div className="payment-vehicle-row">
             <VehicleImage vehicle={vehicle} className="payment-vehicle-thumb" />
@@ -375,7 +278,7 @@ export function PaymentStep({
               <span className="itinerary-label">Return:</span>
               <div>
                 <strong>{formatDate(dates.returnDate)} · {dates.returnTime}</strong>
-                <small>{locations?.returnLocation || 'VAYRO Depot'}</small>
+                <small>{locations?.returnLocation || locations?.pickupLocation || 'VAYRO Depot'}</small>
               </div>
             </div>
             <div className="itinerary-row">
@@ -414,7 +317,7 @@ export function PaymentStep({
             <div className="payment-total-row">
               <div>
                 <span>Final amount to pay</span>
-                <small>{selectedMethod === 'pay_at_pickup' ? 'Payable at depot' : 'Simulated immediate checkout'}</small>
+                <small>{selectedMethod === 'pay_at_pickup' ? 'Settled at vehicle pickup' : 'Simulated demonstration'}</small>
               </div>
               <strong className="payment-final-amount">{formatCurrency(finalPayable)}</strong>
             </div>

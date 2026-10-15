@@ -13397,3 +13397,185 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+/* Legal Pages Styling */
+.legal-page {
+  padding: 40px 24px 80px;
+  max-width: 1040px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.legal-hero-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.legal-hero-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.legal-hero-header h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.legal-effective-date {
+  color: #71717a;
+  font-size: 14px;
+  margin: 0;
+}
+
+.legal-review-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  background: rgba(234, 179, 8, 0.08);
+  border: 1px solid rgba(234, 179, 8, 0.25);
+  border-radius: 14px;
+  color: #fef08a;
+}
+
+.review-banner-icon {
+  flex-shrink: 0;
+  color: #eab308;
+  margin-top: 2px;
+}
+
+.review-banner-content strong {
+  display: block;
+  font-size: 15px;
+  color: #fef08a;
+  margin-bottom: 4px;
+}
+
+.review-banner-content p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #fef9c3;
+  opacity: 0.9;
+}
+
+.legal-content-card {
+  padding: 36px 40px;
+  background: rgba(18, 18, 20, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+}
+
+.legal-article {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.legal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-icon {
+  color: #a1a1aa;
+}
+
+.legal-section h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #f4f4f5;
+  margin: 0;
+}
+
+.legal-section p {
+  color: #a1a1aa;
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.legal-section ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #a1a1aa;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.legal-section ul strong {
+  color: #e4e4e7;
+}
+
+.legal-note-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid #eab308;
+  border-radius: 0 10px 10px 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #d4d4d8;
+}
+
+.legal-note-box strong {
+  color: #fef08a;
+}
+
+.legal-note-box svg {
+  flex-shrink: 0;
+  color: #eab308;
+  margin-top: 2px;
+}
+
+.legal-link {
+  color: #60a5fa;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-footer-nav {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* App Layout Footer integration */
+.application-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.application-main {
+  flex: 1 0 auto;
+}
+
+.application-content .home-footer {
+  margin-top: 48px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(12, 12, 14, 0.85);
+  backdrop-filter: blur(20px);
+  padding: 48px 32px 24px;
+}

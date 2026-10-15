@@ -1,5 +1,6 @@
 package com.vayro.notification.service;
 
+import com.vayro.notification.client.UserServiceClient;
 import com.vayro.notification.dto.BookingConfirmedNotificationRequest;
 import com.vayro.notification.dto.EmailSendResult;
 import com.vayro.notification.dto.NotificationResponse;
@@ -7,10 +8,14 @@ import com.vayro.notification.dto.VehicleReturnedNotificationRequest;
 import com.vayro.notification.entity.Notification;
 import com.vayro.notification.entity.NotificationStatus;
 import com.vayro.notification.entity.NotificationType;
+import com.vayro.notification.exception.AccountDisabledException;
+import com.vayro.notification.exception.InvoiceNotFoundException;
 import com.vayro.notification.provider.GmailEmailProvider;
 import com.vayro.notification.repository.NotificationRepository;
+import com.vayro.notification.security.AuthenticatedUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +33,7 @@ public class NotificationServiceImpl implements NotificationService {
     private final GmailEmailProvider gmailEmailProvider;
     private final EmailTemplateService emailTemplateService;
     private final PdfInvoiceGenerator pdfInvoiceGenerator;
+    private final UserServiceClient userServiceClient;
 
     @Value("${app.notification.admin-email:admin@vayro.com}")
     private String adminNotificationEmail;
@@ -41,16 +47,28 @@ public class NotificationServiceImpl implements NotificationService {
     @Value("${app.notification.email.retry-delay-ms:1000}")
     private long retryDelayMs;
 
+    @Autowired
+    public NotificationServiceImpl(
+            NotificationRepository notificationRepository,
+            GmailEmailProvider gmailEmailProvider,
+            EmailTemplateService emailTemplateService,
+            PdfInvoiceGenerator pdfInvoiceGenerator,
+            UserServiceClient userServiceClient
+    ) {
+        this.notificationRepository = notificationRepository;
+        this.gmailEmailProvider = gmailEmailProvider;
+        this.emailTemplateService = emailTemplateService;
+        this.pdfInvoiceGenerator = pdfInvoiceGenerator;
+        this.userServiceClient = userServiceClient;
+    }
+
     public NotificationServiceImpl(
             NotificationRepository notificationRepository,
             GmailEmailProvider gmailEmailProvider,
             EmailTemplateService emailTemplateService,
             PdfInvoiceGenerator pdfInvoiceGenerator
     ) {
-        this.notificationRepository = notificationRepository;
-        this.gmailEmailProvider = gmailEmailProvider;
-        this.emailTemplateService = emailTemplateService;
-        this.pdfInvoiceGenerator = pdfInvoiceGenerator;
+        this(notificationRepository, gmailEmailProvider, emailTemplateService, pdfInvoiceGenerator, (email, token) -> true);
     }
 
     @Override
@@ -171,6 +189,35 @@ public class NotificationServiceImpl implements NotificationService {
         return NotificationResponse.fromEntity(notificationRepository.save(notification));
     }
 
+    private void validateCustomerAccess(Notification notification, AuthenticatedUser currentUser, String actionDescription) {
+        if (currentUser == null) {
+            throw new org.springframework.security.access.AccessDeniedException(
+                    "Authentication is required to access notification records."
+            );
+        }
+
+        if (currentUser.isAdmin() || currentUser.isInternalService()) {
+            return;
+        }
+
+        // Active account check for customers
+        boolean active = userServiceClient.isUserActive(currentUser.getEmail(), currentUser.getToken());
+        if (!active) {
+            log.warn("[SECURITY] Access denied for disabled customer on {}", actionDescription);
+            throw new AccountDisabledException("Account is disabled. Please contact support.");
+        }
+
+        // Customer ownership check
+        String recipient = notification.getRecipientEmail();
+        if (recipient == null || !recipient.equalsIgnoreCase(currentUser.getEmail())) {
+            log.warn("[SECURITY] Customer {} attempted unauthorized access to notification belonging to {}",
+                    currentUser.getEmail(), recipient);
+            throw new org.springframework.security.access.AccessDeniedException(
+                    "Access denied: You do not have permission to view this notification."
+            );
+        }
+    }
+
     @Override
     @Transactional(readOnly = true)
     public NotificationResponse getNotificationByIdempotencyKey(String idempotencyKey) {
@@ -178,6 +225,18 @@ public class NotificationServiceImpl implements NotificationService {
         return notificationRepository.findByIdempotencyKey(idempotencyKey)
                 .map(NotificationResponse::fromEntity)
                 .orElse(null);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public NotificationResponse getNotificationByIdempotencyKey(String idempotencyKey, AuthenticatedUser currentUser) {
+        if (idempotencyKey == null || idempotencyKey.isBlank()) return null;
+        Notification notification = notificationRepository.findByIdempotencyKey(idempotencyKey).orElse(null);
+        if (notification == null) {
+            return null;
+        }
+        validateCustomerAccess(notification, currentUser, "idempotency key status check");
+        return NotificationResponse.fromEntity(notification);
     }
 
     @Override
@@ -191,6 +250,20 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<NotificationResponse> getNotificationsByBookingReference(String bookingReference, AuthenticatedUser currentUser) {
+        if (bookingReference == null || bookingReference.isBlank()) return List.of();
+        List<Notification> list = notificationRepository.findByBookingReference(bookingReference.trim());
+        if (list.isEmpty()) {
+            return List.of();
+        }
+        for (Notification notification : list) {
+            validateCustomerAccess(notification, currentUser, "booking notification history");
+        }
+        return list.stream().map(NotificationResponse::fromEntity).toList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public NotificationResponse getLatestNotificationForBooking(String bookingReference) {
         if (bookingReference == null) return null;
         return notificationRepository.findFirstByBookingReferenceOrderByCreatedAtDesc(bookingReference)
@@ -200,15 +273,43 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     @Transactional(readOnly = true)
-    public byte[] getPdfInvoiceByBookingReference(String bookingReference) {
-        if (bookingReference == null || bookingReference.isBlank()) {
+    public NotificationResponse getLatestNotificationForBooking(String bookingReference, AuthenticatedUser currentUser) {
+        if (bookingReference == null || bookingReference.isBlank()) return null;
+        Notification notification = notificationRepository.findFirstByBookingReferenceOrderByCreatedAtDesc(bookingReference.trim())
+                .orElse(null);
+        if (notification == null) {
             return null;
         }
+        validateCustomerAccess(notification, currentUser, "latest booking notification check");
+        return NotificationResponse.fromEntity(notification);
+    }
 
-        return notificationRepository.findFirstByBookingReferenceOrderByCreatedAtDesc(bookingReference.trim())
-                .map(Notification::getPdfInvoiceData)
-                .filter(bytes -> bytes != null && bytes.length > 0)
-                .orElse(null);
+    @Override
+    @Transactional(readOnly = true)
+    public byte[] getPdfInvoiceByBookingReference(String bookingReference) {
+        return getPdfInvoiceByBookingReference(bookingReference, null);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public byte[] getPdfInvoiceByBookingReference(String bookingReference, AuthenticatedUser currentUser) {
+        if (bookingReference == null || bookingReference.isBlank()) {
+            throw new InvoiceNotFoundException("Booking reference cannot be empty.");
+        }
+
+        String ref = bookingReference.trim();
+        Notification notification = notificationRepository.findFirstByBookingReferenceAndTypeOrderByCreatedAtDesc(ref, NotificationType.BOOKING_CONFIRMED)
+                .orElseGet(() -> notificationRepository.findFirstByBookingReferenceOrderByCreatedAtDesc(ref).orElse(null));
+
+        if (notification == null || notification.getPdfInvoiceData() == null || notification.getPdfInvoiceData().length == 0) {
+            throw new InvoiceNotFoundException("Invoice not found for booking reference: " + ref);
+        }
+
+        if (currentUser != null) {
+            validateCustomerAccess(notification, currentUser, "invoice download");
+        }
+
+        return notification.getPdfInvoiceData();
     }
 
     @Override

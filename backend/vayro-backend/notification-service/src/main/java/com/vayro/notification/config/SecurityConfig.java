@@ -65,13 +65,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/actuator/health", "/actuator/info").permitAll()
-                        // Inter-service notification endpoints & public client queries
-                        .requestMatchers(HttpMethod.POST, "/api/notifications/booking-confirmed").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/notifications/vehicle-returned").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/notifications/status/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/notifications/latest/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/notifications/invoice/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/notifications/test").permitAll()
+                        // Inter-service notification endpoints strictly require internal service or admin credentials
+                        .requestMatchers(HttpMethod.POST, "/api/notifications/booking-confirmed").hasAnyRole("INTERNAL_SERVICE", "SERVICE", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/notifications/vehicle-returned").hasAnyRole("INTERNAL_SERVICE", "SERVICE", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/notifications/test").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/notifications/status/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/notifications/latest/**").authenticated()
+                        // Invoice downloads and history strictly require authentication and ownership verification
+                        .requestMatchers(HttpMethod.GET, "/api/notifications/invoice/**").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/notifications/booking/**").authenticated()
                         .anyRequest().authenticated()
                 )
@@ -85,10 +86,11 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         List<String> origins = Arrays.stream(allowedOrigins.split(","))
                 .map(String::trim)
+                .filter(s -> !s.isEmpty())
                 .toList();
         configuration.setAllowedOrigins(origins);
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept", "X-Requested-With", "Origin"));
+        configuration.setAllowedHeaders(List.of("*"));
         configuration.setExposedHeaders(List.of("Authorization"));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);

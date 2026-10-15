@@ -13,6 +13,10 @@ import {
   saveProfilePhoto,
   PROFILE_PHOTO_EVENT,
 } from '../services/profilePhotoStorage'
+import {
+  updateCurrentUserProfile,
+  changePassword as apiChangePassword,
+} from '../services/userService'
 const AuthContext = createContext(null)
 
 function readSession() {
@@ -142,15 +146,36 @@ export function AuthProvider({ children }) {
   }, [persistSession])
 
   const updateProfile = useCallback(async (updates) => {
-    if (!session?.user?.id) throw new Error('Not logged in')
-    const updatedUser = { ...session.user, ...updates }
-    const nextSession = { ...session, user: updatedUser }
+    if (!session?.token) throw new Error('Not logged in')
+    let firstName = updates.firstName
+    let lastName = updates.lastName
+    if (!firstName && updates.name) {
+      const parts = updates.name.trim().split(/\s+/)
+      firstName = parts[0] || 'User'
+      lastName = parts.slice(1).join(' ') || ''
+    }
+
+    const updatedUser = await updateCurrentUserProfile({
+      firstName,
+      lastName,
+      phone: updates.phone,
+    })
+
+    const nextSession = {
+      ...session,
+      user: {
+        ...session.user,
+        ...updatedUser,
+        address: updates.address || session.user?.address,
+        licenseNumber: updates.licenseNumber || session.user?.licenseNumber,
+      },
+    }
     return persistSession(nextSession)
   }, [persistSession, session])
 
-  const changePassword = useCallback(async () => {
-    if (!session?.user?.id) throw new Error('Not logged in')
-    return { success: true }
+  const changePassword = useCallback(async ({ currentPassword, newPassword }) => {
+    if (!session?.token) throw new Error('Not logged in')
+    return await apiChangePassword({ currentPassword, newPassword })
   }, [session])
 
   const uploadProfilePhoto = useCallback(async (file) => {

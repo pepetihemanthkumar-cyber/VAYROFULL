@@ -20,15 +20,22 @@ public class NotificationServiceClientImpl implements NotificationServiceClient 
     private static final String NOTIFICATION_SERVICE_BASE = "http://NOTIFICATION-SERVICE";
 
     private final RestClient restClient;
+    private final com.vayro.booking.security.JwtService jwtService;
 
     @Autowired
     public NotificationServiceClientImpl(RestClient.Builder restClientBuilder,
-                                        @Value("${app.services.notification-service-url:http://NOTIFICATION-SERVICE}") String baseUrl) {
+                                        @Value("${app.services.notification-service-url:http://NOTIFICATION-SERVICE}") String baseUrl,
+                                        com.vayro.booking.security.JwtService jwtService) {
         this.restClient = restClientBuilder.baseUrl(baseUrl).build();
+        this.jwtService = jwtService;
+    }
+
+    public NotificationServiceClientImpl(RestClient.Builder restClientBuilder, com.vayro.booking.security.JwtService jwtService) {
+        this(restClientBuilder, NOTIFICATION_SERVICE_BASE, jwtService);
     }
 
     public NotificationServiceClientImpl(RestClient.Builder restClientBuilder) {
-        this(restClientBuilder, NOTIFICATION_SERVICE_BASE);
+        this(restClientBuilder, NOTIFICATION_SERVICE_BASE, null);
     }
 
     @Override
@@ -60,10 +67,17 @@ public class NotificationServiceClientImpl implements NotificationServiceClient 
             payload.put("paymentReference", booking.getPaymentReference() != null ? booking.getPaymentReference() : ("PAY-SIM-" + booking.getBookingReference()));
             payload.put("idempotencyKey", "BOOKING_CONFIRMED:" + booking.getBookingReference());
 
-            restClient.post()
+            String serviceToken = (jwtService != null) ? jwtService.generateNotificationServiceToken() : null;
+
+            var reqSpec = restClient.post()
                     .uri("/api/notifications/booking-confirmed")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(payload)
+                    .contentType(MediaType.APPLICATION_JSON);
+
+            if (serviceToken != null) {
+                reqSpec.header(org.springframework.http.HttpHeaders.AUTHORIZATION, "Bearer " + serviceToken);
+            }
+
+            reqSpec.body(payload)
                     .retrieve()
                     .toBodilessEntity();
 
@@ -98,10 +112,17 @@ public class NotificationServiceClientImpl implements NotificationServiceClient 
             payload.put("bookingStatus", booking.getStatus() != null ? booking.getStatus().name() : "RETURNED");
             payload.put("idempotencyKey", "VEHICLE_RETURNED:" + booking.getBookingReference());
 
-            restClient.post()
+            String serviceToken = (jwtService != null) ? jwtService.generateNotificationServiceToken() : null;
+
+            var reqSpec = restClient.post()
                     .uri("/api/notifications/vehicle-returned")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(payload)
+                    .contentType(MediaType.APPLICATION_JSON);
+
+            if (serviceToken != null) {
+                reqSpec.header(org.springframework.http.HttpHeaders.AUTHORIZATION, "Bearer " + serviceToken);
+            }
+
+            reqSpec.body(payload)
                     .retrieve()
                     .toBodilessEntity();
 

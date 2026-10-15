@@ -1,18 +1,35 @@
 import { api } from './api'
-import { vehicles as initialVehicles } from '../data/vehicles'
+import { vehicles as initialVehicles, vehicleImageMap, bikeImageMap } from '../data/vehicles'
 
 const FAVORITES_KEY = 'vayro_favorite_vehicles'
 const COMPARE_KEY = 'vayro_compare_vehicles'
 const RECENT_SEARCHES_KEY = 'vayro_recent_searches'
 
-// In-memory cache for fast synchronous access — initialized with authoritative 207 fleet vehicles & synchronized with real API
-let vehiclesCache = Array.isArray(initialVehicles) && initialVehicles.length > 0 ? initialVehicles.map(mapVehicle) : []
-
 export function mapVehicle(v) {
   if (!v) return null
   const vType = (v.vehicleType || 'car').toLowerCase()
-  const img1 = (v.images && v.images[0]) || v.image1 || v.image || ''
-  const img2 = (v.images && v.images[1]) || v.image2 || img1
+  const cleanId = String(v.id || '').trim().toLowerCase()
+
+  // Deterministically resolve authentic bundled 2-angle photographs
+  const localImgObj = (vType === 'bike' ? bikeImageMap[cleanId] : vehicleImageMap[cleanId])
+    || vehicleImageMap[cleanId]
+    || bikeImageMap[cleanId]
+    || (v.brand && v.model ? (vehicleImageMap[`${v.brand}-${v.model}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')] || bikeImageMap[`${v.brand}-${v.model}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')]) : null)
+
+  const localFront = localImgObj?.front || (typeof localImgObj === 'string' ? localImgObj : null)
+  const localRear = localImgObj?.rear || localFront
+
+  const isInvalidOrDevPath = (src) => !src || (typeof src === 'string' && (src.startsWith('/src/') || src.includes('undefined') || src.includes('null')))
+
+  let img1 = (v.images && v.images[0]) || v.image1 || v.image || ''
+  let img2 = (v.images && v.images[1]) || v.image2 || ''
+
+  if (isInvalidOrDevPath(img1)) {
+    img1 = localFront || img1
+  }
+  if (isInvalidOrDevPath(img2)) {
+    img2 = localRear || localFront || img1
+  }
   const gallery = [img1, img2].filter(Boolean)
 
   const pricePerDay = v.pricePerDay ? Number(v.pricePerDay) : (v.dailyRate ? Number(v.dailyRate) : 0)
@@ -64,6 +81,9 @@ export function mapVehicle(v) {
     updatedAt: v.updatedAt,
   }
 }
+
+// In-memory cache for fast synchronous access — initialized with authoritative 207 fleet vehicles & synchronized with real API
+let vehiclesCache = Array.isArray(initialVehicles) && initialVehicles.length > 0 ? initialVehicles.map(mapVehicle) : []
 
 /**
  * Fetch all vehicles from backend Gateway: GET /api/vehicles

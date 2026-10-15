@@ -1,0 +1,50 @@
+# ==============================================================================
+# VAYRO — Explicit Supabase Cloud Database Docker Compose Configuration
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.supabase.yml up -d
+#
+# This file explicitly enforces the Supabase PostgreSQL deployment configuration,
+# requiring full cloud credentials and SSL mode, preventing accidental fallback
+# to local PostgreSQL or unencrypted database connections.
+# ==============================================================================
+
+services:
+  user-service:
+    environment:
+      DB_HOST: ${SUPABASE_DB_HOST:?SUPABASE_DB_HOST is required for Supabase connection}
+      DB_PORT: ${SUPABASE_DB_PORT:-5432}
+      DB_NAME: ${SUPABASE_DB_NAME:-postgres}
+      DB_USERNAME: ${SUPABASE_DB_USERNAME:?SUPABASE_DB_USERNAME is required for Supabase connection}
+      DB_PASSWORD: ${SUPABASE_DB_PASSWORD:?SUPABASE_DB_PASSWORD is required for Supabase connection}
+      DB_SSLMODE: ${SUPABASE_DB_SSLMODE:-?sslmode=require}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+
+  vehicle-service:
+    environment:
+      DB_HOST: ${SUPABASE_DB_HOST:?SUPABASE_DB_HOST is required for Supabase connection}
+      DB_PORT: ${SUPABASE_DB_PORT:-5432}
+      DB_NAME: ${SUPABASE_DB_NAME:-postgres}
+      DB_USERNAME: ${SUPABASE_DB_USERNAME:?SUPABASE_DB_USERNAME is required for Supabase connection}
+      DB_PASSWORD: ${SUPABASE_DB_PASSWORD:?SUPABASE_DB_PASSWORD is required for Supabase connection}
+      DB_SSLMODE: ${SUPABASE_DB_SSLMODE:-?sslmode=require}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+
+  booking-service:
+    environment:
+      DB_HOST: ${SUPABASE_DB_HOST:?SUPABASE_DB_HOST is required for Supabase connection}
+      DB_PORT: ${SUPABASE_DB_PORT:-5432}
+      DB_NAME: ${SUPABASE_DB_NAME:-postgres}
+      DB_USERNAME: ${SUPABASE_DB_USERNAME:?SUPABASE_DB_USERNAME is required for Supabase connection}
+      DB_PASSWORD: ${SUPABASE_DB_PASSWORD:?SUPABASE_DB_PASSWORD is required for Supabase connection}
+      DB_SSLMODE: ${SUPABASE_DB_SSLMODE:-?sslmode=require}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+
+  notification-service:
+    environment:
+      DB_HOST: ${SUPABASE_DB_HOST:?SUPABASE_DB_HOST is required for Supabase connection}
+      DB_PORT: ${SUPABASE_DB_PORT:-5432}
+      DB_NAME: ${SUPABASE_DB_NAME:-postgres}
+      DB_USERNAME: ${SUPABASE_DB_USERNAME:?SUPABASE_DB_USERNAME is required for Supabase connection}
+      DB_PASSWORD: ${SUPABASE_DB_PASSWORD:?SUPABASE_DB_PASSWORD is required for Supabase connection}
+      DB_SSLMODE: ${SUPABASE_DB_SSLMODE:-?sslmode=require}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   eureka-server:
     build:
@@ -17,12 +15,17 @@ services:
     container_name: vayro-api-gateway
     restart: always
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
     environment:
       SERVER_PORT: 8080
       EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
-      CORS_ALLOWED_ORIGINS: https://vayro.com,http://localhost:5173
-      JWT_SECRET: ${JWT_SECRET:}
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-https://vayro.com,https://www.vayro.com,http://localhost:5173,http://localhost}
+      JWT_SECRET: ${JWT_SECRET:-}
+      USER_SERVICE_URL: http://user-service:8081
+      VEHICLE_SERVICE_URL: http://vehicle-service:8082
+      BOOKING_SERVICE_URL: http://booking-service:8083
+      NOTIFICATION_SERVICE_URL: http://notification-service:8084
     depends_on:
       - eureka-server
 
@@ -35,18 +38,21 @@ services:
       - "127.0.0.1:8081:8081"
     environment:
       SERVER_PORT: 8081
-      DB_HOST: ${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}
-      DB_PORT: ${DB_PORT:5432}
-      DB_NAME: ${DB_NAME:postgres}
-      DB_USERNAME: ${DB_USERNAME:postgres.lgpuulmsdogxzsyoqwdk}
-      DB_PASSWORD: ${DB_PASSWORD:}
+      DB_HOST: ${SUPABASE_DB_HOST:?SUPABASE_DB_HOST is required for database connection}
+      DB_PORT: ${SUPABASE_DB_PORT:-5432}
+      DB_NAME: ${SUPABASE_DB_NAME:-postgres}
+      DB_USERNAME: ${SUPABASE_DB_USERNAME:?SUPABASE_DB_USERNAME is required}
+      DB_PASSWORD: ${SUPABASE_DB_PASSWORD:?SUPABASE_DB_PASSWORD is required}
+      DB_SSLMODE: ${SUPABASE_DB_SSLMODE:-?sslmode=require}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO:-validate}
       EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
-      JWT_SECRET: ${JWT_SECRET:}
-      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:718836314167-kekvffi6ugr8s6gfg6ds00qb190ee12s.apps.googleusercontent.com}
-      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:}
-      ADMIN_BOOTSTRAP_ENABLED: ${ADMIN_BOOTSTRAP_ENABLED:false}
-      ADMIN_EMAIL: ${ADMIN_EMAIL:}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD:}
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+      JWT_SECRET: ${JWT_SECRET:-}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-718836314167-kekvffi6ugr8s6gfg6ds00qb190ee12s.apps.googleusercontent.com}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      ADMIN_BOOTSTRAP_ENABLED: ${ADMIN_BOOTSTRAP_ENABLED:-false}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
     depends_on:
       - eureka-server
 
@@ -59,13 +65,16 @@ services:
       - "127.0.0.1:8082:8082"
     environment:
       SERVER_PORT: 8082
-      DB_HOST: ${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}
-      DB_PORT: ${DB_PORT:5432}
-      DB_NAME: ${DB_NAME:postgres}
-      DB_USERNAME: ${DB_USERNAME:postgres.lgpuulmsdogxzsyoqwdk}
-      DB_PASSWORD: ${DB_PASSWORD:}
+      DB_HOST: ${SUPABASE_DB_HOST:?SUPABASE_DB_HOST is required for database connection}
+      DB_PORT: ${SUPABASE_DB_PORT:-5432}
+      DB_NAME: ${SUPABASE_DB_NAME:-postgres}
+      DB_USERNAME: ${SUPABASE_DB_USERNAME:?SUPABASE_DB_USERNAME is required}
+      DB_PASSWORD: ${SUPABASE_DB_PASSWORD:?SUPABASE_DB_PASSWORD is required}
+      DB_SSLMODE: ${SUPABASE_DB_SSLMODE:-?sslmode=require}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO:-validate}
       EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
-      JWT_SECRET: ${JWT_SECRET:}
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+      JWT_SECRET: ${JWT_SECRET:-}
     depends_on:
       - eureka-server
 
@@ -78,13 +87,19 @@ services:
       - "127.0.0.1:8083:8083"
     environment:
       SERVER_PORT: 8083
-      DB_HOST: ${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}
-      DB_PORT: ${DB_PORT:5432}
-      DB_NAME: ${DB_NAME:postgres}
-      DB_USERNAME: ${DB_USERNAME:postgres.lgpuulmsdogxzsyoqwdk}
-      DB_PASSWORD: ${DB_PASSWORD:}
+      DB_HOST: ${SUPABASE_DB_HOST:?SUPABASE_DB_HOST is required for database connection}
+      DB_PORT: ${SUPABASE_DB_PORT:-5432}
+      DB_NAME: ${SUPABASE_DB_NAME:-postgres}
+      DB_USERNAME: ${SUPABASE_DB_USERNAME:?SUPABASE_DB_USERNAME is required}
+      DB_PASSWORD: ${SUPABASE_DB_PASSWORD:?SUPABASE_DB_PASSWORD is required}
+      DB_SSLMODE: ${SUPABASE_DB_SSLMODE:-?sslmode=require}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO:-validate}
       EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
-      JWT_SECRET: ${JWT_SECRET:}
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+      JWT_SECRET: ${JWT_SECRET:-}
+      VEHICLE_SERVICE_URL: http://vehicle-service:8082
+      NOTIFICATION_SERVICE_URL: http://notification-service:8084
+      USER_SERVICE_URL: http://user-service:8081
     depends_on:
       - eureka-server
 
@@ -98,26 +113,30 @@ services:
       - "127.0.0.1:8084:8084"
     environment:
       SERVER_PORT: 8084
-      DB_HOST: ${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}
-      DB_PORT: ${DB_PORT:5432}
-      DB_NAME: ${DB_NAME:postgres}
-      DB_USERNAME: ${DB_USERNAME:postgres.lgpuulmsdogxzsyoqwdk}
-      DB_PASSWORD: ${DB_PASSWORD:}
+      DB_HOST: ${SUPABASE_DB_HOST:?SUPABASE_DB_HOST is required for database connection}
+      DB_PORT: ${SUPABASE_DB_PORT:-5432}
+      DB_NAME: ${SUPABASE_DB_NAME:-postgres}
+      DB_USERNAME: ${SUPABASE_DB_USERNAME:?SUPABASE_DB_USERNAME is required}
+      DB_PASSWORD: ${SUPABASE_DB_PASSWORD:?SUPABASE_DB_PASSWORD is required}
+      DB_SSLMODE: ${SUPABASE_DB_SSLMODE:-?sslmode=require}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO:-validate}
       EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
-      JWT_SECRET: ${JWT_SECRET:}
-      MAIL_HOST: ${MAIL_HOST:smtp.gmail.com}
-      MAIL_PORT: ${MAIL_PORT:587}
-      MAIL_USERNAME: ${MAIL_USERNAME:vayro.notifications@gmail.com}
-      MAIL_PASSWORD: ${MAIL_PASSWORD:}
-      MAIL_SMTP_AUTH: ${MAIL_SMTP_AUTH:true}
-      MAIL_SMTP_SSL_ENABLE: ${MAIL_SMTP_SSL_ENABLE:false}
-      MAIL_SMTP_STARTTLS_ENABLE: ${MAIL_SMTP_STARTTLS_ENABLE:true}
-      MAIL_FROM_NAME: ${MAIL_FROM_NAME:VAYRO}
-      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:vayro.notifications@gmail.com}
-      ADMIN_NOTIFICATION_EMAIL: ${ADMIN_NOTIFICATION_EMAIL:admin@vayro.com}
-      NOTIFICATION_EMAIL_ENABLED: ${NOTIFICATION_EMAIL_ENABLED:false}
-      EMAIL_MAX_RETRIES: ${EMAIL_MAX_RETRIES:3}
-      EMAIL_RETRY_DELAY_MS: ${EMAIL_RETRY_DELAY_MS:1000}
+      EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+      JWT_SECRET: ${JWT_SECRET:-}
+      USER_SERVICE_URL: http://user-service:8081
+      MAIL_HOST: ${MAIL_HOST:-smtp.gmail.com}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-vayro.notifications@gmail.com}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_SMTP_AUTH: ${MAIL_SMTP_AUTH:-true}
+      MAIL_SMTP_SSL_ENABLE: ${MAIL_SMTP_SSL_ENABLE:-false}
+      MAIL_SMTP_STARTTLS_ENABLE: ${MAIL_SMTP_STARTTLS_ENABLE:-true}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME:-VAYRO}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-vayro.notifications@gmail.com}
+      ADMIN_NOTIFICATION_EMAIL: ${ADMIN_NOTIFICATION_EMAIL:-admin@vayro.com}
+      NOTIFICATION_EMAIL_ENABLED: ${NOTIFICATION_EMAIL_ENABLED:-false}
+      EMAIL_MAX_RETRIES: ${EMAIL_MAX_RETRIES:-3}
+      EMAIL_RETRY_DELAY_MS: ${EMAIL_RETRY_DELAY_MS:-1000}
     depends_on:
       - eureka-server
 
@@ -127,6 +146,6 @@ services:
     container_name: vayro-frontend
     restart: always
     ports:
-      - "80:80"
+      - "80:8080"
     depends_on:
       - api-gateway

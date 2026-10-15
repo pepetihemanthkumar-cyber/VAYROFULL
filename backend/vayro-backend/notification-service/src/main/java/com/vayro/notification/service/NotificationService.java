@@ -31,9 +31,19 @@ public interface NotificationService {
     NotificationResponse getNotificationByIdempotencyKey(String idempotencyKey);
 
     /**
+     * Look up notification status by idempotency key, enforcing customer ownership or admin/internal access.
+     */
+    NotificationResponse getNotificationByIdempotencyKey(String idempotencyKey, com.vayro.notification.security.AuthenticatedUser currentUser);
+
+    /**
      * Look up all notification history for a booking reference.
      */
     List<NotificationResponse> getNotificationsByBookingReference(String bookingReference);
+
+    /**
+     * Look up all notification history for a booking reference, enforcing customer ownership or admin/internal access.
+     */
+    List<NotificationResponse> getNotificationsByBookingReference(String bookingReference, com.vayro.notification.security.AuthenticatedUser currentUser);
 
     /**
      * Look up latest notification status for a booking reference.
@@ -41,7 +51,17 @@ public interface NotificationService {
     NotificationResponse getLatestNotificationForBooking(String bookingReference);
 
     /**
+     * Look up latest notification status for a booking reference, enforcing customer ownership or admin/internal access.
+     */
+    NotificationResponse getLatestNotificationForBooking(String bookingReference, com.vayro.notification.security.AuthenticatedUser currentUser);
+
+    /**
      * Generates or fetches stored PDF invoice for a booking reference.
      */
     byte[] getPdfInvoiceByBookingReference(String bookingReference);
+
+    /**
+     * Fetches stored PDF invoice for a booking reference, verifying ownership against authenticated user.
+     */
+    byte[] getPdfInvoiceByBookingReference(String bookingReference, com.vayro.notification.security.AuthenticatedUser currentUser);
 }

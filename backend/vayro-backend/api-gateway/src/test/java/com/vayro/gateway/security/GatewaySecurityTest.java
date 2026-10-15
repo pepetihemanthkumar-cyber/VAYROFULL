@@ -136,4 +136,151 @@ class GatewaySecurityTest {
                 .expectHeader().valueEquals(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:5173")
                 .expectHeader().valueEquals(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
     }
+
+    @Test
+    @DisplayName("SEC-02: CORS preflight with unapproved origin should not return Access-Control-Allow-Origin")
+    void testCorsPreflightUnapprovedOriginRejected() {
+        webTestClient.options()
+                .uri("http://localhost:8080/api/bookings")
+                .header(HttpHeaders.ORIGIN, "https://malicious-site.com")
+                .header(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "POST")
+                .header(HttpHeaders.ACCESS_CONTROL_REQUEST_HEADERS, "Authorization")
+                .exchange()
+                .expectHeader().doesNotExist(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN);
+    }
+
+    @Test
+    @DisplayName("SEC-01: Unauthenticated request to invoice download endpoint should return 401")
+    void testProtectedInvoiceEndpointWithoutTokenReturns401() {
+        webTestClient.get()
+                .uri("/api/notifications/invoice/VYR-TEST-99")
+                .exchange()
+                .expectStatus().isUnauthorized()
+                .expectBody()
+                .jsonPath("$.status").isEqualTo(401)
+                .jsonPath("$.error").isEqualTo("UNAUTHORIZED");
+    }
+
+    @Test
+    @DisplayName("SEC-04: Unauthenticated request to booking-confirmed dispatch endpoint should return 401")
+    void testProtectedBookingConfirmedDispatchWithoutTokenReturns401() {
+        webTestClient.post()
+                .uri("/api/notifications/booking-confirmed")
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue("{\"bookingReference\":\"VYR-TEST-99\"}")
+                .exchange()
+                .expectStatus().isUnauthorized()
+                .expectBody()
+                .jsonPath("$.status").isEqualTo(401)
+                .jsonPath("$.error").isEqualTo("UNAUTHORIZED");
+    }
+
+    @Test
+    @DisplayName("TASK 1: Unauthenticated request to latest notification endpoint should return 401")
+    void testProtectedLatestNotificationWithoutTokenReturns401() {
+        webTestClient.get()
+                .uri("/api/notifications/latest/VYR-TEST-99")
+                .exchange()
+                .expectStatus().isUnauthorized()
+                .expectBody()
+                .jsonPath("$.status").isEqualTo(401)
+                .jsonPath("$.error").isEqualTo("UNAUTHORIZED");
+    }
+
+    @Test
+    @DisplayName("TASK 1: Unauthenticated request to notification status endpoint should return 401")
+    void testProtectedStatusNotificationWithoutTokenReturns401() {
+        webTestClient.get()
+                .uri("/api/notifications/status/BOOKING_CONFIRMED:VYR-TEST-99")
+                .exchange()
+                .expectStatus().isUnauthorized()
+                .expectBody()
+                .jsonPath("$.status").isEqualTo(401)
+                .jsonPath("$.error").isEqualTo("UNAUTHORIZED");
+    }
+
+    @Test
+    @DisplayName("TASK 1: Rate limiting on /api/auth/login should return 429 when threshold exceeded")
+    void testAuthRateLimitingExceededReturns429() {
+        String testIp = "192.168.1.100";
+        for (int i = 0; i < 10; i++) {
+            webTestClient.post()
+                    .uri("/api/auth/login")
+                    .header("X-Forwarded-For", testIp)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .bodyValue("{\"email\":\"test@vayro.com\",\"password\":\"password\"}")
+                    .exchange();
+        }
+
+        webTestClient.post()
+                .uri("/api/auth/login")
+                .header("X-Forwarded-For", testIp)
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue("{\"email\":\"test@vayro.com\",\"password\":\"password\"}")
+                .exchange()
+                .expectStatus().isEqualTo(org.springframework.http.HttpStatus.TOO_MANY_REQUESTS)
+                .expectHeader().exists("Retry-After")
+                .expectBody()
+                .jsonPath("$.status").isEqualTo(429)
+                .jsonPath("$.error").isEqualTo("TOO_MANY_REQUESTS");
+    }
+
+    @Test
+    @DisplayName("TASK 3: Public routing to /eureka should be blocked without authentication")
+    void testEurekaEndpointBlocked() {
+        webTestClient.get()
+                .uri("/eureka")
+                .exchange()
+                .expectStatus().isUnauthorized();
+
+        webTestClient.get()
+                .uri("/eureka/apps")
+                .exchange()
+                .expectStatus().isUnauthorized();
+    }
+
+    @Test
+    @DisplayName("TASK 4: Rate limiting prioritizes X-Real-IP header")
+    void testXRealIpRateLimitingEnforced() {
+        String testIp = "10.0.50.25";
+        for (int i = 0; i < 10; i++) {
+            webTestClient.post()
+                    .uri("/api/auth/login")
+                    .header("X-Real-IP", testIp)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .bodyValue("{\"email\":\"test@vayro.com\",\"password\":\"password\"}")
+                    .exchange();
+        }
+
+        webTestClient.post()
+                .uri("/api/auth/login")
+                .header("X-Real-IP", testIp)
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue("{\"email\":\"test@vayro.com\",\"password\":\"password\"}")
+                .exchange()
+                .expectStatus().isEqualTo(org.springframework.http.HttpStatus.TOO_MANY_REQUESTS);
+    }
+
+    @Test
+    @DisplayName("TASK 4: Spoofed client-prepended X-Forwarded-For cannot bypass rate limiting")
+    void testSpoofedXForwardedForCannotBypassRateLimiting() {
+        String trustedHop = "10.200.1.5";
+        // Attacker rotates the first IP, but closest proxy hop is trustedHop
+        for (int i = 0; i < 10; i++) {
+            webTestClient.post()
+                    .uri("/api/auth/login")
+                    .header("X-Forwarded-For", "198.51.100." + i + ", " + trustedHop)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .bodyValue("{\"email\":\"test@vayro.com\",\"password\":\"password\"}")
+                    .exchange();
+        }
+
+        webTestClient.post()
+                .uri("/api/auth/login")
+                .header("X-Forwarded-For", "198.51.100.99, " + trustedHop)
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue("{\"email\":\"test@vayro.com\",\"password\":\"password\"}")
+                .exchange()
+                .expectStatus().isEqualTo(org.springframework.http.HttpStatus.TOO_MANY_REQUESTS);
+    }
 }

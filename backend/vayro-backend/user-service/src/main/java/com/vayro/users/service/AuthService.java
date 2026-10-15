@@ -107,6 +107,7 @@ public class AuthService {
                             new NetHttpTransport(),
                             new GsonFactory()
                     );
+                    verifierBuilder.setIssuers(java.util.List.of("https://accounts.google.com", "accounts.google.com"));
                     if (googleClientId != null && !googleClientId.trim().isEmpty()) {
                         verifierBuilder.setAudience(Collections.singletonList(googleClientId.trim()));
                     }
@@ -115,6 +116,10 @@ public class AuthService {
             }
         }
         return cachedVerifier;
+    }
+
+    void setCachedVerifier(GoogleIdTokenVerifier verifier) {
+        this.cachedVerifier = verifier;
     }
 
     @Transactional
@@ -136,7 +141,20 @@ public class AuthService {
             if (idToken != null) {
                 GoogleIdToken.Payload payload = idToken.getPayload();
                 googleSub = payload.getSubject();
+                if (googleSub == null || googleSub.trim().isEmpty()) {
+                    throw new InvalidCredentialsException("Google account subject ID is missing from verified token.");
+                }
+
                 email = payload.getEmail();
+                if (email == null || email.trim().isEmpty()) {
+                    throw new InvalidCredentialsException("Google account email could not be verified.");
+                }
+
+                Boolean emailVerified = payload.getEmailVerified();
+                if (!Boolean.TRUE.equals(emailVerified)) {
+                    throw new InvalidCredentialsException("Google account email is not verified by Google.");
+                }
+
                 if (payload.get("given_name") != null) {
                     firstName = (String) payload.get("given_name");
                 }
@@ -146,7 +164,7 @@ public class AuthService {
                     lastName = (String) payload.get("name");
                 }
             } else {
-                throw new InvalidCredentialsException("Invalid or expired Google credential token");
+                throw new InvalidCredentialsException("Invalid, expired, or untrusted Google credential token.");
             }
         } catch (InvalidCredentialsException ice) {
             throw ice;

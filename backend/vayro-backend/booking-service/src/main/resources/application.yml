@@ -6,7 +6,7 @@ spring:
     name: BOOKING-SERVICE
 
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}:${DB_PORT:5432}/${DB_NAME:postgres}?sslmode=require}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://${DB_HOST:aws-0-ap-southeast-1.pooler.supabase.com}:${DB_PORT:5432}/${DB_NAME:postgres}${DB_SSLMODE:?sslmode=require}}
     username: ${DB_USERNAME:postgres.lgpuulmsdogxzsyoqwdk}
     password: ${DB_PASSWORD:}
     driver-class-name: org.postgresql.Driver
@@ -19,7 +19,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:validate}
     show-sql: false
     properties:
       hibernate:
@@ -47,13 +47,17 @@ management:
         include: health,info
 
 jwt:
-  secret: ${JWT_SECRET:}
+  secret: ${JWT_SECRET}
 
 app:
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
   booking:
     tax-rate: ${BOOKING_TAX_RATE:0.18}
+  http-client:
+    connect-timeout-seconds: ${HTTP_CLIENT_CONNECT_TIMEOUT_SECONDS:5}
+    read-timeout-seconds: ${HTTP_CLIENT_READ_TIMEOUT_SECONDS:25}
   services:
     vehicle-service-url: ${VEHICLE_SERVICE_URL:http://VEHICLE-SERVICE}
     notification-service-url: ${NOTIFICATION_SERVICE_URL:http://NOTIFICATION-SERVICE}
+    user-service-url: ${USER_SERVICE_URL:http://USER-SERVICE}

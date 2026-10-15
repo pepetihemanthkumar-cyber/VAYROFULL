@@ -34,7 +34,6 @@ public class RootController {
         endpoints.put("auth", "/api/auth");
         endpoints.put("bookings", "/api/bookings");
         endpoints.put("notifications", "/api/notifications");
-        endpoints.put("eureka", "/eureka");
         response.put("endpoints", endpoints);
 
         return ResponseEntity.ok(response);
@@ -47,7 +46,6 @@ public class RootController {
         report.put("gateway", "UP");
 
         Map<String, String> services = new LinkedHashMap<>();
-        services.put("eureka", "http://localhost:8761/eureka/apps");
         services.put("user-service", "http://localhost:8081/actuator/health");
         services.put("vehicle-service", "http://localhost:8082/actuator/health");
         services.put("booking-service", "http://localhost:8083/actuator/health");

@@ -37,5 +37,5 @@ USER nginx
 
 EXPOSE 8080
 
-# Substitute PORT environment variable dynamically at container boot
-CMD ["sh", "-c", "sed -i 's/listen [0-9]*;/listen '\"${PORT:-8080}\"';/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+# Start Nginx server safely; only adjust listen port if default.conf is writable and PORT differs from 8080
+CMD ["sh", "-c", "if [ -w /etc/nginx/conf.d/default.conf ] && [ -n \"$PORT\" ] && [ \"$PORT\" != \"8080\" ]; then sed -i 's/listen 8080;/listen '\"$PORT\"';/g' /etc/nginx/conf.d/default.conf; fi && nginx -g 'daemon off;'"]

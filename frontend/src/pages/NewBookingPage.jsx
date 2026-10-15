@@ -60,7 +60,7 @@ export default function NewBookingPage() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const location = useLocation()
-  const { user } = useAuth()
+  const { user, isAuthenticated } = useAuth()
   const toast = useToast()
   const vehicleId = searchParams.get('vehicle')
 
@@ -336,6 +336,14 @@ export default function NewBookingPage() {
   }
 
   async function handleFinalizePayment(paymentMeta) {
+    if (isSubmitting) return
+
+    if (!isAuthenticated && !user) {
+      toast.error('Authentication is required to confirm a booking. Please sign in.')
+      navigate(`/login?from=${encodeURIComponent(location.pathname + location.search)}`)
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitError('')
 
@@ -860,7 +868,7 @@ export default function NewBookingPage() {
                 onClick={handleNextStep}
                 className="confirm-booking-btn"
               >
-                Proceed to payment <ChevronRight size={17} aria-hidden="true" />
+                Proceed to confirmation <ChevronRight size={17} aria-hidden="true" />
               </GlassButton>
             </div>
           </motion.div>

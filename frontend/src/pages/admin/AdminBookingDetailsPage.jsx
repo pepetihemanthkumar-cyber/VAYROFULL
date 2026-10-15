@@ -125,7 +125,7 @@ export default function AdminBookingDetailsPage() {
               <p className="eyebrow">Fleet Reservation</p>
               <h2>{booking.id}</h2>
             </div>
-            <GlassBadge status={booking.status}>{formatStatus(booking.status)}</GlassBadge>
+            <GlassBadge status={booking.status}>{booking.status === 'RETURNED' ? 'RETURNED' : formatStatus(booking.status)}</GlassBadge>
           </div>
         </div>
 
@@ -230,6 +230,12 @@ export default function AdminBookingDetailsPage() {
                 <span>Calculated Duration:</span>
                 <strong>{durationLabel}</strong>
               </div>
+              {booking.returnedAt && (
+                <div className="schedule-duration-banner" style={{ marginTop: '8px', color: '#10b981' }}>
+                  <span>Actual Return Time:</span>
+                  <strong>{formatDate(booking.returnedAt)} at {String(booking.returnedAt).includes('T') ? String(booking.returnedAt).slice(11, 16) : '10:00'}</strong>
+                </div>
+              )}
             </GlassCard>
           </motion.div>
 

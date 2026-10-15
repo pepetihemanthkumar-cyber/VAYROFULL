@@ -26,7 +26,7 @@ export function BookingCard({ booking, index = 0 }) {
           <div>
             <div className="booking-reference-row">
               <span className="booking-id-tag">{booking.id}</span>
-              <GlassBadge status={booking.status}>{formatStatus(booking.status)}</GlassBadge>
+              <GlassBadge status={booking.status}>{booking.status === 'RETURNED' ? 'RETURNED' : formatStatus(booking.status)}</GlassBadge>
             </div>
             <h3 className="booking-vehicle-title">{vehicle ? vehicle.name : 'Reserved vehicle'}</h3>
             <p className="booking-vehicle-subtitle">

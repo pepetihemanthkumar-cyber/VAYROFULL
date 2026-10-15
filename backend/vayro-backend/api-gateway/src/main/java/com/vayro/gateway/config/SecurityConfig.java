@@ -43,7 +43,7 @@ public class SecurityConfig {
     private final JwtServerAuthenticationConverter authenticationConverter;
     private final ObjectMapper objectMapper;
 
-    @Value("${app.cors.allowed-origins:http://localhost:5173}")
+    @Value("${app.cors.allowed-origins:https://vayro.com,https://www.vayro.com,http://localhost:5173,http://localhost}")
     private String allowedOrigins;
 
     public SecurityConfig(
@@ -84,7 +84,6 @@ public class SecurityConfig {
 
                         // Public Root & Actuator Health & Diagnostics
                         .pathMatchers(HttpMethod.GET, "/", "/actuator/health", "/actuator/info", "/actuator/**", "/api/health/**", "/diagnostics").permitAll()
-                        .pathMatchers(HttpMethod.GET, "/eureka", "/eureka/**").permitAll()
 
                         // Public Auth Endpoints
                         .pathMatchers(HttpMethod.POST, "/api/auth/register", "/api/auth/login", "/api/auth/google").permitAll()
@@ -101,10 +100,7 @@ public class SecurityConfig {
                         // Protected Booking endpoints
                         .pathMatchers("/api/bookings/**").authenticated()
 
-                        // Notifications endpoints
-                        .pathMatchers(HttpMethod.GET, "/api/notifications/status/**").permitAll()
-                        .pathMatchers(HttpMethod.GET, "/api/notifications/latest/**").permitAll()
-                        .pathMatchers(HttpMethod.GET, "/api/notifications/invoice/**").permitAll()
+                        // Protected Notification endpoints (strictly authenticated)
                         .pathMatchers("/api/notifications/**").authenticated()
 
                         // Protected Vehicle mutation endpoints
@@ -214,7 +210,11 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOriginPattern("*");
+        List<String> origins = Arrays.stream(allowedOrigins.split(","))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .toList();
+        config.setAllowedOrigins(origins);
         config.addAllowedMethod("GET");
         config.addAllowedMethod("POST");
         config.addAllowedMethod("PUT");

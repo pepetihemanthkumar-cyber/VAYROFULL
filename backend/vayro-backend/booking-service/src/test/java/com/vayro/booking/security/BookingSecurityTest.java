@@ -9,6 +9,7 @@ import com.vayro.booking.dto.BookingResponse;
 import com.vayro.booking.dto.PageResponse;
 import com.vayro.booking.entity.BookingStatus;
 import com.vayro.booking.entity.PaymentStatus;
+import com.vayro.booking.exception.AccountDisabledException;
 import com.vayro.booking.exception.BookingNotFoundException;
 import com.vayro.booking.exception.BookingOverlapException;
 import com.vayro.booking.exception.InvalidBookingDateException;
@@ -60,6 +61,9 @@ class BookingSecurityTest {
 
     @Value("${jwt.secret}")
     private String secretKey;
+
+    @Autowired
+    private JwtService jwtService;
 
     private ObjectMapper objectMapper;
     private String userToken;
@@ -303,5 +307,140 @@ class BookingSecurityTest {
                         .content(objectMapper.writeValueAsString(new BookingCancelRequest("Schedule change"))))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value("CANCELLED"));
+    }
+
+    @Test
+    @DisplayName("Disabled Account: createBooking throws AccountDisabledException -> 403 FORBIDDEN")
+    void testCreateBookingDisabledAccountReturns403() throws Exception {
+        BookingCreateRequest req = new BookingCreateRequest(
+                "veh-001",
+                LocalDateTime.now().plusDays(1),
+                LocalDateTime.now().plusDays(4),
+                "Vijayawada Airport",
+                "Vijayawada Airport"
+        );
+
+        when(bookingService.createBooking(any(), any(), any()))
+                .thenThrow(new AccountDisabledException("Account is disabled. Please contact support."));
+
+        mockMvc.perform(post("/api/bookings")
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(req)))
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.status").value(403))
+                .andExpect(jsonPath("$.error").value("ACCOUNT_DISABLED"));
+    }
+
+    @Test
+    @DisplayName("Disabled Account: getMyBookings throws AccountDisabledException -> 403 FORBIDDEN")
+    void testGetMyBookingsDisabledAccountReturns403() throws Exception {
+        when(bookingService.getMyBookings(any(), any()))
+                .thenThrow(new AccountDisabledException("Account is disabled. Please contact support."));
+
+        mockMvc.perform(get("/api/bookings/my")
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken))
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.status").value(403))
+                .andExpect(jsonPath("$.error").value("ACCOUNT_DISABLED"));
+    }
+
+    @Test
+    @DisplayName("Disabled Account: returnBooking throws AccountDisabledException -> 403 FORBIDDEN")
+    void testReturnBookingDisabledAccountReturns403() throws Exception {
+        when(bookingService.returnBooking(eq(1L), any(), any()))
+                .thenThrow(new AccountDisabledException("Account is disabled. Please contact support."));
+
+        mockMvc.perform(patch("/api/bookings/1/return")
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken))
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.status").value(403))
+                .andExpect(jsonPath("$.error").value("ACCOUNT_DISABLED"));
+    }
+
+    @Test
+    @DisplayName("TASK 4: Internal service token for vehicle-service should have INTERNAL_SERVICE role and explicit claims")
+    void testInternalServiceTokenGeneration() {
+        String token = jwtService.generateInternalServiceToken();
+        org.junit.jupiter.api.Assertions.assertNotNull(token);
+
+        String role = jwtService.extractRole(token);
+        org.junit.jupiter.api.Assertions.assertEquals("INTERNAL_SERVICE", role);
+        org.junit.jupiter.api.Assertions.assertNotEquals("ADMIN", role, "Internal service tokens must NOT have ADMIN role");
+
+        String username = jwtService.extractUsername(token);
+        org.junit.jupiter.api.Assertions.assertEquals("booking-service@internal.vayro.com", username);
+
+        io.jsonwebtoken.Claims claims = Jwts.parser()
+                .verifyWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey)))
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+
+        org.junit.jupiter.api.Assertions.assertEquals("vayro-booking-service", claims.getIssuer());
+        org.junit.jupiter.api.Assertions.assertTrue(claims.getAudience().contains("vayro-vehicle-service"));
+        org.junit.jupiter.api.Assertions.assertEquals("booking-service", claims.get("serviceId"));
+    }
+
+    @Test
+    @DisplayName("TASK 4: Notification service token should have INTERNAL_SERVICE role and explicit claims")
+    void testNotificationServiceTokenGeneration() {
+        String token = jwtService.generateNotificationServiceToken();
+        org.junit.jupiter.api.Assertions.assertNotNull(token);
+
+        String role = jwtService.extractRole(token);
+        org.junit.jupiter.api.Assertions.assertEquals("INTERNAL_SERVICE", role);
+
+        io.jsonwebtoken.Claims claims = Jwts.parser()
+                .verifyWith(Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey)))
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+
+        org.junit.jupiter.api.Assertions.assertEquals("vayro-booking-service", claims.getIssuer());
+        org.junit.jupiter.api.Assertions.assertTrue(claims.getAudience().contains("vayro-notification-service"));
+        org.junit.jupiter.api.Assertions.assertEquals("booking-service", claims.get("serviceId"));
+    }
+
+    @Test
+    @DisplayName("TASK 4: Token validation succeeds for valid issuer/audience and rejects untrusted claims")
+    void testIssuerAudienceValidation() {
+        SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey));
+
+        // 1. Valid platform token
+        String validPlatformToken = Jwts.builder()
+                .issuer("vayro-auth")
+                .audience().add("vayro-platform").and()
+                .subject("customer@vayro.com")
+                .claim("role", "USER")
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 60000))
+                .signWith(key)
+                .compact();
+        org.junit.jupiter.api.Assertions.assertTrue(jwtService.isTokenValid(validPlatformToken));
+
+        // 2. Untrusted issuer
+        String untrustedIssuerToken = Jwts.builder()
+                .issuer("untrusted-evil-issuer")
+                .audience().add("vayro-platform").and()
+                .subject("customer@vayro.com")
+                .claim("role", "USER")
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 60000))
+                .signWith(key)
+                .compact();
+        org.junit.jupiter.api.Assertions.assertFalse(jwtService.isTokenValid(untrustedIssuerToken));
+
+        // 3. Untrusted audience
+        String untrustedAudienceToken = Jwts.builder()
+                .issuer("vayro-auth")
+                .audience().add("untrusted-audience").and()
+                .subject("customer@vayro.com")
+                .claim("role", "USER")
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 60000))
+                .signWith(key)
+                .compact();
+        org.junit.jupiter.api.Assertions.assertFalse(jwtService.isTokenValid(untrustedAudienceToken));
     }
 }

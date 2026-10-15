@@ -72,12 +72,22 @@ public class VehicleController {
     }
 
     @PatchMapping("/{id}/status")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'INTERNAL_SERVICE', 'SERVICE')")
     public ResponseEntity<VehicleResponse> updateStatus(
             @PathVariable String id,
             @Valid @RequestBody VehicleStatusRequest request
     ) {
         VehicleResponse response = vehicleService.updateStatus(id, request.getStatus());
+        return ResponseEntity.ok(response);
+    }
+
+    @PatchMapping("/{id}/maintenance")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<VehicleResponse> updateMaintenance(
+            @PathVariable String id,
+            @Valid @RequestBody VehicleMaintenanceRequest request
+    ) {
+        VehicleResponse response = vehicleService.updateMaintenance(id, request);
         return ResponseEntity.ok(response);
     }
 

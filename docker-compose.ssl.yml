@@ -1,0 +1,39 @@
+# ==============================================================================
+# VAYRO — HTTPS Deployment Docker Compose Override Template
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.ssl.yml up -d
+#
+# PREREQUISITES:
+# 1. DNS A/AAAA records for vayro.com and www.vayro.com pointed to host public IP.
+# 2. SSL certificates obtained via Certbot (see docs/HTTPS_DEPLOYMENT_GUIDE.md).
+# 3. Do NOT enable until certificates exist at /etc/letsencrypt/live/vayro.com/
+# ==============================================================================
+
+services:
+  frontend:
+    ports:
+      - "80:8080"
+      - "443:8443"
+    command: ["nginx", "-g", "daemon off;"]
+    volumes:
+      # Mount HTTPS-ready Nginx configuration
+      - ./frontend/nginx.ssl.conf.template:/etc/nginx/conf.d/default.conf:ro
+      # Mount Let's Encrypt certificates (full directory mount preserves symlinks into archive/ across renewals)
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      # Mount ACME challenge webroot for automated certificate renewal
+      - /var/www/certbot:/var/www/certbot:ro
+    environment:
+      PORT: 8080
+    restart: always
+
+  # Optional on-demand Certbot container for initial provisioning & certificate renewal
+  # Run once: docker compose -f docker-compose.yml -f docker-compose.ssl.yml --profile certbot run --rm certbot
+  certbot:
+    image: certbot/certbot:latest
+    container_name: vayro-certbot
+    profiles:
+      - certbot
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/www/certbot:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"

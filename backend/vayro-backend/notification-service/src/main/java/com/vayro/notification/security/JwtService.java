@@ -20,20 +20,21 @@ public class JwtService {
 
     private final SecretKey secretKey;
 
-    public JwtService(@Value("${jwt.secret:}") String secret) {
+    public JwtService(@Value("${jwt.secret}") String secret) {
         byte[] keyBytes;
         try {
             keyBytes = io.jsonwebtoken.io.Decoders.BASE64.decode(secret);
         } catch (Exception e) {
             keyBytes = secret.getBytes(StandardCharsets.UTF_8);
         }
-        if (keyBytes.length < 32) {
-            byte[] padded = new byte[32];
-            System.arraycopy(keyBytes, 0, padded, 0, Math.min(keyBytes.length, 32));
-            keyBytes = padded;
-        }
         this.secretKey = Keys.hmacShaKeyFor(keyBytes);
     }
+
+    @Value("${jwt.issuer:vayro-auth}")
+    private String jwtIssuer = "vayro-auth";
+
+    @Value("${jwt.audience:vayro-platform}")
+    private String jwtAudience = "vayro-platform";
 
     public Claims extractAllClaims(String token) {
         return Jwts.parser()
@@ -45,7 +46,19 @@ public class JwtService {
 
     public boolean validateToken(String token) {
         try {
-            extractAllClaims(token);
+            Claims claims = extractAllClaims(token);
+            if (claims.getExpiration() != null && claims.getExpiration().before(new java.util.Date())) {
+                return false;
+            }
+            // Permissive / Dual-Mode Issuer & Audience validation (allows legacy tokens during migration)
+            String issuer = claims.getIssuer();
+            if (issuer != null && !issuer.isBlank() && !jwtIssuer.equals(issuer) && !"https://vayro.com".equals(issuer) && !"vayro-booking-service".equals(issuer) && !issuer.startsWith("vayro-")) {
+                return false;
+            }
+            java.util.Set<String> audience = claims.getAudience();
+            if (audience != null && !audience.isEmpty() && !audience.contains(jwtAudience) && !audience.contains("vayro-web") && !audience.contains("vayro-notification-service")) {
+                return false;
+            }
             return true;
         } catch (Exception e) {
             log.debug("JWT validation failed: {}", e.getMessage());
@@ -56,8 +69,12 @@ public class JwtService {
     @SuppressWarnings("unchecked")
     public AuthenticatedUser extractAuthenticatedUser(String token) {
         Claims claims = extractAllClaims(token);
-        String userId = claims.getSubject();
+        Object userIdObj = claims.get("userId");
+        String userId = userIdObj != null ? String.valueOf(userIdObj) : claims.getSubject();
         String email = claims.get("email", String.class);
+        if (email == null || email.isBlank()) {
+            email = claims.getSubject();
+        }
         String name = claims.get("name", String.class);
         Object rolesObj = claims.get("roles");
         if (rolesObj == null) {
@@ -71,6 +88,18 @@ public class JwtService {
                     .toList();
         } else if (rolesObj instanceof String) {
             roles = List.of(rolesObj.toString());
+        }
+
+        // Validate service claims for INTERNAL_SERVICE
+        if (roles.contains("INTERNAL_SERVICE")) {
+            String issuer = claims.getIssuer();
+            java.util.Set<String> audience = claims.getAudience();
+            boolean validIssuer = issuer != null && (issuer.equals("vayro-booking-service") || issuer.startsWith("vayro-"));
+            boolean validAudience = audience != null && audience.contains("vayro-notification-service");
+            if (!validIssuer || !validAudience) {
+                log.warn("[SECURITY] Rejected unverified INTERNAL_SERVICE claim: issuer='{}', audience='{}'", issuer, audience);
+                roles = roles.stream().filter(r -> !r.equals("INTERNAL_SERVICE")).toList();
+            }
         }
 
         return new AuthenticatedUser(userId, email, name, roles);

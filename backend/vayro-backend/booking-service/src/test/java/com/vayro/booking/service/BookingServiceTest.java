@@ -706,4 +706,53 @@ class BookingServiceTest {
         verify(notificationServiceClient, never())
                 .sendVehicleReturnedAdminNotificationAsync(any(Booking.class));
     }
+
+    @Test
+    @DisplayName("Disabled Account: createBooking throws AccountDisabledException when user is disabled")
+    void createBooking_whenUserDisabled_throwsAccountDisabledException() {
+        com.vayro.booking.client.UserServiceClient mockUserServiceClient = mock(com.vayro.booking.client.UserServiceClient.class);
+        BookingServiceImpl serviceWithUserClient = new BookingServiceImpl(
+                bookingRepository, vehicleServiceClient, notificationServiceClient, mockUserServiceClient, BigDecimal.valueOf(0.18)
+        );
+        when(mockUserServiceClient.isUserActive("user@vayro.com", "valid-jwt")).thenReturn(false);
+
+        BookingCreateRequest request = new BookingCreateRequest(
+                "veh-001",
+                LocalDateTime.now().plusDays(1),
+                LocalDateTime.now().plusDays(3),
+                "HQ", "HQ"
+        );
+
+        assertThrows(AccountDisabledException.class, () ->
+                serviceWithUserClient.createBooking(request, normalUser, "valid-jwt")
+        );
+    }
+
+    @Test
+    @DisplayName("Disabled Account: Admin user bypasses disabled check during booking operations")
+    void createBooking_whenAdminUser_bypassesDisabledCheck() {
+        com.vayro.booking.client.UserServiceClient mockUserServiceClient = mock(com.vayro.booking.client.UserServiceClient.class);
+        BookingServiceImpl serviceWithUserClient = new BookingServiceImpl(
+                bookingRepository, vehicleServiceClient, notificationServiceClient, mockUserServiceClient, BigDecimal.valueOf(0.18)
+        );
+
+        when(vehicleServiceClient.getVehicleById("veh-001")).thenReturn(Optional.of(availableVehicle));
+        when(bookingRepository.findOverlappingBookings(anyString(), any(), any(), anyList())).thenReturn(List.of());
+        when(bookingRepository.save(any(Booking.class))).thenAnswer(invocation -> {
+            Booking b = invocation.getArgument(0);
+            b.setId(500L);
+            return b;
+        });
+
+        BookingCreateRequest request = new BookingCreateRequest(
+                "veh-001",
+                LocalDateTime.now().plusDays(1),
+                LocalDateTime.now().plusDays(3),
+                "HQ", "HQ"
+        );
+
+        BookingResponse response = serviceWithUserClient.createBooking(request, adminUser, "admin-jwt");
+        assertNotNull(response);
+        verify(mockUserServiceClient, never()).isUserActive(any(), any());
+    }
 }

@@ -42,10 +42,11 @@ export function mapBooking(b) {
     taxAmount: b.taxAmount ? Number(b.taxAmount) : 0,
     totalAmount: b.totalAmount ? Number(b.totalAmount) : 0,
     status: b.status,
-    paymentStatus: b.paymentStatus || 'COMPLETED',
-    paymentReference: b.bookingReference ? `PAY-${b.bookingReference}` : 'PAY-DIRECT',
-    pickupLocation: b.pickupLocation,
-    returnLocation: b.returnLocation,
+    paymentStatus: b.paymentStatus || 'PENDING',
+    paymentMethod: b.paymentMethod || 'Not recorded',
+    paymentReference: b.paymentReference || (b.bookingReference ? `PAY-${b.bookingReference}` : 'PAY-DIRECT'),
+    pickupLocation: b.pickupLocation || 'Not provided',
+    returnLocation: b.returnLocation || 'Not provided',
     notes: b.notes,
     returnedAt: b.returnedAt,
     createdAt: b.createdAt,
@@ -57,10 +58,10 @@ export function mapBooking(b) {
       name: b.vehicleName,
     },
     driverDetails: {
-      fullName: b.customerName || 'Driver',
+      fullName: b.customerName || 'Customer',
       email: b.customerEmail || '',
-      phone: '+91 98765 43210',
-      licenseNumber: 'MH01-2022-998811',
+      phone: b.customerPhone || 'Not provided',
+      licenseNumber: 'Not provided',
     },
   }
 }
@@ -179,6 +180,16 @@ export async function fetchMyBookings(params = {}) {
  * Alias for customer bookings fetch
  */
 export async function getBookingsForCustomer(userId) {
+  if (userId) {
+    try {
+      const response = await api.get('/api/bookings', { params: { userId: String(userId), size: 100 } })
+      const data = response.data
+      const list = Array.isArray(data) ? data : (data.content || [])
+      return list.map(mapBooking)
+    } catch {
+      // Fallback if not admin
+    }
+  }
   try {
     return await fetchMyBookings()
   } catch {

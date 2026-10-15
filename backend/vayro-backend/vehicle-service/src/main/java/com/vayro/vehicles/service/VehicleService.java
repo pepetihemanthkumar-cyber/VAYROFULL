@@ -16,8 +16,17 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.vayro.vehicles.entity.MaintenanceStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import java.time.LocalDate;
+
 @Service
 public class VehicleService {
+
+    private static final Logger log = LoggerFactory.getLogger(VehicleService.class);
 
     private final VehicleRepository vehicleRepository;
 
@@ -152,8 +161,76 @@ public class VehicleService {
         Vehicle v = vehicleRepository.findById(id)
                 .orElseThrow(() -> new VehicleNotFoundException("Vehicle not found with ID: " + id));
 
-        v.setStatus(status);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        boolean isInternalService = auth != null && auth.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_INTERNAL_SERVICE") || a.getAuthority().equals("ROLE_SERVICE"));
+
+        // Safeguard 1: Prevent actively rented vehicle from being made AVAILABLE directly by admin without return
+        if (!isInternalService && v.getStatus() == VehicleStatus.RENTED && status == VehicleStatus.AVAILABLE) {
+            throw new IllegalStateException("Cannot mark an actively rented vehicle as AVAILABLE. Return handover must be processed through booking service first.");
+        }
+
+        // Safeguard 2: If vehicle is under maintenance (IN_SERVICE), prevent direct status flip to AVAILABLE without clearing maintenance
+        if (!isInternalService && v.getMaintenanceStatus() == MaintenanceStatus.IN_SERVICE && status == VehicleStatus.AVAILABLE) {
+            throw new IllegalStateException("Cannot mark vehicle as AVAILABLE while maintenance status is IN_SERVICE. Vehicle must complete maintenance first.");
+        }
+
+        // Safeguard 3: Do not overwrite maintenance status during return workflow
+        if (isInternalService && status == VehicleStatus.AVAILABLE && v.getMaintenanceStatus() == MaintenanceStatus.IN_SERVICE) {
+            log.warn("Vehicle {} returned from booking but retained in MAINTENANCE status due to active IN_SERVICE maintenance status.", id);
+            v.setStatus(VehicleStatus.MAINTENANCE);
+        } else {
+            v.setStatus(status);
+        }
+
         Vehicle saved = vehicleRepository.save(v);
+        return VehicleResponse.fromEntity(saved);
+    }
+
+    @Transactional
+    public VehicleResponse updateMaintenance(String id, VehicleMaintenanceRequest req) {
+        Vehicle v = vehicleRepository.findById(id)
+                .orElseThrow(() -> new VehicleNotFoundException("Vehicle not found with ID: " + id));
+
+        // Safeguard 4: Prevent vehicle with active rental from having maintenance status modified
+        if (v.getStatus() == VehicleStatus.RENTED) {
+            throw new IllegalStateException("Cannot change maintenance status of actively rented vehicle. Customer return must be completed first.");
+        }
+
+        MaintenanceStatus newMaintStatus = req.getMaintenanceStatus();
+        v.setMaintenanceStatus(newMaintStatus);
+
+        if (newMaintStatus == MaintenanceStatus.IN_SERVICE) {
+            v.setStatus(VehicleStatus.MAINTENANCE);
+        } else if (newMaintStatus == MaintenanceStatus.GOOD) {
+            if (req.getStatus() != null) {
+                v.setStatus(req.getStatus());
+            } else if (v.getStatus() == VehicleStatus.MAINTENANCE) {
+                v.setStatus(VehicleStatus.AVAILABLE);
+            }
+            if (req.getLastMaintenanceDate() != null) {
+                v.setLastMaintenanceDate(req.getLastMaintenanceDate());
+            } else if (v.getLastMaintenanceDate() == null) {
+                v.setLastMaintenanceDate(LocalDate.now());
+            }
+        } else if (newMaintStatus == MaintenanceStatus.DUE) {
+            if (req.getStatus() != null) {
+                v.setStatus(req.getStatus());
+            }
+        }
+
+        if (req.getLastMaintenanceDate() != null) {
+            v.setLastMaintenanceDate(req.getLastMaintenanceDate());
+        }
+        if (req.getNextMaintenanceDate() != null) {
+            v.setNextMaintenanceDate(req.getNextMaintenanceDate());
+        }
+        if (req.getMaintenanceNotes() != null) {
+            v.setMaintenanceNotes(req.getMaintenanceNotes());
+        }
+
+        Vehicle saved = vehicleRepository.save(v);
+        log.info("Vehicle {} maintenance updated to {} (operational status: {})", id, newMaintStatus, v.getStatus());
         return VehicleResponse.fromEntity(saved);
     }
 

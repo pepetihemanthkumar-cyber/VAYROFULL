@@ -6,6 +6,7 @@ import { LiquidBackground } from './LiquidBackground'
 import { MobileNavigation } from './MobileNavigation'
 import { Sidebar } from './Sidebar'
 import { TopNavigation } from './TopNavigation'
+import { Footer } from './Footer'
 
 export function AppLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -33,6 +34,7 @@ export function AppLayout() {
             <Outlet />
           </motion.div>
         </main>
+        <Footer />
       </div>
     </div>
   )

@@ -199,6 +199,11 @@ export default function AdminDashboardPage() {
                         <div>
                           <strong>{vehicle ? vehicle.name : 'Vehicle'}</strong>
                           <p>{formatDate(b.pickupDate)} → {formatDate(b.returnDate)} · {b.durationLabel || `${b.rentalDays} days`}</p>
+                          {b.returnedAt && b.status === 'RETURNED' && (
+                            <small className="booking-returned-subtext" style={{ color: '#10b981', display: 'block', fontWeight: 600 }}>
+                              Returned: {formatDate(b.returnedAt)} at {String(b.returnedAt).includes('T') ? String(b.returnedAt).slice(11, 16) : '10:00'}
+                            </small>
+                          )}
                           <small className="booking-hub-subtext">
                             Depot: {b.pickupLocation || 'VAYRO Vijayawada Central'}
                           </small>
@@ -206,7 +211,7 @@ export default function AdminDashboardPage() {
                       </div>
 
                       <div className="booking-item-secondary">
-                        <GlassBadge status={b.status}>{formatStatus(b.status)}</GlassBadge>
+                        <GlassBadge status={b.status}>{b.status === 'RETURNED' ? 'RETURNED' : formatStatus(b.status)}</GlassBadge>
                         <strong className="booking-item-amount">{formatCurrency(b.totalAmount)}</strong>
                         <GlassButton
                           as={Link}

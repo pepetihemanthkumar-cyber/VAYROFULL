@@ -52,18 +52,18 @@ export default function BookingsPage() {
   const counts = useMemo(() => {
     return {
       ALL: bookings.length,
-      UPCOMING: bookings.filter((b) => b.status === 'CONFIRMED').length,
+      UPCOMING: bookings.filter((b) => b.status === 'CONFIRMED' || b.status === 'PENDING').length,
       ACTIVE: bookings.filter((b) => b.status === 'ACTIVE').length,
-      COMPLETED: bookings.filter((b) => b.status === 'COMPLETED').length,
+      COMPLETED: bookings.filter((b) => b.status === 'COMPLETED' || b.status === 'RETURNED').length,
       CANCELLED: bookings.filter((b) => b.status === 'CANCELLED').length,
     }
   }, [bookings])
 
   const filteredBookings = useMemo(() => {
     if (activeTab === 'ALL') return bookings
-    if (activeTab === 'UPCOMING') return bookings.filter((b) => b.status === 'CONFIRMED')
+    if (activeTab === 'UPCOMING') return bookings.filter((b) => b.status === 'CONFIRMED' || b.status === 'PENDING')
     if (activeTab === 'ACTIVE') return bookings.filter((b) => b.status === 'ACTIVE')
-    if (activeTab === 'COMPLETED') return bookings.filter((b) => b.status === 'COMPLETED')
+    if (activeTab === 'COMPLETED') return bookings.filter((b) => b.status === 'COMPLETED' || b.status === 'RETURNED')
     if (activeTab === 'CANCELLED') return bookings.filter((b) => b.status === 'CANCELLED')
     return bookings
   }, [activeTab, bookings])

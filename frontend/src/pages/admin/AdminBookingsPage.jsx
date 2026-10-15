@@ -95,7 +95,7 @@ export default function AdminBookingsPage() {
   const counts = useMemo(() => {
     return {
       total: bookings.length,
-      confirmed: bookings.filter((b) => b.status === 'CONFIRMED').length,
+      confirmed: bookings.filter((b) => b.status === 'CONFIRMED' || b.status === 'PENDING').length,
       active: bookings.filter((b) => b.status === 'ACTIVE').length,
       completed: bookings.filter((b) => b.status === 'COMPLETED').length,
       cancelled: bookings.filter((b) => b.status === 'CANCELLED').length,

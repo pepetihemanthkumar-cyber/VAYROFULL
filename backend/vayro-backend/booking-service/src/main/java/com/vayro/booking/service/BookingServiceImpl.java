@@ -1,6 +1,7 @@
 package com.vayro.booking.service;
 
 import com.vayro.booking.client.NotificationServiceClient;
+import com.vayro.booking.client.UserServiceClient;
 import com.vayro.booking.client.VehicleServiceClient;
 import com.vayro.booking.dto.*;
 import com.vayro.booking.entity.Booking;
@@ -12,6 +13,7 @@ import com.vayro.booking.security.AuthenticatedUser;
 import jakarta.persistence.criteria.Predicate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,17 +44,21 @@ public class BookingServiceImpl implements BookingService {
     private final BookingRepository bookingRepository;
     private final VehicleServiceClient vehicleServiceClient;
     private final NotificationServiceClient notificationServiceClient;
+    private final UserServiceClient userServiceClient;
     private final BigDecimal taxRate;
 
+    @Autowired
     public BookingServiceImpl(
             BookingRepository bookingRepository,
             VehicleServiceClient vehicleServiceClient,
             NotificationServiceClient notificationServiceClient,
+            UserServiceClient userServiceClient,
             @Value("${app.booking.tax-rate:0.18}") BigDecimal taxRate
     ) {
         this.bookingRepository = bookingRepository;
         this.vehicleServiceClient = vehicleServiceClient;
         this.notificationServiceClient = notificationServiceClient;
+        this.userServiceClient = userServiceClient;
         this.taxRate = taxRate;
 
         // Initialize bounded lock stripes for JVM-local thread synchronization
@@ -60,6 +66,15 @@ public class BookingServiceImpl implements BookingService {
         for (int i = 0; i < STRIPE_COUNT; i++) {
             this.lockStripes[i] = new Object();
         }
+    }
+
+    public BookingServiceImpl(
+            BookingRepository bookingRepository,
+            VehicleServiceClient vehicleServiceClient,
+            NotificationServiceClient notificationServiceClient,
+            @Value("${app.booking.tax-rate:0.18}") BigDecimal taxRate
+    ) {
+        this(bookingRepository, vehicleServiceClient, notificationServiceClient, (email, token) -> true, taxRate);
     }
 
     private Object getLockStripe(String vehicleId) {
@@ -70,6 +85,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional
     public BookingResponse createBooking(BookingCreateRequest request, AuthenticatedUser currentUser, String authToken) {
+        verifyUserActive(currentUser, authToken);
         validateBookingDates(request.getPickupDateTime(), request.getReturnDateTime());
 
         // Enforce past date restriction for new reservation creation (allow 5 min clock skew buffer)
@@ -148,13 +164,14 @@ public class BookingServiceImpl implements BookingService {
             BigDecimal taxAmount = subtotal.multiply(taxRate).setScale(2, RoundingMode.HALF_UP);
             BigDecimal totalAmount = subtotal.add(taxAmount).setScale(2, RoundingMode.HALF_UP);
 
-            // 5. Payment Verification & Status Determination
+            // 5. Payment Handling & Status Determination
+            // VAYRO operates without external payment gateway integration. We do not pretend real funds were transferred.
+            // Reservations are authoritatively created in PostgreSQL with PENDING payment status (settled at pickup or demo mode),
+            // never trusting client-supplied payment claims as real money transfers.
             String payStatus = request.getPaymentStatus() != null ? request.getPaymentStatus().trim().toUpperCase() : null;
             if ("FAILED".equals(payStatus) || "CANCELLED".equals(payStatus)) {
                 throw new IllegalArgumentException("Payment was not completed successfully (Status: " + payStatus + "). Booking cannot be confirmed.");
             }
-
-            boolean isPaid = "PAID".equals(payStatus) || "COMPLETED".equals(payStatus);
 
             // 6. Build entity
             Booking booking = new Booking();
@@ -187,15 +204,19 @@ public class BookingServiceImpl implements BookingService {
             booking.setTaxAmount(taxAmount);
             booking.setTotalAmount(totalAmount);
 
-            if (isPaid) {
+            boolean isConfirmedReservation = "SIMULATED".equals(payStatus) || "PAID".equals(payStatus) || "CONFIRMED".equals(payStatus);
+            if (isConfirmedReservation) {
                 booking.setStatus(BookingStatus.CONFIRMED);
-                booking.setPaymentStatus(PaymentStatus.PAID);
-                booking.setPaymentMethod(request.getPaymentMethod() != null ? request.getPaymentMethod().trim().toUpperCase() : "UPI");
-                booking.setPaymentVerifiedAt(LocalDateTime.now());
+                booking.setPaymentStatus(PaymentStatus.PENDING);
+                booking.setPaymentMethod(request.getPaymentMethod() != null && !request.getPaymentMethod().isBlank()
+                        ? request.getPaymentMethod().trim().toUpperCase()
+                        : "SIMULATED");
             } else {
                 booking.setStatus(BookingStatus.PENDING);
                 booking.setPaymentStatus(PaymentStatus.PENDING);
-                booking.setPaymentMethod(request.getPaymentMethod() != null ? request.getPaymentMethod().trim().toUpperCase() : "PAY_AT_PICKUP");
+                booking.setPaymentMethod(request.getPaymentMethod() != null && !request.getPaymentMethod().isBlank()
+                        ? request.getPaymentMethod().trim().toUpperCase()
+                        : "PAY_AT_PICKUP");
             }
 
             booking.setPaymentReference(request.getPaymentReference() != null && !request.getPaymentReference().isBlank()
@@ -224,6 +245,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional(readOnly = true)
     public PageResponse<BookingSummaryResponse> getMyBookings(AuthenticatedUser currentUser, Pageable pageable) {
+        verifyUserActive(currentUser, currentUser != null ? currentUser.getToken() : null);
         Page<Booking> page = bookingRepository.findByUserId(currentUser.getUserId(), pageable);
         return new PageResponse<>(
                 page.getContent().stream().map(BookingSummaryResponse::fromEntity).toList(),
@@ -238,6 +260,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional(readOnly = true)
     public BookingResponse getBookingById(Long id, AuthenticatedUser currentUser) {
+        verifyUserActive(currentUser, currentUser != null ? currentUser.getToken() : null);
         Booking booking = bookingRepository.findById(id)
                 .orElseThrow(() -> new BookingNotFoundException("Booking not found with ID: " + id));
 
@@ -248,6 +271,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional(readOnly = true)
     public BookingResponse getBookingByReference(String reference, AuthenticatedUser currentUser) {
+        verifyUserActive(currentUser, currentUser != null ? currentUser.getToken() : null);
         Booking booking = bookingRepository.findByBookingReference(reference)
                 .orElseThrow(() -> new BookingNotFoundException("Booking not found with reference: " + reference));
 
@@ -304,6 +328,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional
     public BookingResponse cancelBooking(Long id, BookingCancelRequest request, AuthenticatedUser currentUser, String authToken) {
+        verifyUserActive(currentUser, authToken);
         Booking booking = bookingRepository.findById(id)
                 .orElseThrow(() -> new BookingNotFoundException("Booking not found with ID: " + id));
 
@@ -361,7 +386,6 @@ public class BookingServiceImpl implements BookingService {
         }
 
         booking.setStatus(BookingStatus.ACTIVE);
-        booking.setPaymentStatus(PaymentStatus.PAID);
         Booking saved = bookingRepository.save(booking);
 
         // Synchronize vehicle status to RENTED in Vehicle Service
@@ -374,8 +398,11 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional
     public BookingResponse returnBooking(Long id, AuthenticatedUser currentUser, String authToken) {
+        verifyUserActive(currentUser, authToken);
         Booking booking = bookingRepository.findById(id)
                 .orElseThrow(() -> new BookingNotFoundException("Booking not found with ID: " + id));
+
+        verifyBookingAccess(booking, currentUser);
 
         if (booking.getStatus() != BookingStatus.ACTIVE) {
             throw new InvalidBookingStateException("Cannot return booking with status " + booking.getStatus() + ". Only ACTIVE bookings can be marked as RETURNED.");
@@ -391,7 +418,7 @@ public class BookingServiceImpl implements BookingService {
         // Asynchronously dispatch vehicle return notification to Admin (non-blocking, failure does not roll back return)
         notificationServiceClient.sendVehicleReturnedAdminNotificationAsync(saved);
 
-        log.info("Booking {} vehicle returned (status RETURNED) by admin {}", saved.getBookingReference(), currentUser.getEmail());
+        log.info("Booking {} vehicle returned (status RETURNED) by user {}", saved.getBookingReference(), currentUser.getEmail());
         return BookingResponse.fromEntity(saved);
     }
 
@@ -466,6 +493,21 @@ public class BookingServiceImpl implements BookingService {
 
         if (!isOwner) {
             throw new UnauthorizedBookingAccessException("You do not have permission to view or manage this booking.");
+        }
+    }
+
+    private void verifyUserActive(AuthenticatedUser currentUser, String authToken) {
+        if (currentUser == null) {
+            throw new UnauthorizedBookingAccessException("Authentication is required.");
+        }
+        if (currentUser.isAdmin()) {
+            return; // Preserve administrative authorization
+        }
+        String token = (authToken != null && !authToken.isBlank()) ? authToken : currentUser.getToken();
+        boolean active = userServiceClient.isUserActive(currentUser.getEmail(), token);
+        if (!active) {
+            log.warn("[SECURITY] Access denied for disabled customer account");
+            throw new AccountDisabledException("Account is disabled. Please contact support.");
         }
     }
 

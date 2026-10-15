@@ -8,6 +8,7 @@ const statusStyles = {
   inactive: 'neutral',
   confirmed: 'success',
   active: 'info',
+  returned: 'success',
   completed: 'neutral',
   cancelled: 'danger',
 }

@@ -35,6 +35,9 @@ dist-ssr
 
 # Scratch & temporary artifacts
 scratch/
+backups/
+*.dump
+*.sql
 VAYROback/
 VAYROfrount/
 
@@ -48,4 +51,11 @@ backend/**/.env.*
 backend/**/application-local.yml
 backend/**/application-prod.yml
 backend/**/*.log
+*.log
 
+# Python cache & test artifacts
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/

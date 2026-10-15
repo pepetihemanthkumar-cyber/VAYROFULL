@@ -15,6 +15,9 @@ public class UserResponse {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    private boolean enabled = true;
+    private String status = "ACTIVE";
+
     public UserResponse() {
     }
 
@@ -27,6 +30,21 @@ public class UserResponse {
         this.role = role;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.enabled = true;
+        this.status = "ACTIVE";
+    }
+
+    public UserResponse(Long id, String firstName, String lastName, String email, String phone, Role role, LocalDateTime createdAt, LocalDateTime updatedAt, boolean enabled, String status) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.role = role;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.enabled = enabled;
+        this.status = status;
     }
 
     public static UserResponse fromEntity(User user) {
@@ -41,7 +59,9 @@ public class UserResponse {
                 user.getPhone(),
                 user.getRole(),
                 user.getCreatedAt(),
-                user.getUpdatedAt()
+                user.getUpdatedAt(),
+                user.isEnabled(),
+                user.isEnabled() ? "ACTIVE" : "DISABLED"
         );
     }
 
@@ -107,5 +127,23 @@ public class UserResponse {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        this.status = enabled ? "ACTIVE" : "DISABLED";
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+        this.enabled = "ACTIVE".equalsIgnoreCase(status);
     }
 }

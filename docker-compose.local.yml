@@ -1,0 +1,49 @@
+# ==============================================================================
+# VAYRO — Explicit Local Development Docker Compose Override
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.local.yml up -d
+#
+# This file explicitly overrides the base Supabase configuration to use
+# a local PostgreSQL database running on host.docker.internal for offline dev.
+# ==============================================================================
+
+services:
+  user-service:
+    environment:
+      DB_HOST: ${LOCAL_DB_HOST:-host.docker.internal}
+      DB_PORT: ${LOCAL_DB_PORT:-5432}
+      DB_NAME: ${LOCAL_DB_NAME:-vayro_users}
+      DB_USERNAME: ${LOCAL_DB_USERNAME:-postgres}
+      DB_PASSWORD: ${LOCAL_DB_PASSWORD:-}
+      DB_SSLMODE: ""
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${LOCAL_DDL_AUTO:-update}
+
+  vehicle-service:
+    environment:
+      DB_HOST: ${LOCAL_DB_HOST:-host.docker.internal}
+      DB_PORT: ${LOCAL_DB_PORT:-5432}
+      DB_NAME: ${LOCAL_DB_NAME:-vayro_users}
+      DB_USERNAME: ${LOCAL_DB_USERNAME:-postgres}
+      DB_PASSWORD: ${LOCAL_DB_PASSWORD:-}
+      DB_SSLMODE: ""
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${LOCAL_DDL_AUTO:-update}
+
+  booking-service:
+    environment:
+      DB_HOST: ${LOCAL_DB_HOST:-host.docker.internal}
+      DB_PORT: ${LOCAL_DB_PORT:-5432}
+      DB_NAME: ${LOCAL_DB_NAME:-vayro_users}
+      DB_USERNAME: ${LOCAL_DB_USERNAME:-postgres}
+      DB_PASSWORD: ${LOCAL_DB_PASSWORD:-}
+      DB_SSLMODE: ""
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${LOCAL_DDL_AUTO:-update}
+
+  notification-service:
+    environment:
+      DB_HOST: ${LOCAL_DB_HOST:-host.docker.internal}
+      DB_PORT: ${LOCAL_DB_PORT:-5432}
+      DB_NAME: ${LOCAL_DB_NAME:-vayro_users}
+      DB_USERNAME: ${LOCAL_DB_USERNAME:-postgres}
+      DB_PASSWORD: ${LOCAL_DB_PASSWORD:-}
+      DB_SSLMODE: ""
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${LOCAL_DDL_AUTO:-update}

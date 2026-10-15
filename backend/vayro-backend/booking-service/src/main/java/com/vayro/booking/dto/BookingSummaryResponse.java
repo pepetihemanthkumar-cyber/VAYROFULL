@@ -23,6 +23,7 @@ public class BookingSummaryResponse {
     private PaymentStatus paymentStatus;
     private String pickupLocation;
     private String returnLocation;
+    private LocalDateTime returnedAt;
     private LocalDateTime createdAt;
 
     public BookingSummaryResponse() {
@@ -45,6 +46,7 @@ public class BookingSummaryResponse {
         res.paymentStatus = b.getPaymentStatus();
         res.pickupLocation = b.getPickupLocation();
         res.returnLocation = b.getReturnLocation();
+        res.returnedAt = b.getReturnedAt();
         res.createdAt = b.getCreatedAt();
         return res;
     }
@@ -159,6 +161,14 @@ public class BookingSummaryResponse {
 
     public void setReturnLocation(String returnLocation) {
         this.returnLocation = returnLocation;
+    }
+
+    public LocalDateTime getReturnedAt() {
+        return returnedAt;
+    }
+
+    public void setReturnedAt(LocalDateTime returnedAt) {
+        this.returnedAt = returnedAt;
     }
 
     public LocalDateTime getCreatedAt() {

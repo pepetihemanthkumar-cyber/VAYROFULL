@@ -7,11 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
  * Bootstrap runner to initialize an admin account in development environments when explicitly enabled.
+ * Demo/test accounts are strictly prohibited in production.
  */
 @Component
 public class AdminInitializer implements CommandLineRunner {
@@ -20,6 +22,7 @@ public class AdminInitializer implements CommandLineRunner {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final Environment environment;
 
     @Value("${app.admin.bootstrap-enabled:false}")
     private boolean bootstrapEnabled;
@@ -39,13 +42,22 @@ public class AdminInitializer implements CommandLineRunner {
     @Value("${app.admin.phone:+91 98200 11223}")
     private String adminPhone;
 
-    public AdminInitializer(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    @Value("${app.demo-accounts.enabled:false}")
+    private boolean demoAccountsEnabled;
+
+    public AdminInitializer(UserRepository userRepository, PasswordEncoder passwordEncoder, Environment environment) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.environment = environment;
     }
 
     @Override
     public void run(String... args) {
+        initializeAdmin();
+        initializeDemoAccounts();
+    }
+
+    private void initializeAdmin() {
         if (!bootstrapEnabled) {
             log.info("Admin bootstrap initializer is disabled (ADMIN_BOOTSTRAP_ENABLED=false).");
             return;
@@ -72,6 +84,18 @@ public class AdminInitializer implements CommandLineRunner {
         } else {
             log.info("Admin account already exists for: {}", normalizedEmail);
         }
+    }
+
+    private void initializeDemoAccounts() {
+        if (!demoAccountsEnabled) {
+            log.info("Demo account initialization is disabled (app.demo-accounts.enabled=false).");
+            return;
+        }
+
+        if (isProductionEnvironment()) {
+            log.warn("Production environment detected! Test/demo account creation is strictly forbidden in production.");
+            return;
+        }
 
         String customerEmail = "customer@vayro.com";
         if (!userRepository.existsByEmail(customerEmail)) {
@@ -85,7 +109,21 @@ public class AdminInitializer implements CommandLineRunner {
             customer.setEnabled(true);
 
             userRepository.save(customer);
-            log.info("Customer bootstrap initialized account for: {}", customerEmail);
+            log.info("Demo customer initialized account for development: {}", customerEmail);
         }
+    }
+
+    private boolean isProductionEnvironment() {
+        String[] activeProfiles = environment.getActiveProfiles();
+        for (String profile : activeProfiles) {
+            if ("prod".equalsIgnoreCase(profile) || "production".equalsIgnoreCase(profile)) {
+                return true;
+            }
+        }
+        String appEnv = System.getenv("APP_ENV");
+        if (appEnv != null && ("prod".equalsIgnoreCase(appEnv) || "production".equalsIgnoreCase(appEnv))) {
+            return true;
+        }
+        return false;
     }
 }

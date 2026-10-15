@@ -17,6 +17,10 @@ import DashboardPage from '../pages/DashboardPage'
 import NewBookingPage from '../pages/NewBookingPage'
 import NotFoundPage from '../pages/NotFoundPage'
 import HelpPage from '../pages/HelpPage'
+import PrivacyPage from '../pages/PrivacyPage'
+import TermsPage from '../pages/TermsPage'
+import CancellationPolicyPage from '../pages/CancellationPolicyPage'
+import RentalConditionsPage from '../pages/RentalConditionsPage'
 import ProfilePage from '../pages/ProfilePage'
 import VehicleDetailsPage from '../pages/VehicleDetailsPage'
 import VehiclesPage from '../pages/VehiclesPage'
@@ -37,7 +41,7 @@ export function AppRoutes() {
       </Route>
 
       <Route element={<AppLayout />}>
-        {/* Public Vehicle & Help Browsing */}
+        {/* Public Vehicle, Help & Legal Browsing */}
         <Route path="/vehicles" element={<VehiclesPage />} />
         <Route path="/vehicles/:id" element={<VehicleDetailsPage />} />
         <Route path="/cars" element={<VehiclesPage />} />
@@ -45,6 +49,10 @@ export function AppRoutes() {
         <Route path="/bikes" element={<VehiclesPage />} />
         <Route path="/bikes/:id" element={<VehicleDetailsPage />} />
         <Route path="/help" element={<HelpPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
+        <Route path="/cancellation-policy" element={<CancellationPolicyPage />} />
+        <Route path="/rental-conditions" element={<RentalConditionsPage />} />
 
         {/* Authenticated Customer Routes */}
         <Route element={<ProtectedRoute />}>

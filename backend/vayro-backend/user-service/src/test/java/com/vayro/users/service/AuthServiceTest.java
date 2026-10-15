@@ -113,4 +113,156 @@ class AuthServiceTest {
 
         assertThrows(InvalidCredentialsException.class, () -> authService.login(request));
     }
+
+    @Test
+    void testGoogleAuthSuccessWhenEmailVerified() throws Exception {
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier mockVerifier =
+                mock(com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier.class);
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdToken mockToken =
+                mock(com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.class);
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload payload =
+                new com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload();
+
+        payload.setSubject("google-sub-12345");
+        payload.setEmail("verified.user@gmail.com");
+        payload.setEmailVerified(true);
+        payload.set("given_name", "Verified");
+        payload.set("family_name", "GoogleUser");
+
+        when(mockToken.getPayload()).thenReturn(payload);
+        when(mockVerifier.verify("valid-token-str")).thenReturn(mockToken);
+        authService.setCachedVerifier(mockVerifier);
+
+        when(userRepository.findByGoogleSubjectId("google-sub-12345")).thenReturn(Optional.empty());
+        when(userRepository.findByEmail("verified.user@gmail.com")).thenReturn(Optional.empty());
+        when(passwordEncoder.encode(anyString())).thenReturn("encoded-random-pwd");
+
+        User savedGoogleUser = new User("Verified", "GoogleUser", "verified.user@gmail.com", "encoded-random-pwd", "+91 98765 43210", Role.USER);
+        savedGoogleUser.setId(99L);
+        when(userRepository.save(any(User.class))).thenReturn(savedGoogleUser);
+        when(jwtService.generateToken(savedGoogleUser)).thenReturn("google.jwt.token");
+
+        com.vayro.users.dto.GoogleAuthRequest req = new com.vayro.users.dto.GoogleAuthRequest("valid-token-str");
+        AuthResponse res = authService.authenticateGoogleUser(req);
+
+        assertNotNull(res);
+        assertEquals("google.jwt.token", res.getToken());
+        assertEquals("verified.user@gmail.com", res.getUser().getEmail());
+    }
+
+    @Test
+    void testGoogleAuthRejectsUnverifiedEmail() throws Exception {
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier mockVerifier =
+                mock(com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier.class);
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdToken mockToken =
+                mock(com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.class);
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload payload =
+                new com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload();
+
+        payload.setSubject("google-sub-unverified");
+        payload.setEmail("unverified.user@gmail.com");
+        payload.setEmailVerified(false);
+
+        when(mockToken.getPayload()).thenReturn(payload);
+        when(mockVerifier.verify("unverified-token")).thenReturn(mockToken);
+        authService.setCachedVerifier(mockVerifier);
+
+        com.vayro.users.dto.GoogleAuthRequest req = new com.vayro.users.dto.GoogleAuthRequest("unverified-token");
+        InvalidCredentialsException ex = assertThrows(InvalidCredentialsException.class,
+                () -> authService.authenticateGoogleUser(req));
+        assertTrue(ex.getMessage().contains("not verified"));
+        verify(userRepository, never()).save(any(User.class));
+    }
+
+    @Test
+    void testGoogleAuthRejectsMissingEmailVerifiedClaim() throws Exception {
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier mockVerifier =
+                mock(com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier.class);
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdToken mockToken =
+                mock(com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.class);
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload payload =
+                new com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload();
+
+        payload.setSubject("google-sub-missing-claim");
+        payload.setEmail("missing.claim@gmail.com");
+        payload.setEmailVerified(null); // Missing email_verified claim
+
+        when(mockToken.getPayload()).thenReturn(payload);
+        when(mockVerifier.verify("missing-claim-token")).thenReturn(mockToken);
+        authService.setCachedVerifier(mockVerifier);
+
+        com.vayro.users.dto.GoogleAuthRequest req = new com.vayro.users.dto.GoogleAuthRequest("missing-claim-token");
+        InvalidCredentialsException ex = assertThrows(InvalidCredentialsException.class,
+                () -> authService.authenticateGoogleUser(req));
+        assertTrue(ex.getMessage().contains("not verified"));
+        verify(userRepository, never()).save(any(User.class));
+    }
+
+    @Test
+    void testGoogleAuthRejectsInvalidSignature() throws Exception {
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier mockVerifier =
+                mock(com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier.class);
+        when(mockVerifier.verify("bad-signature-token")).thenThrow(new java.security.GeneralSecurityException("Invalid cryptographic signature"));
+        authService.setCachedVerifier(mockVerifier);
+
+        com.vayro.users.dto.GoogleAuthRequest req = new com.vayro.users.dto.GoogleAuthRequest("bad-signature-token");
+        InvalidCredentialsException ex = assertThrows(InvalidCredentialsException.class,
+                () -> authService.authenticateGoogleUser(req));
+        assertTrue(ex.getMessage().contains("verification failed"));
+    }
+
+    @Test
+    void testGoogleAuthRejectsIncorrectAudience() throws Exception {
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier mockVerifier =
+                mock(com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier.class);
+        when(mockVerifier.verify("wrong-audience-token")).thenReturn(null); // Verifier returns null when audience does not match
+        authService.setCachedVerifier(mockVerifier);
+
+        com.vayro.users.dto.GoogleAuthRequest req = new com.vayro.users.dto.GoogleAuthRequest("wrong-audience-token");
+        InvalidCredentialsException ex = assertThrows(InvalidCredentialsException.class,
+                () -> authService.authenticateGoogleUser(req));
+        assertTrue(ex.getMessage().contains("Invalid, expired, or untrusted"));
+    }
+
+    @Test
+    void testGoogleAuthRejectsExpiredToken() throws Exception {
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier mockVerifier =
+                mock(com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier.class);
+        when(mockVerifier.verify("expired-token")).thenReturn(null); // Verifier returns null when token exp has passed
+        authService.setCachedVerifier(mockVerifier);
+
+        com.vayro.users.dto.GoogleAuthRequest req = new com.vayro.users.dto.GoogleAuthRequest("expired-token");
+        InvalidCredentialsException ex = assertThrows(InvalidCredentialsException.class,
+                () -> authService.authenticateGoogleUser(req));
+        assertTrue(ex.getMessage().contains("Invalid, expired, or untrusted"));
+    }
+
+    @Test
+    void testGoogleAuthRejectsMissingSubjectId() throws Exception {
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier mockVerifier =
+                mock(com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier.class);
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdToken mockToken =
+                mock(com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.class);
+        com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload payload =
+                new com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload();
+
+        payload.setSubject(""); // Missing subject ID
+        payload.setEmail("user@gmail.com");
+        payload.setEmailVerified(true);
+
+        when(mockToken.getPayload()).thenReturn(payload);
+        when(mockVerifier.verify("no-sub-token")).thenReturn(mockToken);
+        authService.setCachedVerifier(mockVerifier);
+
+        com.vayro.users.dto.GoogleAuthRequest req = new com.vayro.users.dto.GoogleAuthRequest("no-sub-token");
+        InvalidCredentialsException ex = assertThrows(InvalidCredentialsException.class,
+                () -> authService.authenticateGoogleUser(req));
+        assertTrue(ex.getMessage().contains("subject ID is missing"));
+    }
+
+    @Test
+    void testGoogleAuthRejectsMissingCredential() {
+        com.vayro.users.dto.GoogleAuthRequest req = new com.vayro.users.dto.GoogleAuthRequest("");
+        assertThrows(InvalidCredentialsException.class, () -> authService.authenticateGoogleUser(req));
+    }
 }

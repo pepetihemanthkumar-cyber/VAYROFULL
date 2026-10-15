@@ -25,6 +25,7 @@ public class NotificationController {
     }
 
     @PostMapping("/booking-confirmed")
+    @org.springframework.security.access.prepost.PreAuthorize("hasAnyRole('INTERNAL_SERVICE', 'SERVICE', 'ADMIN')")
     public ResponseEntity<NotificationResponse> handleBookingConfirmed(
             @Valid @RequestBody BookingConfirmedNotificationRequest request
     ) {
@@ -33,6 +34,7 @@ public class NotificationController {
     }
 
     @PostMapping("/vehicle-returned")
+    @org.springframework.security.access.prepost.PreAuthorize("hasAnyRole('INTERNAL_SERVICE', 'SERVICE', 'ADMIN')")
     public ResponseEntity<NotificationResponse> handleVehicleReturned(
             @Valid @RequestBody VehicleReturnedNotificationRequest request
     ) {
@@ -42,9 +44,14 @@ public class NotificationController {
 
     @GetMapping("/status/{idempotencyKey}")
     public ResponseEntity<NotificationResponse> getStatus(
-            @PathVariable String idempotencyKey
+            @PathVariable String idempotencyKey,
+            org.springframework.security.core.Authentication authentication
     ) {
-        NotificationResponse response = notificationService.getNotificationByIdempotencyKey(idempotencyKey);
+        if (authentication == null || !(authentication.getPrincipal() instanceof com.vayro.notification.security.AuthenticatedUser currentUser)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        NotificationResponse response = notificationService.getNotificationByIdempotencyKey(idempotencyKey, currentUser);
         if (response == null) {
             return ResponseEntity.notFound().build();
         }
@@ -53,17 +60,27 @@ public class NotificationController {
 
     @GetMapping("/booking/{bookingReference}")
     public ResponseEntity<List<NotificationResponse>> getBookingNotifications(
-            @PathVariable String bookingReference
+            @PathVariable String bookingReference,
+            org.springframework.security.core.Authentication authentication
     ) {
-        List<NotificationResponse> list = notificationService.getNotificationsByBookingReference(bookingReference);
+        if (authentication == null || !(authentication.getPrincipal() instanceof com.vayro.notification.security.AuthenticatedUser currentUser)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        List<NotificationResponse> list = notificationService.getNotificationsByBookingReference(bookingReference, currentUser);
         return ResponseEntity.ok(list);
     }
 
     @GetMapping("/latest/{bookingReference}")
     public ResponseEntity<NotificationResponse> getLatestNotification(
-            @PathVariable String bookingReference
+            @PathVariable String bookingReference,
+            org.springframework.security.core.Authentication authentication
     ) {
-        NotificationResponse response = notificationService.getLatestNotificationForBooking(bookingReference);
+        if (authentication == null || !(authentication.getPrincipal() instanceof com.vayro.notification.security.AuthenticatedUser currentUser)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        NotificationResponse response = notificationService.getLatestNotificationForBooking(bookingReference, currentUser);
         if (response == null) {
             return ResponseEntity.notFound().build();
         }
@@ -71,6 +88,7 @@ public class NotificationController {
     }
 
     @PostMapping("/resend/{bookingReference}")
+    @org.springframework.security.access.prepost.PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<NotificationResponse> resendNotification(
             @PathVariable String bookingReference
     ) {
@@ -80,9 +98,17 @@ public class NotificationController {
 
     @GetMapping("/invoice/{bookingReference}")
     public ResponseEntity<byte[]> downloadInvoicePdf(
-            @PathVariable String bookingReference
+            @PathVariable String bookingReference,
+            org.springframework.security.core.Authentication authentication
     ) {
-        byte[] pdfBytes = notificationService.getPdfInvoiceByBookingReference(bookingReference);
+        if (authentication == null || !(authentication.getPrincipal() instanceof com.vayro.notification.security.AuthenticatedUser)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        com.vayro.notification.security.AuthenticatedUser currentUser =
+                (com.vayro.notification.security.AuthenticatedUser) authentication.getPrincipal();
+
+        byte[] pdfBytes = notificationService.getPdfInvoiceByBookingReference(bookingReference, currentUser);
         if (pdfBytes == null || pdfBytes.length == 0) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -96,6 +122,7 @@ public class NotificationController {
     }
 
     @PostMapping("/test")
+    @org.springframework.security.access.prepost.PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<NotificationResponse> testEmailNotification(
             @RequestParam(required = false, defaultValue = "test@vayro.com") String email
     ) {
